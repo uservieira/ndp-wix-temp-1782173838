@@ -1905,6 +1905,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const d = TIER_DETAILS[key];
       if (!d) return;
       openModal(buildTierHTML(d));
+      setTimeout(() => {
+        const q = document.querySelector('[data-quote-cta="1"]');
+        if (q) q.addEventListener('click', closeModal);
+      }, 0);
     });
   });
 
@@ -1926,7 +1930,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <strong style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Warranty:</strong>
         <span style="margin-left: 8px;">${d.warranty}</span>
       </div>
-      <a href="contact.html" class="btn btn-block">Get a Quote for This Tier</a>
+      <a href="#contact-section" class="btn btn-block" data-quote-cta="1">Get a Quote for This Tier</a>
     `;
   }
 
@@ -1993,8 +1997,19 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2 style="font-family: var(--font-display); font-size: 26px; margin-bottom: 4px;">${name}</h2>
         <p style="color: var(--gray-body); margin-bottom: 24px;">${series}</p>
         <p style="margin-bottom: 24px;">Want to see this in your home? Request a free sample at your in-home consultation. We bring real product to your door before you decide.</p>
-        <a href="contact.html?color=${encodeURIComponent(name)}" class="btn btn-block">Request a Free Sample</a>
+        <a href="#contact-section" class="btn btn-block" id="sample-cta">Request a Free Sample</a>
       `);
+      // attach handler after injection
+      setTimeout(() => {
+        const cta = document.getElementById('sample-cta');
+        if (cta) cta.addEventListener('click', () => {
+          try {
+            const msg = document.querySelector('[name="Message"]');
+            if (msg) msg.value = 'Interested in color: ' + name;
+          } catch(e) {}
+          closeModal();
+        });
+      }, 0);
     });
   });
 
