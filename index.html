@@ -1800,8 +1800,13 @@ document.addEventListener('DOMContentLoaded', () => {
     guide:  { subject: 'LVP Color Guide Download', thanks: 'Your guide is downloading now. Check your email — we\'ll send your 10% off code within 24 hours when you book a free estimate. Reply to that email anytime.' }
   };
 
-  document.querySelectorAll('form[data-form]').forEach(form => {
-    form.addEventListener('submit', async (e) => {
+  // Delegated submit handler — catches ALL data-form forms,
+  // including ones injected dynamically later (e.g. the LVP guide popup).
+  document.addEventListener('submit', async (e) => {
+    const form = e.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    if (!form.matches('form[data-form]')) return;
+    {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
       const original = btn.textContent;
@@ -1868,7 +1873,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.textContent = 'Error — please call (561) 809-3864';
         btn.disabled = false;
       }
-    });
+    }
   });
 
   /* ============================================================
