@@ -1432,8 +1432,8 @@ img { max-width: 100%; display: block; }
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a class="nav-cta" href="#contact-section">Get a Quote</a></li>
 </ul>
@@ -1450,8 +1450,8 @@ img { max-width: 100%; display: block; }
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a class="mobile-drawer-cta" href="#contact-section">Get a Quote</a></li>
 </ul>
@@ -1633,8 +1633,8 @@ img { max-width: 100%; display: block; }
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a href="#contact-section">Contact</a></li>
 </ul>
@@ -1666,6 +1666,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const FORMSPREE_ID = 'mlgyeqrg';
   const FORM_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`;
 
+  const FORM_META = {
+    quote:  { subject: 'New Quote Request',  thanks: 'Your quote request was sent. Daniel will reach out within 24 hours.' },
+    review: { subject: 'New Review Submitted', thanks: 'Thank you for the review — it means everything to us.' },
+    refer:  { subject: 'New Referral',         thanks: 'Referral received. If they sign, your $100 Home Depot card is on the way.' },
+    contact:{ subject: 'New Contact Message',  thanks: 'Message received. Daniel will reach out within 24 hours.' }
+  };
+
   document.querySelectorAll('form[data-form]').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -1676,14 +1683,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         const data = new FormData(form);
-        // Add metadata
-        data.append('_subject', `New Quote Request — ${data.get('First Name') || 'Lead'}`);
-        data.append('_replyto', data.get('Email') || '');
+        const formType = form.getAttribute('data-form') || 'quote';
+        const meta = FORM_META[formType] || FORM_META.quote;
+        const nameForSubject = data.get('First Name') || data.get('Your Name') || data.get('Referrer Name') || data.get('Name') || 'Lead';
+        data.append('_subject', `${meta.subject} — ${nameForSubject}`);
+        data.append('_replyto', data.get('Email') || data.get('Your Email') || data.get('Referrer Email') || '');
+        data.append('form_type', formType);
 
         // If Formspree not yet wired, fall back to mailto
         if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
           const body = [...data.entries()].map(([k,v]) => `${k}: ${v}`).join('\n');
-          window.location.href = `mailto:newdesignproo@gmail.com?subject=Quote Request from website&body=${encodeURIComponent(body)}`;
+          window.location.href = `mailto:newdesignproo@gmail.com?subject=${encodeURIComponent(meta.subject)}&body=${encodeURIComponent(body)}`;
           btn.textContent = 'Opened your email — send it!';
           setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 4000);
           return;
@@ -1698,7 +1708,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (res.ok) {
           form.innerHTML = `<div style="text-align:center; padding: 40px 20px;">
             <h3 style="font-size: 28px; margin-bottom: 16px;">Thank you.</h3>
-            <p style="color: var(--gray-body); font-size: 16px;">Your quote request was sent. Daniel will reach out within 24 hours.</p>
+            <p style="color: var(--gray-body); font-size: 16px;">${meta.thanks}</p>
           </div>`;
         } else {
           btn.textContent = 'Error — please call (561) 809-3864';
@@ -1896,8 +1906,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a class="mobile-drawer-cta" href="#contact-section">Get a Quote</a></li>
 </ul>
@@ -2123,8 +2133,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a href="#contact-section">Contact</a></li>
 </ul>
@@ -2159,8 +2169,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a class="mobile-drawer-cta" href="#contact-section">Get a Quote</a></li>
 </ul>
@@ -2297,8 +2307,329 @@ document.addEventListener('DOMContentLoaded', () => {
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
+<li><a href="#about-section">About</a></li>
+<li><a href="#contact-section">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4>Contact</h4>
+<ul>
+<li><a class="footer-phone" href="tel:+15618093864">(561) 809-3864</a></li>
+<li><a href="mailto:newdesignproo@gmail.com">newdesignproo@gmail.com</a></li>
+<li style="margin-top:12px; color: rgba(255,255,255,0.7); font-size:13px;">Davenport, FL · Serving Central Florida</li>
+<li style="margin-top:20px;"><a href="https://instagram.com/newdesign.pro" target="_blank">Instagram</a></li>
+<li><a href="https://youtube.com/@NewDesignPro" target="_blank">YouTube</a></li>
+<li><a href="https://tiktok.com/@newdesign.pro" target="_blank">TikTok</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+    © 2026 Huios Construction LLC · dba New Design Pro · All rights reserved.
+  </div>
+</footer>
+<script src="js/site.js"></script>
+</div><div id="reviews-section" style="scroll-margin-top:80px;">
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-backdrop"></div>
+<aside aria-label="Mobile menu" class="mobile-drawer">
+<div class="mobile-drawer-head">
+<a class="nav-logo" href="#top">NEW<span class="nav-logo-dot"></span>DESIGN PRO</a>
+<button aria-label="Close menu" class="mobile-drawer-close">×</button>
+</div>
+<ul class="mobile-drawer-links">
+<li><a href="#top">Home</a></li>
+<li><a href="#flooring-section">Flooring</a></li>
+<li><a href="#services-section">Services</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
+<li><a href="#about-section">About</a></li>
+<li><a class="mobile-drawer-cta" href="#contact-section">Get a Quote</a></li>
+</ul>
+<div class="mobile-drawer-foot">
+<a class="mobile-drawer-phone" href="tel:+15618093864">(561) 809-3864</a>
+<div class="mobile-drawer-lang">FALAMOS PORTUGUÊS · HABLAMOS ESPAÑOL</div>
+<div class="mobile-drawer-social">
+<a href="https://instagram.com/newdesign.pro" target="_blank">Instagram</a>
+<a href="https://youtube.com/@NewDesignPro" target="_blank">YouTube</a>
+<a href="https://tiktok.com/@newdesign.pro" target="_blank">TikTok</a>
+</div>
+</div>
+</aside>
+<section class="hero hero-reviews">
+<div class="hero-content">
+<h1 class="hero-heading">Hear from Our <span class="accent">Happy Customers</span></h1>
+</div>
+</section>
+<section class="section">
+<div class="review-cards">
+<div class="review">
+<div class="review-quote">"</div>
+<div class="review-stars">★★★★★</div>
+<p>Working with New Design Pro was truly an amazing experience! The team was professional and communicative and went the extra mile to ensure our project was completed on time and within budget. We couldn't be happier with the results.</p>
+<div class="review-author">Lucca Foster</div>
+<div class="review-loc">Davenport, FL</div>
+</div>
+<div class="review">
+<div class="review-quote">"</div>
+<div class="review-stars">★★★★★</div>
+<p>We are truly grateful for the outstanding service and high-quality work your team delivered. Your attention to detail made all the difference. We highly recommend your services to anyone in search of a professional and trustworthy renovation company.</p>
+<div class="review-author">Bryan Cirilo</div>
+<div class="review-loc">Orlando, FL</div>
+</div>
+<div class="review">
+<div class="review-quote">"</div>
+<div class="review-stars">★★★★★</div>
+<p>We were extremely happy with New Design Pro's service! The team was respectful, highly skilled, and truly attentive to our needs. They took the time to understand our vision and turned our dream into reality. We would absolutely work with them again.</p>
+<div class="review-author">Rachel Dower</div>
+<div class="review-loc">Tampa, FL</div>
+</div>
+</div>
+<!-- LEAVE A REVIEW BLOCK -->
+<div class="review-cta-block">
+<h3>Worked with us? <span class="accent">Leave a review.</span></h3>
+<p>Your feedback helps us grow and helps your neighbors choose with confidence.</p>
+<div class="review-buttons">
+<a class="btn" href="#" id="leave-google-review">Leave a Google Review</a>
+<a class="btn btn-secondary" href="#leave-review-form">Submit Here Instead</a>
+</div>
+</div>
+<!-- WIX FORM BACKUP -->
+<div id="leave-review-form" style="max-width: 720px; margin: 80px auto 0;">
+<h2 class="section-heading" style="text-align:center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 40px;">Submit Your Review</h2>
+<form class="form" data-form="review">
+<div class="form-row">
+<div class="form-group">
+<label>Your Name <span class="req">*</span></label>
+<input name="Your Name" required="" type="text"/>
+</div>
+<div class="form-group">
+<label>City <span class="req">*</span></label>
+<input placeholder="e.g. Davenport, FL" required="" type="text"/>
+</div>
+</div>
+<div class="form-group">
+<label>Star Rating <span class="req">*</span></label>
+<select required="">
+<option value="">Select...</option>
+<option>★★★★★ (5 stars)</option>
+<option>★★★★ (4 stars)</option>
+<option>★★★ (3 stars)</option>
+<option>★★ (2 stars)</option>
+<option>★ (1 star)</option>
+</select>
+</div>
+<div class="form-group">
+<label>Your Review <span class="req">*</span></label>
+<textarea placeholder="Tell us about your experience..." required=""></textarea>
+</div>
+<div class="form-group">
+<label>Email (not shown publicly)</label>
+<input name="Email" placeholder="Just so we can thank you" type="email"/>
+</div>
+<button class="btn btn-block" type="submit">Submit Review</button>
+</form>
+<p style="text-align:center; color: var(--gray-light); font-size: 12px; margin-top: 16px;">
+      Reviews are moderated and may be posted publicly with first name + city.
+    </p>
+</div>
+</section>
+<footer class="footer">
+<div class="footer-grid">
+<div>
+<h4>New Design Pro</h4>
+<p style="color: rgba(255,255,255,0.7); font-size:14px; line-height:1.6; margin-bottom:20px;">
+        Clean, modern floors and interior renovations — Davenport, Orlando, and Central Florida.
+      </p>
+<div class="footer-lang-row">FALAMOS PORTUGUÊS · HABLAMOS ESPAÑOL</div>
+</div>
+<div>
+<h4>Menu</h4>
+<ul>
+<li><a href="#top">Home</a></li>
+<li><a href="#flooring-section">Flooring</a></li>
+<li><a href="#services-section">Services</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
+<li><a href="#about-section">About</a></li>
+<li><a href="#contact-section">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4>Contact</h4>
+<ul>
+<li><a class="footer-phone" href="tel:+15618093864">(561) 809-3864</a></li>
+<li><a href="mailto:newdesignproo@gmail.com">newdesignproo@gmail.com</a></li>
+<li style="margin-top:12px; color: rgba(255,255,255,0.7); font-size:13px;">Davenport, FL · Serving Central Florida</li>
+<li style="margin-top:20px;"><a href="https://instagram.com/newdesign.pro" target="_blank">Instagram</a></li>
+<li><a href="https://youtube.com/@NewDesignPro" target="_blank">YouTube</a></li>
+<li><a href="https://tiktok.com/@newdesign.pro" target="_blank">TikTok</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+    © 2026 Huios Construction LLC · dba New Design Pro · All rights reserved.
+  </div>
+</footer>
+<script src="js/site.js"></script>
+</div><div id="refer-section" style="scroll-margin-top:80px;">
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-backdrop"></div>
+<aside aria-label="Mobile menu" class="mobile-drawer">
+<div class="mobile-drawer-head">
+<a class="nav-logo" href="#top">NEW<span class="nav-logo-dot"></span>DESIGN PRO</a>
+<button aria-label="Close menu" class="mobile-drawer-close">×</button>
+</div>
+<ul class="mobile-drawer-links">
+<li><a href="#top">Home</a></li>
+<li><a href="#flooring-section">Flooring</a></li>
+<li><a href="#services-section">Services</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
+<li><a href="#about-section">About</a></li>
+<li><a class="mobile-drawer-cta" href="#contact-section">Get a Quote</a></li>
+</ul>
+<div class="mobile-drawer-foot">
+<a class="mobile-drawer-phone" href="tel:+15618093864">(561) 809-3864</a>
+<div class="mobile-drawer-lang">FALAMOS PORTUGUÊS · HABLAMOS ESPAÑOL</div>
+<div class="mobile-drawer-social">
+<a href="https://instagram.com/newdesign.pro" target="_blank">Instagram</a>
+<a href="https://youtube.com/@NewDesignPro" target="_blank">YouTube</a>
+<a href="https://tiktok.com/@newdesign.pro" target="_blank">TikTok</a>
+</div>
+</div>
+</aside>
+<section class="hero hero-refer">
+<div class="hero-content refer-hero-content">
+<h1 class="hero-heading">Refer a Job. <span class="accent">Earn Cash.</span></h1>
+<p class="hero-sub">Help your neighbors get clean, modern floors — and pocket up to <strong>$500</strong> doing it.</p>
+<a class="btn" href="#how">See How It Works</a>
+</div>
+</section>
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+<h2 class="section-heading">How <span class="accent">It Works</span></h2>
+<div class="refer-steps">
+<div class="refer-step">
+<div class="step-num">1</div>
+<h4>Tell a Friend</h4>
+<p>Know someone with worn-out floors or a kitchen that needs a refresh? Send them our way — text, call, or share our site.</p>
+</div>
+<div class="refer-step">
+<div class="step-num">2</div>
+<h4>They Get a Quote</h4>
+<p>They book a free walkthrough and mention your name. We do honest, no-pressure pricing.</p>
+</div>
+<div class="refer-step">
+<div class="step-num">3</div>
+<h4>You Get Paid</h4>
+<p>Their job closes, you get paid within 7 days of project completion. Cash, Zelle, or Check.</p>
+</div>
+</div>
+</section>
+<!-- PAYOUT TIERS -->
+<section class="section section-dark-full">
+<h2 class="section-heading" style="color:white;">What <span class="accent">You Earn</span></h2>
+<div class="refer-tiers">
+<div class="refer-tier">
+<div class="refer-tier-amount">$100</div>
+<div class="refer-tier-label">Per Closed Job · $3K+</div>
+<p>LVP whole-room jobs, full bathrooms, kitchen tile, larger renovations.</p>
+</div>
+<div class="refer-tier">
+<div class="refer-tier-amount">$75</div>
+<div class="refer-tier-label">Per Closed Job · $1.5K–$3K</div>
+<p>Mid-size flooring jobs, backsplashes, partial bathrooms.</p>
+</div>
+<div class="refer-tier">
+<div class="refer-tier-amount">$50</div>
+<div class="refer-tier-label">Per Closed Job · Under $1.5K</div>
+<p>Smaller projects, single rooms, trim &amp; paint work.</p>
+</div>
+</div>
+<div class="bonus-banner">
+<div class="bonus-banner-amount">$500</div>
+<h3>STRETCH BONUS</h3>
+<p>Refer 3 closed jobs within 90 days and we add a $500 bonus on top of your per-job payouts. That's real side-hustle money.</p>
+</div>
+</section>
+<!-- REFER FORM -->
+<section class="section">
+<h2 class="section-heading">Refer <span class="accent">Now</span></h2>
+<p style="text-align:center; max-width:600px; margin: -40px auto 60px; color: var(--gray-body);">
+    Drop their info below. We'll reach out, give an honest quote, and you'll be in the loop the whole time.
+  </p>
+<form class="form" data-form="refer">
+<h3 style="font-family: var(--font-display); font-size: 18px; margin-bottom: 20px;">About You</h3>
+<div class="form-row">
+<div class="form-group">
+<label>Your Name <span class="req">*</span></label>
+<input name="Your Name" required="" type="text"/>
+</div>
+<div class="form-group">
+<label>Your Phone <span class="req">*</span></label>
+<input name="Phone" required="" type="tel"/>
+</div>
+</div>
+<div class="form-group">
+<label>Your Email <span class="req">*</span></label>
+<input name="Email" required="" type="email"/>
+</div>
+<div class="form-group">
+<label>How should we pay you? <span class="req">*</span></label>
+<select name="Payout Method" required="">
+<option value="">Select...</option>
+<option>Cash</option>
+<option>Check</option>
+<option>Zelle</option>
+<option>Venmo</option>
+</select>
+</div>
+<h3 style="font-family: var(--font-display); font-size: 18px; margin: 40px 0 20px;">Who You're Referring</h3>
+<div class="form-row">
+<div class="form-group">
+<label>Their Name <span class="req">*</span></label>
+<input required="" type="text"/>
+</div>
+<div class="form-group">
+<label>Their Phone <span class="req">*</span></label>
+<input name="Phone" required="" type="tel"/>
+</div>
+</div>
+<div class="form-group">
+<label>Their City / Area <span class="req">*</span></label>
+<input placeholder="e.g. Davenport, Kissimmee, Orlando" required="" type="text"/>
+</div>
+<div class="form-group">
+<label>What do they need? (best guess is fine)</label>
+<textarea placeholder="e.g. New LVP throughout the house, bathroom tile, kitchen backsplash..."></textarea>
+</div>
+<button class="btn btn-block" type="submit">Submit Referral</button>
+<p style="text-align:center; color: var(--gray-light); font-size: 12px; margin-top: 16px;">
+      We only contact them if they're open to it. Your info stays private.
+    </p>
+</form>
+</section>
+<footer class="footer">
+<div class="footer-grid">
+<div>
+<h4>New Design Pro</h4>
+<p style="color: rgba(255,255,255,0.7); font-size:14px; line-height:1.6; margin-bottom:20px;">
+        Clean, modern floors and interior renovations — Davenport, Orlando, and Central Florida.
+      </p>
+<div class="footer-lang-row">FALAMOS PORTUGUÊS · HABLAMOS ESPAÑOL</div>
+</div>
+<div>
+<h4>Menu</h4>
+<ul>
+<li><a href="#top">Home</a></li>
+<li><a href="#flooring-section">Flooring</a></li>
+<li><a href="#services-section">Services</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a href="#contact-section">Contact</a></li>
 </ul>
@@ -2333,8 +2664,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a class="mobile-drawer-cta" href="#contact-section">Get a Quote</a></li>
 </ul>
@@ -2454,8 +2785,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a href="#contact-section">Contact</a></li>
 </ul>
@@ -2490,8 +2821,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a class="mobile-drawer-cta" href="#contact-section">Get a Quote</a></li>
 </ul>
@@ -2591,8 +2922,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <li><a href="#top">Home</a></li>
 <li><a href="#flooring-section">Flooring</a></li>
 <li><a href="#services-section">Services</a></li>
-<li><a href="#contact-section">Reviews</a></li>
-<li><a href="#contact-section">Refer &amp; Earn</a></li>
+<li><a href="#reviews-section">Reviews</a></li>
+<li><a href="#refer-section">Refer &amp; Earn</a></li>
 <li><a href="#about-section">About</a></li>
 <li><a href="#contact-section">Contact</a></li>
 </ul>
