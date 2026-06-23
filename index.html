@@ -1421,6 +1421,133 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.5px;
 }
 
+
+/* ============================================================
+   LVP GUIDE POPUP
+   ============================================================ */
+#ndp-guide-popup {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  animation: ndpPopupFade 0.25s ease-out;
+}
+.ndp-popup-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(15, 15, 18, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.ndp-popup {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 860px;
+  max-height: 92vh;
+  overflow: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  animation: ndpPopupSlide 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.ndp-popup-close {
+  position: absolute; top: 12px; right: 14px;
+  width: 36px; height: 36px;
+  border: 0; background: rgba(0,0,0,0.06);
+  border-radius: 50%;
+  font-size: 22px; line-height: 1;
+  cursor: pointer; color: #222;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+}
+.ndp-popup-close:hover { background: rgba(0,0,0,0.12); }
+.ndp-popup-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  min-height: 460px;
+}
+.ndp-popup-left {
+  background: linear-gradient(160deg, #f7f4ef 0%, #efe7d8 100%);
+  padding: 44px 36px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.ndp-popup-eyebrow {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent, #F5731F);
+  margin-bottom: 14px;
+}
+.ndp-popup-title {
+  font-size: 30px; line-height: 1.15; font-weight: 800;
+  margin: 0 0 18px; color: #1a1a1a;
+}
+.ndp-popup-list {
+  list-style: none; padding: 0; margin: 0 0 22px;
+  font-size: 14.5px; color: #222;
+}
+.ndp-popup-list li { padding: 4px 0; }
+.ndp-popup-badge {
+  display: inline-block;
+  background: #F5731F; color: #fff;
+  padding: 10px 16px; border-radius: 8px;
+  font-weight: 700; font-size: 14px;
+  align-self: flex-start;
+}
+.ndp-popup-right {
+  padding: 40px 34px;
+}
+.ndp-popup-form-title {
+  font-size: 19px; font-weight: 700;
+  margin: 0 0 18px; color: #1a1a1a;
+}
+.ndp-popup-form .form-group { margin-bottom: 12px; }
+.ndp-popup-form .form-group label {
+  font-size: 12.5px; font-weight: 600;
+  display: block; margin-bottom: 5px; color: #333;
+}
+.ndp-popup-form .form-group input[type="text"],
+.ndp-popup-form .form-group input[type="email"],
+.ndp-popup-form .form-group input[type="tel"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d8d8d8;
+  border-radius: 7px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.ndp-popup-form .form-group input:focus {
+  outline: 0;
+  border-color: #F5731F;
+  box-shadow: 0 0 0 3px rgba(245,115,31,0.15);
+}
+.ndp-popup-consent {
+  display: flex; align-items: flex-start; gap: 9px;
+  background: #FFF7EC;
+  border: 1px solid #F5D7A8;
+  padding: 11px 13px;
+  border-radius: 7px;
+  margin: 8px 0 14px;
+}
+.ndp-popup-consent input { margin-top: 3px; width: auto; flex-shrink: 0; }
+.ndp-popup-consent label {
+  font-size: 12px; line-height: 1.45;
+  color: #3a2a10; font-weight: 500;
+  margin: 0;
+}
+.ndp-popup-fine {
+  font-size: 11.5px; color: #888;
+  margin-top: 11px; text-align: center;
+}
+@keyframes ndpPopupFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ndpPopupSlide {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@media (max-width: 720px) {
+  .ndp-popup-grid { grid-template-columns: 1fr; min-height: auto; }
+  .ndp-popup-left { padding: 32px 26px 22px; }
+  .ndp-popup-right { padding: 26px 26px 32px; }
+  .ndp-popup-title { font-size: 24px; }
+}
 </style>
 <!-- Google Ads / Google tag -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-18264120794"></script>
@@ -1588,9 +1715,10 @@ gtag('config', 'AW-18264120794');
 <input name="Phone" type="tel"/>
 </div>
 <div class="form-group" style="display:flex; align-items:flex-start; gap:10px; background:#FFF7EC; padding:12px 14px; border-radius:8px; border:1px solid #F5D7A8;">
-<input checked="" id="guide-discount" name="discount_eligible" style="margin-top:3px; width:auto;" type="checkbox" value="yes"/>
-<label for="guide-discount" style="font-size:13px; line-height:1.45; color:#3a2a10; font-weight:600;">Yes, send me 10% off my first project quote</label>
+<input id="guide-consent" name="marketing_consent" required="" style="margin-top:3px; width:auto;" type="checkbox" value="yes"/>
+<label for="guide-consent" style="font-size:13px; line-height:1.45; color:#3a2a10; font-weight:500;">I agree to receive the guide, my 10% off code, and occasional emails from New Design Pro. Unsubscribe anytime. <span style="color:#C0392B; font-weight:700;">(required)</span></label>
 </div>
+<input name="discount_eligible" type="hidden" value="yes"/>
 <input name="source" type="hidden" value="LVP Color Guide"/>
 <button class="btn btn-block" type="submit">Email me the guide + 10% off</button>
 <p style="font-size:12px; color:#666; margin-top:12px; text-align:center;">No spam. Just the guide + your discount code. Unsubscribe anytime.</p>
@@ -2012,6 +2140,137 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 0);
     });
   });
+
+  /* ============================================================
+     LVP GUIDE POPUP — timed lead capture
+     - 15s on home page
+     - 5s on flooring section (if URL contains #flooring)
+     - Dismissal cookie: 7 days
+     ============================================================ */
+  const POPUP_DISMISS_KEY = 'ndp_guide_popup_dismissed';
+  const POPUP_SUBMITTED_KEY = 'ndp_guide_submitted';
+
+  function popupDismissed() {
+    try {
+      const t = parseInt(localStorage.getItem(POPUP_DISMISS_KEY) || '0', 10);
+      if (!t) return false;
+      return (Date.now() - t) < 7 * 24 * 60 * 60 * 1000;
+    } catch(e) { return false; }
+  }
+  function popupSubmitted() {
+    try { return localStorage.getItem(POPUP_SUBMITTED_KEY) === '1'; } catch(e) { return false; }
+  }
+  function markDismissed() {
+    try { localStorage.setItem(POPUP_DISMISS_KEY, String(Date.now())); } catch(e) {}
+  }
+  function markSubmitted() {
+    try { localStorage.setItem(POPUP_SUBMITTED_KEY, '1'); } catch(e) {}
+  }
+
+  function buildPopupHTML(source) {
+    return `
+      <div class="ndp-popup-backdrop"></div>
+      <div class="ndp-popup" role="dialog" aria-labelledby="ndp-popup-title">
+        <button class="ndp-popup-close" aria-label="Close">×</button>
+        <div class="ndp-popup-grid">
+          <div class="ndp-popup-left">
+            <div class="ndp-popup-eyebrow">Free download · 2026 Edition</div>
+            <h2 id="ndp-popup-title" class="ndp-popup-title">The LVP Color Guide for Central Florida Homes</h2>
+            <ul class="ndp-popup-list">
+              <li>▸ All 16 colors with real plank photos</li>
+              <li>▸ Our top 3 picks for 2026</li>
+              <li>▸ Installed pricing $4.99–$6.99/sqft</li>
+            </ul>
+            <div class="ndp-popup-badge">+ 10% off your first project</div>
+          </div>
+          <div class="ndp-popup-right">
+            <h3 class="ndp-popup-form-title">Send me the guide + 10% off</h3>
+            <form class="form ndp-popup-form" data-form="guide">
+              <div class="form-group">
+                <label>First Name <span class="req">*</span></label>
+                <input name="First Name" required type="text"/>
+              </div>
+              <div class="form-group">
+                <label>Email <span class="req">*</span></label>
+                <input name="Email" required type="email"/>
+              </div>
+              <div class="form-group">
+                <label>Phone (optional)</label>
+                <input name="Phone" type="tel"/>
+              </div>
+              <div class="ndp-popup-consent">
+                <input id="ndp-popup-consent-${Date.now()}" name="marketing_consent" type="checkbox" value="yes" required/>
+                <label for="ndp-popup-consent-${Date.now()}">I agree to receive the guide, my 10% off code, and occasional emails from New Design Pro about projects, promos, and tips. Unsubscribe anytime. <span style="color:#C0392B; font-weight:700;">(required)</span></label>
+              </div>
+              <input name="source" type="hidden" value="${source}"/>
+              <input name="discount_eligible" type="hidden" value="yes"/>
+              <button class="btn btn-block" type="submit">Email me the guide + 10% off</button>
+              <p class="ndp-popup-fine">No spam. Unsubscribe anytime.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function openPopup(source) {
+    if (popupDismissed() || popupSubmitted()) return;
+    if (document.getElementById('ndp-guide-popup')) return;
+    const wrap = document.createElement('div');
+    wrap.id = 'ndp-guide-popup';
+    wrap.innerHTML = buildPopupHTML(source);
+    document.body.appendChild(wrap);
+    document.body.style.overflow = 'hidden';
+
+    const close = () => {
+      markDismissed();
+      wrap.remove();
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+    };
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
+
+    wrap.querySelector('.ndp-popup-close').addEventListener('click', close);
+    wrap.querySelector('.ndp-popup-backdrop').addEventListener('click', close);
+    document.addEventListener('keydown', onKey);
+
+    // wire the form using the existing submit pipeline
+    const form = wrap.querySelector('form[data-form="guide"]');
+    form.addEventListener('submit', () => { markSubmitted(); });
+  }
+
+  // Trigger 1: 15s on home page
+  const HOME_DELAY = 15000;
+  const FLOORING_DELAY = 5000;
+
+  // Detect which view we're in. Bundle uses #flooring-section anchor; also fire faster
+  // if the flooring section is currently in viewport.
+  function inFlooringView() {
+    if (location.hash.includes('flooring')) return true;
+    const sec = document.getElementById('flooring-section');
+    if (!sec) return false;
+    const r = sec.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.5 && r.bottom > 0;
+  }
+
+  if (!popupDismissed() && !popupSubmitted()) {
+    setTimeout(() => {
+      const source = inFlooringView() ? 'Popup - Flooring' : 'Popup - Home';
+      openPopup(source);
+    }, HOME_DELAY);
+
+    // Fast trigger if user scrolls to flooring section
+    let firedFlooring = false;
+    const checkFlooring = () => {
+      if (firedFlooring) return;
+      if (inFlooringView()) {
+        firedFlooring = true;
+        setTimeout(() => openPopup('Popup - Flooring'), FLOORING_DELAY);
+        window.removeEventListener('scroll', checkFlooring);
+      }
+    };
+    window.addEventListener('scroll', checkFlooring, { passive: true });
+  }
 
 });
 </script>
