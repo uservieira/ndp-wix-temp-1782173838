@@ -1562,16 +1562,18 @@ gtag('config', 'AW-18264120794');
 <div>
 <div style="font-size:13px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;">Free download · 2026 Edition</div>
 <h2 style="font-size:38px; line-height:1.1; font-weight:800; margin-bottom:18px;">The LVP Color &amp; Style Guide for Central Florida Homes</h2>
-<p style="color:var(--gray-body); font-size:16px; line-height:1.6; margin-bottom:18px;">10 pages. Real-house photos. The colors that resell well in Davenport, Orlando, and Champions Gate — and the ones to avoid.</p>
-<ul style="list-style:none; padding:0; margin:0 0 24px; color:#222; font-size:15px;">
-<li style="padding:6px 0;">▸ Light vs medium vs dark — what fits your floor plan</li>
-<li style="padding:6px 0;">▸ Waterproof core specs explained in plain English</li>
-<li style="padding:6px 0;">▸ Realtor-approved palettes for resale homes</li>
+<p style="color:var(--gray-body); font-size:16px; line-height:1.6; margin-bottom:18px;">Our full 16-color SPC lineup with real plank photos. The colors that resell well in Davenport, Orlando, and Champions Gate — and the ones to avoid.</p>
+<ul style="list-style:none; padding:0; margin:0 0 22px; color:#222; font-size:15px;">
+<li style="padding:6px 0;">▸ All 16 colors with real plank photos</li>
+<li style="padding:6px 0;">▸ Our top 3 picks for 2026 — Soft Natural, Rustik Honey, Natural Walnut</li>
+<li style="padding:6px 0;">▸ Installed pricing $4.99–$6.99/sqft with materials</li>
 <li style="padding:6px 0;">▸ Pet, kid, and Florida-humidity considerations</li>
 </ul>
+<div style="display:inline-block; background:#FFF4E5; border:1px solid #F5A24A; color:#9C4A00; font-weight:700; padding:10px 16px; border-radius:8px; font-size:14.5px;">+ 10% off your first project when you download</div>
 </div>
 <div style="background:#fff; padding:32px 28px; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,0.08);">
-<h3 style="font-size:20px; font-weight:700; margin-bottom:18px;">Send me the guide</h3>
+<h3 style="font-size:20px; font-weight:700; margin-bottom:6px;">Send me the guide + 10% off</h3>
+<p style="font-size:13px; color:#666; margin-bottom:18px;">Free PDF download + 10% off your first project when you book a free estimate.</p>
 <form class="form" data-form="guide">
 <div class="form-group">
 <label>First Name <span class="req">*</span></label>
@@ -1585,9 +1587,13 @@ gtag('config', 'AW-18264120794');
 <label>Phone (optional)</label>
 <input name="Phone" type="tel"/>
 </div>
+<div class="form-group" style="display:flex; align-items:flex-start; gap:10px; background:#FFF7EC; padding:12px 14px; border-radius:8px; border:1px solid #F5D7A8;">
+<input checked="" id="guide-discount" name="discount_eligible" style="margin-top:3px; width:auto;" type="checkbox" value="yes"/>
+<label for="guide-discount" style="font-size:13px; line-height:1.45; color:#3a2a10; font-weight:600;">Yes, send me 10% off my first project quote</label>
+</div>
 <input name="source" type="hidden" value="LVP Color Guide"/>
-<button class="btn btn-block" type="submit">Email me the guide</button>
-<p style="font-size:12px; color:#666; margin-top:12px; text-align:center;">No spam. Just the guide. Unsubscribe anytime.</p>
+<button class="btn btn-block" type="submit">Email me the guide + 10% off</button>
+<p style="font-size:12px; color:#666; margin-top:12px; text-align:center;">No spam. Just the guide + your discount code. Unsubscribe anytime.</p>
 </form>
 </div>
 </div>
@@ -1731,7 +1737,7 @@ document.addEventListener('DOMContentLoaded', () => {
     review: { subject: 'New Review Submitted', thanks: 'Thank you for the review — it means everything to us.' },
     refer:  { subject: 'New Referral',         thanks: 'Referral received. If they sign, your $100 Home Depot card is on the way.' },
     contact:{ subject: 'New Contact Message',  thanks: 'Message received. Our team will reach out within 24 hours.' },
-    guide:  { subject: 'LVP Color Guide Download', thanks: 'Check your email — the 2026 LVP Color Guide is on its way. Reply with questions anytime.' }
+    guide:  { subject: 'LVP Color Guide Download', thanks: 'Your guide is downloading now. Check your email — we\'ll send your 10% off code within 24 hours when you book a free estimate. Reply to that email anytime.' }
   };
 
   document.querySelectorAll('form[data-form]').forEach(form => {
