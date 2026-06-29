@@ -1464,15 +1464,33 @@ section#quote textarea::placeholder { color: #888; }
 }
 .ndp-popup {
   position: relative;
-  background: #fff;
-  border-radius: 14px;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(245,115,31,0.10) 0%, rgba(245,115,31,0) 38%),
+    radial-gradient(circle at 88% 92%, rgba(233,75,38,0.09) 0%, rgba(233,75,38,0) 42%),
+    linear-gradient(135deg, #fffdf9 0%, #fff7ef 60%, #fff1e3 100%);
+  border-radius: 16px;
   width: 100%;
   max-width: 860px;
   max-height: 92vh;
   overflow: auto;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(245,115,31,0.18);
   animation: ndpPopupSlide 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
+.ndp-popup::before {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  border-radius: 16px;
+  background-image:
+    repeating-linear-gradient(135deg, rgba(245,115,31,0.045) 0 2px, transparent 2px 14px),
+    radial-gradient(circle at 50% 0%, rgba(245,115,31,0.10) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 0% 50%, rgba(233,75,38,0.08) 0 1px, transparent 1.5px);
+  background-size: auto, 22px 22px, 18px 18px;
+  background-position: 0 0, 0 0, 11px 9px;
+  opacity: 0.85;
+  z-index: 0;
+}
+.ndp-popup > * { position: relative; z-index: 1; }
 .ndp-popup-close {
   position: absolute; top: 12px; right: 14px;
   width: 36px; height: 36px;
@@ -1490,9 +1508,21 @@ section#quote textarea::placeholder { color: #888; }
   min-height: 460px;
 }
 .ndp-popup-left {
-  background: linear-gradient(160deg, #f7f4ef 0%, #efe7d8 100%);
+  background:
+    linear-gradient(160deg, rgba(247,244,239,0.78) 0%, rgba(239,231,216,0.82) 100%);
   padding: 44px 36px;
   display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+  border-right: 1px solid rgba(245,115,31,0.12);
+}
+.ndp-popup-left::after {
+  content: "";
+  position: absolute;
+  right: -2px; top: 20%; bottom: 20%;
+  width: 4px;
+  background: linear-gradient(180deg, rgba(245,115,31,0) 0%, rgba(245,115,31,0.55) 50%, rgba(245,115,31,0) 100%);
+  border-radius: 4px;
+  pointer-events: none;
 }
 .ndp-popup-eyebrow {
   font-size: 12px; font-weight: 700;
@@ -1518,6 +1548,9 @@ section#quote textarea::placeholder { color: #888; }
 }
 .ndp-popup-right {
   padding: 40px 34px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 .ndp-popup-form-title {
   font-size: 19px; font-weight: 700;
@@ -2046,9 +2079,9 @@ document.addEventListener('DOMContentLoaded', () => {
      - 5s on flooring section (if URL contains #flooring)
      - Dismissal cookie: 7 days
      ============================================================ */
-  // v3 key — bumped to clear out users with old dismiss timestamps so they see the refreshed popup
-  const POPUP_DISMISS_KEY = 'ndp_guide_popup_dismissed_v3';
-  const POPUP_SUBMITTED_KEY = 'ndp_guide_submitted_v3';
+  // v4 key — bumped again to force-clear any stale dismiss timestamps from earlier testing.
+  const POPUP_DISMISS_KEY = 'ndp_guide_popup_dismissed_v4';
+  const POPUP_SUBMITTED_KEY = 'ndp_guide_submitted_v4';
 
   // Clear old keys from previous popup versions
   try {
@@ -2056,6 +2089,8 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('ndp_guide_submitted');
     localStorage.removeItem('ndp_guide_popup_dismissed_v2');
     localStorage.removeItem('ndp_guide_submitted_v2');
+    localStorage.removeItem('ndp_guide_popup_dismissed_v3');
+    localStorage.removeItem('ndp_guide_submitted_v3');
   } catch(e) {}
 
   function popupDismissed() {
@@ -3290,8 +3325,21 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 (function () {
   var FORMSPREE_ID = 'mlgyeqrg';
-  var KEY = 'ndp_tb_dismissed';
-  function dismissed() { try { return localStorage.getItem(KEY) !== null; } catch(e) { return false; } }
+  // v2 — bumped so any user with a permanent dismiss from before sees the tab again.
+  // Also adds a 7-day cooldown so it doesn't disappear forever after one dismiss.
+  var KEY = 'ndp_tb_dismissed_v2';
+  try { localStorage.removeItem('ndp_tb_dismissed'); } catch(e) {}
+  function dismissed() {
+    try {
+      var t = localStorage.getItem(KEY);
+      if (!t) return false;
+      var ts = parseInt(t, 10);
+      if (isNaN(ts)) return false;
+      var SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+      if (Date.now() - ts > SEVEN_DAYS) { localStorage.removeItem(KEY); return false; }
+      return true;
+    } catch(e) { return false; }
+  }
   function markDismissed() { try { localStorage.setItem(KEY, String(Date.now())); } catch(e) {} }
 
   var bar = document.getElementById('ndpTb');
