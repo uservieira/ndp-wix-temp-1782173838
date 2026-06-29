@@ -1797,7 +1797,7 @@ document.addEventListener('DOMContentLoaded', () => {
     review: { subject: 'New Review Submitted', thanks: 'Thank you for the review — it means everything to us.' },
     refer:  { subject: 'New Referral',         thanks: 'Referral received. If they sign, your $100 Home Depot card is on the way.' },
     contact:{ subject: 'New Contact Message',  thanks: 'Message received. Our team will reach out within 24 hours.' },
-    guide:  { subject: 'LVP Color Guide Download', thanks: 'Your guide is downloading now. Check your email — we\'ll send your 10% off code within 24 hours when you book a free estimate. Reply to that email anytime.' }
+    guide:  { subject: 'LVP Color Guide Download + $250 Off', thanks: 'Your guide is downloading now. Check your email — we\'ll send your $250 off code within 24 hours when you book a free estimate. Reply to that email anytime.' }
   };
 
   // Delegated submit handler — catches ALL data-form forms,
@@ -2088,11 +2088,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const POPUP_SUBMITTED_KEY = 'ndp_guide_submitted';
 
   function popupDismissed() {
-    try {
-      const t = parseInt(localStorage.getItem(POPUP_DISMISS_KEY) || '0', 10);
-      if (!t) return false;
-      return (Date.now() - t) < 7 * 24 * 60 * 60 * 1000;
-    } catch(e) { return false; }
+    // Permanent: once they've closed it, never show again
+    try { return localStorage.getItem(POPUP_DISMISS_KEY) !== null; }
+    catch(e) { return false; }
   }
   function popupSubmitted() {
     try { return localStorage.getItem(POPUP_SUBMITTED_KEY) === '1'; } catch(e) { return false; }
@@ -2118,10 +2116,10 @@ document.addEventListener('DOMContentLoaded', () => {
               <li>▸ Our top 3 picks for 2026</li>
               <li>▸ Installed pricing $4.99–$6.99/sqft</li>
             </ul>
-            <div class="ndp-popup-badge">+ 10% off your first project</div>
+            <div class="ndp-popup-badge">+ $250 off your first LVP install</div>
           </div>
           <div class="ndp-popup-right">
-            <h3 class="ndp-popup-form-title">Send me the guide + 10% off</h3>
+            <h3 class="ndp-popup-form-title">Send me the guide + $250 off</h3>
             <form class="form ndp-popup-form" data-form="guide">
               <div class="form-group">
                 <label>First Name <span class="req">*</span></label>
@@ -2137,11 +2135,11 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               <div class="ndp-popup-consent">
                 <input id="ndp-popup-consent-${Date.now()}" name="marketing_consent" type="checkbox" value="yes" required/>
-                <label for="ndp-popup-consent-${Date.now()}">I agree to receive the guide, my 10% off code, and occasional emails from New Design Pro about projects, promos, and tips. Unsubscribe anytime. <span style="color:#C0392B; font-weight:700;">(required)</span></label>
+                <label for="ndp-popup-consent-${Date.now()}">I agree to receive the guide, my $250 off code, and occasional emails from New Design Pro about projects, promos, and tips. Unsubscribe anytime. <span style="color:#C0392B; font-weight:700;">(required)</span></label>
               </div>
               <input name="source" type="hidden" value="${source}"/>
               <input name="discount_eligible" type="hidden" value="yes"/>
-              <button class="btn btn-block" type="submit">Email me the guide + 10% off</button>
+              <button class="btn btn-block" type="submit">Email me the guide + $250 off</button>
               <p class="ndp-popup-fine">No spam. Unsubscribe anytime.</p>
             </form>
           </div>
@@ -2863,5 +2861,192 @@ document.addEventListener('DOMContentLoaded', () => {
 </section>
 
 <script src="js/site.js"></script>
-</div></body>
+</div>
+
+<!-- =============================================
+     NDP TOP BANNER — $250 OFF COUPON
+     Sticky bar + modal + jsPDF coupon generator
+     Submits to Formspree mlgyeqrg
+     ============================================= -->
+<style>
+  .ndp-tb { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(90deg, #E94B26 0%, #d63e1c 100%); color: #fff; padding: 11px 50px 11px 16px; display: flex; align-items: center; justify-content: center; gap: 14px; z-index: 2147483646; box-shadow: 0 2px 14px rgba(0,0,0,0.18); font-size: 14px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; transform: translateY(-100%); transition: transform 360ms cubic-bezier(.2,.9,.25,1); }
+  .ndp-tb.show { transform: translateY(0); }
+  .ndp-tb-text { font-weight: 600; letter-spacing: 0.01em; text-align: center; }
+  .ndp-tb-text strong { font-weight: 800; }
+  .ndp-tb-btn { background: #fff; color: #E94B26; border: none; padding: 7px 14px; border-radius: 6px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: inherit; letter-spacing: 0.02em; transition: transform 140ms ease, box-shadow 140ms ease; }
+  .ndp-tb-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.22); }
+  .ndp-tb-x { background: rgba(255,255,255,0.18); border: none; color: #fff; width: 26px; height: 26px; border-radius: 50%; font-size: 16px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 140ms ease; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); }
+  .ndp-tb-x:hover { background: rgba(255,255,255,0.32); }
+  @media (max-width: 600px) { .ndp-tb { font-size: 12px; padding: 10px 40px 10px 12px; gap: 10px; } .ndp-tb-btn { padding: 6px 10px; font-size: 11px; } }
+  .ndp-tb-overlay { position: fixed; inset: 0; background: rgba(15,15,18,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 2147483647; padding: 20px; opacity: 0; transition: opacity 220ms ease; }
+  .ndp-tb-overlay.open { display: flex; opacity: 1; }
+  .ndp-tb-modal { background: #fff; border-radius: 16px; max-width: 440px; width: 100%; padding: 34px 32px 28px; position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.5); transform: translateY(10px) scale(0.985); transition: transform 320ms cubic-bezier(.2,.9,.25,1); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #2F2B36; }
+  .ndp-tb-overlay.open .ndp-tb-modal { transform: translateY(0) scale(1); }
+  .ndp-tb-close { position: absolute; top: 12px; right: 14px; background: #f5f5f5; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 22px; line-height: 1; color: #1a1a1a; cursor: pointer; }
+  .ndp-tb-close:hover { background: #eaeaea; }
+  .ndp-tb-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: #E94B26; margin-bottom: 8px; }
+  .ndp-tb-modal h3 { font-size: 22px; font-weight: 800; line-height: 1.18; letter-spacing: -0.015em; margin: 0 0 8px; color: #111; }
+  .ndp-tb-sub { color: #555; font-size: 13.5px; margin: 0 0 18px; line-height: 1.5; }
+  .ndp-tb-discount { background: linear-gradient(135deg, #FFF5F2 0%, #FFEFE9 100%); border: 1px solid #FFD4C5; border-radius: 10px; padding: 12px 14px; margin: 0 0 18px; text-align: center; font-size: 13px; line-height: 1.45; color: #2a2a2a; }
+  .ndp-tb-discount strong { color: #E94B26; font-weight: 800; font-size: 17px; display: block; margin-bottom: 2px; letter-spacing: 0.02em; }
+  .ndp-tb-form { display: flex; flex-direction: column; gap: 9px; }
+  .ndp-tb-form input { padding: 12px 14px; border: 1.5px solid #e5e5e5; border-radius: 9px; font-size: 14px; font-family: inherit; background: #fafafa; transition: border-color 140ms ease, background 140ms ease, box-shadow 140ms ease; width: 100%; }
+  .ndp-tb-form input:focus { outline: none; border-color: #E94B26; background: #fff; box-shadow: 0 0 0 3px rgba(233,75,38,0.12); }
+  .ndp-tb-form button { background: #E94B26; color: #fff; border: none; padding: 13px 18px; border-radius: 9px; font-weight: 700; font-size: 14.5px; cursor: pointer; margin-top: 5px; box-shadow: 0 4px 14px rgba(233,75,38,0.28); font-family: inherit; transition: background 160ms ease, transform 160ms ease; }
+  .ndp-tb-form button:hover { background: #d63e1c; transform: translateY(-1px); }
+  .ndp-tb-form button:disabled { opacity: 0.7; cursor: not-allowed; }
+  .ndp-tb-fine { font-size: 11px; color: #999; text-align: center; margin: 8px 0 0; line-height: 1.4; }
+  .ndp-tb-success { text-align: center; padding: 6px 0 4px; }
+  .ndp-tb-success h3 { color: #16a34a; margin-bottom: 10px; }
+  .ndp-tb-success-msg { font-size: 13.5px; color: #555; margin: 10px 0 18px; line-height: 1.55; }
+  .ndp-tb-success-msg strong { color: #111; }
+  .ndp-tb-call { display: inline-block; background: #E94B26; color: #fff; text-decoration: none; font-weight: 700; padding: 12px 22px; border-radius: 9px; font-size: 14px; }
+</style>
+
+<div class="ndp-tb" id="ndpTb" role="banner">
+  <span class="ndp-tb-text">Get <strong>$250 off</strong> your first LVP install</span>
+  <button class="ndp-tb-btn" id="ndpTbBtn" type="button">Claim Coupon →</button>
+  <button class="ndp-tb-x" id="ndpTbDismiss" type="button" aria-label="Dismiss">×</button>
+</div>
+
+<div class="ndp-tb-overlay" id="ndpTbOverlay" role="dialog" aria-label="Claim $250 Off Coupon">
+  <div class="ndp-tb-modal" id="ndpTbModal">
+    <button class="ndp-tb-close" id="ndpTbClose" type="button" aria-label="Close">×</button>
+    <div class="ndp-tb-eyebrow">NEW DESIGN PRO · DAVENPORT, FL</div>
+    <h3>Claim your $250 off coupon</h3>
+    <p class="ndp-tb-sub">Personalized PDF coupon — download it now, show it to Daniel at your free in-home estimate.</p>
+    <div class="ndp-tb-discount">
+      <strong>$250 OFF</strong>
+      Your first luxury vinyl plank installation
+    </div>
+    <form class="ndp-tb-form" id="ndpTbForm" data-form="coupon">
+      <input name="First Name" type="text" placeholder="First name" required autocomplete="given-name"/>
+      <input name="Last Name" type="text" placeholder="Last name" required autocomplete="family-name"/>
+      <input name="Email" type="email" placeholder="Email address" required autocomplete="email"/>
+      <input name="Phone" type="tel" placeholder="Phone number" required autocomplete="tel"/>
+      <input name="source" type="hidden" value="$250 Off Top Banner Coupon"/>
+      <input name="discount_eligible" type="hidden" value="yes"/>
+      <button type="submit" id="ndpTbSubmit">Generate My Coupon →</button>
+      <p class="ndp-tb-fine">Daniel calls within 1 business day. No spam, ever.</p>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function () {
+  var FORMSPREE_ID = 'mlgyeqrg';
+  var KEY = 'ndp_tb_dismissed';
+  function dismissed() { try { return localStorage.getItem(KEY) !== null; } catch(e) { return false; } }
+  function markDismissed() { try { localStorage.setItem(KEY, String(Date.now())); } catch(e) {} }
+
+  var bar = document.getElementById('ndpTb');
+  var btn = document.getElementById('ndpTbBtn');
+  var dis = document.getElementById('ndpTbDismiss');
+  var overlay = document.getElementById('ndpTbOverlay');
+  var modal = document.getElementById('ndpTbModal');
+  var closeBtn = document.getElementById('ndpTbClose');
+  var form = document.getElementById('ndpTbForm');
+  var submitBtn = document.getElementById('ndpTbSubmit');
+
+  if (!dismissed()) { setTimeout(function(){ bar.classList.add('show'); }, 500); }
+
+  function openModal() { overlay.classList.add('open'); }
+  function closeModal() { overlay.classList.remove('open'); }
+  function hideBar() { bar.classList.remove('show'); markDismissed(); }
+
+  btn.addEventListener('click', openModal);
+  dis.addEventListener('click', hideBar);
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
+
+  function makeCouponPDF(firstName, lastName, email, phone) {
+    var jsPDF = window.jspdf.jsPDF;
+    var doc = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'letter' });
+    var W = doc.internal.pageSize.getWidth();
+    var H = doc.internal.pageSize.getHeight();
+    doc.setDrawColor(233,75,38); doc.setLineWidth(6); doc.rect(20,20,W-40,H-40);
+    doc.setLineWidth(1); doc.rect(36,36,W-72,H-72);
+    doc.setFillColor(233,75,38); doc.rect(36,36,W-72,70,'F');
+    doc.setTextColor(255,255,255); doc.setFont('helvetica','bold'); doc.setFontSize(28);
+    doc.text('NEW DESIGN PRO', W/2, 78, {align:'center'});
+    doc.setFontSize(11); doc.setFont('helvetica','normal');
+    doc.text('DAVENPORT, FL  ·  LUXURY VINYL PLANK FLOORING SPECIALIST', W/2, 96, {align:'center'});
+    doc.setTextColor(40,40,40); doc.setFontSize(14);
+    doc.text('THIS COUPON ENTITLES', W/2, 160, {align:'center'});
+    doc.setFont('helvetica','bold'); doc.setFontSize(26);
+    doc.text((firstName + ' ' + lastName).toUpperCase(), W/2, 196, {align:'center'});
+    doc.setFont('helvetica','normal'); doc.setFontSize(14);
+    doc.text('TO', W/2, 226, {align:'center'});
+    doc.setFont('helvetica','bold'); doc.setTextColor(233,75,38); doc.setFontSize(96);
+    doc.text('$250 OFF', W/2, 320, {align:'center'});
+    doc.setTextColor(40,40,40); doc.setFontSize(16);
+    doc.text('YOUR FIRST LVP INSTALLATION', W/2, 356, {align:'center'});
+    doc.setLineWidth(0.5); doc.setDrawColor(220,220,220); doc.line(80,410,W-80,410);
+    doc.setFontSize(10); doc.setTextColor(80,80,80); doc.setFont('helvetica','normal');
+    var d = new Date();
+    var dateStr = (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear();
+    doc.setFont('helvetica','bold'); doc.text('CUSTOMER:', 90, 432);
+    doc.setFont('helvetica','normal'); doc.text(firstName + ' ' + lastName, 175, 432);
+    doc.setFont('helvetica','bold'); doc.text('EMAIL:', 90, 452);
+    doc.setFont('helvetica','normal'); doc.text(email, 175, 452);
+    doc.setFont('helvetica','bold'); doc.text('PHONE:', 90, 472);
+    doc.setFont('helvetica','normal'); doc.text(phone, 175, 472);
+    doc.setFont('helvetica','bold'); doc.text('ISSUED:', W-280, 432);
+    doc.setFont('helvetica','normal'); doc.text(dateStr, W-210, 432);
+    doc.setFont('helvetica','bold'); doc.text('VALID:', W-280, 452);
+    doc.setFont('helvetica','normal'); doc.text('90 days from issue date', W-210, 452);
+    doc.setFont('helvetica','bold'); doc.text('REDEEM:', W-280, 472);
+    doc.setFont('helvetica','normal'); doc.text('At in-home estimate', W-210, 472);
+    doc.setFontSize(8); doc.setTextColor(140,140,140);
+    doc.text('Show this coupon to Daniel at your free in-home estimate. One coupon per household. Not combinable with other offers.', W/2, 510, {align:'center'});
+    doc.text('Applies to LVP installation labor only. Minimum project size 500 sqft.', W/2, 524, {align:'center'});
+    doc.setFontSize(11); doc.setFont('helvetica','bold'); doc.setTextColor(233,75,38);
+    doc.text('CALL DANIEL  ·  (561) 809-3864  ·  newdesignpro.com', W/2, 560, {align:'center'});
+    var safeName = (firstName + '_' + lastName).replace(/[^a-zA-Z0-9_]/g,'');
+    doc.save('NDP-250-Off-Coupon-' + safeName + '.pdf');
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    submitBtn.textContent = 'Generating...';
+    submitBtn.disabled = true;
+    var firstName = form.querySelector('[name="First Name"]').value.trim();
+    var lastName = form.querySelector('[name="Last Name"]').value.trim();
+    var email = form.querySelector('[name="Email"]').value.trim();
+    var phone = form.querySelector('[name="Phone"]').value.trim();
+    var data = new FormData(form);
+    data.append('_subject', '$250 Off Coupon Claimed — ' + firstName + ' ' + lastName);
+    data.append('_replyto', email);
+    data.append('Discount', '$250 off LVP install');
+    data.append('Coupon Issued', new Date().toISOString());
+    fetch('https://formspree.io/f/' + FORMSPREE_ID, { method:'POST', body:data, headers:{'Accept':'application/json'} })
+      .then(function(res){
+        if (res.ok) {
+          try { makeCouponPDF(firstName, lastName, email, phone); }
+          catch(err) { console.error('PDF gen failed:', err); }
+          var safeFirst = firstName.replace(/[<>&"]/g,'');
+          modal.innerHTML = '<button class="ndp-tb-close" onclick="document.getElementById(\'ndpTbOverlay\').classList.remove(\'open\')" type="button" aria-label="Close">×</button>' +
+            '<div class="ndp-tb-success">' +
+              '<div class="ndp-tb-eyebrow" style="color:#16a34a;">COUPON ISSUED</div>' +
+              '<h3>You’re all set, ' + safeFirst + '.</h3>' +
+              '<p class="ndp-tb-success-msg">Your personalized <strong>$250 off coupon</strong> just downloaded. Save it on your phone or print it. <strong>Daniel will call within 1 business day</strong> to book your free in-home estimate.</p>' +
+              '<a href="tel:5618093864" class="ndp-tb-call">Call (561) 809-3864 Now</a>' +
+            '</div>';
+          hideBar();
+        } else {
+          submitBtn.textContent = 'Error — call (561) 809-3864';
+          submitBtn.disabled = false;
+        }
+      })
+      .catch(function(){
+        submitBtn.textContent = 'Error — call (561) 809-3864';
+        submitBtn.disabled = false;
+      });
+  });
+})();
+</script>
+
+</body>
 </html>
