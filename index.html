@@ -5,6 +5,14 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Clean, Modern Floors — Davenport, FL · New Design Pro</title>
+<!-- Google tag (gtag.js) — Google Ads conversion tracking -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18264120794"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18264120794');
+</script>
 <meta content="Luxury vinyl plank flooring starting at $4.99/sqft, materials included. Davenport, Orlando, Central Florida." name="description"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -1841,6 +1849,13 @@ document.addEventListener('DOMContentLoaded', () => {
           // Fire Google Ads conversion event
           try {
             if (typeof gtag === 'function') {
+              // Fire specific conversion (lead) for Google Ads optimization
+              gtag('event', 'conversion', {
+                'send_to': 'AW-18264120794/hKICCJz09MMcENq7gYVE',
+                'value': formType === 'quote' ? 50 : (formType === 'refer' ? 25 : 10),
+                'currency': 'USD'
+              });
+              // Also fire generate_lead for GA4 / general lead tracking
               gtag('event', 'generate_lead', {
                 'send_to': 'AW-18264120794',
                 'form_type': formType,
@@ -3024,6 +3039,22 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('https://formspree.io/f/' + FORMSPREE_ID, { method:'POST', body:data, headers:{'Accept':'application/json'} })
       .then(function(res){
         if (res.ok) {
+          // Fire Google Ads conversion
+          try {
+            if (typeof gtag === 'function') {
+              gtag('event', 'conversion', {
+                'send_to': 'AW-18264120794/hKICCJz09MMcENq7gYVE',
+                'value': 50,
+                'currency': 'USD'
+              });
+              gtag('event', 'generate_lead', {
+                'send_to': 'AW-18264120794',
+                'form_type': 'coupon',
+                'value': 50,
+                'currency': 'USD'
+              });
+            }
+          } catch(e) {}
           try { makeCouponPDF(firstName, lastName, email, phone); }
           catch(err) { console.error('PDF gen failed:', err); }
           var safeFirst = firstName.replace(/[<>&"]/g,'');
