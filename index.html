@@ -45,13 +45,19 @@ gtag('config', 'AW-18264120794');
 
 html { scroll-behavior: smooth; }
 
+html, body {
+  background: var(--white) !important;
+}
 body {
   font-family: var(--font-body);
   color: var(--dark);
-  background: var(--white);
+  background: var(--white) !important;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Any non-hero, non-explicitly-dark section gets white bg to avoid the iframe parent bleed-through */
+body > div[id$="-section"] { background: var(--white); }
 
 img { max-width: 100%; display: block; }
 
@@ -421,6 +427,17 @@ img { max-width: 100%; display: block; }
   max-width: var(--max-width);
   margin: 0 auto;
 }
+
+/* Force light backgrounds on Get a Free Quote sections so form is always readable */
+section#quote, section#quote * { color: var(--dark); }
+section#quote { background: var(--white) !important; }
+section#quote .section-heading { color: var(--dark); }
+section#quote label { color: var(--dark); }
+section#quote input,
+section#quote textarea,
+section#quote select { background: #fff; color: var(--dark); border-color: #d4d4d4; }
+section#quote input::placeholder,
+section#quote textarea::placeholder { color: #888; }
 
 .section-dark {
   background: var(--dark);
@@ -2029,18 +2046,27 @@ document.addEventListener('DOMContentLoaded', () => {
      - 5s on flooring section (if URL contains #flooring)
      - Dismissal cookie: 7 days
      ============================================================ */
-  const POPUP_DISMISS_KEY = 'ndp_guide_popup_dismissed';
-  const POPUP_SUBMITTED_KEY = 'ndp_guide_submitted';
+  // v3 key — bumped to clear out users with old dismiss timestamps so they see the refreshed popup
+  const POPUP_DISMISS_KEY = 'ndp_guide_popup_dismissed_v3';
+  const POPUP_SUBMITTED_KEY = 'ndp_guide_submitted_v3';
+
+  // Clear old keys from previous popup versions
+  try {
+    localStorage.removeItem('ndp_guide_popup_dismissed');
+    localStorage.removeItem('ndp_guide_submitted');
+    localStorage.removeItem('ndp_guide_popup_dismissed_v2');
+    localStorage.removeItem('ndp_guide_submitted_v2');
+  } catch(e) {}
 
   function popupDismissed() {
-    // 7-day cooldown after dismiss — returns after a week
+    // 3-day cooldown after dismiss — comes back within the week
     try {
       var t = localStorage.getItem(POPUP_DISMISS_KEY);
       if (!t) return false;
       var ts = parseInt(t, 10);
       if (isNaN(ts)) return false;
-      var SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
-      if (Date.now() - ts > SEVEN_DAYS) {
+      var THREE_DAYS = 3 * 24 * 60 * 60 * 1000;
+      if (Date.now() - ts > THREE_DAYS) {
         localStorage.removeItem(POPUP_DISMISS_KEY);
         return false;
       }
@@ -2142,9 +2168,9 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', () => { markSubmitted(); });
   }
 
-  // Trigger 1: 15s on home page
-  const HOME_DELAY = 15000;
-  const FLOORING_DELAY = 5000;
+  // Trigger 1: 10s on home page (was 15s)
+  const HOME_DELAY = 10000;
+  const FLOORING_DELAY = 4000;
 
   // Detect which view we're in. Bundle uses #flooring-section anchor; also fire faster
   // if the flooring section is currently in viewport.
@@ -2410,7 +2436,10 @@ document.addEventListener('DOMContentLoaded', () => {
   .ndp-modal-eyebrow {
     font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
     color: #E94B26; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
   }
+  .ndp-modal-eyebrow img.rios-logo-eyebrow { height: 28px; width: auto; display: block; }
+  .ndp-modal-eyebrow .rios-eyebrow-text { color: #888; font-weight: 600; letter-spacing: 0.12em; }
   .ndp-modal-name {
     font-size: 28px; font-weight: 800;
     margin: 0 0 6px; letter-spacing: -0.02em;
@@ -2491,7 +2520,11 @@ document.addEventListener('DOMContentLoaded', () => {
 <div class="ndp-carousel-root">
   <div class="ndp-section-head">
     <div class="left">
-      <div class="partner">NEW DESIGN PRO × RIOS FLOOR</div>
+      <div class="partner" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <span style="font-weight:700; letter-spacing:0.06em;">NEW DESIGN PRO</span>
+        <span style="opacity:0.5;">×</span>
+        <img src="img/rios-logo.png" alt="Rios Floor" style="height:34px; width:auto; display:block; background:#fff; padding:5px 10px; border-radius:6px;"/>
+      </div>
       <h2 id="ndpHeading">Pick your LVP color.</h2>
       <p id="ndpSubheading">16 luxury vinyl plank options. 100% waterproof. Lifetime install warranty.</p>
     </div>
@@ -2514,7 +2547,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <button class="ndp-modal-close" id="ndpDetailClose" aria-label="Close">×</button>
     <div class="ndp-modal-img" id="ndpDetailImg"></div>
     <div class="ndp-modal-body">
-      <div class="ndp-modal-eyebrow" id="ndpDetailEyebrow">RIOS FLOOR · SPC LUXURY VINYL PLANK</div>
+      <div class="ndp-modal-eyebrow" id="ndpDetailEyebrow"><img src="img/rios-logo.png" alt="Rios Floor" class="rios-logo-eyebrow"/><span class="rios-eyebrow-text">· SPC LUXURY VINYL PLANK</span></div>
       <h3 class="ndp-modal-name" id="ndpDetailName">—</h3>
       <p class="ndp-modal-tagline" id="ndpDetailTagline">100% waterproof · IXPE underlayment attached · Click-lock install</p>
 
@@ -3188,16 +3221,17 @@ document.addEventListener('DOMContentLoaded', () => {
      ============================================= -->
 <style>
   /* Floating bottom-right $250 off tab */
-  .ndp-tb { position: fixed; bottom: 22px; right: 22px; background: linear-gradient(135deg, #E94B26 0%, #d63e1c 100%); color: #fff; padding: 11px 16px 11px 14px; display: inline-flex; align-items: center; gap: 10px; z-index: 2147483646; box-shadow: 0 8px 28px rgba(233,75,38,0.42), 0 2px 8px rgba(0,0,0,0.2); font-size: 13px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; border-radius: 100px; cursor: pointer; transform: translateY(120%); transition: transform 420ms cubic-bezier(.2,.9,.25,1), box-shadow 180ms ease; max-width: 280px; }
+  .ndp-tb { position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #E94B26 0%, #d63e1c 100%); color: #fff; padding: 16px 22px 16px 20px; display: inline-flex; align-items: center; gap: 14px; z-index: 2147483646; box-shadow: 0 14px 44px rgba(233,75,38,0.55), 0 4px 14px rgba(0,0,0,0.32), 0 0 0 4px rgba(255,255,255,0.18); font-size: 15px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; border-radius: 100px; cursor: pointer; transform: translateY(140%); transition: transform 420ms cubic-bezier(.2,.9,.25,1), box-shadow 180ms ease, transform 220ms ease; min-width: 320px; animation: ndp-tb-pulse 2.4s ease-in-out infinite; }
+  @keyframes ndp-tb-pulse { 0%,100% { box-shadow: 0 14px 44px rgba(233,75,38,0.55), 0 4px 14px rgba(0,0,0,0.32), 0 0 0 4px rgba(255,255,255,0.18); } 50% { box-shadow: 0 14px 44px rgba(233,75,38,0.78), 0 4px 14px rgba(0,0,0,0.32), 0 0 0 8px rgba(233,75,38,0.18); } }
   .ndp-tb:hover { box-shadow: 0 12px 36px rgba(233,75,38,0.56), 0 3px 10px rgba(0,0,0,0.25); }
   .ndp-tb.show { transform: translateY(0); }
-  .ndp-tb-text { font-weight: 600; letter-spacing: 0.01em; line-height: 1.25; font-size: 13px; }
-  .ndp-tb-text strong { font-weight: 800; }
-  .ndp-tb-btn { background: #fff; color: #E94B26; border: none; padding: 6px 12px; border-radius: 100px; font-weight: 800; font-size: 12px; cursor: pointer; font-family: inherit; letter-spacing: 0.02em; transition: transform 140ms ease; white-space: nowrap; }
+  .ndp-tb-text { font-weight: 600; letter-spacing: 0.01em; line-height: 1.25; font-size: 15px; }
+  .ndp-tb-text strong { font-weight: 800; font-size: 16px; }
+  .ndp-tb-btn { background: #fff; color: #E94B26; border: none; padding: 9px 18px; border-radius: 100px; font-weight: 800; font-size: 14px; cursor: pointer; font-family: inherit; letter-spacing: 0.02em; transition: transform 140ms ease; white-space: nowrap; }
   .ndp-tb-btn:hover { transform: translateY(-1px); }
   .ndp-tb-x { background: rgba(0,0,0,0.18); border: none; color: #fff; width: 22px; height: 22px; border-radius: 50%; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 140ms ease; margin-left: 2px; padding: 0; }
   .ndp-tb-x:hover { background: rgba(0,0,0,0.32); }
-  @media (max-width: 600px) { .ndp-tb { bottom: 14px; right: 14px; padding: 10px 12px 10px 12px; font-size: 12px; gap: 8px; max-width: calc(100vw - 28px); } .ndp-tb-text { font-size: 12px; } .ndp-tb-btn { padding: 5px 10px; font-size: 11px; } }
+  @media (max-width: 600px) { .ndp-tb { bottom: 16px; right: 16px; padding: 13px 16px; font-size: 14px; gap: 10px; min-width: 0; max-width: calc(100vw - 32px); } .ndp-tb-text { font-size: 14px; } .ndp-tb-text strong { font-size: 15px; } .ndp-tb-btn { padding: 7px 14px; font-size: 13px; } }
   .ndp-tb-overlay { position: fixed; inset: 0; background: rgba(15,15,18,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; z-index: 2147483647; padding: 20px; opacity: 0; transition: opacity 220ms ease; }
   .ndp-tb-overlay.open { display: flex; opacity: 1; }
   .ndp-tb-modal { background: #fff; border-radius: 16px; max-width: 440px; width: 100%; padding: 34px 32px 28px; position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.5); transform: translateY(10px) scale(0.985); transition: transform 320ms cubic-bezier(.2,.9,.25,1); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #2F2B36; }
