@@ -5,12 +5,13 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Clean, Modern Floors — Davenport, FL · New Design Pro</title>
-<!-- Google tag (gtag.js) — Google Ads conversion tracking -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18264120794"></script>
+<!-- Google tag (gtag.js) — GA4 + Google Ads conversion tracking -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W5XXYQJEH"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
+gtag('config', 'G-2W5XXYQJEH');
 gtag('config', 'AW-18264120794');
 </script>
 <meta content="Luxury vinyl plank flooring starting at $4.99/sqft, materials included. Davenport, Orlando, Central Florida." name="description"/>
@@ -1835,9 +1836,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 'value': formType === 'quote' ? 50 : (formType === 'refer' ? 25 : 10),
                 'currency': 'USD'
               });
-              // Also fire generate_lead for GA4 / general lead tracking
+              // Also fire generate_lead — broadcasts to GA4 + Ads
               gtag('event', 'generate_lead', {
-                'send_to': 'AW-18264120794',
                 'form_type': formType,
                 'value': formType === 'quote' ? 50 : (formType === 'refer' ? 25 : 10),
                 'currency': 'USD'
@@ -3442,7 +3442,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 'currency': 'USD'
               });
               gtag('event', 'generate_lead', {
-                'send_to': 'AW-18264120794',
                 'form_type': 'coupon',
                 'value': 50,
                 'currency': 'USD'
