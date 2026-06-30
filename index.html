@@ -2378,6 +2378,15 @@ document.addEventListener('DOMContentLoaded', () => {
     width: 100%; height: 260px;
     background-size: cover; background-position: center;
     background-color: #eee;
+    position: relative;
+  }
+  .ndp-rios-badge {
+    position: absolute; top: 10px; right: 10px;
+    width: 36px; height: 36px;
+    background: transparent;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.35));
   }
   .ndp-card-body { padding: 18px 18px 20px; }
   .ndp-card-name {
@@ -2558,7 +2567,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="partner" style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
         <span style="font-weight:700; letter-spacing:0.06em;">NEW DESIGN PRO</span>
         <span style="opacity:0.5;">×</span>
-        <img src="img/rios-logo.png" alt="Rios Floor" style="height:34px; width:auto; display:block; background:#fff; padding:5px 10px; border-radius:6px;"/>
+        <img src="img/rios_logo_black.png" alt="Rios Floor" style="height:22px; width:auto; display:block; background:#fff; padding:8px 14px; border-radius:6px;"/>
       </div>
       <h2 id="ndpHeading">Pick your LVP color.</h2>
       <p id="ndpSubheading">16 luxury vinyl plank options. 100% waterproof. Lifetime install warranty.</p>
@@ -2656,7 +2665,9 @@ document.addEventListener('DOMContentLoaded', () => {
       card.className = 'ndp-card';
       card.tabIndex = 0;
       card.innerHTML = ''
-        + '<div class="ndp-card-img" style="background-image:url(\'' + item.img + '\')"></div>'
+        + '<div class="ndp-card-img" style="background-image:url(\'' + item.img + '\')">'
+        +   '<img class="ndp-rios-badge" src="img/rios_logo_blue.png" alt="Rios Floor"/>'
+        + '</div>'
         + '<div class="ndp-card-body">'
         +   '<h3 class="ndp-card-name">' + item.name + '</h3>'
         +   '<p class="ndp-card-sub">' + (isLVP ? 'SPC · Click-Lock' : 'Porcelain Tile') + '</p>'
