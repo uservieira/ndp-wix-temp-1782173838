@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
+// vercel analytics active
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://newdesignpro.com'),
