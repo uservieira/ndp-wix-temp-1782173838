@@ -208,9 +208,108 @@
 
   // Quote form submission — routes to Formspree
   var form = document.getElementById('quote-form');
+  var formLoadedAt = Date.now();
+
+  // Invalid US area codes (N11 codes, 0/1 leading, and common fake area codes)
+  var INVALID_AREA_CODES = {
+    '000':1,'111':1,'123':1,'211':1,'311':1,'411':1,'511':1,'555':1,'611':1,'711':1,'811':1,'911':1,
+    '987':1,'999':1,'666':1,'321':0 // 321 is real (Space Coast FL); 987 is not assigned to NANP
+  };
+
+  function hasVowel(s) { return /[aeiouAEIOU]/.test(s); }
+  function isKeyboardMash(s) {
+    if (!s) return false;
+    var lower = s.toLowerCase().replace(/\s+/g,'');
+    if (lower.length < 2) return true;
+    // all same char? "aaaa", "..."
+    if (/^(.)\1+$/.test(lower)) return true;
+    // classic keyboard runs
+    var runs = ['asdf','asdfgh','qwer','qwerty','zxcv','hjkl','sdfvdb','fghj','vbnm','uiop','wasd','1234','12345','123456','abcd','abcde'];
+    for (var i=0;i<runs.length;i++) if (lower.indexOf(runs[i]) !== -1) return true;
+    // no vowels + 4+ chars = mash (real names have vowels)
+    if (lower.length >= 4 && !hasVowel(lower) && /^[a-z]+$/.test(lower)) return true;
+    // 4+ consonant cluster with no vowels
+    return false;
+  }
+
+  function validateLead(fields) {
+    var errors = [];
+    var name = (fields.name || '').trim();
+    if (name.length < 2) errors.push('Please enter your full name.');
+    else if (isKeyboardMash(name)) errors.push('That name looks off — please enter your real name.');
+    else if (!/[a-zA-Z]/.test(name)) errors.push('Please enter a valid name.');
+
+    var phoneDigits = (fields.phone || '').replace(/\D/g,'');
+    if (phoneDigits.length === 11 && phoneDigits.charAt(0) === '1') phoneDigits = phoneDigits.slice(1);
+    if (phoneDigits.length !== 10) errors.push('Please enter a valid 10-digit US phone number.');
+    else {
+      var area = phoneDigits.substr(0,3);
+      var exch = phoneDigits.substr(3,3);
+      if (area.charAt(0) === '0' || area.charAt(0) === '1') errors.push('That phone number area code is not valid.');
+      else if (INVALID_AREA_CODES[area]) errors.push('That phone number area code is not valid.');
+      else if (exch.charAt(0) === '0' || exch.charAt(0) === '1') errors.push('That phone number is not valid.');
+      else if (/^(\d)\1{9}$/.test(phoneDigits)) errors.push('That phone number is not valid.');
+      else if (phoneDigits === '1234567890' || phoneDigits === '9876543210') errors.push('That phone number is not valid.');
+    }
+
+    if (!fields.scope) errors.push('Please choose what you need.');
+
+    var sqft = (fields.sqft || '').replace(/\D/g,'');
+    if (sqft) {
+      var n = parseInt(sqft, 10);
+      if (n > 20000) errors.push('Approx sqft looks too large — please enter a realistic number.');
+    }
+
+    var zip = (fields.zip || '').replace(/\D/g,'');
+    if (zip && (zip.length !== 5 || zip === '00000' || zip === '12345' || zip === '34567')) {
+      errors.push('Please enter a valid 5-digit ZIP code.');
+    }
+
+    var notes = (fields.notes || '').trim();
+    if (notes && notes.length >= 2 && notes.length <= 6 && isKeyboardMash(notes)) {
+      errors.push('The notes field looks like random typing — please describe your project or leave it blank.');
+    }
+    return errors;
+  }
+
   if (form) form.addEventListener('submit', function(e) {
     e.preventDefault();
     form.classList.remove('state-success', 'state-error');
+    var errBox = form.querySelector('.form-validation-error');
+    if (errBox) { errBox.style.display = 'none'; errBox.textContent = ''; }
+
+    // Honeypot: silent success on bot
+    var hp = document.getElementById('company_website');
+    if (hp && hp.value) {
+      form.classList.add('state-success');
+      form.reset();
+      return;
+    }
+
+    // Minimum fill time (bots submit in <1.5s)
+    if (Date.now() - formLoadedAt < 1500) {
+      form.classList.add('state-success');
+      form.reset();
+      return;
+    }
+
+    // Validation
+    var validationFields = {
+      name: (form.elements.name && form.elements.name.value) || '',
+      phone: (form.elements.phone && form.elements.phone.value) || '',
+      scope: (document.getElementById('scope') || {}).value || '',
+      sqft: (document.getElementById('sqft') || {}).value || '',
+      zip: (document.getElementById('zip') || {}).value || '',
+      notes: (form.elements.notes && form.elements.notes.value) || ''
+    };
+    var errors = validateLead(validationFields);
+    if (errors.length) {
+      if (errBox) {
+        errBox.innerHTML = errors.map(function(er){ return '• ' + er.replace(/</g,'&lt;'); }).join('<br>');
+        errBox.style.display = 'block';
+      }
+      return;
+    }
 
     var smsConsentEl = document.getElementById('sms_consent');
     var smsConsent = !!(smsConsentEl && smsConsentEl.checked);

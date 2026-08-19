@@ -835,6 +835,13 @@ const HOMEPAGE_HTML = `
 
         <div class="form-success">Got it — we'll text you within the hour to schedule the free measure.</div>
         <div class="form-error">Something went wrong. Please text (561) 809-3864 instead.</div>
+        <div class="form-validation-error" role="alert" style="display:none;color:#b03a2e;background:#fdecea;padding:10px 12px;border-radius:6px;margin:8px 0;font-size:14px;"></div>
+
+        <!-- honeypot: real users don't see or fill this -->
+        <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+          <label for="company_website">Website (leave blank)</label>
+          <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off" />
+        </div>
 
         <div class="field-row">
           <div class="field">
