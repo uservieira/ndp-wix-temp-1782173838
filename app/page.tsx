@@ -37,7 +37,7 @@ const HOMEPAGE_HTML = `
     </div>
     <a href="/blog">Blog</a>
     <a href="/about">About</a>
-    <a class="nav-refer" href="#contact">Get a quote</a>
+    <a class="nav-refer" href="/form">Get a quote</a>
     <a href="#footer">Contact</a>
   </nav>
 
@@ -64,7 +64,7 @@ const HOMEPAGE_HTML = `
             See LVP pricing
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a class="btn btn-ghost" href="#contact">Get a free measure</a>
+          <a class="btn btn-ghost" href="/form">Get a free measure</a>
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
@@ -134,7 +134,7 @@ const HOMEPAGE_HTML = `
           <li>Standard install</li>
           <li>Quarter round added at wall base</li>
         </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="entry">Book entry</a>
+        <a class="btn btn-tier" href="/form?tier=entry" data-tier="entry">Book entry</a>
         <p class="tier-note">Final price confirmed after in-home measurement.</p>
       </div>
 
@@ -150,7 +150,7 @@ const HOMEPAGE_HTML = `
           <li>Carpet demo &amp; haul-away included</li>
           <li>Minor subfloor prep</li>
         </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="standard">Get a free measure</a>
+        <a class="btn btn-tier" href="/form?tier=standard" data-tier="standard">Get a free measure</a>
         <p class="tier-note">Final price confirmed after in-home measurement.</p>
       </div>
 
@@ -167,7 +167,7 @@ const HOMEPAGE_HTML = `
           <li>Written pre-install walkthrough &amp; final walkthrough</li>
           <li>Job file kept on record to protect your manufacturer warranty</li>
         </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="premium">Book premium</a>
+        <a class="btn btn-tier" href="/form?tier=premium" data-tier="premium">Book premium</a>
         <p class="tier-note">Final price confirmed after in-home measurement. No underlayment under click-lock LVP — most manufacturers void warranty when it's added.</p>
       </div>
 
@@ -180,7 +180,7 @@ const HOMEPAGE_HTML = `
           <li>Baseboards &amp; transitions</li>
           <li>Subfloor prep &amp; cleanup</li>
         </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="labor">Book labor-only</a>
+        <a class="btn btn-tier" href="/form?tier=labor" data-tier="labor">Book labor-only</a>
         <p class="tier-note">Final labor rate confirmed after in-home measurement.</p>
       </div>
     </div>
@@ -199,7 +199,7 @@ const HOMEPAGE_HTML = `
           <li>Straight or brick-pattern layout</li>
           <li>Cleanup &amp; haul-away</li>
         </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="tile-floor">Get a free measure</a>
+        <a class="btn btn-tier" href="/form?tier=tile-floor" data-tier="tile-floor">Get a free measure</a>
         <div class="tier-scope">
           Rate covers installation of tile from our Rios Floor catalog.
           Customer-supplied tile is quoted separately.
@@ -218,7 +218,7 @@ const HOMEPAGE_HTML = `
           <li>Herringbone, chevron, custom patterns</li>
           <li>Niches, benches, curbs</li>
         </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="tile-wall">Book a walkthrough</a>
+        <a class="btn btn-tier" href="/form?tier=tile-wall" data-tier="tile-wall">Book a walkthrough</a>
         <p class="tier-note">Final price confirmed after in-home measurement.</p>
       </div>
 
@@ -516,7 +516,7 @@ const HOMEPAGE_HTML = `
           <div><dt>Warranty</dt><dd>Lifetime install (NDP) + Rios manufacturer</dd></div>
         </dl>
         <div class="rios-detail-cta">
-          <a class="btn btn-primary" id="rios-detail-cta-link" href="#contact" data-name="Warm Natural Oak">
+          <a class="btn btn-primary" id="rios-detail-cta-link" href="/form?tier=lvp-supplied" data-name="Warm Natural Oak">
             Get a quote for <span id="rios-detail-cta-name">Warm Natural Oak</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -607,7 +607,7 @@ const HOMEPAGE_HTML = `
     </div>
 
     <div class="lvp-color-cta">
-      <a class="btn btn-primary" href="#contact">
+      <a class="btn btn-primary" href="/form">
         Get a free in-home measure
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -664,7 +664,7 @@ const HOMEPAGE_HTML = `
           <h3>Bathroom Remodel</h3>
           <p class="svc-price">Quoted after in-home walkthrough</p>
           <p class="svc-desc">Tile shower, vanity swap, fixture upgrades, waterproofing, floor tile or LVP, plumbing rough-in coordination, and full cosmetic refresh.</p>
-          <a class="btn btn-outline" href="#contact">Book a free measure</a>
+          <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
       </article>
 
@@ -674,7 +674,7 @@ const HOMEPAGE_HTML = `
           <h3>Kitchen Remodel</h3>
           <p class="svc-price">Quoted after in-home walkthrough</p>
           <p class="svc-desc">Backsplash, floor tile or LVP, cabinet refresh, countertop coordination, and finish carpentry that transforms the space.</p>
-          <a class="btn btn-outline" href="#contact">Book a free measure</a>
+          <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
       </article>
 
@@ -684,7 +684,7 @@ const HOMEPAGE_HTML = `
           <h3>Carpentry</h3>
           <p class="svc-price">Quoted per project</p>
           <p class="svc-desc">Baseboards, casing, crown moulding, door trim, built-ins, and interior door installs. Clean lines, tight miters, caulked and paint-ready.</p>
-          <a class="btn btn-outline" href="#contact">Book a free measure</a>
+          <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
       </article>
 
@@ -694,7 +694,7 @@ const HOMEPAGE_HTML = `
           <h3>Interior Paint</h3>
           <p class="svc-price">Quoted per room or per project</p>
           <p class="svc-desc">Interior walls, ceilings, trim, and doors. Prep, patch, prime, and finish. Clean cut-lines at ceilings and trim.</p>
-          <a class="btn btn-outline" href="#contact">Book a free measure</a>
+          <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
       </article>
     </div>
