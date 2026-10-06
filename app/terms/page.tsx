@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { BUSINESS_PHONE } from '@/lib/site';
+import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/terms' },
@@ -25,7 +26,9 @@ const PAGE_HTML = `
   <nav class="nav-links" aria-label="Primary">
     <a href="/">Home</a>
     <a href="/#lvp-pricing">Flooring</a>
-    <a class="nav-refer" href="/refer-earn">Refer &amp; Earn</a>
+    <a href="/tile">Tile</a>
+    <a class="nav-refer" href="/refer">Refer &amp; Earn</a>
+    <a href="/reviews">Reviews</a>
     <a href="/blog">Blog</a>
     <a href="/about">About</a>
     <a href="#footer">Contact</a>
@@ -98,39 +101,7 @@ const PAGE_HTML = `
   </div>
 </main>
 
-<footer class="site-footer" id="footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <div class="footer-brand-name">New Design Pro</div>
-      <p>LVP · Tile · Remodeling. Davenport, Orlando, and Central Florida.</p>
-      <span class="footer-lang-chip">Falamos Português · Hablamos Español</span>
-    </div>
-    <div class="footer-col">
-      <h4>Menu</h4>
-      <ul class="footer-menu">
-        <li><a href="/#top">Home</a></li>
-        <li><a href="/#flooring">Flooring</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#reviews">Reviews</a></li>
-        <li><a href="/refer-earn">Refer &amp; Earn</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="footer-contact-list">
-        <li><a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a></li>
-        <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
-        <li><span>Davenport, FL — Serving Central Florida</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-legal">
-    © 2026 New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
-    · <a href="/privacy">Privacy</a>
-    · <a href="/terms">Terms</a>
-  </div>
-</footer>
+${siteFooterHtml()}
 
 `;
 

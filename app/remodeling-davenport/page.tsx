@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
+import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/remodeling-davenport' },
@@ -28,10 +29,10 @@ const PAGE_HTML = `
   </label>
   <nav class="nav-links" aria-label="Primary">
     <a href="/#top">Home</a>
-    <a href="/#flooring">Flooring</a>
-    <a href="/#services">Services</a>
-    <a href="/#reviews">Reviews</a>
-    <a class="nav-refer" href="/refer-earn">Refer &amp; Earn</a>
+    <a href="/#lvp-pricing">Flooring</a>
+    <a href="/tile">Tile</a>
+    <a href="/reviews">Reviews</a>
+    <a class="nav-refer" href="/refer">Refer &amp; Earn</a>
     <a href="/about">About</a>
     <a href="/#contact">Contact</a>
   </nav>
@@ -107,41 +108,7 @@ const PAGE_HTML = `
 </article>
 
 
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <div class="footer-brand-name">New Design Pro</div>
-      <p>Clean, modern floors and interior renovations. Davenport, Orlando, and Central Florida.</p>
-      <span class="footer-lang-chip">Falamos Português · Hablamos Español</span>
-    </div>
-    <div class="footer-col">
-      <h4>Menu</h4>
-      <ul class="footer-menu">
-        <li><a href="/#top">Home</a></li>
-        <li><a href="/#flooring">Flooring</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#reviews">Reviews</a></li>
-        <li><a href="/refer-earn">Refer &amp; Earn</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="footer-contact-list">
-        <li><a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a></li>
-        <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
-        <li><span>Davenport, FL — Serving Central Florida</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-legal">
-    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
-    · <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
-    · <a href="/terms" target="_blank" rel="noopener">Terms</a>
-  </div>
-</footer>
+${siteFooterHtml()}
 
 `;
 

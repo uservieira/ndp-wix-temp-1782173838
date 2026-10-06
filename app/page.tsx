@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
+import { serviceAreasHtml, siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   description:
@@ -41,9 +42,10 @@ const HOMEPAGE_HTML = `
       </button>
       <div class="nav-dd-menu" role="menu">
         <a href="#lvp-pricing" data-open-lvp="1" role="menuitem">Luxury Vinyl Plank</a>
-        <a href="#lvp-pricing" data-open-tile="1" role="menuitem">Tile</a>
+        <a href="/tile" role="menuitem">Tile</a>
       </div>
     </div>
+    <a href="/reviews">Reviews</a>
     <a href="/blog">Blog</a>
     <a href="/about">About</a>
     <a class="nav-refer" href="/form">Get a quote</a>
@@ -791,13 +793,15 @@ const HOMEPAGE_HTML = `
         <h2>Refer a friend, earn up to <em>$500</em></h2>
         <p>$50&ndash;$100 cash per closed referral. Refer 3 closed jobs in 90 days and we send you a $500 bonus.</p>
       </div>
-      <a class="btn btn-white" href="/refer-earn">
+      <a class="btn btn-white" href="/refer">
         Refer a friend
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
   </div>
 </section>
+
+${serviceAreasHtml('section')}
 
 <!-- ================================================================
      CONTACT
@@ -913,51 +917,7 @@ const HOMEPAGE_HTML = `
 <!-- ================================================================
      FOOTER (3-column)
      ================================================================ -->
-<footer class="site-footer" id="footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <div class="footer-brand-name">New Design Pro</div>
-      <p>LVP &middot; Tile &middot; Remodeling. Davenport, Orlando, and Central Florida.</p>
-      <span class="footer-lang-chip">Falamos Português · Hablamos Español</span>
-    </div>
-
-    <div class="footer-col">
-      <h4>Menu</h4>
-      <ul class="footer-menu">
-        <li><a href="#top">Home</a></li>
-        <li><a href="#lvp-pricing">Flooring</a></li>
-
-        <li><a href="#footer">Contact</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="footer-contact-list">
-        <li><a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a></li>
-        <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
-        <li><span>Davenport, FL — Serving Central Florida</span></li>
-      </ul>
-      <div class="footer-social">
-        <a href="https://www.instagram.com/newdesign.pro" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        </a>
-        <a href="https://www.facebook.com/newdesign.pro" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a href="https://www.youtube.com/@newdesignpro" target="_blank" rel="noopener" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-legal">
-    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
-    · <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
-    · <a href="/terms" target="_blank" rel="noopener">Terms</a>
-  </div>
-</footer>
+${siteFooterHtml()}
 
 <!-- ================================================================
      JS (for standalone index.html; Wix embed runs its own copy via build)

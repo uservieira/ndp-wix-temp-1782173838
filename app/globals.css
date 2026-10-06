@@ -2782,3 +2782,26 @@ blockquote.note {
   font-size: 15px;
   margin: 4px 0;
 }
+
+/* ============================================================
+   SEO sweep 2026-10 additions — reuse existing tokens only
+   ============================================================ */
+/* Service areas (homepage section) */
+#service-areas { background: var(--bg-alt); scroll-margin-top: 72px; }
+#service-areas .sa-lead { color: var(--ink-2); font-size: 17px; line-height: 1.6; max-width: 62ch; margin-bottom: 24px; }
+#service-areas .sa-lead a { color: var(--brand); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.sa-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.sa-link { display: flex; flex-direction: column; gap: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; transition: border-color 0.2s var(--ease), transform 0.2s var(--ease); }
+.sa-link:hover { border-color: var(--brand); transform: translateY(-2px); }
+.sa-link .sa-name { font-weight: 700; color: var(--ink); font-size: 16px; }
+.sa-link .sa-county { font-size: 13px; color: var(--ink-3); }
+/* Footer: service areas row + NAP + hours */
+.footer-areas { max-width: 1200px; margin: 36px auto 0; padding-top: 24px; border-top: 1px solid var(--dark-line); }
+.footer-areas h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 12px; }
+.footer-areas-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.footer-areas-list a { color: rgba(255,255,255,0.7); font-size: 14px; }
+.footer-areas-list a:hover { color: #FF864F; }
+.footer-nap-name { color: #fff; font-weight: 600; font-size: 14px; }
+.footer-hours-title { margin-top: 20px; }
+.footer-hours { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; max-width: 260px; }
+.footer-hours li { display: flex; justify-content: space-between; gap: 16px; color: rgba(255,255,255,0.7); font-size: 14px; }

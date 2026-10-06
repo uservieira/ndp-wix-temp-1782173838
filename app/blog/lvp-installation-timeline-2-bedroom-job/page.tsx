@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
+import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/lvp-installation-timeline-2-bedroom-job' },
@@ -27,10 +28,10 @@ const PAGE_HTML = `
   </label>
   <nav class="nav-links" aria-label="Primary">
     <a href="/#top">Home</a>
-    <a href="/#flooring">Flooring</a>
-    <a href="/#services">Services</a>
-    <a href="/#reviews">Reviews</a>
-    <a class="nav-refer" href="/refer-earn">Refer &amp; Earn</a>
+    <a href="/#lvp-pricing">Flooring</a>
+    <a href="/tile">Tile</a>
+    <a href="/reviews">Reviews</a>
+    <a class="nav-refer" href="/refer">Refer &amp; Earn</a>
     <a href="/about">About</a>
     <a href="/#contact">Contact</a>
   </nav>
@@ -54,7 +55,7 @@ const PAGE_HTML = `
   </div>
 
   <div class="article-back">
-    <a href="/blog/index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> All posts</a>
+    <a href="/blog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> All posts</a>
   </div>
 
   <div class="article">
@@ -116,47 +117,7 @@ const PAGE_HTML = `
 </section>
 </article>
 
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <div class="footer-brand-name">New Design Pro</div>
-      <p>Clean, modern floors and interior renovations. Davenport, Orlando, and Central Florida.</p>
-      <span class="footer-lang-chip">Falamos Português · Hablamos Español</span>
-    </div>
-    <div class="footer-col">
-      <h4>Menu</h4>
-      <ul class="footer-menu">
-        <li><a href="/#top">Home</a></li>
-        <li><a href="/#flooring">Flooring</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#reviews">Reviews</a></li>
-        <li><a href="/refer-earn">Refer &amp; Earn</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blog/index">Blog</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="footer-contact-list">
-        <li><a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a></li>
-        <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
-        <li><span>Davenport, FL — Serving Central Florida</span></li>
-      </ul>
-      <div class="footer-social">
-        <a href="https://www.instagram.com/newdesignpro" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-        <a href="https://www.facebook.com/newdesignpro" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-        <a href="https://www.youtube.com/@newdesignpro" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://www.tiktok.com/@newdesignpro" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 2h-3v13.5a2.5 2.5 0 1 1-2.5-2.5c.17 0 .34.02.5.05V10a5.5 5.5 0 1 0 5 5.47V8.6a6.5 6.5 0 0 0 3 .9V6.4a3.5 3.5 0 0 1-3-3.4z"/></svg></a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-legal">
-    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
-    · <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
-    · <a href="/terms" target="_blank" rel="noopener">Terms</a>
-  </div>
-</footer>
+${siteFooterHtml()}
 
 `;
 
