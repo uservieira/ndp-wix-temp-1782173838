@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { BUSINESS_PHONE } from '@/lib/site';
+import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 import { faqSectionHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
 import JsonLd from '@/components/JsonLd';
 import { TILE_FAQS } from '@/data/faqs';
@@ -114,11 +114,11 @@ const PAGE_HTML = `
      ================================================================ -->
 <div class="trust-bar">
   <div class="trust-bar-inner">
-    <span class="trust-bar-item">10+ Years Experience</span>
+    <span class="trust-bar-item">${CLAIMS.experienceShort}</span>
     <span class="trust-bar-item">Materials Included Pricing</span>
     <span class="trust-bar-item">Flexible Payment Plans</span>
     <span class="trust-bar-item pt">Falamos Português</span>
-    <span class="trust-bar-item es">Hablamos Español</span>
+    <span class="trust-bar-item">Fully Insured</span>
   </div>
 </div>
 
@@ -321,7 +321,7 @@ const PAGE_HTML = `
         <h2>At New Design Pro, we transform spaces with <span class="hl">quality and commitment.</span></h2>
       </div>
       <div class="mission-body">
-        <p>With 10+ years of experience, we specialize in flooring installation, tile, carpentry, painting, and interior renovations for homes across the Disney corridor and Central Florida.</p>
+        <p>${CLAIMS.experienceText} We specialize in flooring installation, tile, finish carpentry, painting, and interior finish work for homes across the Disney corridor and Central Florida.</p>
         <p>Our skilled team delivers clean, modern spaces with attention to detail — on time, on budget, and without the showroom markup.</p>
       </div>
     </div>
@@ -394,7 +394,7 @@ ${tileFaqHtml()}
           </div>
           <div>
             <dt>Service area</dt>
-            <dd>Central Florida — Davenport, Kissimmee, Winter Haven, Orlando &amp; surrounding</dd>
+            <dd>Polk &amp; Osceola — Davenport, Kissimmee, Haines City, Winter Haven, Lakeland, Clermont &amp; nearby</dd>
           </div>
           <div>
             <dt>Payment methods</dt>

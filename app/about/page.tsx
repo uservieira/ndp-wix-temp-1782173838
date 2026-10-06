@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { BUSINESS_PHONE } from '@/lib/site';
+import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
@@ -66,13 +66,13 @@ const PAGE_HTML = `
     <div class="story-grid">
       <div class="story-copy">
         <span class="eyebrow">Our story</span>
-        <h2 class="section-title" style="margin-bottom:22px;">10+ years of floors done right.</h2>
-        <p>New Design Pro has spent 10+ years installing flooring and handling interior renovations for homeowners across Central Florida. We're based in Davenport, FL, right in the Disney corridor, and we work throughout Kissimmee, Orlando, Winter Haven, Haines City, Lakeland, Champions Gate, Reunion, and Clermont.</p>
-        <p>The company is owned and operated by Daniel Vieira. When you call, you're talking to the person who's going to be responsible for your job — not a call center. Our team is bilingual, so we're just as comfortable working with you in English, Portuguese, or Spanish.</p>
-        <p>We stay focused on what we're genuinely good at: luxury vinyl plank, tile, hardwood, carpentry, and bathroom and kitchen refreshes. Clean, modern spaces, without the showroom markup.</p>
+        <h2 class="section-title" style="margin-bottom:22px;">${CLAIMS.experienceShort}.</h2>
+        <p>New Design Pro installs flooring and handles interior finish work for homeowners across Central Florida: ${CLAIMS.experienceText} We're based in Davenport, FL, right in the Disney corridor, and we work throughout Kissimmee, Haines City, Winter Haven, Lakeland, Clermont, ChampionsGate, Celebration, and Poinciana.</p>
+        <p>The company is owned and operated by Daniel Vieira. When you call, you're talking to the person who's going to be responsible for your job — not a call center. Our team is bilingual, so we're just as comfortable working with you in English or Portuguese.</p>
+        <p>We stay focused on what we're genuinely good at: luxury vinyl plank, tile, hardwood, finish carpentry, painting, and cosmetic bathroom and kitchen refreshes. Plumbing, electrical, or structural work is coordinated with licensed trade partners. Clean, modern spaces, without the showroom markup.</p>
         <div class="areas">
-          <span>Davenport</span><span>Kissimmee</span><span>Orlando</span><span>Winter Haven</span>
-          <span>Haines City</span><span>Lakeland</span><span>Champions Gate</span><span>Reunion</span><span>Clermont</span>
+          <span>Davenport</span><span>Kissimmee</span><span>Haines City</span><span>Winter Haven</span>
+          <span>Lakeland</span><span>Clermont</span><span>ChampionsGate</span><span>Celebration</span><span>Poinciana</span>
         </div>
       </div>
       <div class="story-img">
@@ -91,7 +91,7 @@ const PAGE_HTML = `
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3>Insured</h3>
-        <p>We carry general liability and workers' comp. Your home and our crew are covered on every job.</p>
+        <p>We carry general liability insurance, so your home is covered on every job. ${CLAIMS.insuranceNote}</p>
       </div>
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
@@ -116,7 +116,7 @@ const PAGE_HTML = `
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
         <h3>Bilingual team</h3>
-        <p>English, Portuguese, and Spanish. Falamos Português · Hablamos Español — you'll always be understood.</p>
+        <p>English and Portuguese. Falamos Português — you'll always be understood.</p>
       </div>
     </div>
   </div>
