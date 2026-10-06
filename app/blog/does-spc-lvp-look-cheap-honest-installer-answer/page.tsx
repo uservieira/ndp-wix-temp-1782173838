@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import JsonLd from '@/components/JsonLd';
+import { getPost } from '@/data/blog';
+import { articleSchema, breadcrumbSchema } from '@/lib/schema';
 import { BUSINESS_PHONE } from '@/lib/site';
 import { siteFooterHtml } from '@/lib/chrome';
 
@@ -127,6 +130,8 @@ ${siteFooterHtml()}
 export default function Page() {
   return (
     <>
+      <JsonLd data={articleSchema(getPost('does-spc-lvp-look-cheap-honest-installer-answer'))} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: getPost('does-spc-lvp-look-cheap-honest-installer-answer').title, path: '/blog/does-spc-lvp-look-cheap-honest-installer-answer' }])} />
       <div dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />
       <Script src="/blog-does-spc-lvp-look-cheap-honest-installer-answer-interactive.js" strategy="afterInteractive" />
     </>

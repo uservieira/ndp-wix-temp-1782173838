@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import JsonLd from '@/components/JsonLd';
+import { getPost } from '@/data/blog';
+import { articleSchema, breadcrumbSchema } from '@/lib/schema';
 import { BUSINESS_PHONE } from '@/lib/site';
 import { siteFooterHtml } from '@/lib/chrome';
 
@@ -136,6 +139,8 @@ ${siteFooterHtml()}
 export default function Page() {
   return (
     <>
+      <JsonLd data={articleSchema(getPost('will-spc-lvp-dent-scratch-hold-up-central-florida'))} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: getPost('will-spc-lvp-dent-scratch-hold-up-central-florida').title, path: '/blog/will-spc-lvp-dent-scratch-hold-up-central-florida' }])} />
       <div dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />
       <Script src="/blog-will-spc-lvp-dent-scratch-hold-up-central-florida-interactive.js" strategy="afterInteractive" />
     </>

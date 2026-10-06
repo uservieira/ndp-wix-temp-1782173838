@@ -926,45 +926,10 @@ ${siteFooterHtml()}
 
 `;
 
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://newdesignpro.com/#business",
-  "name": "New Design Pro",
-  "image": "https://newdesignpro.com/assets/lvp-livingroom-md-v19.jpg",
-  "url": "https://newdesignpro.com",
-  "telephone": BUSINESS_PHONE.e164,
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Citrus Ridge",
-    "addressRegion": "FL",
-    "addressCountry": "US"
-  },
-  "areaServed": [
-    {"@type": "City", "name": "Kissimmee"},
-    {"@type": "City", "name": "Orlando"},
-    {"@type": "City", "name": "Davenport"},
-    {"@type": "City", "name": "Winter Haven"},
-    {"@type": "City", "name": "Haines City"}
-  ],
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "28.2919",
-    "longitude": "-81.4076"
-  },
-  "sameAs": [
-    "https://www.facebook.com/newdesignpro",
-    "https://www.instagram.com/newdesignpro"
-  ]
-};
 
 export default function HomePage() {
   return (
     <>
-      <Script id="ld-local-business" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(localBusinessJsonLd)}
-      </Script>
       <div dangerouslySetInnerHTML={{ __html: HOMEPAGE_HTML }} />
       <Script src="/homepage-interactive.js" strategy="afterInteractive" />
     </>

@@ -1,6 +1,6 @@
 // Shared HTML-string chrome for the string-rendered pages (header nav pieces,
 // global footer, service-area links). React wrappers live in components/.
-import { CITY_LINKS } from '@/data/cities';
+import { CITY_LINKS, type Faq } from '@/data/cities';
 import { BUSINESS, BUSINESS_PHONE, CLAIMS, HOURS } from '@/lib/site';
 
 export function serviceAreasHtml(variant: 'section' | 'footer' = 'section'): string {
@@ -53,6 +53,21 @@ export function cityHeaderHtml(): string {
     </a>
   </div>
 </header>`;
+}
+
+const escHtml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// Visible FAQ block for homepage-style pages (uses existing section tokens).
+export function faqSectionHtml(id: string, eyebrow: string, titleHtml: string, faqs: Faq[]): string {
+  return `<section id="${id}" class="faq-section" aria-labelledby="${id}-title">
+  <div class="section-inner">
+    <span class="eyebrow">${escHtml(eyebrow)}</span>
+    <h2 class="section-title" id="${id}-title">${titleHtml}</h2>
+    <div class="faq-list">${faqs
+      .map((f) => `<details${f.lang ? ` lang="${f.lang}"` : ''}><summary>${escHtml(f.q)}</summary><p>${escHtml(f.a)}</p></details>`)
+      .join('')}</div>
+  </div>
+</section>`;
 }
 
 export function hoursHtml(): string {

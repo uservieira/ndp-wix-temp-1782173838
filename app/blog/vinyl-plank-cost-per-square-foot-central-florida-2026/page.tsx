@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import JsonLd from '@/components/JsonLd';
+import { getPost } from '@/data/blog';
+import { articleSchema, breadcrumbSchema } from '@/lib/schema';
 import { BUSINESS_PHONE } from '@/lib/site';
 import { siteFooterHtml } from '@/lib/chrome';
 
@@ -135,6 +138,8 @@ ${siteFooterHtml()}
 export default function Page() {
   return (
     <>
+      <JsonLd data={articleSchema(getPost('vinyl-plank-cost-per-square-foot-central-florida-2026'))} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: getPost('vinyl-plank-cost-per-square-foot-central-florida-2026').title, path: '/blog/vinyl-plank-cost-per-square-foot-central-florida-2026' }])} />
       <div dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />
       <Script src="/blog-vinyl-plank-cost-per-square-foot-central-florida-2026-interactive.js" strategy="afterInteractive" />
     </>

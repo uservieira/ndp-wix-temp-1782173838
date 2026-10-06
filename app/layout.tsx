@@ -4,6 +4,8 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import { SITE_URL } from '@/lib/site';
+import JsonLd from '@/components/JsonLd';
+import { businessSchema } from '@/lib/schema';
 // vercel analytics active
 
 export const metadata: Metadata = {
@@ -71,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             alt=""
           />
         </noscript>
+        <JsonLd data={businessSchema()} />
         {children}
         <Analytics />
         <SpeedInsights />

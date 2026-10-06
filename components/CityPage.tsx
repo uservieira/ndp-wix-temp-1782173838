@@ -5,8 +5,8 @@ import JsonLd from '@/components/JsonLd';
 import { getCity, type City, type Section } from '@/data/cities';
 import { getPost } from '@/data/blog';
 import { cityHeaderHtml, siteFooterHtml } from '@/lib/chrome';
-import { faqPageSchema } from '@/lib/schema';
-import { BUSINESS, BUSINESS_PHONE, CLAIMS, SITE_URL } from '@/lib/site';
+import { breadcrumbSchema, faqPageSchema, serviceSchema } from '@/lib/schema';
+import { BUSINESS, BUSINESS_PHONE, CLAIMS, PRICING } from '@/lib/site';
 
 export const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -151,10 +151,23 @@ ${siteFooterHtml()}
 
 export default function CityPage({ slug }: { slug: string }) {
   const c = getCity(slug);
-  const url = `${SITE_URL}${c.path}`;
+  const isRemodel = c.kind === 'remodeling';
   return (
     <>
-      <JsonLd data={faqPageSchema(c.faqs, url)} />
+      <JsonLd
+        data={serviceSchema({
+          path: c.path,
+          name: isRemodel ? `Flooring & interior remodeling in ${c.name}, FL` : `LVP installation in ${c.name}, FL`,
+          serviceType: isRemodel ? 'Flooring and interior finish remodeling' : 'Luxury vinyl plank (LVP) flooring installation',
+          areaServed: [{ name: c.name, county: c.county }],
+          priceFrom: PRICING.lvpFrom,
+          priceDescription: isRemodel
+            ? 'LVP supplied and installed from $4.99/sqft; floor tile from $7.99/sqft'
+            : 'LVP supplied and installed from $4.99/sqft',
+        })}
+      />
+      <JsonLd data={faqPageSchema(c.faqs, c.path)} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: c.title.split(' — ')[0], path: c.path }])} />
       {/* TODO-DANIEL: featured job slot. Add one real job for this city to data/projects.ts (city, scope, sq ft, days, 2–3 real photos, customer OK to feature), set featuredJobId in data/cities.ts, and render it here. Never invent one. */}
       <div dangerouslySetInnerHTML={{ __html: cityPageHtml(c) }} />
       <Script src="/lvp-installation-kissimmee-interactive.js" strategy="afterInteractive" />

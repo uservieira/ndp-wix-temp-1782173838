@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
-import { siteFooterHtml } from '@/lib/chrome';
+import { faqSectionHtml, siteFooterHtml } from '@/lib/chrome';
+import JsonLd from '@/components/JsonLd';
+import { TILE_FAQS } from '@/data/faqs';
+import { breadcrumbSchema, faqPageSchema, serviceSchema } from '@/lib/schema';
+import { PRICING, SERVICE_AREA } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/tile' },
@@ -9,6 +13,8 @@ export const metadata: Metadata = {
   description:
     'Floor tile, showers, and backsplashes supplied and installed from $7.99/sqft across Polk and Osceola counties. Insured crew, 50% deposit, quote in 24 hours.',
 };
+
+const tileFaqHtml = () => faqSectionHtml('tile-faq', 'Tile questions', 'Tile installation, <em>answered</em>.', TILE_FAQS);
 
 const PAGE_HTML = `
 
@@ -394,6 +400,8 @@ const PAGE_HTML = `
   </div>
 </section>
 
+${tileFaqHtml()}
+
 <!-- ================================================================
      CONTACT
      ================================================================ -->
@@ -513,6 +521,18 @@ ${siteFooterHtml()}
 export default function Page() {
   return (
     <>
+      <JsonLd
+        data={serviceSchema({
+          path: '/tile',
+          name: 'Tile installation in Central Florida',
+          serviceType: 'Tile installation',
+          areaServed: SERVICE_AREA.map((name) => ({ name })),
+          priceFrom: PRICING.tileFrom,
+          priceDescription: 'Floor tile supplied and installed from $7.99/sqft',
+        })}
+      />
+      <JsonLd data={faqPageSchema(TILE_FAQS, '/tile')} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Tile installation', path: '/tile' }])} />
       <div dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />
       
     </>

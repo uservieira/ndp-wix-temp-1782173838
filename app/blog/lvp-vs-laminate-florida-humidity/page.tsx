@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import JsonLd from '@/components/JsonLd';
+import { getPost } from '@/data/blog';
+import { articleSchema, breadcrumbSchema } from '@/lib/schema';
 import { BUSINESS_PHONE } from '@/lib/site';
 import { siteFooterHtml } from '@/lib/chrome';
 
@@ -111,6 +114,8 @@ ${siteFooterHtml()}
 export default function Page() {
   return (
     <>
+      <JsonLd data={articleSchema(getPost('lvp-vs-laminate-florida-humidity'))} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: getPost('lvp-vs-laminate-florida-humidity').title, path: '/blog/lvp-vs-laminate-florida-humidity' }])} />
       <div dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />
       <Script src="/blog-lvp-vs-laminate-florida-humidity-interactive.js" strategy="afterInteractive" />
     </>
