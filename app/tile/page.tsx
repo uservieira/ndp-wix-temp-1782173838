@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
-import { faqSectionHtml, siteFooterHtml } from '@/lib/chrome';
+import { faqSectionHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
 import JsonLd from '@/components/JsonLd';
 import { TILE_FAQS } from '@/data/faqs';
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from '@/lib/schema';
@@ -331,37 +331,7 @@ const PAGE_HTML = `
 <!-- ================================================================
      REVIEWS
      ================================================================ -->
-<section id="reviews">
-  <div class="section-inner">
-    <span class="eyebrow">What Central Florida customers say</span>
-    <h2 class="section-title">Words from <em>real jobs</em>.</h2>
-
-    <div class="review-grid">
-      <div class="review-card">
-        <div class="stars-inline">★★★★★</div>
-        <blockquote>"Daniel and his crew installed LVP throughout our whole downstairs. Clean, quick, and priced fair. The floors look better than the model home."</blockquote>
-        <div class="author"><div class="avatar">J</div><div><strong>Jessica B.</strong><br/>Davenport, FL · LVP install</div></div>
-      </div>
-      <div class="review-card">
-        <div class="stars-inline">★★★★★</div>
-        <blockquote>"Got three quotes for our kitchen. New Design Pro was upfront on price, showed up when they said, and finished a day early. Would hire again."</blockquote>
-        <div class="author"><div class="avatar">M</div><div><strong>Marcus T.</strong><br/>Kissimmee, FL · Kitchen remodel</div></div>
-      </div>
-      <div class="review-card">
-        <div class="stars-inline">★★★★★</div>
-        <blockquote>"They quoted a fair labor-only rate for our supplied LVP and stuck to it. No upsells, no drama, subfloor prep included. Highly recommend."</blockquote>
-        <div class="author"><div class="avatar">C</div><div><strong>Christine M.</strong><br/>Winter Haven, FL · LVP labor only</div></div>
-      </div>
-    </div>
-
-    <div class="review-cta">
-      <a class="btn btn-ghost" href="#contact">
-        Get your free measure
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
+${reviewStripHtml({ eyebrow: 'What Central Florida customers say' })}
 
 <!-- ================================================================
      CLIENT LOGOS STRIP

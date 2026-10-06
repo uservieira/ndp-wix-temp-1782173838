@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
-import { serviceAreasHtml, siteFooterHtml } from '@/lib/chrome';
+import { serviceAreasHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   description:
@@ -732,37 +732,7 @@ const HOMEPAGE_HTML = `
 <!-- ================================================================
      REVIEWS
      ================================================================ -->
-<section id="reviews">
-  <div class="section-inner">
-    <span class="eyebrow">What Central Florida customers say</span>
-    <h2 class="section-title">Words from <em>real jobs</em>.</h2>
-
-    <div class="review-grid">
-      <div class="review-card">
-        <div class="stars-inline">★★★★★</div>
-        <blockquote>"Daniel and his crew installed LVP throughout our whole downstairs. Clean, quick, and priced fair. The floors look better than the model home."</blockquote>
-        <div class="author"><div class="avatar">J</div><div><strong>Jessica B.</strong><br/>Davenport, FL · LVP install</div></div>
-      </div>
-      <div class="review-card">
-        <div class="stars-inline">★★★★★</div>
-        <blockquote>"Got three quotes for our kitchen. New Design Pro was upfront on price, showed up when they said, and finished a day early. Would hire again."</blockquote>
-        <div class="author"><div class="avatar">M</div><div><strong>Marcus T.</strong><br/>Kissimmee, FL · Kitchen remodel</div></div>
-      </div>
-      <div class="review-card">
-        <div class="stars-inline">★★★★★</div>
-        <blockquote>"They quoted a fair labor-only rate for our supplied LVP and stuck to it. No upsells, no drama, subfloor prep included. Highly recommend."</blockquote>
-        <div class="author"><div class="avatar">C</div><div><strong>Christine M.</strong><br/>Winter Haven, FL · LVP labor only</div></div>
-      </div>
-    </div>
-
-    <div class="review-cta">
-      <a class="btn btn-ghost" href="https://search.google.com/local/writereview?placeid=ChIJ04pkC9peBq8RQI3Z0T1XETk" target="_blank" rel="noopener" data-ga-event="review_cta_click">
-        Leave us a review
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.8 5.8 21 7 14 2 9.3 9 8.5 12 2" fill="currentColor" stroke="none"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
+${reviewStripHtml({ eyebrow: 'What Central Florida customers say' })}
 
 <!-- ================================================================
      CLIENT LOGOS STRIP

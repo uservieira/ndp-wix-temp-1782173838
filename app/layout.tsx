@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import { SITE_URL } from '@/lib/site';
 import JsonLd from '@/components/JsonLd';
+import MobileCallBar from '@/components/MobileCallBar';
 import { businessSchema } from '@/lib/schema';
 // vercel analytics active
 
@@ -71,10 +72,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             style={{ display: 'none' }}
             src="https://www.facebook.com/tr?id=1211317391072105&ev=PageView&noscript=1"
             alt=""
+            aria-hidden="true"
           />
         </noscript>
         <JsonLd data={businessSchema()} />
         {children}
+        <MobileCallBar />
         <Analytics />
         <SpeedInsights />
       </body>

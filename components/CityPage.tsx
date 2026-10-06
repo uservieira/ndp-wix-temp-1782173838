@@ -4,7 +4,7 @@ import Script from 'next/script';
 import JsonLd from '@/components/JsonLd';
 import { getCity, type City, type Section } from '@/data/cities';
 import { getPost } from '@/data/blog';
-import { cityHeaderHtml, siteFooterHtml } from '@/lib/chrome';
+import { cityHeaderHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from '@/lib/schema';
 import { BUSINESS, BUSINESS_PHONE, CLAIMS, PRICING } from '@/lib/site';
 
@@ -133,6 +133,8 @@ ${faqs}
 
     </div>
   </div>
+
+  ${reviewStripHtml({ eyebrow: `Google reviews · ${esc(c.name)} and nearby` })}
 
   <section class="post-cta">
     <div class="pc-inner">

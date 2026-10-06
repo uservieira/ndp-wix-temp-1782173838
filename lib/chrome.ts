@@ -1,6 +1,7 @@
 // Shared HTML-string chrome for the string-rendered pages (header nav pieces,
 // global footer, service-area links). React wrappers live in components/.
 import { CITY_LINKS, type Faq } from '@/data/cities';
+import { REVIEWS } from '@/data/reviews';
 import { BUSINESS, BUSINESS_PHONE, CLAIMS, HOURS } from '@/lib/site';
 
 export function serviceAreasHtml(variant: 'section' | 'footer' = 'section'): string {
@@ -70,6 +71,35 @@ export function faqSectionHtml(id: string, eyebrow: string, titleHtml: string, f
 </section>`;
 }
 
+const fmtDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+
+export function reviewCardHtml(r: (typeof REVIEWS)[number], withGoogleLink = false): string {
+  const stars = '★'.repeat(r.rating);
+  return `<div class="review-card">
+        <div class="stars-inline" role="img" aria-label="${r.rating} out of 5 stars">${stars}</div>
+        <blockquote>“${escHtml(r.text)}”</blockquote>
+        <div class="author"><div class="avatar" aria-hidden="true">${escHtml(r.author.charAt(0))}</div><div><strong>${escHtml(r.author)}</strong><br/>${r.source} review · ${fmtDate(r.date)}${withGoogleLink ? ` · <a href="${BUSINESS.gbpUrl}" target="_blank" rel="noopener">Read on Google</a>` : ''}</div></div>
+      </div>`;
+}
+
+// Real-review strip (homepage, /tile, every city page). Source: data/reviews.ts.
+export function reviewStripHtml(opts: { eyebrow?: string; title?: string } = {}): string {
+  return `<section id="reviews" class="review-strip" aria-labelledby="reviews-title">
+  <div class="section-inner">
+    <span class="eyebrow">${opts.eyebrow ?? 'Google reviews'}</span>
+    <h2 class="section-title" id="reviews-title">${opts.title ?? 'Words from <em>real jobs</em>.'}</h2>
+    <div class="review-grid">
+      ${REVIEWS.slice(0, 2).map((r) => reviewCardHtml(r)).join('\n      ')}
+    </div>
+    <div class="review-cta">
+      <a class="btn btn-ghost" href="${BUSINESS.gbpUrl}" target="_blank" rel="noopener">Read our reviews on Google</a>
+      <a class="btn btn-primary" href="/review" data-ga-event="review_cta_click">Leave a review</a>
+    </div>
+  </div>
+</section>`;
+}
+
 export function hoursHtml(): string {
   return HOURS.map((h) => `<li><span>${h.label}</span><span>${h.text}</span></li>`).join('');
 }
@@ -104,6 +134,7 @@ export function siteFooterHtml(): string {
         <li><a href="/#lvp-pricing">LVP flooring</a></li>
         <li><a href="/tile">Tile</a></li>
         <li><a href="/reviews">Reviews</a></li>
+        <li><a href="/projects">Projects</a></li>
         <li><a href="/refer">Refer &amp; Earn</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/blog">Blog</a></li>
