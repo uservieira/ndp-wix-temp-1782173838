@@ -4,7 +4,7 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/lvp-vs-laminate-florida-humidity' },
-  title: 'LVP vs Laminate for Florida Homes: Which Actually Holds Up in Humidity | New Design Pro',
+  title: 'LVP vs Laminate for Florida Homes: Which Actually Holds Up in Humidity',
   description: 'LVP vs laminate in humid Florida homes, from a Central Florida installer. Which one survives humidity, spills, and slab moisture, and what each really costs.',
 };
 

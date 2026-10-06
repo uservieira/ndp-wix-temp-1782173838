@@ -4,8 +4,9 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/remodeling-davenport' },
-  title: 'Home Remodeling in Davenport, FL — Flooring, Tile, Full Interior | New Design Pro',
-  description: 'Home remodeling in Davenport, FL. LVP flooring, tile installation, bathroom updates, and full interior refreshes. Locally based, insured, real written quotes in 24 hours.',
+  title: 'Flooring & Interior Remodeling in Davenport, FL',
+  description:
+    'Flooring and interior remodeling in Davenport, FL: LVP, tile, trim, and paint finish work from a local crew. Insured, 50% deposit, written quote in 24 hours.',
 };
 
 const PAGE_HTML = `

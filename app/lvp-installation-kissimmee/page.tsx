@@ -4,8 +4,9 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/lvp-installation-kissimmee' },
-  title: 'LVP Installation in Kissimmee, FL — Supplied & Installed from $4.99/sqft | New Design Pro',
-  description: 'Luxury vinyl plank flooring installation in Kissimmee, FL. Supplied & installed from $4.99/sqft. Insured, 50% deposit, next-day start available. Real quote in 24 hours.',
+  title: 'LVP Installation in Kissimmee, FL — From $4.99/sqft',
+  description:
+    'Luxury vinyl plank installation in Kissimmee, FL, supplied and installed from $4.99/sqft. Insured crew, 50% deposit, and a written quote in 24 hours.',
 };
 
 const PAGE_HTML = `

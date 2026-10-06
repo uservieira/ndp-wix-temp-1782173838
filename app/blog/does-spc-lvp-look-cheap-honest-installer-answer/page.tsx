@@ -4,7 +4,7 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/does-spc-lvp-look-cheap-honest-installer-answer' },
-  title: 'Does SPC LVP look cheap? The honest installer answer | New Design Pro',
+  title: 'Does SPC LVP look cheap? The honest installer answer',
   description: 'SPC LVP has a reputation for looking plastic. From a Central Florida installer: when that reputation is true, when it isn\'t, and how to tell the difference.',
 };
 

@@ -3,8 +3,9 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/terms' },
-  title: 'Terms of Service — New Design Pro',
-  description: 'Terms of Service for New Design Pro flooring and remodeling — quote requests, SMS program, payments, and Florida governing law.',
+  title: 'Terms of Service',
+  description:
+    'Terms of Service for New Design Pro flooring and remodeling: quote requests, the SMS text program, deposits and payments, and Florida governing law. Read first.',
   robots: { index: true, follow: true },
 };
 

@@ -4,7 +4,7 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/lvp-installation-winter-haven' },
-  title: 'LVP Installation in Winter Haven, FL — Supplied & Installed from $4.99/sqft | New Design Pro',
+  title: 'LVP Installation in Winter Haven, FL — From $4.99/sqft',
   description: 'Luxury vinyl plank flooring installation in Winter Haven, FL. Supplied & installed from $4.99/sqft. Locally based, insured, real quote in 24 hours.',
 };
 

@@ -3,6 +3,9 @@ import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  description:
+    'LVP flooring supplied and installed from $4.99/sqft in Davenport, Kissimmee and nearby Polk & Osceola towns. Tile from $7.99/sqft. Written quote in 24 hours.',
+  title: { absolute: 'LVP Flooring Installation, Davenport & Kissimmee FL | New Design Pro' },
   alternates: { canonical: '/' },
 };
 

@@ -4,8 +4,9 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/spc-lvp-vs-real-hardwood-central-florida' },
-  title: '"But it\'s not real wood" — why SPC LVP wins in Central Florida homes | New Design Pro',
-  description: 'The honest case for SPC luxury vinyl plank over real hardwood in Central Florida — from a local installer who\'s pulled up plenty of both.',
+  title: '"But it\'s not real wood" — why SPC LVP wins in Central Florida homes',
+  description:
+    'The honest case for SPC luxury vinyl plank over real hardwood in humid Central Florida homes, from a local installer who has pulled up plenty of both floors.',
 };
 
 const PAGE_HTML = `

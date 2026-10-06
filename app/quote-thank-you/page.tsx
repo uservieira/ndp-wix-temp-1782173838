@@ -4,8 +4,9 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/quote-thank-you' },
-  title: 'Quote sent — New Design Pro',
-  description: 'Your quote is on its way. We\'ll be in touch to schedule your free in-home measure.',
+  title: 'Your Quote Is On Its Way',
+  description:
+    'Thanks for requesting a quote. Your price range is on its way by email, and we will be in touch to schedule your free in-home measure in Central Florida.',
   robots: { index: false, follow: true },
 };
 

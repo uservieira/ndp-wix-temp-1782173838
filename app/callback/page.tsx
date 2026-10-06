@@ -3,8 +3,9 @@ import CallbackForm from '@/components/CallbackForm';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/callback' },
-  title: 'Book the free measure — New Design Pro',
-  description: 'Leave your phone and Daniel will call within the hour to schedule your free in-home measure.',
+  title: 'Book Your Free In-Home Measure',
+  description:
+    'Leave your phone number and Daniel will call within the hour to schedule your free in-home measure for LVP or tile. No pressure, just a real written number.',
   robots: { index: false, follow: true },
 };
 

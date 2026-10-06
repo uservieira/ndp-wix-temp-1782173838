@@ -3,9 +3,9 @@ import QuoteForm from '@/components/QuoteForm';
 import { BUSINESS, BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Get a Quote in 60 Seconds — New Design Pro',
+  title: 'Get a Flooring Price Range in 60 Seconds',
   description:
-    'Answer 6 quick questions and get an instant flooring or remodel price range emailed to you in 60 seconds. LVP $4.99/sqft. Insured. Central Florida.',
+    'Answer 6 quick questions and get an instant LVP, tile, or remodel price range by email in 60 seconds. LVP from $4.99/sqft installed. Insured, Central Florida.',
   robots: { index: true, follow: true },
   alternates: { canonical: '/form' },
 };

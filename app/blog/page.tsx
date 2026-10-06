@@ -4,8 +4,9 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog' },
-  title: 'Flooring Guides & LVP Tips | New Design Pro Blog',
-  description: 'Honest flooring guides from a Central Florida installer: LVP costs, LVP vs laminate, install timelines, and real per-square-foot pricing for 2026.',
+  title: 'Flooring Guides & LVP Tips for Florida Homes',
+  description:
+    'Honest flooring guides from a Central Florida installer: LVP costs, LVP vs laminate, install timelines, durability, and real per-square-foot pricing for 2026.',
 };
 
 const PAGE_HTML = `

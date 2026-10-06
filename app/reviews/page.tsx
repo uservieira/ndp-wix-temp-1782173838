@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Customer Reviews — New Design Pro | Central FL Flooring & Remodeling',
+  title: 'Google Reviews from Central Florida Homeowners',
   description:
-    'See what Central Florida homeowners say about New Design Pro. Read Google, Angi, and direct reviews of our LVP installation, tile, and remodeling work.',
+    'Read real Google reviews from Central Florida homeowners who hired New Design Pro for LVP flooring and tile work, then leave your own review after your job.',
   alternates: { canonical: '/reviews' },
 };
 

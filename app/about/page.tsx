@@ -4,8 +4,9 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/about' },
-  title: 'About New Design Pro — Central Florida Flooring & Renovations',
-  description: 'New Design Pro is a Central Florida flooring and interior renovation company based in Davenport, FL. 10+ years, bilingual team, honest pricing, insured. Owned by Daniel Vieira.',
+  title: 'About Daniel Vieira & the Family-Run Crew',
+  description:
+    'Meet Daniel Vieira and the family-run New Design Pro crew in Davenport, FL. LVP and tile installed with honest pricing, insured work, and Portuguese spoken.',
 };
 
 const PAGE_HTML = `

@@ -4,8 +4,9 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/tile' },
-  title: 'New Design Pro — Tile Installation, Central Florida',
-  description: 'Central Florida tile installation. Floor tile supplied & installed from $7.99/sqft. Showers, backsplashes, large-format. Insured. Free in-home measure.',
+  title: 'Tile Installation in Central Florida — From $7.99/sqft',
+  description:
+    'Floor tile, showers, and backsplashes supplied and installed from $7.99/sqft across Polk and Osceola counties. Insured crew, 50% deposit, quote in 24 hours.',
 };
 
 const PAGE_HTML = `

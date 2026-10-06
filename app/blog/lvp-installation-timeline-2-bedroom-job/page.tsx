@@ -4,7 +4,7 @@ import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/lvp-installation-timeline-2-bedroom-job' },
-  title: 'How Long Does LVP Installation Actually Take? A Real 2-Bedroom Timeline | New Design Pro',
+  title: 'How Long Does LVP Installation Actually Take? A Real 2-Bedroom Timeline',
   description: 'How long LVP installation really takes, walked through hour by hour on a real 2-bedroom Central Florida job. What happens each day and what can slow it down.',
 };
 
