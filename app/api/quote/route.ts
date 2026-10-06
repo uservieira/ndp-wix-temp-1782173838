@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
+import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 
 export const runtime = 'nodejs';
 
@@ -98,7 +99,7 @@ async function sendResendEmail(body: QuoteBody, reference: string): Promise<{ ok
       </div>
 
       <div style="margin-top:24px;font-size:13px;color:#6B6357;line-height:1.55;">
-        Prefer to talk? Text or call Daniel at <a href="tel:+15618093864" style="color:#E85D2F;text-decoration:none;font-weight:600;">(561) 809-3864</a>.
+        Prefer to talk? Text or call Daniel at <a href="tel:${BUSINESS_PHONE.e164}" style="color:#E85D2F;text-decoration:none;font-weight:600;">${BUSINESS_PHONE.display}</a>.
       </div>
 
       <div style="margin-top:16px;font-size:12px;color:#9A9285;border-top:1px solid #EEEAE3;padding-top:16px;">
@@ -108,7 +109,7 @@ async function sendResendEmail(body: QuoteBody, reference: string): Promise<{ ok
     </div>
     <div style="padding:16px 32px;background:#F7F3EE;font-size:12px;color:#6B6357;text-align:center;">
       New Design Pro · Central Florida · newdesignpro.com<br>
-      Insured. 10+ years experience.
+      Insured. ${CLAIMS.experienceShort}.
     </div>
   </div>
 </body>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import QuoteForm from '@/components/QuoteForm';
+import { BUSINESS, BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Get a Quote in 60 Seconds — New Design Pro',
@@ -48,7 +49,7 @@ export default function FormPage() {
 
         <footer className="form-page-footer">
           <p>
-            Prefer to talk to a human? Text <strong>(561) 809-3864</strong> or email <a href="mailto:info@newdesignpro.com">info@newdesignpro.com</a>
+            Prefer to talk to a human? Text <strong>{BUSINESS_PHONE.display}</strong> or email <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
           </p>
           <p className="form-fine-print">
             Your info is never sold or shared. See our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>.

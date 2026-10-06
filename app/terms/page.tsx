@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Terms of Service — New Design Pro',
@@ -28,7 +29,7 @@ const PAGE_HTML = `
     <a href="#footer">Contact</a>
   </nav>
   <div class="nav-right">
-    <a class="cta-phone" href="tel:+15618093864">(561) 809-3864</a>
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
   </div>
 </header>
 
@@ -59,7 +60,7 @@ const PAGE_HTML = `
     <p><strong>Message frequency:</strong> approximately 1–4 messages per active quote conversation, plus occasional promotional messages (typically 1–2 per month).</p>
     <p><strong>Message and data rates may apply</strong> depending on your mobile carrier plan.</p>
     <p><strong>To opt out:</strong> Reply <strong>STOP</strong> to any message and you will not receive further texts.</p>
-    <p><strong>For help:</strong> Reply <strong>HELP</strong> or call <a href="tel:+15618093864">561-809-3864</a>.</p>
+    <p><strong>For help:</strong> Reply <strong>HELP</strong> or call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a>.</p>
     <p>Supported US carriers include AT&amp;T, Verizon, T-Mobile, and most regional carriers. Carriers are not liable for delayed or undelivered messages.</p>
 
     <h2>Services and installations</h2>
@@ -87,7 +88,7 @@ const PAGE_HTML = `
     <div class="legal-contact-card">
       <p><strong>Huios Construction LLC (DBA New Design Pro)</strong></p>
       <p>Central Florida</p>
-      <p>Phone: <a href="tel:+15618093864">561-809-3864</a></p>
+      <p>Phone: <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a></p>
       <p>Email: <a href="mailto:daniel@newdesignpro.com">daniel@newdesignpro.com</a></p>
     </div>
 
@@ -116,14 +117,14 @@ const PAGE_HTML = `
     <div class="footer-col">
       <h4>Contact</h4>
       <ul class="footer-contact-list">
-        <li><a href="tel:+15618093864">(561) 809-3864</a></li>
+        <li><a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a></li>
         <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
         <li><span>Davenport, FL — Serving Central Florida</span></li>
       </ul>
     </div>
   </div>
   <div class="footer-legal">
-    © 2026 New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:+15618093864">(561) 809-3864</a>
+    © 2026 New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
     · <a href="/privacy">Privacy</a>
     · <a href="/terms">Terms</a>
   </div>

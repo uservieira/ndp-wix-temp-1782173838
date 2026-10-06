@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — New Design Pro',
@@ -28,7 +29,7 @@ const PAGE_HTML = `
     <a href="#footer">Contact</a>
   </nav>
   <div class="nav-right">
-    <a class="cta-phone" href="tel:+15618093864">(561) 809-3864</a>
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
   </div>
 </header>
 
@@ -63,7 +64,7 @@ const PAGE_HTML = `
 
     <h2>SMS text messaging program</h2>
     <p>By providing your mobile phone number on our quote form and checking the SMS consent box, you agree to receive automated and non-automated text messages from New Design Pro. Messages include quote follow-ups, appointment confirmations, review requests, and periodic promotional offers. Message frequency is limited to approximately 1–4 messages per active quote conversation, plus occasional promotional messages (typically 1–2 per month). <strong>Message and data rates may apply.</strong></p>
-    <p>You can opt out at any time by replying <strong>STOP</strong> to any message. Reply <strong>HELP</strong> for assistance. For direct support, call <a href="tel:+15618093864">561-809-3864</a>.</p>
+    <p>You can opt out at any time by replying <strong>STOP</strong> to any message. Reply <strong>HELP</strong> for assistance. For direct support, call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a>.</p>
     <p><strong>Non-sharing statement:</strong> We do not sell, rent, or share mobile phone numbers or SMS opt-in data with third parties, affiliates, marketing partners, or data brokers. Your mobile number and SMS consent stay with New Design Pro and are used solely to communicate with you about your project and our services.</p>
 
     <h2>How we share information</h2>
@@ -95,7 +96,7 @@ const PAGE_HTML = `
     <div class="legal-contact-card">
       <p><strong>Huios Construction LLC (DBA New Design Pro)</strong></p>
       <p>Central Florida</p>
-      <p>Phone: <a href="tel:+15618093864">561-809-3864</a></p>
+      <p>Phone: <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a></p>
       <p>Email: <a href="mailto:daniel@newdesignpro.com">daniel@newdesignpro.com</a></p>
     </div>
 
@@ -124,14 +125,14 @@ const PAGE_HTML = `
     <div class="footer-col">
       <h4>Contact</h4>
       <ul class="footer-contact-list">
-        <li><a href="tel:+15618093864">(561) 809-3864</a></li>
+        <li><a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a></li>
         <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
         <li><span>Davenport, FL — Serving Central Florida</span></li>
       </ul>
     </div>
   </div>
   <div class="footer-legal">
-    © 2026 New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:+15618093864">(561) 809-3864</a>
+    © 2026 New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
     · <a href="/privacy">Privacy</a>
     · <a href="/terms">Terms</a>
   </div>

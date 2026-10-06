@@ -289,7 +289,7 @@
     .cta-phone { padding: 9px 14px; font-size: 13px; gap: 6px; }
     .cta-phone .cta-label { font-size: 0; }
     .cta-phone .cta-label::before {
-      content: '(561) 809-3864';
+      content: attr(data-phone-display);
       font-size: 13px;
       font-weight: 700;
       letter-spacing: -0.005em;
@@ -297,7 +297,7 @@
   }
   @media (max-width: 380px) {
     .cta-phone { padding: 8px 12px; gap: 5px; }
-    .cta-phone .cta-label::before { content: '561-809-3864'; font-size: 12px; }
+    .cta-phone .cta-label::before { content: attr(data-phone-short); font-size: 12px; }
     .cta-phone svg { width: 15px; height: 15px; }
   }
 

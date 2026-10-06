@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Will SPC LVP dent, scratch, or hold up? A Central Florida installer\'s honest take | New Design Pro',
@@ -33,9 +34,9 @@ const PAGE_HTML = `
     <a href="/#contact">Contact</a>
   </nav>
   <div class="nav-right">
-    <a class="cta-phone" href="tel:+15618093864">
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="cta-label">Call (561) 809-3864</span>
+      <span class="cta-label" data-phone-display="${BUSINESS_PHONE.display}" data-phone-short="${BUSINESS_PHONE.short}">Call ${BUSINESS_PHONE.display}</span>
     </a>
   </div>
 </header>
@@ -106,7 +107,7 @@ const PAGE_HTML = `
 
 <h2>The bottom line</h2>
 <p>SPC LVP holds up better than any flooring in its price range and often better than options twice as expensive. But it holds up because of three things: the right tier for your home, a real subfloor prep, and pads under your furniture. If any of those three are wrong, no floor on earth will last.</p>
-<p>Want a straight recommendation for your traffic, your pets, and your budget? Call <a href="tel:+15618093864">(561) 809-3864</a> or <a href="/#contact">tell me about your space</a>. I'll walk you through which tier makes sense and why, and you'll get a written quote same day.</p>
+<p>Want a straight recommendation for your traffic, your pets, and your budget? Call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a> or <a href="/#contact">tell me about your space</a>. I'll walk you through which tier makes sense and why, and you'll get a written quote same day.</p>
 
     </div>
   </div>
@@ -148,14 +149,14 @@ const PAGE_HTML = `
     <div class="footer-col">
       <h4>Contact</h4>
       <ul class="footer-contact-list">
-        <li><a href="tel:+15618093864">(561) 809-3864</a></li>
+        <li><a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a></li>
         <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
         <li><span>Davenport, FL — Serving Central Florida</span></li>
       </ul>
     </div>
   </div>
   <div class="footer-legal">
-    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:+15618093864">(561) 809-3864</a>
+    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
     · <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
     · <a href="/terms" target="_blank" rel="noopener">Terms</a>
   </div>

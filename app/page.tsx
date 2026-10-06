@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import { BUSINESS_PHONE } from '@/lib/site';
 
 const HOMEPAGE_HTML = `
 
@@ -42,9 +43,9 @@ const HOMEPAGE_HTML = `
   </nav>
 
   <div class="nav-right">
-    <a class="cta-phone" href="tel:+15618093864">
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="cta-label">Call (561) 809-3864</span>
+      <span class="cta-label" data-phone-display="${BUSINESS_PHONE.display}" data-phone-short="${BUSINESS_PHONE.short}">Call ${BUSINESS_PHONE.display}</span>
     </a>
   </div>
 </header>
@@ -804,7 +805,7 @@ const HOMEPAGE_HTML = `
         <dl>
           <div>
             <dt>Text or call</dt>
-            <dd><a href="tel:+15618093864"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(561) 809-3864</a></dd>
+            <dd><a href="tel:${BUSINESS_PHONE.e164}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>${BUSINESS_PHONE.display}</a></dd>
           </div>
           <div>
             <dt>Email</dt>
@@ -834,7 +835,7 @@ const HOMEPAGE_HTML = `
         <p class="form-sub">Reply within the hour, Mon–Sat.</p>
 
         <div class="form-success">Got it — we'll text you within the hour to schedule the free measure.</div>
-        <div class="form-error">Something went wrong. Please text (561) 809-3864 instead.</div>
+        <div class="form-error">Something went wrong. Please text ${BUSINESS_PHONE.display} instead.</div>
         <div class="form-validation-error" role="alert" style="display:none;color:#b03a2e;background:#fdecea;padding:10px 12px;border-radius:6px;margin:8px 0;font-size:14px;"></div>
 
         <!-- honeypot: real users don't see or fill this -->
@@ -925,7 +926,7 @@ const HOMEPAGE_HTML = `
     <div class="footer-col">
       <h4>Contact</h4>
       <ul class="footer-contact-list">
-        <li><a href="tel:+15618093864">(561) 809-3864</a></li>
+        <li><a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a></li>
         <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
         <li><span>Davenport, FL — Serving Central Florida</span></li>
       </ul>
@@ -944,7 +945,7 @@ const HOMEPAGE_HTML = `
   </div>
 
   <div class="footer-legal">
-    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:+15618093864">(561) 809-3864</a>
+    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
     · <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
     · <a href="/terms" target="_blank" rel="noopener">Terms</a>
   </div>
@@ -964,7 +965,7 @@ const localBusinessJsonLd = {
   "name": "New Design Pro",
   "image": "https://newdesignpro.com/assets/lvp-livingroom-md-v19.jpg",
   "url": "https://newdesignpro.com",
-  "telephone": "+1-561-809-3864",
+  "telephone": BUSINESS_PHONE.e164,
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",

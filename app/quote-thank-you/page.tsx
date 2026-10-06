@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ThankYouTracking from '@/components/ThankYouTracking';
+import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Quote sent — New Design Pro',
@@ -52,7 +53,7 @@ async function ThankYouWrapper({ searchParams }: { searchParams: Promise<{ ref?:
         </div>
 
         <div className="thank-you-contact">
-          <p>Or text Daniel directly: <a href="sms:+15618093864">(561) 809-3864</a></p>
+          <p>Or text Daniel directly: <a href={`sms:${BUSINESS_PHONE.e164}`}>{BUSINESS_PHONE.display}</a></p>
           <p><a href="/" className="thank-you-back">← Back to home</a></p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Refer a Friend, Earn up to $500 — New Design Pro',
@@ -37,9 +38,9 @@ const PAGE_HTML = `
     <a href="#footer">Contact</a>
   </nav>
   <div class="nav-right">
-    <a class="cta-phone" href="tel:+15618093864">
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="cta-label">Call (561) 809-3864</span>
+      <span class="cta-label" data-phone-display="${BUSINESS_PHONE.display}" data-phone-short="${BUSINESS_PHONE.short}">Call ${BUSINESS_PHONE.display}</span>
     </a>
   </div>
 </header>
@@ -102,7 +103,7 @@ const PAGE_HTML = `
       <div class="step">
         <div class="num">1</div>
         <h3>Send them our way</h3>
-        <p>Text <a href="tel:+15618093864">561-809-3864</a> with their name, or fill out the form below. That's it — we take it from there.</p>
+        <p>Text <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a> with their name, or fill out the form below. That's it — we take it from there.</p>
       </div>
       <div class="step">
         <div class="num">2</div>
@@ -126,12 +127,12 @@ const PAGE_HTML = `
         <span class="eyebrow">Send us a referral</span>
         <h2 class="section-title">Who should we <em>call?</em></h2>
         <p class="section-lede">Give us your info so we know where to send your payout, and the details of the person you're referring. We'll reach out to them and keep you in the loop.</p>
-        <p class="prefer-text">Prefer to text? Send their name to <a href="tel:+15618093864">561-809-3864</a> and we'll handle the rest.</p>
+        <p class="prefer-text">Prefer to text? Send their name to <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a> and we'll handle the rest.</p>
       </div>
 
       <form class="refer" id="refer-form-el" novalidate>
         <div class="form-success">Got it — thanks for the referral. We'll reach out to them and let you know when the job closes so we can send your payout.</div>
-        <div class="form-error">Something went wrong. Please text your referral to 561-809-3864 instead.</div>
+        <div class="form-error">Something went wrong. Please text your referral to ${BUSINESS_PHONE.short} instead.</div>
 
         <div class="field-row">
           <div class="field">
@@ -209,7 +210,7 @@ const PAGE_HTML = `
     <div class="footer-col">
       <h4>Contact</h4>
       <ul class="footer-contact-list">
-        <li><a href="tel:+15618093864">(561) 809-3864</a></li>
+        <li><a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a></li>
         <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
         <li><span>Davenport, FL — Serving Central Florida</span></li>
       </ul>
@@ -222,7 +223,7 @@ const PAGE_HTML = `
     </div>
   </div>
   <div class="footer-legal">
-    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:+15618093864">(561) 809-3864</a>
+    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
     · <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
     · <a href="/terms" target="_blank" rel="noopener">Terms</a>
   </div>
