@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'Answer 6 quick questions and get an instant flooring or remodel price range emailed to you in 60 seconds. LVP $4.99/sqft. Insured. Central Florida.',
   robots: { index: true, follow: true },
-  alternates: { canonical: 'https://www.newdesignpro.com/form' },
+  alternates: { canonical: '/form' },
 };
 
 export default function FormPage() {

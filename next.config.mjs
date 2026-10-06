@@ -14,9 +14,10 @@ const nextConfig = {
       { source: '/lvp-installation', destination: '/', permanent: true },
       { source: '/index.html', destination: '/', permanent: true },
       { source: '/home', destination: '/', permanent: true },
-      { source: '/contact', destination: '/', permanent: true },
+      { source: '/contact', destination: '/form', permanent: true },
       { source: '/flooring', destination: '/', permanent: true },
       { source: '/pricing', destination: '/', permanent: true },
+      { source: '/refer-earn', destination: '/refer', permanent: true },
     ];
   },
   async headers() {

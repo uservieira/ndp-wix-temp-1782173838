@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/remodeling-davenport' },
   title: 'Home Remodeling in Davenport, FL — Flooring, Tile, Full Interior | New Design Pro',
   description: 'Home remodeling in Davenport, FL. LVP flooring, tile installation, bathroom updates, and full interior refreshes. Locally based, insured, real written quotes in 24 hours.',
 };

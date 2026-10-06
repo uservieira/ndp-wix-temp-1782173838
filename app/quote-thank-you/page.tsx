@@ -3,6 +3,7 @@ import ThankYouTracking from '@/components/ThankYouTracking';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/quote-thank-you' },
   title: 'Quote sent — New Design Pro',
   description: 'Your quote is on its way. We\'ll be in touch to schedule your free in-home measure.',
   robots: { index: false, follow: true },

@@ -1,5 +1,10 @@
+import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
 
 const HOMEPAGE_HTML = `
 

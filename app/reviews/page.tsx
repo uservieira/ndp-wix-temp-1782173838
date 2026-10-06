@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Customer Reviews — New Design Pro | Central FL Flooring & Remodeling',
   description:
     'See what Central Florida homeowners say about New Design Pro. Read Google, Angi, and direct reviews of our LVP installation, tile, and remodeling work.',
-  alternates: { canonical: 'https://www.newdesignpro.com/reviews' },
+  alternates: { canonical: '/reviews' },
 };
 
 const GOOGLE_REVIEW_URL =

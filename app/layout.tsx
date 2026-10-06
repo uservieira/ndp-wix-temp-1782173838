@@ -3,10 +3,11 @@ import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
+import { SITE_URL } from '@/lib/site';
 // vercel analytics active
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://newdesignpro.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'New Design Pro — Luxury Vinyl Plank Flooring, Central Florida',
     template: '%s | New Design Pro',
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://newdesignpro.com',
+    url: SITE_URL,
     siteName: 'New Design Pro',
     images: [{ url: '/assets/lvp-livingroom-md-v19.jpg', width: 1200, height: 630 }],
   },

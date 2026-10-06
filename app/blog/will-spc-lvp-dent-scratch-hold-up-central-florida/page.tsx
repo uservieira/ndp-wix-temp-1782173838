@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/will-spc-lvp-dent-scratch-hold-up-central-florida' },
   title: 'Will SPC LVP dent, scratch, or hold up? A Central Florida installer\'s honest take | New Design Pro',
   description: 'SPC luxury vinyl plank durability — dents, scratches, heavy furniture, dogs, kids, real-world wear from a Central Florida installer. What holds up, what doesn\'t.',
 };

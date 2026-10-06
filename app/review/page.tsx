@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/review' },
   title: 'Leave a Review — New Design Pro',
   description: 'Redirecting to our Google review page. Thanks for supporting New Design Pro.',
   robots: { index: false, follow: false },

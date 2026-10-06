@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/refer' },
   title: 'Refer a Friend, Earn up to $500 — New Design Pro',
   description: 'Refer a friend to New Design Pro and earn $50–$100 cash per closed job, plus a $500 bonus for 3 closed jobs in 90 days. Paid by cash, Zelle, or Cash App.',
 };

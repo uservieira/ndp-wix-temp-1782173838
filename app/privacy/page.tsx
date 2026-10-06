@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/privacy' },
   title: 'Privacy Policy — New Design Pro',
   description: 'How New Design Pro collects, uses, and protects information you provide through our website, quote forms, and SMS text messaging program.',
   robots: { index: true, follow: true },

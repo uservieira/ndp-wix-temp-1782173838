@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/lvp-installation-haines-city' },
   title: 'LVP Installation in Haines City, FL — from $4.99/sqft Supplied & Installed | New Design Pro',
   description: 'Luxury vinyl plank flooring installation in Haines City, FL. Supplied & installed from $4.99/sqft. Insured, next-day start, written quote in 24 hours.',
 };

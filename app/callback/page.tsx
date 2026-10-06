@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import CallbackForm from '@/components/CallbackForm';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/callback' },
   title: 'Book the free measure — New Design Pro',
   description: 'Leave your phone and Daniel will call within the hour to schedule your free in-home measure.',
   robots: { index: false, follow: true },

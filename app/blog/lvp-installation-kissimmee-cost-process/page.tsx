@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/lvp-installation-kissimmee-cost-process' },
   title: 'LVP Installation in Kissimmee, FL: What It Costs and How the Job Really Goes | New Design Pro',
   description: 'What LVP installation actually costs in Kissimmee, FL and how the job goes day by day, from a local installer. Real per-sqft pricing, no showroom markup.',
 };

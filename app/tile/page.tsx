@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/tile' },
   title: 'New Design Pro — Tile Installation, Central Florida',
   description: 'Central Florida tile installation. Floor tile supplied & installed from $7.99/sqft. Showers, backsplashes, large-format. Insured. Free in-home measure.',
 };

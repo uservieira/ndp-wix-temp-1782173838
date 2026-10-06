@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/terms' },
   title: 'Terms of Service — New Design Pro',
   description: 'Terms of Service for New Design Pro flooring and remodeling — quote requests, SMS program, payments, and Florida governing law.',
   robots: { index: true, follow: true },

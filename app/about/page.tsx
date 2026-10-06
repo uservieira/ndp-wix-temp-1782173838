@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/about' },
   title: 'About New Design Pro — Central Florida Flooring & Renovations',
   description: 'New Design Pro is a Central Florida flooring and interior renovation company based in Davenport, FL. 10+ years, bilingual team, honest pricing, insured. Owned by Daniel Vieira.',
 };

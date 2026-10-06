@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
+  alternates: { canonical: '/blog/vinyl-plank-cost-per-square-foot-central-florida-2026' },
   title: 'Vinyl Plank Cost Per Square Foot in Central Florida (2026 Real Numbers) | New Design Pro',
   description: 'Real 2026 vinyl plank flooring costs per square foot in Central Florida. Labor-only, 12mil, 20mil, and premium supplied pricing from a local installer, no estimates.',
 };
