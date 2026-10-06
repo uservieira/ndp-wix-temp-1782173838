@@ -1,7 +1,7 @@
 import CityPage, { cityMetadata } from '@/components/CityPage';
 
-export const metadata = cityMetadata('winter-haven');
+export const metadata = cityMetadata('clermont');
 
 export default function Page() {
-  return <CityPage slug="winter-haven" />;
+  return <CityPage slug="clermont" />;
 }

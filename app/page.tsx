@@ -674,7 +674,7 @@ const HOMEPAGE_HTML = `
         <div class="svc-body">
           <h3>Bathroom Remodel</h3>
           <p class="svc-price">Quoted after in-home walkthrough</p>
-          <p class="svc-desc">Tile shower, vanity swap, fixture upgrades, waterproofing, floor tile or LVP, plumbing rough-in coordination, and full cosmetic refresh.</p>
+          <p class="svc-desc">Tile shower walls, waterproofing, floor tile or LVP, trim, and paint for a full cosmetic refresh. Plumbing, electrical, or structural work is coordinated with licensed trade partners.</p>
           <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
       </article>
@@ -684,7 +684,7 @@ const HOMEPAGE_HTML = `
         <div class="svc-body">
           <h3>Kitchen Remodel</h3>
           <p class="svc-price">Quoted after in-home walkthrough</p>
-          <p class="svc-desc">Backsplash, floor tile or LVP, cabinet refresh, countertop coordination, and finish carpentry that transforms the space.</p>
+          <p class="svc-desc">Backsplash, floor tile or LVP, painted cabinet refresh, and finish carpentry that transforms the space. Plumbing, electrical, or structural work is coordinated with licensed trade partners.</p>
           <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
       </article>

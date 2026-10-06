@@ -20,6 +20,41 @@ export function serviceAreasHtml(variant: 'section' | 'footer' = 'section'): str
 </section>`;
 }
 
+// Header used by the blog-style pages (city pages, blog posts).
+export function cityHeaderHtml(): string {
+  return `<header class="site-header">
+  <a class="brand-mark" href="/" aria-label="New Design Pro home">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <rect x="2" y="2" width="36" height="36" rx="8" fill="#17140F"/>
+      <path d="M11 30V10M11 10L22 30M22 10V30" stroke="#E85D2F" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter"/>
+      <path d="M25 26.5L29 26.5" stroke="#F7F3EE" stroke-width="2.4" stroke-linecap="square"/>
+    </svg>
+    <span><span class="brand-name">New Design Pro</span><span class="brand-sub">LVP · Flooring · Remodeling</span></span>
+  </a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+  <label class="nav-backdrop" for="nav-toggle" aria-hidden="true"></label>
+  <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu">
+    <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+  </label>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="/#top">Home</a>
+    <a href="/#lvp-pricing">Flooring</a>
+    <a href="/tile">Tile</a>
+    <a href="/reviews">Reviews</a>
+    <a class="nav-refer" href="/refer">Refer &amp; Earn</a>
+    <a href="/about">About</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="cta-label" data-phone-display="${BUSINESS_PHONE.display}" data-phone-short="${BUSINESS_PHONE.short}">Call ${BUSINESS_PHONE.display}</span>
+    </a>
+  </div>
+</header>`;
+}
+
 export function hoursHtml(): string {
   return HOURS.map((h) => `<li><span>${h.label}</span><span>${h.text}</span></li>`).join('');
 }
