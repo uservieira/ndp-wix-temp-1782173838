@@ -72,7 +72,7 @@ const PAGE_HTML = `
   <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Labor-only — you supply LVP (in-home quote)</span></div>
   <div class="pp-item"><span class="pp-num">$4.99</span><span class="pp-label">/sqft — 12mil supplied &amp; installed</span></div>
   <div class="pp-item"><span class="pp-num">$5.99</span><span class="pp-label">/sqft — 20mil supplied &amp; installed</span></div>
-  <div class="pp-item"><span class="pp-num">$6.99</span><span class="pp-label">/sqft — premium supplied &amp; installed</span></div>
+  <div class="pp-item"><span class="pp-num">$7.99</span><span class="pp-label">/sqft — premium supplied &amp; installed</span></div>
 </div>
 
 <h3>Labor only — quoted in-home</h3>
@@ -84,7 +84,7 @@ const PAGE_HTML = `
 <h3>20-mil supplied — $5.99/sqft</h3>
 <p>My most popular tier. The 20-mil wear layer stands up to heavy foot traffic, dogs, and dragged furniture. For most families this is the one I point them to.</p>
 
-<h3>Premium supplied — $6.99/sqft</h3>
+<h3>Premium supplied — $7.99/sqft</h3>
 <p>The same 20-mil wear layer on a thicker 6mm core, everything in the Standard tier, plus a documented flatness check, a slab moisture reading, written walkthroughs, and a warranty job file, with a lifetime install warranty. This is the top of the line for people who want it done once and done right.</p>
 
 <h2>What those numbers mean for a real house</h2>
@@ -95,7 +95,7 @@ const PAGE_HTML = `
   <li><strong>Whole small home, ~1,200 sqft:</strong> about $7,200</li>
   <li><strong>Larger home, ~2,000 sqft:</strong> about $12,000</li>
 </ul>
-<p>Drop to the 12-mil tier and those numbers come down noticeably. Go labor-only with your own materials and they come down more. Stairs are quoted at the free measure, and if you need a guaranteed start within three days there's a $250 priority fee. That's the complete list of extras.</p>
+<p>Drop to the 12-mil tier and those numbers come down noticeably. Go labor-only with your own materials and they come down more. New baseboards are a flat $3.50 per linear foot add-on, stairs are quoted at the free measure, and if you need a guaranteed start within three days there's a $250 priority fee. That's the complete list of extras.</p>
 
 <blockquote class="note">If a contractor won't give you a straight per-square-foot number over the phone, that usually means the price depends on how much they think you'll pay.</blockquote>
 
@@ -103,7 +103,7 @@ const PAGE_HTML = `
 <p>A lot of the sticker shock people get from other quotes comes from things that show up as extras later. Here's what's baked into my per-square-foot number so you're not surprised on the invoice:</p>
 <ul>
   <li><strong>Underlayment.</strong> The moisture and sound layer under the plank. Included on every job.</li>
-  <li><strong>Baseboards and transitions.</strong> We set your baseboards and the transition strips at doorways so the floor looks finished, not raw.</li>
+  <li><strong>Quarter round and transitions.</strong> We finish the wall base with quarter round and set transition strips at doorways so the floor looks finished, not raw. Want brand-new baseboards instead? That's a flat $3.50 per linear foot.</li>
   <li><strong>Subfloor prep.</strong> Basic leveling and cleaning of the slab so the floor sits flat and solid.</li>
   <li><strong>Cleanup and haul-away.</strong> On supplied jobs we take the old flooring and the debris with us. You're not left with a pile in the garage.</li>
 </ul>

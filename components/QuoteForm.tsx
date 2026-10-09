@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { LVP_TIERS, PRICING, SUPPLIER } from '@/lib/site';
+import { LVP_TIERS, PRICING, SUPPLIER, BASEBOARD_ADDON } from '@/lib/site';
 
 const tierRateFor = (key: (typeof LVP_TIERS)[number]['key']) => LVP_TIERS.find((t) => t.key === key)!.price;
 
@@ -140,8 +140,8 @@ function calculateQuote(data: FormData): {
     if (quality === 'luxury') {
       tierRate = tierRateFor('premium');
       tierName = 'Premium Supplied';
-    } else if (quality === 'premium' || requiresDemo || requiresBaseboardReplace) {
-      // Carpet demo and baseboard replacement are part of the Standard package.
+    } else if (quality === 'premium' || requiresDemo) {
+      // Carpet demo is part of the Standard package. Baseboards are an add-on on every tier.
       tierRate = tierRateFor('standard');
       tierName = 'Standard Supplied';
     } else {
@@ -149,6 +149,7 @@ function calculateQuote(data: FormData): {
       tierName = 'Entry Supplied';
     }
     scopeLabel = `LVP install (supplied + installed) — ${tierName}`;
+    if (requiresBaseboardReplace) scopeLabel += ` + new baseboards ($${BASEBOARD_ADDON.price.toFixed(2)}/lf)`;
     if (data.collection) {
       scopeLabel += ` · ${SUPPLIER.name} ${data.collection}${data.color ? ` ${data.color}` : ''}`;
     }
@@ -197,8 +198,10 @@ function calculateQuote(data: FormData): {
     };
   }
 
-  let low = sqftLow * tierRate;
-  let high = sqftHigh * tierRate;
+  // Baseboard add-on: rough footage from sqft, priced per linear foot. Final lf measured in-home.
+  const baseboardPerSqft = scope === 'lvp-supplied' && requiresBaseboardReplace ? BASEBOARD_ADDON.price * BASEBOARD_ADDON.lfPerSqft : 0;
+  let low = sqftLow * (tierRate + baseboardPerSqft);
+  let high = sqftHigh * (tierRate + baseboardPerSqft);
 
   // Stairs are never priced online; they're quoted at the free measure.
   if (hasStairs) {
@@ -511,7 +514,7 @@ export default function QuoteForm() {
       {step === 4 && isFlooringScope && (
         <div className="quote-step">
           <h2>Baseboards?</h2>
-          <p className="quote-step-sub">Replacing baseboards adds cost but gives a clean finished look.</p>
+          <p className="quote-step-sub">Quarter round is included with every package. New baseboards are an add-on at ${BASEBOARD_ADDON.price.toFixed(2)}/linear ft installed.</p>
           <div className="quote-cards">
             <button
               type="button"
@@ -519,7 +522,7 @@ export default function QuoteForm() {
               onClick={() => setForm({ ...form, baseboards: 'keep-add-qr' })}
             >
               <div className="quote-card-label">Keep existing baseboards</div>
-              <div className="quote-card-sub">Add quarter round at the wall base (budget-friendly)</div>
+              <div className="quote-card-sub">Quarter round at the wall base, included</div>
             </button>
             <button
               type="button"
@@ -527,7 +530,7 @@ export default function QuoteForm() {
               onClick={() => setForm({ ...form, baseboards: 'replace' })}
             >
               <div className="quote-card-label">Replace with new baseboards</div>
-              <div className="quote-card-sub">Fresh, cleaner finish — recommended for full remodels</div>
+              <div className="quote-card-sub">Add-on: ${BASEBOARD_ADDON.price.toFixed(2)}/linear ft installed. Cleanest finished look</div>
             </button>
           </div>
         </div>
@@ -553,7 +556,7 @@ export default function QuoteForm() {
               onClick={() => setForm({ ...form, quality: 'premium' })}
             >
               <div className="quote-card-label">Standard — 20-mil wear layer, 5mm LVP</div>
-              <div className="quote-card-sub">Most Popular. Baseboards, carpet demo &amp; minor prep included (${tierRateFor('standard').toFixed(2)}/sqft)</div>
+              <div className="quote-card-sub">Most Popular. Carpet demo, haul-away &amp; minor prep included (${tierRateFor('standard').toFixed(2)}/sqft)</div>
             </button>
             <button
               type="button"

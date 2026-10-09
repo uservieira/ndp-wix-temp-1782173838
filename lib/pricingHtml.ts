@@ -1,7 +1,7 @@
 // Shared HTML-string blocks for pricing and the Duralast collection section.
 // The homepage and /tile render the same tier copy from here so the owner-locked
-// LVP packages ($4.99 / $5.99 / $6.99) can never drift between pages.
-import { LVP_TIERS, PRICING, SUPPLIER, type LvpTierKey } from '@/lib/site';
+// LVP packages ($4.99 / $5.99 / $7.99) can never drift between pages.
+import { LVP_TIERS, PRICING, SUPPLIER, BASEBOARD_ADDON, type LvpTierKey } from '@/lib/site';
 import {
   DEFAULT_COLLECTION,
   DEFAULT_COLOR,
@@ -39,7 +39,7 @@ export function lvpTiersHtml(opts: {
         <p class="tier-desc">Budget-friendly ${entry.wear} LVP, standard install + quarter round. ${joinOr(collectionsFor('entry'))} colors.</p>
         <ul>
           <li>12-mil wear layer LVP</li>
-          <li>5mm LVP plank</li>
+          <li>4.7mm Panzu LVP plank</li>
           <li>Standard install</li>
           <li>Quarter round added at wall base</li>
         </ul>
@@ -55,7 +55,7 @@ export function lvpTiersHtml(opts: {
         <ul>
           <li>20-mil wear layer LVP</li>
           <li>5mm LVP plank</li>
-          <li>Baseboard replacement included</li>
+          <li>Quarter round added at wall base</li>
           <li>Carpet demo &amp; haul-away included</li>
           <li>Minor subfloor prep</li>
         </ul>
@@ -163,6 +163,7 @@ export function tileTiersHtml(opts: {
 
 export function pricingFineHtml(): string {
   return `<div class="pricing-fine">
+      <div><strong>New baseboards</strong>$${BASEBOARD_ADDON.price.toFixed(2)}/linear ft add-on, any package</div>
       <div><strong>Stairs</strong>${PRICING.stairsQuoted}</div>
       <div><strong>Next-day start</strong>Available on most jobs</div>
       <div><strong>Deposit</strong>50% down · balance at completion</div>

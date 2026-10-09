@@ -104,7 +104,7 @@ const PAGE_HTML = `
 
 <h2>The bottom line</h2>
 <p>SPC LVP looks cheap when it is cheap and when it's installed by someone taking shortcuts. Neither has to be the case in your home. The right tier, installed the right way, in your own lighting, is a floor that your guests will assume cost you twice what it did.</p>
-<p>Want to see the difference between $4.99 and $6.99 in your own light? I bring both to the free measure. Call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a> or <a href="/#contact">tell me about your space</a> and I'll come out.</p>
+<p>Want to see the difference between $4.99 and $7.99 in your own light? I bring both to the free measure. Call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a> or <a href="/#contact">tell me about your space</a> and I'll come out.</p>
 
     </div>
   </div>

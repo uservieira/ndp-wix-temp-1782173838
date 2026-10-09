@@ -6,7 +6,7 @@ import { getCity, type City, type Section } from '@/data/cities';
 import { getPost } from '@/data/blog';
 import { cityHeaderHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from '@/lib/schema';
-import { BUSINESS, BUSINESS_PHONE, CLAIMS } from '@/lib/site';
+import { BUSINESS, BUSINESS_PHONE, CLAIMS, BASEBOARD_ADDON } from '@/lib/site';
 import { priceText } from '@/lib/pricingHtml';
 
 export const esc = (s: string) =>
@@ -48,7 +48,7 @@ function pricingHtml(c: City): string {
   <div class="pp-item"><span class="pp-num">${priceText('standard')}</span><span class="pp-label">/sqft — Standard (most popular): 20-mil, 5mm LVP</span></div>
   <div class="pp-item"><span class="pp-num">${priceText('premium')}</span><span class="pp-label">/sqft — Premium: 20-mil, 6mm-core LVP</span></div>
 </div>
-<p>Pricing is per square foot, all in, and each tier spells out what's included. Entry covers a standard install with quarter round. Standard adds baseboard replacement, carpet demo and haul-away, and minor subfloor prep. Premium adds a documented flatness check, a slab moisture reading, written walkthroughs, and a warranty job file. No trip charges. No surprise line items. Stairs and labor-only work are quoted at the free in-home measure.</p>`;
+<p>Pricing is per square foot, all in, and each tier spells out what's included. Every package includes quarter round. Standard adds carpet demo and haul-away and minor subfloor prep. Premium adds a documented flatness check, a slab moisture reading, written walkthroughs, and a warranty job file. New baseboards are a flat $${BASEBOARD_ADDON.price.toFixed(2)} per linear foot add-on on any package. No trip charges. No surprise line items. Stairs and labor-only work are quoted at the free in-home measure.</p>`;
 }
 
 function processHtml(c: City): string {

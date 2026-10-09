@@ -457,7 +457,7 @@ ${serviceAreasHtml('section')}
           <select id="scope" name="scope" required>
             <option value="">Choose one…</option>
             <option value="lvp-labor">LVP install — I supply materials (labor-only quote)</option>
-            <option value="lvp-supplied">LVP install — we supply materials ($4.99–$6.99/sqft)</option>
+            <option value="lvp-supplied">LVP install — we supply materials ($4.99–$7.99/sqft)</option>
             <option value="tile-hardwood">Tile or hardwood</option>
             <option value="kitchen">Kitchen remodel</option>
             <option value="bathroom">Bathroom remodel</option>

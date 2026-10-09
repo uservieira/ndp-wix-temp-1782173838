@@ -83,7 +83,7 @@ const PAGE_HTML = `
 <h3>The install is faster and cleaner</h3>
 <p>Real hardwood takes 4 to 6 days for a decent-sized job, plus a week of no walking on it while the finish cures, plus dust and fumes throughout your house. SPC LVP over a properly prepped slab goes down in 2 to 3 days, no fumes, no sanding, you can walk on it the same day.</p>
 <h3>It's a fraction of the cost</h3>
-<p>Real 3/4" oak, delivered and installed with site-finished poly? You're looking at $12 to $18 a square foot in this market once you count sanding, staining, and finishing. My SPC LVP tiers run $4.99 to $6.99 a square foot supplied and installed. On a 1,000-sqft job that's the difference between a $17,000 floor and a $6,000 floor.</p>
+<p>Real 3/4" oak, delivered and installed with site-finished poly? You're looking at $12 to $18 a square foot in this market once you count sanding, staining, and finishing. My SPC LVP tiers run $4.99 to $7.99 a square foot supplied and installed. On a 1,000-sqft job that's the difference between a $17,000 floor and a $6,000 floor.</p>
 <h3>Scratches are cosmetic, not structural</h3>
 <p>Hardwood scratches through the finish and exposes bare wood. To fix it you have to sand and refinish. SPC's wear layer is a hard urethane coat over the print layer. A deep scratch is possible but rare, and the plank underneath is exactly the same color the whole way through.</p>
 

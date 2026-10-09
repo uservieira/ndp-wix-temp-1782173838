@@ -77,7 +77,7 @@ const PAGE_HTML = `
 <p>Fine for bedrooms, low-traffic areas, older adults, no dogs. Scratches from a heavy chair leg dragged without pads are visible. This tier is what I put in a guest room or an office where the traffic is one adult and a computer chair with wheels.</p>
 <h3>20 mil (my $5.99 tier)</h3>
 <p>This is the workhorse. It holds up to a medium-sized dog, kids, moving furniture with pads, and normal daily traffic in a family home. This is what I install in 80% of Central Florida houses. Scratches are rare and shallow when they happen.</p>
-<h3>Premium (my $6.99 tier)</h3>
+<h3>Premium (my $7.99 tier)</h3>
 <p>The same 20-mil wear layer on a thicker 6mm rigid core, plus a documented install with a flatness check, a slab moisture reading, and a warranty job file. This is what I recommend for vacation rentals, homes with big dogs, or people who don't want to think about floor care ever again. On these installs I offer a lifetime warranty on the install.</p>
 
 <h2>Dents — this is where people get burned</h2>

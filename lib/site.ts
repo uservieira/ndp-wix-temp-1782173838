@@ -44,7 +44,7 @@ export const SERVICE_AREA = [
 ] as const;
 
 // Owner-locked LVP all-in packages (supplied + installed, per sqft).
-// Every $4.99 / $5.99 / $6.99 claim on the site, in the QuoteForm calculator,
+// Every $4.99 / $5.99 / $7.99 claim on the site, in the QuoteForm calculator,
 // and in Service schema priceSpecification must match this list.
 export const LVP_TIERS = [
   {
@@ -63,12 +63,12 @@ export const LVP_TIERS = [
     badge: 'Most Popular',
     wear: '20-mil',
     build: '5mm LVP',
-    includes: ['20-mil wear layer', '5mm LVP', 'Baseboard replacement', 'Carpet demo & haul-away', 'Minor subfloor prep'],
+    includes: ['20-mil wear layer', '5mm LVP', 'Quarter round', 'Carpet demo & haul-away', 'Minor subfloor prep'],
   },
   {
     key: 'premium',
     name: 'Premium',
-    price: 6.99,
+    price: 7.99,
     badge: '',
     wear: '20-mil',
     build: '6mm-core LVP',
@@ -85,6 +85,10 @@ export const LVP_TIERS = [
 ] as const;
 
 export type LvpTierKey = (typeof LVP_TIERS)[number]['key'];
+
+// Baseboard replacement is a public add-on on every LVP package (owner-locked).
+// lfPerSqft is the estimator's rough baseboard footage per floor sqft; final lf is measured in-home.
+export const BASEBOARD_ADDON = { price: 3.5, unit: 'lf', lfPerSqft: 0.5 } as const;
 
 // Tile, labor-only, and stairs are never priced publicly. They are quoted in person.
 export const PRICING = {
