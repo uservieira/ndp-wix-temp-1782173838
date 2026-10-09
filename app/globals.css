@@ -1671,6 +1671,7 @@ blockquote.note {
 }
 
 .lvp-coll-detail-media {
+  position: relative;
   overflow: hidden;
   background: var(--bg-alt);
   min-height: 380px;
@@ -2903,4 +2904,18 @@ blockquote.note {
   }
   .mobile-callbar.is-hidden { transform: translateY(110%); }
   .mobile-callbar-btn { width: 100%; justify-content: center; gap: 8px; }
+}
+
+  /* Light-background pricing sections (e.g. /tile): keep fine print and toggle readable */
+  #tile-pricing .pricing-fine { color: var(--ink-3); border-top-color: var(--line); }
+  #tile-pricing .pricing-fine strong { color: var(--ink); }
+  #tile-pricing .floor-toggle { background: rgba(23,20,15,0.04); border-color: var(--line); }
+  #tile-pricing .floor-tab:not(.is-active) { color: var(--ink-2); }
+  #tile-pricing .floor-tab:not(.is-active):hover { color: var(--ink); }
+
+.lvp-coll-detail-note {
+  position: absolute; left: 12px; bottom: 12px;
+  background: rgba(23,20,15,0.72); color: #fff;
+  font: 500 12px/1.2 var(--font-sans); padding: 6px 10px; border-radius: 999px;
+  pointer-events: none;
 }

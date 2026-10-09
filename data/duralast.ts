@@ -1,7 +1,9 @@
 // Duralast (also branded Durato) LVP collections installed by New Design Pro.
 // Every color name, SKU, and spec below was verified against the manufacturer's
 // official product pages and 2026 spec sheets (see `source` / `specSheet`).
-// Swatch and room images in /public/assets/duralast/ are the manufacturer's official images.
+// Swatch images are the manufacturer's official images. Room images are the manufacturer's
+// official scenes; 16 whose floor did not match the swatch were re-rendered with the exact
+// swatch as the floor (sources in ndp-local-seo-audit/rerender/).
 // Never add a color or spec here that isn't on an official Duralast/Durato page.
 
 import type { LvpTierKey } from '@/lib/site';
@@ -134,4 +136,4 @@ export const DEFAULT_COLLECTION = 'azul-tortuga';
 export const DEFAULT_COLOR = 'white-haven';
 
 export const duralastImg = (collection: string, color: string, kind: 'swatch' | 'room-md' | 'room-lg', ext: 'webp' | 'jpg') =>
-  `/assets/duralast/${collection}/${color}-${kind}.${ext}`;
+  `/assets/duralast/${collection}/${color}-${kind}.${ext}?v=2`;

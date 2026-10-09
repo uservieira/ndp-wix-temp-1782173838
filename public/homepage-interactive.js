@@ -522,7 +522,7 @@
   }
 
   function imgPath(coll, color, kind, ext) {
-    return '/assets/duralast/' + coll + '/' + color + '-' + kind + '.' + ext;
+    return '/assets/duralast/' + coll + '/' + color + '-' + kind + '.' + ext + '?v=2';
   }
 
   function selectCard(card, silent) {

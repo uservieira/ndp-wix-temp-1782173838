@@ -44,7 +44,7 @@ function pricingHtml(c: City): string {
   return `<h2>${esc(c.pricingH2)}</h2>
 <div class="pull-price">
   <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Labor-only — you supply the LVP (in-home quote)</span></div>
-  <div class="pp-item"><span class="pp-num">${priceText('entry')}</span><span class="pp-label">/sqft — Entry: 12-mil, 5mm LVP, supplied &amp; installed</span></div>
+  <div class="pp-item"><span class="pp-num">${priceText('entry')}</span><span class="pp-label">/sqft — Entry: 12-mil, 4.7mm Panzu LVP, supplied &amp; installed</span></div>
   <div class="pp-item"><span class="pp-num">${priceText('standard')}</span><span class="pp-label">/sqft — Standard (most popular): 20-mil, 5mm LVP</span></div>
   <div class="pp-item"><span class="pp-num">${priceText('premium')}</span><span class="pp-label">/sqft — Premium: 20-mil, 6mm-core LVP</span></div>
 </div>

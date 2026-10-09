@@ -258,6 +258,7 @@ export function duralastSectionHtml(): string {
           <source type="image/webp" srcset="${duralastImg(activeColl.slug, activeColor.slug, 'room-md', 'webp')} 800w, ${duralastImg(activeColl.slug, activeColor.slug, 'room-lg', 'webp')} 1400w" sizes="(min-width:900px) 60vw, 100vw" />
           <img id="lvp-coll-detail-img" src="${duralastImg(activeColl.slug, activeColor.slug, 'room-md', 'jpg')}" width="800" height="534" sizes="(min-width:900px) 60vw, 100vw" alt="${esc(activeColor.name)} ${SUPPLIER.name} ${esc(activeColl.name)} LVP in a furnished room" />
         </picture>
+        <span class="lvp-coll-detail-note">Room preview &middot; see the real plank at your free measure</span>
       </div>
       <div class="lvp-coll-detail-body">
         <div class="lvp-coll-detail-eyebrow" id="lvp-coll-detail-eyebrow">${SUPPLIER.name} · ${esc(activeColl.name)}</div>

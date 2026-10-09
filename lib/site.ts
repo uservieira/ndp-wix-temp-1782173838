@@ -53,8 +53,8 @@ export const LVP_TIERS = [
     price: 4.99,
     badge: '',
     wear: '12-mil',
-    build: '5mm LVP',
-    includes: ['12-mil wear layer', '5mm LVP', 'Standard install', 'Quarter round'],
+    build: '4.7mm Panzu LVP',
+    includes: ['12-mil wear layer', '4.7mm Panzu LVP', 'Standard install', 'Quarter round'],
   },
   {
     key: 'standard',

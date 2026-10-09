@@ -544,7 +544,7 @@ export default function QuoteForm() {
               className={`quote-card ${form.quality === 'standard' ? 'is-active' : ''}`}
               onClick={() => setForm({ ...form, quality: 'standard' })}
             >
-              <div className="quote-card-label">Entry — 12-mil wear layer, 5mm LVP</div>
+              <div className="quote-card-label">Entry — 12-mil wear layer, 4.7mm Panzu LVP</div>
               <div className="quote-card-sub">Standard install + quarter round, budget-friendly (${tierRateFor('entry').toFixed(2)}/sqft)</div>
             </button>
             <button
