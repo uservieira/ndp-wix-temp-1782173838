@@ -1460,15 +1460,15 @@ blockquote.note {
 }
 
 /* ================================================================
-   RIOS FLOOR LVP CAROUSEL — Aug 12, 2026
+   DURALAST LVP COLLECTIONS — Oct 2026 (same layout as the Aug 2026 carousel)
    ================================================================ */
 
-.rios-section {
+.lvp-coll-section {
   padding: clamp(64px, 8vw, 112px) 0;
   background: linear-gradient(180deg, var(--bg) 0%, var(--bg-alt) 100%);
 }
 
-.rios-lockup {
+.lvp-coll-lockup {
   display: inline-flex;
   align-items: center;
   gap: 18px;
@@ -1480,15 +1480,15 @@ blockquote.note {
   box-shadow: 0 2px 12px rgba(23, 20, 15, 0.04);
 }
 
-.rios-section .section-head { display: flex; flex-direction: column; align-items: center; }
+.lvp-coll-section .section-head { display: flex; flex-direction: column; align-items: center; }
 
-.rios-lockup-ndp {
+.lvp-coll-lockup-ndp {
   height: 32px;
   width: auto;
   display: block;
 }
 
-.rios-lockup-x {
+.lvp-coll-lockup-x {
   font-family: 'Instrument Serif', 'Georgia', serif;
   font-size: 24px;
   line-height: 1;
@@ -1496,7 +1496,7 @@ blockquote.note {
   font-style: italic;
 }
 
-.rios-lockup-rios {
+.lvp-coll-lockup-brand {
   font-family: 'Instrument Serif', 'Georgia', serif;
   font-size: 24px;
   line-height: 1;
@@ -1506,7 +1506,7 @@ blockquote.note {
 }
 
 /* Toolbar above the rail */
-.rios-toolbar {
+.lvp-coll-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -1515,26 +1515,26 @@ blockquote.note {
   padding: 0 4px;
 }
 
-.rios-toolbar-title {
+.lvp-coll-toolbar-title {
   font-family: 'Instrument Serif', 'Georgia', serif;
   font-size: clamp(24px, 3vw, 32px);
   color: var(--ink);
   line-height: 1.15;
 }
 
-.rios-toolbar-sub {
+.lvp-coll-toolbar-sub {
   color: var(--ink-3);
   font-size: 14px;
   margin-top: 4px;
 }
 
-.rios-controls {
+.lvp-coll-controls {
   display: flex;
   gap: 10px;
   flex-shrink: 0;
 }
 
-.rios-arrow {
+.lvp-coll-arrow {
   width: 46px;
   height: 46px;
   border-radius: 50%;
@@ -1549,23 +1549,23 @@ blockquote.note {
   padding: 0;
 }
 
-.rios-arrow svg {
+.lvp-coll-arrow svg {
   width: 20px;
   height: 20px;
 }
 
-.rios-arrow:hover {
+.lvp-coll-arrow:hover {
   background: var(--ink);
   color: var(--surface);
   border-color: var(--ink);
   transform: translateY(-1px);
 }
 
-.rios-arrow:active {
+.lvp-coll-arrow:active {
   transform: translateY(0);
 }
 
-.rios-arrow[disabled] {
+.lvp-coll-arrow[disabled] {
   opacity: 0.35;
   cursor: not-allowed;
   transform: none;
@@ -1575,7 +1575,7 @@ blockquote.note {
 }
 
 /* The horizontal scroll rail */
-.rios-rail {
+.lvp-coll-rail {
   display: flex;
   gap: 16px;
   overflow-x: auto;
@@ -1588,9 +1588,9 @@ blockquote.note {
   margin: 0 -4px;
 }
 
-.rios-rail::-webkit-scrollbar { display: none; }
+.lvp-coll-rail::-webkit-scrollbar { display: none; }
 
-.rios-card {
+.lvp-coll-card {
   flex: 0 0 auto;
   width: clamp(180px, 22vw, 240px);
   scroll-snap-align: start;
@@ -1606,25 +1606,25 @@ blockquote.note {
   flex-direction: column;
 }
 
-.rios-card:hover {
+.lvp-coll-card:hover {
   transform: translateY(-3px);
   border-color: var(--ink-3);
   box-shadow: 0 8px 22px rgba(23, 20, 15, 0.10);
 }
 
-.rios-card[aria-selected="true"] {
+.lvp-coll-card[aria-selected="true"] {
   border-color: var(--brand);
   box-shadow: 0 0 0 3px rgba(232, 93, 47, 0.16), 0 8px 22px rgba(23, 20, 15, 0.10);
 }
 
-.rios-card-media {
+.lvp-coll-card-media {
   width: 100%;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--bg-alt);
 }
 
-.rios-card-media img {
+.lvp-coll-card-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1632,16 +1632,16 @@ blockquote.note {
   transition: transform 0.5s var(--ease);
 }
 
-.rios-card:hover .rios-card-media img {
+.lvp-coll-card:hover .lvp-coll-card-media img {
   transform: scale(1.04);
 }
 
-.rios-card-meta {
+.lvp-coll-card-meta {
   padding: 14px 16px 16px 16px;
   border-top: 1px solid var(--line);
 }
 
-.rios-card-name {
+.lvp-coll-card-name {
   font-family: 'Instrument Serif', 'Georgia', serif;
   font-size: 17px;
   line-height: 1.2;
@@ -1649,7 +1649,7 @@ blockquote.note {
   margin-bottom: 3px;
 }
 
-.rios-card-tone {
+.lvp-coll-card-tone {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1658,7 +1658,7 @@ blockquote.note {
 }
 
 /* Detail panel that fills below the rail */
-.rios-detail {
+.lvp-coll-detail {
   margin-top: clamp(32px, 5vw, 56px);
   display: grid;
   grid-template-columns: 1.35fr 1fr;
@@ -1670,13 +1670,13 @@ blockquote.note {
   box-shadow: 0 6px 24px rgba(23, 20, 15, 0.05);
 }
 
-.rios-detail-media {
+.lvp-coll-detail-media {
   overflow: hidden;
   background: var(--bg-alt);
   min-height: 380px;
 }
 
-.rios-detail-media img {
+.lvp-coll-detail-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1684,18 +1684,18 @@ blockquote.note {
   transition: opacity 0.35s var(--ease);
 }
 
-.rios-detail-media.is-swapping img {
+.lvp-coll-detail-media.is-swapping img {
   opacity: 0;
 }
 
-.rios-detail-body {
+.lvp-coll-detail-body {
   padding: clamp(28px, 4vw, 44px) clamp(28px, 4vw, 44px) clamp(28px, 4vw, 44px) 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.rios-detail-eyebrow {
+.lvp-coll-detail-eyebrow {
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1704,7 +1704,7 @@ blockquote.note {
   font-weight: 500;
 }
 
-.rios-detail-name {
+.lvp-coll-detail-name {
   font-family: 'Instrument Serif', 'Georgia', serif;
   font-size: clamp(30px, 4vw, 44px);
   line-height: 1.1;
@@ -1712,7 +1712,7 @@ blockquote.note {
   margin: 0 0 12px 0;
 }
 
-.rios-detail-desc {
+.lvp-coll-detail-desc {
   color: var(--ink-2);
   font-size: 17px;
   line-height: 1.55;
@@ -1720,7 +1720,7 @@ blockquote.note {
   max-width: 46ch;
 }
 
-.rios-detail-specs {
+.lvp-coll-detail-specs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px 24px;
@@ -1729,13 +1729,13 @@ blockquote.note {
   border-top: 1px solid var(--line);
 }
 
-.rios-detail-specs div {
+.lvp-coll-detail-specs div {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 
-.rios-detail-specs dt {
+.lvp-coll-detail-specs dt {
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1743,24 +1743,24 @@ blockquote.note {
   font-weight: 500;
 }
 
-.rios-detail-specs dd {
+.lvp-coll-detail-specs dd {
   font-size: 14px;
   color: var(--ink);
   margin: 0;
   line-height: 1.35;
 }
 
-.rios-detail-cta {
+.lvp-coll-detail-cta {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.rios-detail-cta .btn {
+.lvp-coll-detail-cta .btn {
   align-self: flex-start;
 }
 
-.rios-detail-note {
+.lvp-coll-detail-note {
   font-size: 13px;
   color: var(--ink-3);
   line-height: 1.5;
@@ -1770,26 +1770,92 @@ blockquote.note {
 
 /* Mobile — stack detail panel vertically */
 @media (max-width: 860px) {
-  .rios-detail {
+  .lvp-coll-detail {
     grid-template-columns: 1fr;
   }
-  .rios-detail-media {
+  .lvp-coll-detail-media {
     min-height: 260px;
     aspect-ratio: 4 / 3;
   }
-  .rios-detail-body {
+  .lvp-coll-detail-body {
     padding: 28px 22px 32px 22px;
   }
-  .rios-detail-specs {
+  .lvp-coll-detail-specs {
     grid-template-columns: 1fr;
     gap: 10px;
   }
-  .rios-toolbar {
+  .lvp-coll-toolbar {
     flex-wrap: wrap;
   }
-  .rios-controls {
+  .lvp-coll-controls {
     display: none; /* mobile uses swipe */
   }
+}
+
+/* Duralast collection tabs (above the color rail) */
+.lvp-coll-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 clamp(24px, 4vw, 36px) 0;
+}
+
+.lvp-coll-tab {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.24s var(--ease);
+}
+
+.lvp-coll-tab:hover {
+  border-color: var(--ink-3);
+  transform: translateY(-1px);
+}
+
+.lvp-coll-tab.is-active,
+.lvp-coll-tab[aria-selected="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--surface);
+}
+
+.lvp-coll-tab-name {
+  font-family: 'Instrument Serif', 'Georgia', serif;
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.lvp-coll-tab-tier {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.72;
+}
+
+.lvp-coll-card[hidden] { display: none; }
+
+@media (max-width: 860px) {
+  .lvp-coll-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .lvp-coll-tab {
+    border-radius: var(--radius);
+    padding: 10px 14px;
+  }
+  .lvp-coll-tab-name { font-size: 16px; }
+  .lvp-coll-tab-tier { font-size: 10px; letter-spacing: 0.08em; }
 }
 
 /* ================================================================

@@ -43,11 +43,64 @@ export const SERVICE_AREA = [
   'Poinciana',
 ] as const;
 
+// Owner-locked LVP all-in packages (supplied + installed, per sqft).
+// Every $4.99 / $5.99 / $6.99 claim on the site, in the QuoteForm calculator,
+// and in Service schema priceSpecification must match this list.
+export const LVP_TIERS = [
+  {
+    key: 'entry',
+    name: 'Entry',
+    price: 4.99,
+    badge: '',
+    wear: '12-mil',
+    build: '5mm LVP',
+    includes: ['12-mil wear layer', '5mm LVP', 'Standard install', 'Quarter round'],
+  },
+  {
+    key: 'standard',
+    name: 'Standard',
+    price: 5.99,
+    badge: 'Most Popular',
+    wear: '20-mil',
+    build: '5mm LVP',
+    includes: ['20-mil wear layer', '5mm LVP', 'Baseboard replacement', 'Carpet demo & haul-away', 'Minor subfloor prep'],
+  },
+  {
+    key: 'premium',
+    name: 'Premium',
+    price: 6.99,
+    badge: '',
+    wear: '20-mil',
+    build: '6mm-core LVP',
+    includes: [
+      '20-mil wear layer',
+      '6mm-core LVP',
+      'Everything in Standard',
+      'Documented flatness check',
+      'Slab moisture reading',
+      'Written walkthroughs',
+      'Warranty job file',
+    ],
+  },
+] as const;
+
+export type LvpTierKey = (typeof LVP_TIERS)[number]['key'];
+
+// Tile, labor-only, and stairs are never priced publicly. They are quoted in person.
 export const PRICING = {
   lvpFrom: 4.99,
-  tileFrom: 7.99,
   depositPct: 50,
   quoteTurnaround: 'Written quote in 24 hours',
+  tileQuoted: 'Quoted after a free in-home measure',
+  laborQuoted: 'Quoted in-home',
+  stairsQuoted: 'Quoted at your free in-home measure',
+  formQuotedNote: "We'll quote this after a free measure",
+} as const;
+
+// Current flooring supplier. Duralast is also branded Durato.
+export const SUPPLIER = {
+  name: 'Duralast',
+  altName: 'Durato',
 } as const;
 
 // Owner-confirmed claims. Route all insurance / experience wording through here.

@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { LVP_TIERS, PRICING, SUPPLIER } from '@/lib/site';
+
+const tierRateFor = (key: (typeof LVP_TIERS)[number]['key']) => LVP_TIERS.find((t) => t.key === key)!.price;
 
 // ============================================================
 // NDP Multi-Step Quote Form — qualifies tier, calculates price
@@ -36,6 +39,8 @@ type FormData = {
   promoCode: string;
   smsConsent: boolean;
   notes: string;
+  collection: string;
+  color: string;
 };
 
 const emptyForm: FormData = {
@@ -54,6 +59,8 @@ const emptyForm: FormData = {
   promoCode: '',
   smsConsent: false,
   notes: '',
+  collection: '',
+  color: '',
 };
 
 // Pricing logic
@@ -92,6 +99,7 @@ function calculateQuote(data: FormData): {
   discount: number;
   eligible: boolean;
   scopeLabel: string;
+  quoted?: boolean;
 } {
   const { scope, sqftRange, sqftExact, condition, baseboards, quality, hasStairs, stairsCount, promoCode } = data;
 
@@ -106,39 +114,50 @@ function calculateQuote(data: FormData): {
     sqftHigh = SQFT_HIGH[sqftRange as Exclude<SqftRange, 'exact'>];
   }
 
-  // Determine the effective tier for LVP-supplied jobs
-  let tierRate = 5.99;
+  // Determine the effective tier for LVP-supplied jobs (owner-locked LVP_TIERS)
+  let tierRate = tierRateFor('standard');
   let tierName = 'Standard Supplied';
   let scopeLabel = '';
 
   const requiresDemo = condition === 'demo-carpet';
   const requiresBaseboardReplace = baseboards === 'replace';
-  const wantsPremium = quality === 'premium' || quality === 'luxury';
+
+  // Scopes that are never priced online: quoted after a free in-home measure.
+  const quotedOnly = (name: string, label: string) => ({
+    low: 0,
+    high: 0,
+    tierName: name,
+    tierRate: 0,
+    sqftLow,
+    sqftHigh,
+    discount: 0,
+    eligible: false,
+    scopeLabel: label,
+    quoted: true,
+  });
 
   if (scope === 'lvp-supplied') {
     if (quality === 'luxury') {
-      tierRate = 6.99;
+      tierRate = tierRateFor('premium');
       tierName = 'Premium Supplied';
     } else if (quality === 'premium' || requiresDemo || requiresBaseboardReplace) {
-      tierRate = 5.99;
+      // Carpet demo and baseboard replacement are part of the Standard package.
+      tierRate = tierRateFor('standard');
       tierName = 'Standard Supplied';
     } else {
-      tierRate = 4.99;
+      tierRate = tierRateFor('entry');
       tierName = 'Entry Supplied';
     }
     scopeLabel = `LVP install (supplied + installed) — ${tierName}`;
+    if (data.collection) {
+      scopeLabel += ` · ${SUPPLIER.name} ${data.collection}${data.color ? ` ${data.color}` : ''}`;
+    }
   } else if (scope === 'lvp-labor') {
-    tierRate = 2.5; // Estimated labor-only midpoint
-    tierName = 'Labor Only (LVP)';
-    scopeLabel = 'LVP install — labor only (you supply materials)';
+    return quotedOnly('Labor Only (LVP)', `LVP install — labor only (${PRICING.laborQuoted.toLowerCase()})`);
   } else if (scope === 'tile-floor') {
-    tierRate = 7.99;
-    tierName = 'Tile Floor Installed';
-    scopeLabel = 'Tile floor installation';
+    return quotedOnly('Tile Floor', `Tile floor installation (${PRICING.tileQuoted.toLowerCase()})`);
   } else if (scope === 'tile-wall') {
-    tierRate = 15.0; // Estimate for walls/showers
-    tierName = 'Tile Wall / Shower';
-    scopeLabel = 'Tile wall, shower, or backsplash (quoted in-home)';
+    return quotedOnly('Tile Wall / Shower', `Tile wall, shower, or backsplash (${PRICING.tileQuoted.toLowerCase()})`);
   } else if (scope === 'kitchen') {
     // Kitchen is a range, not per-sqft. Use flat estimate.
     return {
@@ -181,15 +200,14 @@ function calculateQuote(data: FormData): {
   let low = sqftLow * tierRate;
   let high = sqftHigh * tierRate;
 
-  // Add stairs
+  // Stairs are never priced online; they're quoted at the free measure.
   if (hasStairs) {
-    const stairs = parseInt(stairsCount.replace(/\D/g, ''), 10) || 8;
-    low += stairs * 90;
-    high += stairs * 90;
+    const stairs = parseInt(stairsCount.replace(/\D/g, ''), 10) || 0;
+    scopeLabel += ` + ${stairs > 0 ? `${stairs} ` : ''}stairs (${PRICING.stairsQuoted.toLowerCase()})`;
   }
 
   // Apply promo code
-  const eligible = /^lvp10$/i.test(promoCode.trim()) && (scope === 'lvp-supplied' || scope === 'lvp-labor');
+  const eligible = /^lvp10$/i.test(promoCode.trim()) && scope === 'lvp-supplied'; // labor-only is quoted in-home
   const discount = eligible ? 0.1 : 0;
   if (eligible) {
     low = low * 0.9;
@@ -230,19 +248,56 @@ export default function QuoteForm() {
   const [error, setError] = useState<string | null>(null);
   const [quote, setQuote] = useState<ReturnType<typeof calculateQuote> | null>(null);
 
-  const isFlooringScope = form.scope === 'lvp-supplied' || form.scope === 'lvp-labor' || form.scope === 'tile-floor';
+  const isFlooringScope = form.scope === 'lvp-supplied' || form.scope === 'lvp-labor';
+  const isTile = form.scope === 'tile-floor' || form.scope === 'tile-wall';
   const isRemodel = form.scope === 'kitchen' || form.scope === 'bathroom';
   const isOther = form.scope === 'other';
+  const isShortFlow = isRemodel || isOther || isTile; // scope → (sqft) → contact
+
+  // Prefill from links like /form?tier=standard&collection=Azul%20Tortuga&color=White%20Haven
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const q = new URLSearchParams(window.location.search);
+    const tier = (q.get('tier') || '').toLowerCase();
+    const collection = (q.get('collection') || '').slice(0, 60);
+    const color = (q.get('color') || '').slice(0, 60);
+    const tierToQuality: Record<string, QualityPref> = { entry: 'standard', standard: 'premium', premium: 'luxury' };
+    const scopeFromTier: Record<string, Scope> = {
+      entry: 'lvp-supplied',
+      standard: 'lvp-supplied',
+      premium: 'lvp-supplied',
+      'lvp-supplied': 'lvp-supplied',
+      labor: 'lvp-labor',
+      'lvp-labor': 'lvp-labor',
+      'tile-floor': 'tile-floor',
+      'tile-wall': 'tile-wall',
+    };
+    if (!scopeFromTier[tier] && !collection) return;
+    setForm((f) => ({
+      ...f,
+      scope: scopeFromTier[tier] || (collection ? 'lvp-supplied' : f.scope),
+      quality: tierToQuality[tier] || f.quality,
+      collection,
+      color,
+      notes:
+        collection && !f.notes
+          ? `Interested in ${SUPPLIER.name} ${collection}${color ? ` — ${color}` : ''}. Please bring a sample to the free measure.`
+          : f.notes,
+    }));
+  }, []);
 
   // Determine the actual total steps for the current scope
-  const effectiveTotal = isRemodel || isOther ? 3 : TOTAL_STEPS; // Remodels skip qualifying detail
+  const effectiveTotal = isShortFlow ? 3 : TOTAL_STEPS; // Remodels and tile skip LVP qualifying detail
 
   // Advance
   const next = () => setStep((s) => Math.min(s + 1, effectiveTotal + 1));
   const back = () => setStep((s) => Math.max(1, s - 1));
 
+  const contactOk = () => !!form.name && !!form.email && /^\S+@\S+\.\S+$/.test(form.email) && !!form.zip;
+
   const canAdvance = (): boolean => {
     if (step === 1) return !!form.scope;
+    if (isTile && step === 3) return contactOk();
     if (step === 2) {
       if (isRemodel || isOther) return true;
       if (form.sqftRange === 'exact') return !!form.sqftExact && parseInt(form.sqftExact) >= 50;
@@ -256,19 +311,19 @@ export default function QuoteForm() {
     if (step === 5) return !!form.quality;
     if (step === 6) return true; // Stairs is optional yes/no
     // Contact step
-    return !!form.name && !!form.email && /^\S+@\S+\.\S+$/.test(form.email) && !!form.zip;
+    return contactOk();
   };
 
   // Contact step is different index depending on scope
-  const contactStep = isRemodel || isOther ? 3 : 7;
+  const contactStep = isShortFlow ? 3 : 7;
   const isContactStep = step === contactStep;
 
   // Live preview quote (shown from step 2 onward for flooring)
   useEffect(() => {
-    if (step >= 2 && (isFlooringScope || isRemodel)) {
+    if (step >= 2 && (isFlooringScope || isRemodel || isTile)) {
       setQuote(calculateQuote(form));
     }
-  }, [form, step, isFlooringScope, isRemodel]);
+  }, [form, step, isFlooringScope, isRemodel, isTile]);
 
   const handleSubmit = async () => {
     setSubmitting(true);
@@ -346,7 +401,7 @@ export default function QuoteForm() {
         <div className="quote-progress-bar" style={{ width: `${Math.min(100, progress)}%` }} />
       </div>
       <div className="quote-progress-label">
-        Step {Math.min(step, effectiveTotal)} of {effectiveTotal} · {STEP_TITLES[Math.min(step, isRemodel || isOther ? 3 : 7)]}
+        Step {Math.min(step, effectiveTotal)} of {effectiveTotal} · {isTile && isContactStep ? STEP_TITLES[7] : STEP_TITLES[Math.min(step, isRemodel || isOther ? 3 : 7)]}
       </div>
 
       {/* STEP 1 — Scope */}
@@ -355,10 +410,10 @@ export default function QuoteForm() {
           <h2>What do you need?</h2>
           <div className="quote-cards">
             {[
-              { v: 'lvp-supplied', label: 'LVP flooring — supplied + installed', sub: 'From $4.99/sqft' },
-              { v: 'lvp-labor', label: 'LVP flooring — labor only', sub: 'You supply materials' },
-              { v: 'tile-floor', label: 'Tile floor', sub: 'From $7.99/sqft' },
-              { v: 'tile-wall', label: 'Tile wall, shower, or backsplash', sub: 'Quoted in-home' },
+              { v: 'lvp-supplied', label: 'LVP flooring — supplied + installed', sub: `From $${tierRateFor('entry').toFixed(2)}/sqft` },
+              { v: 'lvp-labor', label: 'LVP flooring — labor only (you supply materials)', sub: PRICING.laborQuoted },
+              { v: 'tile-floor', label: 'Tile floor', sub: PRICING.tileQuoted },
+              { v: 'tile-wall', label: 'Tile wall, shower, or backsplash', sub: PRICING.tileQuoted },
               { v: 'kitchen', label: 'Kitchen remodel', sub: '$8k – $25k typical' },
               { v: 'bathroom', label: 'Bathroom remodel', sub: '$5k – $18k typical' },
               { v: 'other', label: 'Something else', sub: 'Tell us what you have in mind' },
@@ -378,7 +433,7 @@ export default function QuoteForm() {
       )}
 
       {/* STEP 2 — Sqft (only for flooring) OR Contact step for remodels */}
-      {step === 2 && (isFlooringScope || form.scope === 'tile-wall') && (
+      {step === 2 && (isFlooringScope || isTile) && (
         <div className="quote-step">
           <h2>How much space?</h2>
           <p className="quote-step-sub">Pick a range, or enter exact square footage if you know it.</p>
@@ -489,24 +544,24 @@ export default function QuoteForm() {
               className={`quote-card ${form.quality === 'standard' ? 'is-active' : ''}`}
               onClick={() => setForm({ ...form, quality: 'standard' })}
             >
-              <div className="quote-card-label">Standard — 12-mil wear layer</div>
-              <div className="quote-card-sub">Everyday durability, budget-friendly ($4.99/sqft)</div>
+              <div className="quote-card-label">Entry — 12-mil wear layer, 5mm LVP</div>
+              <div className="quote-card-sub">Standard install + quarter round, budget-friendly (${tierRateFor('entry').toFixed(2)}/sqft)</div>
             </button>
             <button
               type="button"
               className={`quote-card ${form.quality === 'premium' ? 'is-active' : ''}`}
               onClick={() => setForm({ ...form, quality: 'premium' })}
             >
-              <div className="quote-card-label">Premium — 20-mil wear layer</div>
-              <div className="quote-card-sub">Kid- and pet-proof, most popular choice ($5.99/sqft)</div>
+              <div className="quote-card-label">Standard — 20-mil wear layer, 5mm LVP</div>
+              <div className="quote-card-sub">Most Popular. Baseboards, carpet demo &amp; minor prep included (${tierRateFor('standard').toFixed(2)}/sqft)</div>
             </button>
             <button
               type="button"
               className={`quote-card ${form.quality === 'luxury' ? 'is-active' : ''}`}
               onClick={() => setForm({ ...form, quality: 'luxury' })}
             >
-              <div className="quote-card-label">Luxury — 20-mil + 6mm thicker core</div>
-              <div className="quote-card-sub">Wider planks, quieter, documented warranty install ($6.99/sqft)</div>
+              <div className="quote-card-label">Premium — 20-mil, 6mm-core LVP</div>
+              <div className="quote-card-sub">Everything in Standard + documented flatness, moisture &amp; warranty file (${tierRateFor('premium').toFixed(2)}/sqft)</div>
             </button>
           </div>
         </div>
@@ -516,7 +571,7 @@ export default function QuoteForm() {
       {step === 6 && isFlooringScope && (
         <div className="quote-step">
           <h2>Any stairs to cover?</h2>
-          <p className="quote-step-sub">Stairs are $90 per step (includes riser + tread). Skip if none.</p>
+          <p className="quote-step-sub">Stairs (riser + tread) are quoted at your free in-home measure. Skip if none.</p>
           <div className="quote-cards">
             <button
               type="button"
@@ -568,6 +623,14 @@ export default function QuoteForm() {
                 <div className="quote-preview-promo">10% LVP10 discount applied</div>
               )}
               <div className="quote-preview-note">Final price confirmed after in-home measure. Free, no obligation.</div>
+            </div>
+          )}
+          {quote && quote.quoted && (
+            <div className="quote-preview">
+              <div className="quote-preview-label">Your price:</div>
+              <div className="quote-preview-price">{PRICING.formQuotedNote}</div>
+              <div className="quote-preview-scope">{quote.scopeLabel}</div>
+              <div className="quote-preview-note">Free, no-obligation measure. Written quote within 24 hours.</div>
             </div>
           )}
 

@@ -435,7 +435,7 @@ export const CITIES: City[] = [
       {
         h2: 'Two-story homes, stairs, and open floor plans',
         paras: [
-          `A lot of newer Clermont homes are two-story with open downstairs layouts. That changes two things in a flooring quote. First, stairs: each tread and riser is cut, fitted, and finished with a stair nose, so stairs are priced per step at $90 a step. Second, long uninterrupted runs: SPC is stable, but large open spaces still need the expansion gaps and transitions the manufacturer calls for. I'll show you where those land before we start, so there are no surprises in the middle of your great room.`,
+          `A lot of newer Clermont homes are two-story with open downstairs layouts. That changes two things in a flooring quote. First, stairs: each tread and riser is cut, fitted, and finished with a stair nose, so stairs are quoted at the free in-home measure once I've counted the treads and seen the nosing. Second, long uninterrupted runs: SPC is stable, but large open spaces still need the expansion gaps and transitions the manufacturer calls for. I'll show you where those land before we start, so there are no surprises in the middle of your great room.`,
           `Upstairs, the subfloor is usually plywood or OSB over wood framing instead of concrete. That means checking for squeaks and loose panels and screwing them down before the plank goes in, since a floating floor won't silence a squeak underneath it.`,
         ],
       },
@@ -462,7 +462,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'Can you do my stairs in LVP too?',
-        a: `Yes. Stairs are $90 a step. Each tread and riser is cut and fitted, and finished with a matching stair nose so the edge is safe and clean.`,
+        a: `Yes. Stairs are quoted at the free in-home measure, after I count the steps and check the nosing. Each tread and riser is cut and fitted, and finished with a matching stair nose so the edge is safe and clean.`,
       },
       {
         q: 'Can LVP go upstairs over a wood subfloor?',
@@ -496,7 +496,7 @@ export const CITIES: City[] = [
       'Flooring and interior remodeling in Davenport, FL: LVP, tile, trim, and paint finish work from a local crew. Insured, 50% deposit, written quote in 24 hours.',
     kicker: 'Davenport, FL · Polk County · Interior remodeling',
     h1: 'Flooring and interior remodeling in Davenport',
-    byline: 'Floors, tile, trim, and paint, from the crew based in Davenport. LVP from $4.99/sqft, tile from $7.99/sqft. Written quote in 24 hours.',
+    byline: 'Floors, tile, trim, and paint, from the crew based in Davenport. LVP from $4.99/sqft, tile quoted after a free measure. Written quote in 24 hours.',
     heroImage: '/assets/bathroom-new-lg.webp',
     zips: ['33837', '33896', '33897'],
     poBoxZips: ['33836'],
@@ -513,7 +513,7 @@ export const CITIES: City[] = [
         ],
         list: [
           `LVP flooring, supplied and installed from $4.99/sqft.`,
-          `Floor tile, shower walls, and backsplashes, supplied and installed from $7.99/sqft for floor tile.`,
+          `Floor tile, shower walls, and backsplashes, quoted after a free in-home measure, with tile you supply or tile sourced for the job.`,
           `Baseboards, quarter round, door casing, and other trim, installed, caulked, and paint-ready.`,
           `Interior painting: walls, ceilings, trim, and doors.`,
         ],
@@ -552,7 +552,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'How is a remodel quoted?',
-        a: `After a free in-home walkthrough. LVP starts at $4.99/sqft and floor tile at $7.99/sqft supplied and installed. Trim and paint are quoted by scope. You get a written quote within 24 hours, and a 50% deposit holds the date.`,
+        a: `After a free in-home walkthrough. LVP starts at $4.99/sqft supplied and installed. Floor tile, trim, and paint are quoted by scope after the measure. You get a written quote within 24 hours, and a 50% deposit holds the date.`,
       },
       {
         q: 'Can we live in the house during the work?',

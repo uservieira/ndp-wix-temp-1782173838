@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 import { serviceAreasHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
+import { duralastSectionHtml, lvpTiersHtml, PRICING_LEDE, pricingFineHtml, tileTiersHtml } from '@/lib/pricingHtml';
 
 export const metadata: Metadata = {
   description:
-    'LVP flooring supplied and installed from $4.99/sqft in Davenport, Kissimmee and nearby Polk & Osceola towns. Tile from $7.99/sqft. Written quote in 24 hours.',
+    'LVP supplied & installed from $4.99/sqft in Davenport, Kissimmee and nearby Polk & Osceola towns. Tile quoted after a free measure. Written quote in 24 hours.',
   title: { absolute: 'LVP Flooring Installation, Davenport & Kissimmee FL | New Design Pro' },
   alternates: { canonical: '/' },
 };
@@ -125,7 +126,7 @@ const HOMEPAGE_HTML = `
   <div class="section-inner">
     <span class="eyebrow">Flooring pricing · transparent, no games</span>
     <h2 class="section-title">Pick your floor, <em>see the price</em>.</h2>
-    <p class="section-lede">Every job priced per square foot. Next-day start available. Stairs $90/step. Free in-home measure.</p>
+    <p class="section-lede">${PRICING_LEDE}</p>
 
     <!-- Flooring type toggle: LVP inline (default), Tile switches to inline preview + links to full /tile page -->
     <div class="floor-toggle" role="tablist" aria-label="Choose flooring type">
@@ -133,410 +134,24 @@ const HOMEPAGE_HTML = `
       <button class="floor-tab" role="tab" aria-selected="false" data-target="tiers-tile">Tile</button>
     </div>
 
-    <!-- LVP tiers (ascending: $4.99 → $5.99 → $6.99 → Labor Only) -->
-    <div class="price-tiers" id="tiers-lvp" role="tabpanel">
-      <div class="tier">
-        <div class="tier-name">Entry Supplied</div>
-        <div class="tier-price"><span class="amount">$4.99</span><span class="unit">/sqft</span></div>
-        <p class="tier-desc">Budget-friendly 12-mil LVP + full install.</p>
-        <ul>
-          <li>12-mil wear layer LVP</li>
-          <li>5mm plank core</li>
-          <li>Standard install</li>
-          <li>Quarter round added at wall base</li>
-        </ul>
-        <a class="btn btn-tier" href="/form?tier=entry" data-tier="entry">Book entry</a>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
+    ${lvpTiersHtml({ href: (k) => `/form?tier=${k}` })}
 
-      <div class="tier featured">
-        <div class="tier-badge">Most Popular</div>
-        <div class="tier-name">Standard Supplied</div>
-        <div class="tier-price"><span class="amount">$5.99</span><span class="unit">/sqft</span></div>
-        <p class="tier-desc">Distributor-select LVP with 20-mil wear layer.</p>
-        <ul>
-          <li>20-mil wear layer LVP</li>
-          <li>5mm plank core</li>
-          <li>Baseboard replacement included</li>
-          <li>Carpet demo &amp; haul-away included</li>
-          <li>Minor subfloor prep</li>
-        </ul>
-        <a class="btn btn-tier" href="/form?tier=standard" data-tier="standard">Get a free measure</a>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
-
-      <div class="tier">
-        <div class="tier-name">Premium Supplied</div>
-        <div class="tier-price"><span class="amount">$6.99</span><span class="unit">/sqft</span></div>
-        <p class="tier-desc">Same 20-mil surface, thicker 6mm core, documented warranty-safe install.</p>
-        <ul>
-          <li>20-mil wear layer LVP</li>
-          <li><strong>6mm plank core</strong> (thicker, quieter, more rigid)</li>
-          <li>Everything in the $5.99 tier</li>
-          <li>Documented flatness check (3/16&quot; over 10 ft, per manufacturer spec)</li>
-          <li>Documented moisture reading on concrete slabs</li>
-          <li>Written pre-install walkthrough &amp; final walkthrough</li>
-          <li>Job file kept on record to protect your manufacturer warranty</li>
-        </ul>
-        <a class="btn btn-tier" href="/form?tier=premium" data-tier="premium">Book premium</a>
-        <p class="tier-note">Final price confirmed after in-home measurement. No underlayment under click-lock LVP — most manufacturers void warranty when it's added.</p>
-      </div>
-
-      <div class="tier">
-        <div class="tier-name">Labor Only</div>
-        <div class="tier-price"><span class="amount">Quoted</span><span class="unit">in-home</span></div>
-        <p class="tier-desc">You supply the LVP. We install it. Labor pricing given after we walk the space.</p>
-        <ul>
-          <li>Professional installation</li>
-          <li>Baseboards &amp; transitions</li>
-          <li>Subfloor prep &amp; cleanup</li>
-        </ul>
-        <a class="btn btn-tier" href="/form?tier=labor" data-tier="labor">Book labor-only</a>
-        <p class="tier-note">Final labor rate confirmed after in-home measurement.</p>
-      </div>
-    </div>
-
-    <!-- Tile tiers -->
-    <div class="price-tiers is-hidden" id="tiers-tile" role="tabpanel" aria-hidden="true">
-      <div class="tier featured">
-        <div class="tier-badge">Starting</div>
-        <div class="tier-name">Floor Tile Installed</div>
-        <div class="tier-price"><span class="amount">$7.99</span><span class="unit">/sqft</span></div>
-        <p class="tier-desc">Installed price for tile supplied through New Design Pro via Rios Floor.</p>
-        <ul>
-          <li>Tile supplied via our Rios Floor catalog</li>
-          <li>Thinset + grout</li>
-          <li>Backer board on wood subfloor</li>
-          <li>Straight or brick-pattern layout</li>
-          <li>Cleanup &amp; haul-away</li>
-        </ul>
-        <a class="btn btn-tier" href="/form?tier=tile-floor" data-tier="tile-floor">Get a free measure</a>
-        <div class="tier-scope">
-          Rate covers installation of tile from our Rios Floor catalog.
-          Customer-supplied tile is quoted separately.
-          If the subfloor needs floating (self-leveling), that work is priced based on subfloor condition after inspection.
-        </div>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
-
-      <div class="tier">
-        <div class="tier-name">Shower / Backsplash</div>
-        <div class="tier-price"><span class="amount">Quoted</span><span class="unit">in-home</span></div>
-        <p class="tier-desc">Shower walls, backsplashes, large-format, mosaics — priced after we see the space.</p>
-        <ul>
-          <li>Waterproofing (Schluter or equivalent)</li>
-          <li>Large-format &amp; mosaic layouts</li>
-          <li>Herringbone, chevron, custom patterns</li>
-          <li>Niches, benches, curbs</li>
-        </ul>
-        <a class="btn btn-tier" href="/form?tier=tile-wall" data-tier="tile-wall">Book a walkthrough</a>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
-
-      <div class="tier">
-        <div class="tier-name">Labor Only</div>
-        <div class="tier-price"><span class="amount">Quoted</span><span class="unit">in-home</span></div>
-        <p class="tier-desc">You supply the tile, thinset, and grout. We install.</p>
-        <ul>
-          <li>Professional installation</li>
-          <li>Layout planning</li>
-          <li>Backer board (if needed)</li>
-          <li>Cleanup</li>
-        </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="tile-labor">Book labor-only</a>
-        <p class="tier-note">Final labor rate confirmed after in-home measurement.</p>
-      </div>
-
-      <div class="tier" style="grid-column: 1 / -1; text-align: center; background: transparent; border-color: rgba(255,255,255,0.06);">
-        <a class="tile-cta-link" href="/#lvp-pricing" data-open-tile="1" style="font-size: 15px;">
+    ${tileTiersHtml({
+      hidden: true,
+      floorHref: '/form?tier=tile-floor',
+      wallHref: '/form?tier=tile-wall',
+      laborHref: '#contact',
+      footerLinkHtml: `<a class="tile-cta-link" href="/#lvp-pricing" data-open-tile="1" style="font-size: 15px;">
           See the full tile page — scope, gallery, process
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-    </div>
+        </a>`,
+    })}
 
-    <div class="pricing-fine">
-      <div><strong>Stairs</strong>$90 per step (includes riser + tread)</div>
-      <div><strong>Next-day start</strong>Available on most jobs</div>
-      <div><strong>Deposit</strong>50% down · balance at completion</div>
-      <div><strong>Free measure</strong>On-site quote within 24 hours in Central FL</div>
-    </div>
+    ${pricingFineHtml()}
   </div>
 </section>
 
-<!-- ================================================================
-     RIOS FLOOR LVP CAROUSEL — added Aug 12, 2026
-     Replaces the 6-color mock grid with the full 16-SKU Rios catalog.
-     ================================================================ -->
-<section id="lvp-colors" class="rios-section">
-  <div class="section-inner">
-    <div class="section-head" style="text-align:center; margin-bottom:clamp(24px,4vw,40px);">
-      <div class="rios-lockup" aria-label="NDP × Rios Floor">
-        <img src="/assets/logo-ndp-mark-transparent.png" alt="New Design Pro" class="rios-lockup-ndp" />
-        <span class="rios-lockup-x" aria-hidden="true">×</span>
-        <span class="rios-lockup-rios">Rios Floor</span>
-      </div>
-      <span class="eyebrow">Our LVP supplier — wholesale-direct from Orlando</span>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;">All sixteen colors from the <em>2026 Rios collection</em>.</h2>
-      <p class="section-lede" style="margin-left:auto;margin-right:auto;">Every plank we install is hand-picked from Rios Floor. SPC rigid core, 12 or 20 mil wear layer, 100% waterproof, click-lock install. Tap any color to see it in a real room.</p>
-    </div>
-
-    <div class="rios-toolbar">
-      <div class="rios-toolbar-lead">
-        <div class="rios-toolbar-title">The 2026 collection</div>
-        <div class="rios-toolbar-sub">Scroll — or tap the arrows</div>
-      </div>
-      <div class="rios-controls">
-        <button class="rios-arrow" type="button" data-dir="-1" aria-label="Previous colors">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-        </button>
-        <button class="rios-arrow" type="button" data-dir="1" aria-label="Next colors">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <div class="rios-rail" id="rios-rail" role="tablist" aria-label="Rios Floor LVP colors">
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="117" data-name="Warm Natural Oak" data-tone="warm" data-desc="Honey-toned classic oak — pairs with warm cabinets and cream walls." data-dims="7" × 48" / 9" × 60"" data-wear="12 or 20 mil" data-thickness="5 mm / 6 mm" data-slug="warm-natural-oak" aria-label="Select Warm Natural Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/117-thumb.webp 400w, /assets/rios/117-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/117-thumb.jpg" srcset="/assets/rios/117-thumb.jpg 400w, /assets/rios/117-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Warm Natural Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Warm Natural Oak</div>
-          <div class="rios-card-tone">Warm</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="113" data-name="Light Walnut Oak" data-tone="warm" data-desc="Soft caramel with subtle graining — timeless and forgiving." data-dims="7" × 48"" data-wear="12 or 20 mil" data-thickness="5 mm" data-slug="light-walnut-oak" aria-label="Select Light Walnut Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/113-thumb.webp 400w, /assets/rios/113-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/113-thumb.jpg" srcset="/assets/rios/113-thumb.jpg 400w, /assets/rios/113-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Light Walnut Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Light Walnut Oak</div>
-          <div class="rios-card-tone">Warm</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="109" data-name="Soft Natural Oak" data-tone="warm" data-desc="Neutral tan oak — reads clean under white kitchens." data-dims="7" × 48" / 9" × 60"" data-wear="12 or 20 mil" data-thickness="5 mm / 6 mm" data-slug="soft-natural-oak" aria-label="Select Soft Natural Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/109-thumb.webp 400w, /assets/rios/109-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/109-thumb.jpg" srcset="/assets/rios/109-thumb.jpg 400w, /assets/rios/109-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Soft Natural Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Soft Natural Oak</div>
-          <div class="rios-card-tone">Warm</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="105" data-name="Warm Golden Oak" data-tone="warm" data-desc="Rich golden warmth, subtle knots — feels like real oak underfoot." data-dims="7" × 48" / 9" × 60"" data-wear="12 or 20 mil" data-thickness="5 mm / 6 mm" data-slug="warm-golden-oak" aria-label="Select Warm Golden Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/105-thumb.webp 400w, /assets/rios/105-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/105-thumb.jpg" srcset="/assets/rios/105-thumb.jpg 400w, /assets/rios/105-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Warm Golden Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Warm Golden Oak</div>
-          <div class="rios-card-tone">Warm</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="101" data-name="Light Natural Oak" data-tone="warm" data-desc="Bright, airy blonde — opens up small Florida rooms." data-dims="7" × 48" / 9" × 60"" data-wear="12 or 20 mil" data-thickness="5 mm / 6 mm" data-slug="light-natural-oak" aria-label="Select Light Natural Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/101-thumb.webp 400w, /assets/rios/101-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/101-thumb.jpg" srcset="/assets/rios/101-thumb.jpg 400w, /assets/rios/101-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Light Natural Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Light Natural Oak</div>
-          <div class="rios-card-tone">Warm</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="85" data-name="Rustik Honey Oak" data-tone="warm" data-desc="Rustic character, warm honey base — hides scratches from kids and dogs." data-dims="7" × 48"" data-wear="12 or 20 mil" data-thickness="5 mm" data-slug="rustik-honey-oak" aria-label="Select Rustik Honey Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/85-thumb.webp 400w, /assets/rios/85-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/85-thumb.jpg" srcset="/assets/rios/85-thumb.jpg 400w, /assets/rios/85-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Rustik Honey Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Rustik Honey Oak</div>
-          <div class="rios-card-tone">Warm</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="81" data-name="Amber Oak" data-tone="warm" data-desc="Deep amber warmth — dramatic against light walls." data-dims="7" × 48"" data-wear="12 or 20 mil" data-thickness="5 mm" data-slug="amber-oak" aria-label="Select Amber Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/81-thumb.webp 400w, /assets/rios/81-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/81-thumb.jpg" srcset="/assets/rios/81-thumb.jpg 400w, /assets/rios/81-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Amber Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Amber Oak</div>
-          <div class="rios-card-tone">Warm</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="61" data-name="Honey Oak" data-tone="warm" data-desc="Golden honey, medium warmth — our most-installed plank." data-dims="7" × 48" / 9" × 60"" data-wear="12 or 20 mil" data-thickness="5 mm / 6 mm" data-slug="honey-oak" aria-label="Select Honey Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/61-thumb.webp 400w, /assets/rios/61-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/61-thumb.jpg" srcset="/assets/rios/61-thumb.jpg 400w, /assets/rios/61-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Honey Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Honey Oak</div>
-          <div class="rios-card-tone">Warm</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="77" data-name="Rustik Oak" data-tone="neutral" data-desc="Rustic textured oak in a mid-brown — casual and coastal." data-dims="7" × 48"" data-wear="12 or 20 mil" data-thickness="5 mm" data-slug="rustik-oak" aria-label="Select Rustik Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/77-thumb.webp 400w, /assets/rios/77-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/77-thumb.jpg" srcset="/assets/rios/77-thumb.jpg 400w, /assets/rios/77-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Rustik Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Rustik Oak</div>
-          <div class="rios-card-tone">Neutral</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="89" data-name="Natural Maple Oak" data-tone="neutral" data-desc="Clean maple tones — modern, understated." data-dims="7" × 48"" data-wear="20 mil" data-thickness="5 mm" data-slug="natural-maple-oak" aria-label="Select Natural Maple Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/89-thumb.webp 400w, /assets/rios/89-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/89-thumb.jpg" srcset="/assets/rios/89-thumb.jpg 400w, /assets/rios/89-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Natural Maple Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Natural Maple Oak</div>
-          <div class="rios-card-tone">Neutral</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="57" data-name="Natural Walnut Oak" data-tone="dark" data-desc="Rich walnut brown — sophisticated, works with darker cabinets." data-dims="7" × 48" / 9" × 60"" data-wear="12 or 20 mil" data-thickness="5 mm / 6 mm" data-slug="natural-walnut-oak" aria-label="Select Natural Walnut Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/57-thumb.webp 400w, /assets/rios/57-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/57-thumb.jpg" srcset="/assets/rios/57-thumb.jpg 400w, /assets/rios/57-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Natural Walnut Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Natural Walnut Oak</div>
-          <div class="rios-card-tone">Dark</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="65" data-name="Silver Oak" data-tone="cool" data-desc="Cool silver-gray with soft graining — modern and calm." data-dims="7" × 48"" data-wear="12 mil" data-thickness="5 mm" data-slug="silver-oak" aria-label="Select Silver Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/65-thumb.webp 400w, /assets/rios/65-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/65-thumb.jpg" srcset="/assets/rios/65-thumb.jpg 400w, /assets/rios/65-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Silver Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Silver Oak</div>
-          <div class="rios-card-tone">Cool</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="73" data-name="Light Gray Oak" data-tone="cool" data-desc="Soft dove gray — pairs with white trim and coastal palettes." data-dims="7" × 48"" data-wear="12 mil" data-thickness="5 mm" data-slug="light-gray-oak" aria-label="Select Light Gray Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/73-thumb.webp 400w, /assets/rios/73-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/73-thumb.jpg" srcset="/assets/rios/73-thumb.jpg 400w, /assets/rios/73-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Light Gray Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Light Gray Oak</div>
-          <div class="rios-card-tone">Cool</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="69" data-name="Urban Gray Oak" data-tone="cool" data-desc="Deeper urban gray — contemporary with warm undertones." data-dims="7" × 48" / 9" × 60"" data-wear="12 or 20 mil" data-thickness="5 mm / 6 mm" data-slug="urban-gray-oak" aria-label="Select Urban Gray Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/69-thumb.webp 400w, /assets/rios/69-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/69-thumb.jpg" srcset="/assets/rios/69-thumb.jpg 400w, /assets/rios/69-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Urban Gray Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Urban Gray Oak</div>
-          <div class="rios-card-tone">Cool</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="97" data-name="Ash Gray Oak" data-tone="cool" data-desc="Weathered ash — driftwood look, cool and bright." data-dims="7" × 48"" data-wear="20 mil" data-thickness="5 mm" data-slug="ash-gray-oak" aria-label="Select Ash Gray Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/97-thumb.webp 400w, /assets/rios/97-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/97-thumb.jpg" srcset="/assets/rios/97-thumb.jpg 400w, /assets/rios/97-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Ash Gray Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Ash Gray Oak</div>
-          <div class="rios-card-tone">Cool</div>
-        </div>
-      </button>
-
-      <button class="rios-card" type="button" role="tab" aria-selected="false" data-sku="93" data-name="Platinum Gray Oak" data-tone="cool" data-desc="Cool platinum with soft graining — the go-to for coastal builds." data-dims="7" × 48"" data-wear="20 mil" data-thickness="5 mm" data-slug="platinum-gray-oak" aria-label="Select Platinum Gray Oak">
-        <div class="rios-card-media">
-          <picture>
-            <source type="image/webp" srcset="/assets/rios/93-thumb.webp 400w, /assets/rios/93-med.webp 800w" sizes="(min-width:900px) 260px, 60vw" />
-            <img src="/assets/rios/93-thumb.jpg" srcset="/assets/rios/93-thumb.jpg 400w, /assets/rios/93-med.jpg 800w" sizes="(min-width:900px) 260px, 60vw" alt="Platinum Gray Oak Rios Floor LVP plank swatch" loading="lazy" />
-          </picture>
-        </div>
-        <div class="rios-card-meta">
-          <div class="rios-card-name">Platinum Gray Oak</div>
-          <div class="rios-card-tone">Cool</div>
-        </div>
-      </button>
-    </div>
-
-    <!-- Detail panel — updates when a card is tapped -->
-    <div class="rios-detail" id="rios-detail" aria-live="polite">
-      <div class="rios-detail-media">
-        <picture>
-          <source type="image/webp" srcset="/assets/rios/hero/lvp_117-md.webp 800w, /assets/rios/hero/lvp_117-lg.webp 1400w" sizes="(min-width:900px) 60vw, 100vw" />
-          <img id="rios-detail-img" src="/assets/rios/hero/lvp_117-md.jpg" srcset="/assets/rios/hero/lvp_117-md.jpg 800w, /assets/rios/hero/lvp_117-lg.jpg 1400w" sizes="(min-width:900px) 60vw, 100vw" alt="Warm Natural Oak in a real Florida home" />
-        </picture>
-      </div>
-      <div class="rios-detail-body">
-        <div class="rios-detail-eyebrow">Rios Floor · 2026</div>
-        <h3 class="rios-detail-name" id="rios-detail-name">Warm Natural Oak</h3>
-        <p class="rios-detail-desc" id="rios-detail-desc">Honey-toned classic oak — pairs with warm cabinets and cream walls.</p>
-        <dl class="rios-detail-specs">
-          <div><dt>Dimensions</dt><dd id="rios-detail-dims">7" × 48" / 9" × 60"</dd></div>
-          <div><dt>Wear layer</dt><dd id="rios-detail-wear">12 or 20 mil</dd></div>
-          <div><dt>Thickness</dt><dd id="rios-detail-thickness">5 mm / 6 mm</dd></div>
-          <div><dt>Core</dt><dd>SPC rigid, 100% waterproof</dd></div>
-          <div><dt>Install</dt><dd>Click-lock, IXPE underlay attached</dd></div>
-          <div><dt>Warranty</dt><dd>Lifetime install (NDP) + Rios manufacturer</dd></div>
-        </dl>
-        <div class="rios-detail-cta">
-          <a class="btn btn-primary" id="rios-detail-cta-link" href="/form?tier=lvp-supplied" data-name="Warm Natural Oak">
-            Get a quote for <span id="rios-detail-cta-name">Warm Natural Oak</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <p class="rios-detail-note">We bring physical samples of every color to your home — see them next to your walls, cabinets, and light before you decide.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+${duralastSectionHtml()}
 
 <!-- ================================================================
      TILE GALLERY — added Aug 11, 2026
@@ -663,7 +278,7 @@ const HOMEPAGE_HTML = `
         <div class="svc-photo" style="background-image:url('https://ndp-embed.pplx.app/assets/tile-carrara-md.jpg');"></div>
         <div class="svc-body">
           <h3>Tile</h3>
-          <p class="svc-price">Floor tile from $7.99/sqft installed &middot; Shower &amp; backsplash quoted in-home</p>
+          <p class="svc-price">Floor tile, showers &amp; backsplashes quoted after a free in-home measure</p>
           <p class="svc-desc">Porcelain, ceramic, large-format, mosaics, herringbone, chevron. Waterproofed showers with Schluter or equivalent. See the full tile page for scope, gallery, and process.</p>
           <a class="btn btn-outline" href="/#lvp-pricing" data-open-tile="1">See the tile page</a>
         </div>
@@ -842,7 +457,7 @@ ${serviceAreasHtml('section')}
           <select id="scope" name="scope" required>
             <option value="">Choose one…</option>
             <option value="lvp-labor">LVP install — I supply materials (labor-only quote)</option>
-            <option value="lvp-supplied">LVP install — you supply materials ($4.99–$6.99)</option>
+            <option value="lvp-supplied">LVP install — we supply materials ($4.99–$6.99/sqft)</option>
             <option value="tile-hardwood">Tile or hardwood</option>
             <option value="kitchen">Kitchen remodel</option>
             <option value="bathroom">Bathroom remodel</option>

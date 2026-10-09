@@ -85,7 +85,7 @@ const PAGE_HTML = `
 <p>My most popular tier. The 20-mil wear layer stands up to heavy foot traffic, dogs, and dragged furniture. For most families this is the one I point them to.</p>
 
 <h3>Premium supplied — $6.99/sqft</h3>
-<p>Thicker wear layer, full subfloor leveling, new baseboards and trim, white-glove finish, and a lifetime install warranty. This is the top of the line for people who want it done once and done right.</p>
+<p>The same 20-mil wear layer on a thicker 6mm core, everything in the Standard tier, plus a documented flatness check, a slab moisture reading, written walkthroughs, and a warranty job file, with a lifetime install warranty. This is the top of the line for people who want it done once and done right.</p>
 
 <h2>What those numbers mean for a real house</h2>
 <p>Let's put it in dollars, because per-square-foot only means so much. Here's what different sized jobs run at the popular 20-mil tier:</p>
@@ -95,7 +95,7 @@ const PAGE_HTML = `
   <li><strong>Whole small home, ~1,200 sqft:</strong> about $7,200</li>
   <li><strong>Larger home, ~2,000 sqft:</strong> about $12,000</li>
 </ul>
-<p>Drop to the 12-mil tier and those numbers come down noticeably. Go labor-only with your own materials and they come down more. Stairs are a flat $90 per step on top, and if you need a guaranteed start within three days there's a $250 priority fee. That's the complete list of extras.</p>
+<p>Drop to the 12-mil tier and those numbers come down noticeably. Go labor-only with your own materials and they come down more. Stairs are quoted at the free measure, and if you need a guaranteed start within three days there's a $250 priority fee. That's the complete list of extras.</p>
 
 <blockquote class="note">If a contractor won't give you a straight per-square-foot number over the phone, that usually means the price depends on how much they think you'll pay.</blockquote>
 

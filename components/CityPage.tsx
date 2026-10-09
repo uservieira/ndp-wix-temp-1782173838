@@ -6,7 +6,8 @@ import { getCity, type City, type Section } from '@/data/cities';
 import { getPost } from '@/data/blog';
 import { cityHeaderHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from '@/lib/schema';
-import { BUSINESS, BUSINESS_PHONE, CLAIMS, PRICING } from '@/lib/site';
+import { BUSINESS, BUSINESS_PHONE, CLAIMS } from '@/lib/site';
+import { priceText } from '@/lib/pricingHtml';
 
 export const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -34,20 +35,20 @@ function pricingHtml(c: City): string {
   if (c.kind === 'remodeling') {
     return `<h2>${esc(c.pricingH2)}</h2>
 <div class="pull-price">
-  <div class="pp-item"><span class="pp-num">$4.99</span><span class="pp-label">/sqft — LVP supplied &amp; installed</span></div>
-  <div class="pp-item"><span class="pp-num">$7.99</span><span class="pp-label">/sqft — floor tile supplied &amp; installed</span></div>
-  <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Trim, shower tile &amp; paint (in-home walkthrough)</span></div>
+  <div class="pp-item"><span class="pp-num">${priceText('entry')}</span><span class="pp-label">/sqft — LVP supplied &amp; installed</span></div>
+  <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Floor &amp; shower tile (free in-home measure)</span></div>
+  <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Trim &amp; paint (in-home walkthrough)</span></div>
 </div>
-<p>Floors and floor tile are priced per square foot, supplied and installed. Shower walls, trim, and paint depend on the scope, so they're quoted after a free walkthrough. Every quote is written, itemized, and in your inbox within 24 hours. A 50% deposit holds your start date, and the balance is due when the work is done.</p>`;
+<p>LVP floors are priced per square foot, supplied and installed. Floor tile, shower walls, trim, and paint depend on the scope, so they're quoted after a free walkthrough. Tile is either yours or sourced for your job. Every quote is written, itemized, and in your inbox within 24 hours. A 50% deposit holds your start date, and the balance is due when the work is done.</p>`;
   }
   return `<h2>${esc(c.pricingH2)}</h2>
 <div class="pull-price">
   <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Labor-only — you supply the LVP (in-home quote)</span></div>
-  <div class="pp-item"><span class="pp-num">$4.99</span><span class="pp-label">/sqft — 12mil supplied &amp; installed</span></div>
-  <div class="pp-item"><span class="pp-num">$5.99</span><span class="pp-label">/sqft — 20mil supplied &amp; installed</span></div>
-  <div class="pp-item"><span class="pp-num">$6.99</span><span class="pp-label">/sqft — premium supplied &amp; installed</span></div>
+  <div class="pp-item"><span class="pp-num">${priceText('entry')}</span><span class="pp-label">/sqft — Entry: 12-mil, 5mm LVP, supplied &amp; installed</span></div>
+  <div class="pp-item"><span class="pp-num">${priceText('standard')}</span><span class="pp-label">/sqft — Standard (most popular): 20-mil, 5mm LVP</span></div>
+  <div class="pp-item"><span class="pp-num">${priceText('premium')}</span><span class="pp-label">/sqft — Premium: 20-mil, 6mm-core LVP</span></div>
 </div>
-<p>Pricing is per square foot, all in. Labor covers the tear-out, the subfloor prep, the underlayment, the baseboards and transitions, and the cleanup. No trip charges. No surprise line items. Stairs run $90 a step if you have them.</p>`;
+<p>Pricing is per square foot, all in, and each tier spells out what's included. Entry covers a standard install with quarter round. Standard adds baseboard replacement, carpet demo and haul-away, and minor subfloor prep. Premium adds a documented flatness check, a slab moisture reading, written walkthroughs, and a warranty job file. No trip charges. No surprise line items. Stairs and labor-only work are quoted at the free in-home measure.</p>`;
 }
 
 function processHtml(c: City): string {
@@ -123,7 +124,7 @@ ${faqs}
 <ul class="city-related">
   <li><a href="${n1.path}">${esc(n1.anchor)}</a></li>
   <li><a href="${n2.path}">${esc(n2.anchor)}</a></li>
-  <li><a href="/tile">Tile installation from $7.99/sqft</a></li>
+  <li><a href="/tile">Tile installation, quoted after a free measure</a></li>
   <li><a href="/blog/${post.slug}">${esc(post.title)}</a></li>
 </ul>
 
@@ -162,10 +163,7 @@ export default function CityPage({ slug }: { slug: string }) {
           name: isRemodel ? `Flooring & interior remodeling in ${c.name}, FL` : `LVP installation in ${c.name}, FL`,
           serviceType: isRemodel ? 'Flooring and interior finish remodeling' : 'Luxury vinyl plank (LVP) flooring installation',
           areaServed: [{ name: c.name, county: c.county }],
-          priceFrom: PRICING.lvpFrom,
-          priceDescription: isRemodel
-            ? 'LVP supplied and installed from $4.99/sqft; floor tile from $7.99/sqft'
-            : 'LVP supplied and installed from $4.99/sqft',
+          lvpTiers: true,
         })}
       />
       <JsonLd data={faqPageSchema(c.faqs, c.path)} />

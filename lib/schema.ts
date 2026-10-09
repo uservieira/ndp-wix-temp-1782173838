@@ -4,7 +4,7 @@
 // LocalBusiness as self-serving, and data/reviews.ts only holds a handful of reviews.
 import type { Faq } from '@/data/cities';
 import type { BlogPost } from '@/data/blog';
-import { BUSINESS, BUSINESS_PHONE, HOURS, SERVICE_AREA, SITE_URL } from '@/lib/site';
+import { BUSINESS, BUSINESS_PHONE, HOURS, LVP_TIERS, SERVICE_AREA, SITE_URL } from '@/lib/site';
 
 export const BUSINESS_ID = `${SITE_URL}/#business`;
 const abs = (path: string) => (path.startsWith('http') ? path : `${SITE_URL}${path === '/' ? '' : path}`);
@@ -48,8 +48,10 @@ export function serviceSchema(opts: {
   name: string;
   serviceType: string;
   areaServed: { name: string; county?: string }[];
-  priceFrom: number;
-  priceDescription: string;
+  // LVP pages: one Offer per owner-locked tier (from LVP_TIERS).
+  lvpTiers?: boolean;
+  // Quoted-only services (tile): no public price, description only.
+  quotedDescription?: string;
 }) {
   const url = abs(opts.path);
   return {
@@ -65,19 +67,30 @@ export function serviceSchema(opts: {
       name: `${a.name}, FL`,
       ...(a.county ? { containedInPlace: { '@type': 'AdministrativeArea', name: `${a.county}, FL` } } : {}),
     })),
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'USD',
-      description: opts.priceDescription,
-      priceSpecification: {
-        '@type': 'UnitPriceSpecification',
-        price: opts.priceFrom,
-        minPrice: opts.priceFrom,
-        priceCurrency: 'USD',
-        unitCode: 'FTK',
-        unitText: 'per square foot',
-      },
-    },
+    ...(opts.lvpTiers
+      ? {
+          offers: LVP_TIERS.map((t) => ({
+            '@type': 'Offer',
+            name: `${t.name} LVP, supplied and installed`,
+            description: `${t.name} tier: ${t.includes.join(', ')}.`,
+            priceCurrency: 'USD',
+            priceSpecification: {
+              '@type': 'UnitPriceSpecification',
+              price: t.price,
+              priceCurrency: 'USD',
+              unitCode: 'FTK',
+              unitText: 'per square foot',
+            },
+          })),
+        }
+      : {}),
+    ...(opts.quotedDescription
+      ? {
+          description: opts.quotedDescription,
+          // Quoted-only: an Offer with no public price.
+          offers: { '@type': 'Offer', description: opts.quotedDescription },
+        }
+      : {}),
   };
 }
 

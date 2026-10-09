@@ -96,7 +96,7 @@ const PAGE_HTML = `
 <p>Not every job is two days. Here's what adds time:</p>
 <ul>
   <li><strong>Square footage.</strong> A whole 1,500+ sqft home is more like three to four days.</li>
-  <li><strong>Stairs.</strong> Stairs are detailed, slow work, $90 a step, and they add time.</li>
+  <li><strong>Stairs.</strong> Stairs are detailed, slow work, quoted at the free measure, and they add time.</li>
   <li><strong>Bad subfloor.</strong> If the slab needs serious leveling, that's most of an extra day, but it's non-negotiable if you want the floor to last.</li>
   <li><strong>Tile removal.</strong> Ripping out old tile takes a lot longer than pulling carpet.</li>
 </ul>

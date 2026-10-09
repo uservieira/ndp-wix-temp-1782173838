@@ -4,7 +4,7 @@ import type { Faq } from '@/data/cities';
 export const TILE_FAQS: Faq[] = [
   {
     q: 'How much does tile installation cost?',
-    a: `Floor tile is supplied and installed from $7.99 per square foot. Showers, backsplashes, and patterns like herringbone are quoted after a free in-home measure, because the labor varies. You get a written quote within 24 hours, and a 50% deposit holds your date.`,
+    a: `Every tile job is quoted after a free in-home measure, because the slab, the layout, and the tile itself change the work. Floors, showers, backsplashes, and patterns like herringbone are all priced that way. You can supply your own tile, or we source it for your specific job. You get a written quote within 24 hours of the measure, and a 50% deposit holds your date.`,
   },
   {
     q: 'Can you tile over my existing tile?',

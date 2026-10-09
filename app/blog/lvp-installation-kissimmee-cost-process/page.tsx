@@ -75,9 +75,9 @@ const PAGE_HTML = `
   <div class="pp-item"><span class="pp-num">$6.99</span><span class="pp-label">/sqft — premium supplied &amp; installed</span></div>
 </div>
 
-<p>So if you found a deal on planks at the store and just want it installed, I'll walk your space and give you a labor-only quote on the spot. Labor covers the underlayment, the baseboards and transitions, subfloor prep, and cleanup. If you'd rather not shop for flooring at all, I'll supply it and install it: <strong>$4.99/sqft</strong> for a solid 12-mil plank, <strong>$5.99/sqft</strong> for a tougher 20-mil, and <strong>$6.99/sqft</strong> for premium with a thicker wear layer and a lifetime install warranty.</p>
+<p>So if you found a deal on planks at the store and just want it installed, I'll walk your space and give you a labor-only quote on the spot. Labor covers the underlayment, the baseboards and transitions, subfloor prep, and cleanup. If you'd rather not shop for flooring at all, I'll supply it and install it: <strong>$4.99/sqft</strong> for a solid 12-mil plank, <strong>$5.99/sqft</strong> for a tougher 20-mil, and <strong>$6.99/sqft</strong> for premium: the same 20-mil wear layer on a thicker 6mm core, with a documented install and a lifetime install warranty.</p>
 
-<p>A typical Kissimmee living room and hallway runs somewhere around 600 to 900 square feet. At the 20-mil supplied tier, that's roughly $3,600 to $5,400 all in. Stairs are $90 a step if you've got them. That's it. No trip charges, no mystery line items on the invoice.</p>
+<p>A typical Kissimmee living room and hallway runs somewhere around 600 to 900 square feet. At the 20-mil supplied tier, that's roughly $3,600 to $5,400 all in. Stairs, if you've got them, are quoted at the free measure. That's it. No trip charges, no mystery line items on the invoice.</p>
 
 <blockquote class="note">The number I quote you on the phone is the number on the invoice. That's the whole point of pricing it per square foot.</blockquote>
 

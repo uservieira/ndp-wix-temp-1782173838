@@ -5,7 +5,7 @@ import { BUSINESS, BUSINESS_PHONE } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'Get a Flooring Price Range in 60 Seconds',
   description:
-    'Answer 6 quick questions and get an instant LVP, tile, or remodel price range by email in 60 seconds. LVP from $4.99/sqft installed. Insured, Central Florida.',
+    'Answer 6 quick questions and get an instant LVP or remodel price range by email in 60 seconds. LVP from $4.99/sqft installed. Tile quoted after a free measure.',
   robots: { index: true, follow: true },
   alternates: { canonical: '/form' },
 };

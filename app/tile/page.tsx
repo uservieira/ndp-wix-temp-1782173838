@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 import { faqSectionHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
+import { lvpTiersHtml, PRICING_LEDE, pricingFineHtml, tileTiersHtml } from '@/lib/pricingHtml';
 import JsonLd from '@/components/JsonLd';
 import { TILE_FAQS } from '@/data/faqs';
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from '@/lib/schema';
@@ -9,9 +10,9 @@ import { PRICING, SERVICE_AREA } from '@/lib/site';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/tile' },
-  title: 'Tile Installation in Central Florida — From $7.99/sqft',
+  title: 'Tile Installation in Central Florida — Free In-Home Measure',
   description:
-    'Floor tile, showers, and backsplashes supplied and installed from $7.99/sqft across Polk and Osceola counties. Insured crew, 50% deposit, quote in 24 hours.',
+    'Floor tile, showers, and backsplashes installed across Polk and Osceola counties, quoted after a free in-home measure. Insured crew, written quote in 24 hours.',
 };
 
 const tileFaqHtml = () => faqSectionHtml('tile-faq', 'Tile questions', 'Tile installation, <em>answered</em>.', TILE_FAQS);
@@ -75,7 +76,7 @@ const PAGE_HTML = `
       <div>
         <span class="hero-eyebrow">Central Florida · Insured · Tile Specialists</span>
         <h1>Tile &amp; stone, <em>installed right</em>.</h1>
-        <p class="lede">Floor tile supplied &amp; installed from <strong>$7.99/sqft</strong>. Showers, backsplashes, and large-format quoted after in-home walkthrough.</p>
+        <p class="lede">Floor tile, showers, backsplashes, and large-format — <strong>quoted after a free in-home measure</strong>. Use your own tile or have it sourced for your job.</p>
         <div class="hero-cta-row">
           <a class="btn btn-primary" href="#tile-pricing">
             See tile pricing
@@ -85,8 +86,8 @@ const PAGE_HTML = `
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
-            <span class="num">$7.99<small>/sqft</small></span>
-            <span class="label">Floor tile<br/>supplied &amp; installed</span>
+            <span class="num">Free<small>measure</small></span>
+            <span class="label">Tile quoted<br/>in your home</span>
           </div>
           <div class="hero-stat">
             <span class="num">Next-day<small>start</small></span>
@@ -115,7 +116,7 @@ const PAGE_HTML = `
 <div class="trust-bar">
   <div class="trust-bar-inner">
     <span class="trust-bar-item">${CLAIMS.experienceShort}</span>
-    <span class="trust-bar-item">Materials Included Pricing</span>
+    <span class="trust-bar-item">Free In-Home Measure</span>
     <span class="trust-bar-item">Flexible Payment Plans</span>
     <span class="trust-bar-item pt">Falamos Português</span>
     <span class="trust-bar-item">Fully Insured</span>
@@ -171,7 +172,7 @@ const PAGE_HTML = `
   <div class="section-inner">
     <span class="eyebrow">Flooring pricing · transparent, no games</span>
     <h2 class="section-title">Pick your floor, <em>see the price</em>.</h2>
-    <p class="section-lede">Every job priced per square foot. Next-day start available. Stairs $90/step. Free in-home measure.</p>
+    <p class="section-lede">${PRICING_LEDE}</p>
 
     <!-- Flooring type toggle: LVP inline (default), Tile switches to inline preview + links to full /tile page -->
     <div class="floor-toggle" role="tablist" aria-label="Choose flooring type">
@@ -179,134 +180,19 @@ const PAGE_HTML = `
       <button class="floor-tab is-active" role="tab" aria-selected="true" data-target="tiers-tile">Tile</button>
     </div>
 
-    <!-- LVP tiers (ascending: $4.99 → $5.99 → $6.99 → Labor Only) -->
-    <div class="price-tiers is-hidden" id="tiers-lvp" role="tabpanel" aria-hidden="true">
-      <div class="tier">
-        <div class="tier-name">Entry Supplied</div>
-        <div class="tier-price"><span class="amount">$4.99</span><span class="unit">/sqft</span></div>
-        <p class="tier-desc">Budget-friendly 12-mil LVP + install. Quarter-round trim only.</p>
-        <ul>
-          <li>Entry-level 12-mil LVP with 5mm SPC core</li>
-          <li>Standard install over existing subfloor</li>
-          <li>Quarter-round trim at wall base</li>
-          <li>Cleanup &amp; haul-away</li>
-        </ul>
-        <a class="btn btn-tier" href="/#contact" data-tier="entry">Book entry</a>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
+    ${lvpTiersHtml({ hidden: true, href: () => '/#contact' })}
 
-      <div class="tier featured">
-        <div class="tier-badge">Most Popular</div>
-        <div class="tier-name">Standard Supplied</div>
-        <div class="tier-price"><span class="amount">$5.99</span><span class="unit">/sqft</span></div>
-        <p class="tier-desc">20-mil distributor-select LVP with 5mm SPC core. Includes carpet demo + baseboard replacement.</p>
-        <ul>
-          <li>20-mil distributor-select LVP with 5mm SPC core</li>
-          <li>Existing carpet demo &amp; haul-away</li>
-          <li>Minor subfloor prep</li>
-          <li>New baseboards installed</li>
-          <li>Full cleanup</li>
-        </ul>
-        <a class="btn btn-tier" href="/#contact" data-tier="standard">Get a free measure</a>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
-
-      <div class="tier">
-        <div class="tier-name">Premium Supplied</div>
-        <div class="tier-price"><span class="amount">$6.99</span><span class="unit">/sqft</span></div>
-        <p class="tier-desc">20-mil surface + 6mm SPC core. Full manufacturer-spec install with documented flatness + moisture readings and written walkthroughs — the paper trail that keeps the 15-year warranty valid.</p>
-        <ul>
-          <li>Everything in the $5.99 tier</li>
-          <li>Upgraded 6mm SPC core (quieter underfoot, better dent resistance)</li>
-          <li>Documented flatness check (3/16&quot; over 10ft, per manufacturer spec)</li>
-          <li>Documented moisture reading before install</li>
-          <li>Written pre-install &amp; final walkthroughs</li>
-          <li>Warranty-protection job file kept on record</li>
-        </ul>
-        <a class="btn btn-tier" href="/#contact" data-tier="premium">Book premium</a>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
-
-      <div class="tier">
-        <div class="tier-name">Labor Only</div>
-        <div class="tier-price"><span class="amount">Quoted</span><span class="unit">in-home</span></div>
-        <p class="tier-desc">You supply the LVP. We install it. Labor pricing given after we walk the space.</p>
-        <ul>
-          <li>Professional installation</li>
-          <li>Quarter-round or baseboard reset (per scope)</li>
-          <li>Minor subfloor prep</li>
-          <li>Cleanup &amp; haul-away</li>
-        </ul>
-        <a class="btn btn-tier" href="/#contact" data-tier="labor">Book labor-only</a>
-        <p class="tier-note">Final labor rate confirmed after in-home measurement.</p>
-      </div>
-    </div>
-
-    <!-- Tile tiers -->
-    <div class="price-tiers" id="tiers-tile" role="tabpanel">
-      <div class="tier featured">
-        <div class="tier-badge">Starting</div>
-        <div class="tier-name">Floor Tile Installed</div>
-        <div class="tier-price"><span class="amount">$7.99</span><span class="unit">/sqft</span></div>
-        <p class="tier-desc">Installed price for tile supplied through New Design Pro via Rios Floor.</p>
-        <ul>
-          <li>Tile supplied via our Rios Floor catalog</li>
-          <li>Thinset + grout</li>
-          <li>Backer board on wood subfloor</li>
-          <li>Straight or brick-pattern layout</li>
-          <li>Cleanup &amp; haul-away</li>
-        </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="tile-floor">Get a free measure</a>
-        <div class="tier-scope">
-          Rate covers installation of tile from our Rios Floor catalog.
-          Customer-supplied tile is quoted separately.
-          If the subfloor needs floating (self-leveling), that work is priced based on subfloor condition after inspection.
-        </div>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
-
-      <div class="tier">
-        <div class="tier-name">Shower / Backsplash</div>
-        <div class="tier-price"><span class="amount">Quoted</span><span class="unit">in-home</span></div>
-        <p class="tier-desc">Shower walls, backsplashes, large-format, mosaics — priced after we see the space.</p>
-        <ul>
-          <li>Waterproofing (Schluter or equivalent)</li>
-          <li>Large-format &amp; mosaic layouts</li>
-          <li>Herringbone, chevron, custom patterns</li>
-          <li>Niches, benches, curbs</li>
-        </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="tile-wall">Book a walkthrough</a>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
-
-      <div class="tier">
-        <div class="tier-name">Labor Only</div>
-        <div class="tier-price"><span class="amount">Quoted</span><span class="unit">in-home</span></div>
-        <p class="tier-desc">You supply the tile, thinset, and grout. We install.</p>
-        <ul>
-          <li>Professional installation</li>
-          <li>Layout planning</li>
-          <li>Backer board (if needed)</li>
-          <li>Cleanup</li>
-        </ul>
-        <a class="btn btn-tier" href="#contact" data-tier="tile-labor">Book labor-only</a>
-        <p class="tier-note">Final labor rate confirmed after in-home measurement.</p>
-      </div>
-
-      <div class="tier" style="grid-column: 1 / -1; text-align: center; background: transparent; border-color: rgba(255,255,255,0.06);">
-        <a class="tile-cta-link" href="/#lvp-pricing" style="font-size: 15px;">
+    ${tileTiersHtml({
+      floorHref: '#contact',
+      wallHref: '#contact',
+      laborHref: '#contact',
+      footerLinkHtml: `<a class="tile-cta-link" href="/#lvp-pricing" style="font-size: 15px;">
           Looking for LVP? See our luxury vinyl plank pricing
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-    </div>
+        </a>`,
+    })}
 
-    <div class="pricing-fine">
-      <div><strong>Stairs</strong>$90 per step (includes riser + tread)</div>
-      <div><strong>Next-day start</strong>Available on most jobs</div>
-      <div><strong>Deposit</strong>50% down · balance at completion</div>
-      <div><strong>Free measure</strong>On-site quote within 24 hours in Central FL</div>
-    </div>
+    ${pricingFineHtml()}
   </div>
 </section>
 
@@ -434,7 +320,7 @@ ${tileFaqHtml()}
           <select id="scope" name="scope" required>
             <option value="">Choose one…</option>
             <option value="lvp-labor">LVP install — I supply materials (labor-only quote)</option>
-            <option value="lvp-supplied">LVP install — you supply materials ($4.99–$6.99)</option>
+            <option value="lvp-supplied">LVP install — we supply materials ($4.99–$6.99/sqft)</option>
             <option value="tile-hardwood">Tile or hardwood</option>
             <option value="kitchen">Kitchen remodel</option>
             <option value="bathroom">Bathroom remodel</option>
@@ -497,8 +383,7 @@ export default function Page() {
           name: 'Tile installation in Central Florida',
           serviceType: 'Tile installation',
           areaServed: SERVICE_AREA.map((name) => ({ name })),
-          priceFrom: PRICING.tileFrom,
-          priceDescription: 'Floor tile supplied and installed from $7.99/sqft',
+          quotedDescription: `Tile installation ${PRICING.tileQuoted.toLowerCase()}. Tile material customer-supplied or sourced per job.`,
         })}
       />
       <JsonLd data={faqPageSchema(TILE_FAQS, '/tile')} />

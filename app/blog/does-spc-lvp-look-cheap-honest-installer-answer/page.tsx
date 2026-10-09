@@ -77,8 +77,8 @@ const PAGE_HTML = `
 <p>Real wood has grain you can feel. Good LVP has "embossed-in-register" (EIR) texture — the grooves in the surface line up with the grain print, so when you run your hand across it, it feels like wood. Cheap LVP has flat, smooth planks with a picture printed on top. That's what people mean when they say it looks like a photo laminated to plastic.</p>
 
 <h2>What good SPC LVP looks like</h2>
-<p>The premium tier I install has 20+ unique visual patterns per box, a low-satin sheen, EIR texture, and beveled edges that create a real shadow line between planks. Standing in a living room with that floor, the average guest thinks it's engineered hardwood until they get on their knees and touch it. I'm not exaggerating — I've had homeowners' friends argue about it at parties.</p>
-<p>The mid-tier at $5.99/sqft still has EIR and 12+ patterns. It reads as convincing wood from 6 feet away. It's not photo-realistic on your hands and knees, but nobody's inspecting floors like that in real life.</p>
+<p>The premium tier I install, Duralast V-EVO Max and V-EVO XL, has at least 5 unique plank designs per pattern (8 on V-EVO XL), doubled when planks are flipped, so the repeat is hard to spot across a room. Standing in a living room with that floor, the average guest thinks it's engineered hardwood until they get on their knees and touch it. I'm not exaggerating — I've had homeowners' friends argue about it at parties.</p>
+<p>The Standard tier at $5.99/sqft, Duralast Azul Tortuga, has 5 unique plank designs per pattern, 10 with a flip. It reads as convincing wood from 6 feet away. It's not photo-realistic on your hands and knees, but nobody's inspecting floors like that in real life.</p>
 <p>Where you start getting into trouble is the $2 to $3/sqft big-box LVP with 4 patterns, a glossy top, and no texture. That's the floor that gave LVP a bad name in the mid-2010s. It's not what any serious installer puts down.</p>
 
 <h2>The lighting problem nobody warns you about</h2>

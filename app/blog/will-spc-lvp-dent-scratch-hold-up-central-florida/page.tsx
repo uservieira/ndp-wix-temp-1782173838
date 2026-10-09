@@ -78,7 +78,7 @@ const PAGE_HTML = `
 <h3>20 mil (my $5.99 tier)</h3>
 <p>This is the workhorse. It holds up to a medium-sized dog, kids, moving furniture with pads, and normal daily traffic in a family home. This is what I install in 80% of Central Florida houses. Scratches are rare and shallow when they happen.</p>
 <h3>Premium (my $6.99 tier)</h3>
-<p>Thicker wear layer, tougher urethane coating, deeper embossing so scratches hide better. This is what I recommend for vacation rentals, homes with big dogs, or people who don't want to think about floor care ever again. On these installs I offer a lifetime warranty on the install.</p>
+<p>The same 20-mil wear layer on a thicker 6mm rigid core, plus a documented install with a flatness check, a slab moisture reading, and a warranty job file. This is what I recommend for vacation rentals, homes with big dogs, or people who don't want to think about floor care ever again. On these installs I offer a lifetime warranty on the install.</p>
 
 <h2>Dents — this is where people get burned</h2>
 <p>Dents are different from scratches. Scratches come from things sliding across the floor. Dents come from things sitting on the floor. A fridge on a rolling cart, a piano, the leg of a couch under a heavy person — anything that concentrates weight on a small point can dent SPC over time.</p>
