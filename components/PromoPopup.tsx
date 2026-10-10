@@ -56,7 +56,7 @@ export default function PromoPopup() {
     try {
       const [r, fs] = await Promise.all([
         fetch('/api/promo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, company_website: hp, source: pathname }) }).catch(() => null),
-        hp ? Promise.resolve(null) : fetch('https://formspree.io/f/mlgyeqrg', {
+        hp ? Promise.resolve(null) : fetch('https://formspree.io/f/xaqgnyoj', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({ _subject: 'New LVP10 pop-up signup', form_name: 'promo_popup_LVP10', email, page: window.location.href }),
