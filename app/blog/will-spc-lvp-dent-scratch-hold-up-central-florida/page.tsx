@@ -1,9 +1,16 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import JsonLd from '@/components/JsonLd';
+import { getPost } from '@/data/blog';
+import { articleSchema, breadcrumbSchema } from '@/lib/schema';
+import { BUSINESS_PHONE } from '@/lib/site';
+import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
-  title: 'Will SPC LVP dent, scratch, or hold up? A Central Florida installer\'s honest take | New Design Pro',
-  description: 'SPC luxury vinyl plank durability — dents, scratches, heavy furniture, dogs, kids, real-world wear from a Central Florida installer. What holds up, what doesn\'t.',
+  alternates: { canonical: '/blog/will-spc-lvp-dent-scratch-hold-up-central-florida' },
+  title: 'Will SPC LVP dent, scratch, or hold up? A Central Florida installer\'s honest take',
+  description:
+    'SPC luxury vinyl plank durability: dents, scratches, heavy furniture, dogs, kids, and real-world wear from a Central Florida installer. What holds up and why.',
 };
 
 const PAGE_HTML = `
@@ -25,17 +32,17 @@ const PAGE_HTML = `
   </label>
   <nav class="nav-links" aria-label="Primary">
     <a href="/#top">Home</a>
-    <a href="/#flooring">Flooring</a>
-    <a href="/#services">Services</a>
-    <a href="/#reviews">Reviews</a>
-    <a class="nav-refer" href="/refer-earn">Refer &amp; Earn</a>
+    <a href="/#lvp-pricing">Flooring</a>
+    <a href="/tile">Tile</a>
+    <a href="/reviews">Reviews</a>
+    <a class="nav-refer" href="/refer">Refer &amp; Earn</a>
     <a href="/about">About</a>
     <a href="/#contact">Contact</a>
   </nav>
   <div class="nav-right">
-    <a class="cta-phone" href="tel:+15618093864">
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="cta-label">Call (561) 809-3864</span>
+      <span class="cta-label" data-phone-display="${BUSINESS_PHONE.display}" data-phone-short="${BUSINESS_PHONE.short}">Call ${BUSINESS_PHONE.display}</span>
     </a>
   </div>
 </header>
@@ -70,8 +77,8 @@ const PAGE_HTML = `
 <p>Fine for bedrooms, low-traffic areas, older adults, no dogs. Scratches from a heavy chair leg dragged without pads are visible. This tier is what I put in a guest room or an office where the traffic is one adult and a computer chair with wheels.</p>
 <h3>20 mil (my $5.99 tier)</h3>
 <p>This is the workhorse. It holds up to a medium-sized dog, kids, moving furniture with pads, and normal daily traffic in a family home. This is what I install in 80% of Central Florida houses. Scratches are rare and shallow when they happen.</p>
-<h3>Premium (my $6.99 tier)</h3>
-<p>Thicker wear layer, tougher urethane coating, deeper embossing so scratches hide better. This is what I recommend for vacation rentals, homes with big dogs, or people who don't want to think about floor care ever again. On these installs I offer a lifetime warranty on the install.</p>
+<h3>Premium (my $7.99 tier)</h3>
+<p>The same 20-mil wear layer on a thicker 6mm rigid core, plus a documented install with a flatness check, a slab moisture reading, and a warranty job file. This is what I recommend for vacation rentals, homes with big dogs, or people who don't want to think about floor care ever again. On these installs I offer a lifetime warranty on the install.</p>
 
 <h2>Dents — this is where people get burned</h2>
 <p>Dents are different from scratches. Scratches come from things sliding across the floor. Dents come from things sitting on the floor. A fridge on a rolling cart, a piano, the leg of a couch under a heavy person — anything that concentrates weight on a small point can dent SPC over time.</p>
@@ -106,7 +113,7 @@ const PAGE_HTML = `
 
 <h2>The bottom line</h2>
 <p>SPC LVP holds up better than any flooring in its price range and often better than options twice as expensive. But it holds up because of three things: the right tier for your home, a real subfloor prep, and pads under your furniture. If any of those three are wrong, no floor on earth will last.</p>
-<p>Want a straight recommendation for your traffic, your pets, and your budget? Call <a href="tel:+15618093864">(561) 809-3864</a> or <a href="/#contact">tell me about your space</a>. I'll walk you through which tier makes sense and why, and you'll get a written quote same day.</p>
+<p>Want a straight recommendation for your traffic, your pets, and your budget? Call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a> or <a href="/#contact">tell me about your space</a>. I'll walk you through which tier makes sense and why, and you'll get a written quote same day.</p>
 
     </div>
   </div>
@@ -122,50 +129,22 @@ const PAGE_HTML = `
   </div>
 </section>
 
+<aside class="reader-code" aria-label="Reader code">
+  <span class="reader-code-tag">Made it to the end?</span>
+  <p>Most people skim. You read the whole thing, so here's your reader's code: use <strong>LVP10</strong> on the <a href="/form">quote form</a> for 10% off any supplied LVP package. Good through Dec 31, 2026.</p>
+</aside>
 </article>
 
 
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <div class="footer-brand-name">New Design Pro</div>
-      <p>Clean, modern floors and interior renovations. Davenport, Orlando, and Central Florida.</p>
-      <span class="footer-lang-chip">Falamos Português · Hablamos Español</span>
-    </div>
-    <div class="footer-col">
-      <h4>Menu</h4>
-      <ul class="footer-menu">
-        <li><a href="/#top">Home</a></li>
-        <li><a href="/#flooring">Flooring</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#reviews">Reviews</a></li>
-        <li><a href="/refer-earn">Refer &amp; Earn</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="footer-contact-list">
-        <li><a href="tel:+15618093864">(561) 809-3864</a></li>
-        <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
-        <li><span>Davenport, FL — Serving Central Florida</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-legal">
-    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:+15618093864">(561) 809-3864</a>
-    · <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
-    · <a href="/terms" target="_blank" rel="noopener">Terms</a>
-  </div>
-</footer>
+${siteFooterHtml()}
 
 `;
 
 export default function Page() {
   return (
     <>
+      <JsonLd data={articleSchema(getPost('will-spc-lvp-dent-scratch-hold-up-central-florida'))} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: getPost('will-spc-lvp-dent-scratch-hold-up-central-florida').title, path: '/blog/will-spc-lvp-dent-scratch-hold-up-central-florida' }])} />
       <div dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />
       <Script src="/blog-will-spc-lvp-dent-scratch-hold-up-central-florida-interactive.js" strategy="afterInteractive" />
     </>

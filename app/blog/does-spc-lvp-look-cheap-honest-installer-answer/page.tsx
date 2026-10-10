@@ -1,8 +1,14 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import JsonLd from '@/components/JsonLd';
+import { getPost } from '@/data/blog';
+import { articleSchema, breadcrumbSchema } from '@/lib/schema';
+import { BUSINESS_PHONE } from '@/lib/site';
+import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
-  title: 'Does SPC LVP look cheap? The honest installer answer | New Design Pro',
+  alternates: { canonical: '/blog/does-spc-lvp-look-cheap-honest-installer-answer' },
+  title: 'Does SPC LVP look cheap? The honest installer answer',
   description: 'SPC LVP has a reputation for looking plastic. From a Central Florida installer: when that reputation is true, when it isn\'t, and how to tell the difference.',
 };
 
@@ -25,17 +31,17 @@ const PAGE_HTML = `
   </label>
   <nav class="nav-links" aria-label="Primary">
     <a href="/#top">Home</a>
-    <a href="/#flooring">Flooring</a>
-    <a href="/#services">Services</a>
-    <a href="/#reviews">Reviews</a>
-    <a class="nav-refer" href="/refer-earn">Refer &amp; Earn</a>
+    <a href="/#lvp-pricing">Flooring</a>
+    <a href="/tile">Tile</a>
+    <a href="/reviews">Reviews</a>
+    <a class="nav-refer" href="/refer">Refer &amp; Earn</a>
     <a href="/about">About</a>
     <a href="/#contact">Contact</a>
   </nav>
   <div class="nav-right">
-    <a class="cta-phone" href="tel:+15618093864">
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="cta-label">Call (561) 809-3864</span>
+      <span class="cta-label" data-phone-display="${BUSINESS_PHONE.display}" data-phone-short="${BUSINESS_PHONE.short}">Call ${BUSINESS_PHONE.display}</span>
     </a>
   </div>
 </header>
@@ -71,8 +77,8 @@ const PAGE_HTML = `
 <p>Real wood has grain you can feel. Good LVP has "embossed-in-register" (EIR) texture — the grooves in the surface line up with the grain print, so when you run your hand across it, it feels like wood. Cheap LVP has flat, smooth planks with a picture printed on top. That's what people mean when they say it looks like a photo laminated to plastic.</p>
 
 <h2>What good SPC LVP looks like</h2>
-<p>The premium tier I install has 20+ unique visual patterns per box, a low-satin sheen, EIR texture, and beveled edges that create a real shadow line between planks. Standing in a living room with that floor, the average guest thinks it's engineered hardwood until they get on their knees and touch it. I'm not exaggerating — I've had homeowners' friends argue about it at parties.</p>
-<p>The mid-tier at $5.99/sqft still has EIR and 12+ patterns. It reads as convincing wood from 6 feet away. It's not photo-realistic on your hands and knees, but nobody's inspecting floors like that in real life.</p>
+<p>The premium tier I install, Duralast V-EVO Max and V-EVO XL, has at least 5 unique plank designs per pattern (8 on V-EVO XL), doubled when planks are flipped, so the repeat is hard to spot across a room. Standing in a living room with that floor, the average guest thinks it's engineered hardwood until they get on their knees and touch it. I'm not exaggerating — I've had homeowners' friends argue about it at parties.</p>
+<p>The Standard tier at $5.99/sqft, Duralast Azul Tortuga, has 5 unique plank designs per pattern, 10 with a flip. It reads as convincing wood from 6 feet away. It's not photo-realistic on your hands and knees, but nobody's inspecting floors like that in real life.</p>
 <p>Where you start getting into trouble is the $2 to $3/sqft big-box LVP with 4 patterns, a glossy top, and no texture. That's the floor that gave LVP a bad name in the mid-2010s. It's not what any serious installer puts down.</p>
 
 <h2>The lighting problem nobody warns you about</h2>
@@ -98,7 +104,7 @@ const PAGE_HTML = `
 
 <h2>The bottom line</h2>
 <p>SPC LVP looks cheap when it is cheap and when it's installed by someone taking shortcuts. Neither has to be the case in your home. The right tier, installed the right way, in your own lighting, is a floor that your guests will assume cost you twice what it did.</p>
-<p>Want to see the difference between $4.99 and $6.99 in your own light? I bring both to the free measure. Call <a href="tel:+15618093864">(561) 809-3864</a> or <a href="/#contact">tell me about your space</a> and I'll come out.</p>
+<p>Want to see the difference between $4.99 and $7.99 in your own light? I bring both to the free measure. Call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a> or <a href="/#contact">tell me about your space</a> and I'll come out.</p>
 
     </div>
   </div>
@@ -114,50 +120,22 @@ const PAGE_HTML = `
   </div>
 </section>
 
+<aside class="reader-code" aria-label="Reader code">
+  <span class="reader-code-tag">Made it to the end?</span>
+  <p>Most people skim. You read the whole thing, so here's your reader's code: use <strong>LVP10</strong> on the <a href="/form">quote form</a> for 10% off any supplied LVP package. Good through Dec 31, 2026.</p>
+</aside>
 </article>
 
 
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <div class="footer-brand-name">New Design Pro</div>
-      <p>Clean, modern floors and interior renovations. Davenport, Orlando, and Central Florida.</p>
-      <span class="footer-lang-chip">Falamos Português · Hablamos Español</span>
-    </div>
-    <div class="footer-col">
-      <h4>Menu</h4>
-      <ul class="footer-menu">
-        <li><a href="/#top">Home</a></li>
-        <li><a href="/#flooring">Flooring</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#reviews">Reviews</a></li>
-        <li><a href="/refer-earn">Refer &amp; Earn</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="footer-contact-list">
-        <li><a href="tel:+15618093864">(561) 809-3864</a></li>
-        <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
-        <li><span>Davenport, FL — Serving Central Florida</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-legal">
-    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:+15618093864">(561) 809-3864</a>
-    · <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
-    · <a href="/terms" target="_blank" rel="noopener">Terms</a>
-  </div>
-</footer>
+${siteFooterHtml()}
 
 `;
 
 export default function Page() {
   return (
     <>
+      <JsonLd data={articleSchema(getPost('does-spc-lvp-look-cheap-honest-installer-answer'))} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: getPost('does-spc-lvp-look-cheap-honest-installer-answer').title, path: '/blog/does-spc-lvp-look-cheap-honest-installer-answer' }])} />
       <div dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />
       <Script src="/blog-does-spc-lvp-look-cheap-honest-installer-answer-interactive.js" strategy="afterInteractive" />
     </>

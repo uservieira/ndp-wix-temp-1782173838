@@ -1,9 +1,16 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import JsonLd from '@/components/JsonLd';
+import { getPost } from '@/data/blog';
+import { articleSchema, breadcrumbSchema } from '@/lib/schema';
+import { BUSINESS_PHONE } from '@/lib/site';
+import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
-  title: '"But it\'s not real wood" — why SPC LVP wins in Central Florida homes | New Design Pro',
-  description: 'The honest case for SPC luxury vinyl plank over real hardwood in Central Florida — from a local installer who\'s pulled up plenty of both.',
+  alternates: { canonical: '/blog/spc-lvp-vs-real-hardwood-central-florida' },
+  title: '"But it\'s not real wood" — why SPC LVP wins in Central Florida homes',
+  description:
+    'The honest case for SPC luxury vinyl plank over real hardwood in humid Central Florida homes, from a local installer who has pulled up plenty of both floors.',
 };
 
 const PAGE_HTML = `
@@ -25,17 +32,17 @@ const PAGE_HTML = `
   </label>
   <nav class="nav-links" aria-label="Primary">
     <a href="/#top">Home</a>
-    <a href="/#flooring">Flooring</a>
-    <a href="/#services">Services</a>
-    <a href="/#reviews">Reviews</a>
-    <a class="nav-refer" href="/refer-earn">Refer &amp; Earn</a>
+    <a href="/#lvp-pricing">Flooring</a>
+    <a href="/tile">Tile</a>
+    <a href="/reviews">Reviews</a>
+    <a class="nav-refer" href="/refer">Refer &amp; Earn</a>
     <a href="/about">About</a>
     <a href="/#contact">Contact</a>
   </nav>
   <div class="nav-right">
-    <a class="cta-phone" href="tel:+15618093864">
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <span class="cta-label">Call (561) 809-3864</span>
+      <span class="cta-label" data-phone-display="${BUSINESS_PHONE.display}" data-phone-short="${BUSINESS_PHONE.short}">Call ${BUSINESS_PHONE.display}</span>
     </a>
   </div>
 </header>
@@ -76,7 +83,7 @@ const PAGE_HTML = `
 <h3>The install is faster and cleaner</h3>
 <p>Real hardwood takes 4 to 6 days for a decent-sized job, plus a week of no walking on it while the finish cures, plus dust and fumes throughout your house. SPC LVP over a properly prepped slab goes down in 2 to 3 days, no fumes, no sanding, you can walk on it the same day.</p>
 <h3>It's a fraction of the cost</h3>
-<p>Real 3/4" oak, delivered and installed with site-finished poly? You're looking at $12 to $18 a square foot in this market once you count sanding, staining, and finishing. My SPC LVP tiers run $4.99 to $6.99 a square foot supplied and installed. On a 1,000-sqft job that's the difference between a $17,000 floor and a $6,000 floor.</p>
+<p>Real 3/4" oak, delivered and installed with site-finished poly? You're looking at $12 to $18 a square foot in this market once you count sanding, staining, and finishing. My SPC LVP tiers run $4.99 to $7.99 a square foot supplied and installed. On a 1,000-sqft job that's the difference between a $17,000 floor and a $6,000 floor.</p>
 <h3>Scratches are cosmetic, not structural</h3>
 <p>Hardwood scratches through the finish and exposes bare wood. To fix it you have to sand and refinish. SPC's wear layer is a hard urethane coat over the print layer. A deep scratch is possible but rare, and the plank underneath is exactly the same color the whole way through.</p>
 
@@ -87,7 +94,7 @@ const PAGE_HTML = `
 
 <h2>The bottom line</h2>
 <p>Real hardwood is a lifestyle choice, not a performance choice. If you want the smell, the sound, the emotion — that's a real thing and I'm not going to talk you out of it. But if you want a floor that looks great, holds up to Central Florida humidity, survives water, installs in three days, and costs a third as much, SPC LVP is not a compromise. It's the smarter floor for this climate.</p>
-<p>Want to see samples in your own light? I bring them to your house on the free measure. Call <a href="tel:+15618093864">(561) 809-3864</a> or <a href="/#contact">send me the details of your space</a>.</p>
+<p>Want to see samples in your own light? I bring them to your house on the free measure. Call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a> or <a href="/#contact">send me the details of your space</a>.</p>
 
     </div>
   </div>
@@ -103,50 +110,22 @@ const PAGE_HTML = `
   </div>
 </section>
 
+<aside class="reader-code" aria-label="Reader code">
+  <span class="reader-code-tag">Made it to the end?</span>
+  <p>Most people skim. You read the whole thing, so here's your reader's code: use <strong>LVP10</strong> on the <a href="/form">quote form</a> for 10% off any supplied LVP package. Good through Dec 31, 2026.</p>
+</aside>
 </article>
 
 
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <div class="footer-brand-name">New Design Pro</div>
-      <p>Clean, modern floors and interior renovations. Davenport, Orlando, and Central Florida.</p>
-      <span class="footer-lang-chip">Falamos Português · Hablamos Español</span>
-    </div>
-    <div class="footer-col">
-      <h4>Menu</h4>
-      <ul class="footer-menu">
-        <li><a href="/#top">Home</a></li>
-        <li><a href="/#flooring">Flooring</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#reviews">Reviews</a></li>
-        <li><a href="/refer-earn">Refer &amp; Earn</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="footer-contact-list">
-        <li><a href="tel:+15618093864">(561) 809-3864</a></li>
-        <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
-        <li><span>Davenport, FL — Serving Central Florida</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-legal">
-    © <span id="year"></span> New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:+15618093864">(561) 809-3864</a>
-    · <a href="/privacy" target="_blank" rel="noopener">Privacy</a>
-    · <a href="/terms" target="_blank" rel="noopener">Terms</a>
-  </div>
-</footer>
+${siteFooterHtml()}
 
 `;
 
 export default function Page() {
   return (
     <>
+      <JsonLd data={articleSchema(getPost('spc-lvp-vs-real-hardwood-central-florida'))} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }, { name: getPost('spc-lvp-vs-real-hardwood-central-florida').title, path: '/blog/spc-lvp-vs-real-hardwood-central-florida' }])} />
       <div dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />
       <Script src="/blog-spc-lvp-vs-real-hardwood-central-florida-interactive.js" strategy="afterInteractive" />
     </>

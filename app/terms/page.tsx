@@ -1,8 +1,12 @@
 import type { Metadata } from 'next';
+import { BUSINESS_PHONE } from '@/lib/site';
+import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — New Design Pro',
-  description: 'Terms of Service for New Design Pro flooring and remodeling — quote requests, SMS program, payments, and Florida governing law.',
+  alternates: { canonical: '/terms' },
+  title: 'Terms of Service',
+  description:
+    'Terms of Service for New Design Pro flooring and remodeling: quote requests, the SMS text program, deposits and payments, and Florida governing law. Read first.',
   robots: { index: true, follow: true },
 };
 
@@ -22,13 +26,15 @@ const PAGE_HTML = `
   <nav class="nav-links" aria-label="Primary">
     <a href="/">Home</a>
     <a href="/#lvp-pricing">Flooring</a>
-    <a class="nav-refer" href="/refer-earn">Refer &amp; Earn</a>
+    <a href="/tile">Tile</a>
+    <a class="nav-refer" href="/refer">Refer &amp; Earn</a>
+    <a href="/reviews">Reviews</a>
     <a href="/blog">Blog</a>
     <a href="/about">About</a>
     <a href="#footer">Contact</a>
   </nav>
   <div class="nav-right">
-    <a class="cta-phone" href="tel:+15618093864">(561) 809-3864</a>
+    <a class="cta-phone" href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
   </div>
 </header>
 
@@ -59,7 +65,7 @@ const PAGE_HTML = `
     <p><strong>Message frequency:</strong> approximately 1–4 messages per active quote conversation, plus occasional promotional messages (typically 1–2 per month).</p>
     <p><strong>Message and data rates may apply</strong> depending on your mobile carrier plan.</p>
     <p><strong>To opt out:</strong> Reply <strong>STOP</strong> to any message and you will not receive further texts.</p>
-    <p><strong>For help:</strong> Reply <strong>HELP</strong> or call <a href="tel:+15618093864">561-809-3864</a>.</p>
+    <p><strong>For help:</strong> Reply <strong>HELP</strong> or call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a>.</p>
     <p>Supported US carriers include AT&amp;T, Verizon, T-Mobile, and most regional carriers. Carriers are not liable for delayed or undelivered messages.</p>
 
     <h2>Services and installations</h2>
@@ -87,7 +93,7 @@ const PAGE_HTML = `
     <div class="legal-contact-card">
       <p><strong>Huios Construction LLC (DBA New Design Pro)</strong></p>
       <p>Central Florida</p>
-      <p>Phone: <a href="tel:+15618093864">561-809-3864</a></p>
+      <p>Phone: <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a></p>
       <p>Email: <a href="mailto:daniel@newdesignpro.com">daniel@newdesignpro.com</a></p>
     </div>
 
@@ -95,39 +101,7 @@ const PAGE_HTML = `
   </div>
 </main>
 
-<footer class="site-footer" id="footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <div class="footer-brand-name">New Design Pro</div>
-      <p>LVP · Tile · Remodeling. Davenport, Orlando, and Central Florida.</p>
-      <span class="footer-lang-chip">Falamos Português · Hablamos Español</span>
-    </div>
-    <div class="footer-col">
-      <h4>Menu</h4>
-      <ul class="footer-menu">
-        <li><a href="/#top">Home</a></li>
-        <li><a href="/#flooring">Flooring</a></li>
-        <li><a href="/#services">Services</a></li>
-        <li><a href="/#reviews">Reviews</a></li>
-        <li><a href="/refer-earn">Refer &amp; Earn</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul class="footer-contact-list">
-        <li><a href="tel:+15618093864">(561) 809-3864</a></li>
-        <li><a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></li>
-        <li><span>Davenport, FL — Serving Central Florida</span></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-legal">
-    © 2026 New Design Pro · Huios Construction LLC · Central Florida · Fully insured · <a href="tel:+15618093864">(561) 809-3864</a>
-    · <a href="/privacy">Privacy</a>
-    · <a href="/terms">Terms</a>
-  </div>
-</footer>
+${siteFooterHtml()}
 
 `;
 
