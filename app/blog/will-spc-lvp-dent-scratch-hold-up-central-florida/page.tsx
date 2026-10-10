@@ -129,6 +129,10 @@ const PAGE_HTML = `
   </div>
 </section>
 
+<aside class="reader-code" aria-label="Reader code">
+  <span class="reader-code-tag">Made it to the end?</span>
+  <p>Most people skim. You read the whole thing, so here's something we don't advertise: use code <strong>LVP10</strong> on the <a href="/form">quote form</a> for 10% off any supplied LVP package. Good through Dec 31, 2026.</p>
+</aside>
 </article>
 
 

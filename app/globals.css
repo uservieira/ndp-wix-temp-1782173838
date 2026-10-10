@@ -2919,3 +2919,13 @@ blockquote.note {
   font: 500 12px/1.2 var(--font-sans); padding: 6px 10px; border-radius: 999px;
   pointer-events: none;
 }
+
+.reader-code {
+  margin: 40px auto 24px; width: calc(100% - 40px); max-width: 720px; box-sizing: border-box; padding: 18px 22px;
+  border: 1px dashed var(--brand); border-radius: 14px;
+  background: rgba(232,93,47,0.06);
+}
+.reader-code-tag { display: block; font: 600 12px/1 var(--font-sans); letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin-bottom: 8px; }
+.reader-code p { margin: 0; color: var(--ink-2); }
+.reader-code strong { color: var(--ink); letter-spacing: .04em; }
+.reader-code a { color: var(--brand); text-decoration: underline; }

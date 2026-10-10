@@ -34,15 +34,6 @@ export default function FormPage() {
           <p className="form-hero-sub">
             Answer 6 quick questions. We&apos;ll email you a price range instantly, and follow up if you want to book the free in-home measure.
           </p>
-          <div className="form-promo-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M8 12h8M12 8v8" />
-            </svg>
-            <span>
-              Use code <strong>LVP10</strong> for 10% off — expires Dec 31, 2026
-            </span>
-          </div>
         </div>
 
         <QuoteForm />

@@ -210,7 +210,7 @@ function calculateQuote(data: FormData): {
   }
 
   // Apply promo code
-  const eligible = /^lvp10$/i.test(promoCode.trim()) && scope === 'lvp-supplied'; // labor-only is quoted in-home
+  const eligible = /^lvp10$/i.test(promoCode.trim()) && scope === 'lvp-supplied' && new Date() <= new Date('2026-12-31T23:59:59-05:00'); // labor-only is quoted in-home
   const discount = eligible ? 0.1 : 0;
   if (eligible) {
     low = low * 0.9;
@@ -694,7 +694,7 @@ export default function QuoteForm() {
             <input
               id="promoCode"
               type="text"
-              placeholder="e.g. LVP10"
+              placeholder="Enter code"
               value={form.promoCode}
               onChange={(e) => setForm({ ...form, promoCode: e.target.value.toUpperCase() })}
               maxLength={20}
