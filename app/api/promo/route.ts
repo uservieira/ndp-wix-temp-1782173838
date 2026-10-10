@@ -14,7 +14,7 @@ async function upsertHubSpot(email: string, source: string) {
   const apiKey = process.env.HUBSPOT_ACCESS_TOKEN;
   if (!apiKey) return { ok: false, error: 'hubspot_not_configured' };
   const headers = { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' };
-  const properties = { email, lifecyclestage: 'lead', hs_lead_status: 'NEW', ndp_scope: 'promo-popup', ndp_promo_used: PROMO_CODE, message: `Requested ${PROMO_CODE} via pop-up on ${source}` };
+  const properties = { email, lifecyclestage: 'lead', hs_lead_status: 'NEW', message: `Requested ${PROMO_CODE} (10% off) via website pop-up on ${source}` };
   const res = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', { method: 'POST', headers, body: JSON.stringify({ properties }) });
   if (res.ok) return { ok: true };
   if (res.status === 409) {
@@ -24,7 +24,7 @@ async function upsertHubSpot(email: string, source: string) {
     });
     const id = s.ok ? (await s.json()).results?.[0]?.id : undefined;
     if (id) {
-      await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${id}`, { method: 'PATCH', headers, body: JSON.stringify({ properties: { ndp_promo_used: PROMO_CODE } }) });
+      await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${id}`, { method: 'PATCH', headers, body: JSON.stringify({ properties: { message: `Requested ${PROMO_CODE} (10% off) via website pop-up on ${source}` } }) });
       return { ok: true };
     }
   }

@@ -20,35 +20,6 @@ async function updateHubSpotContact(body: CallbackBody): Promise<{ ok: boolean; 
   if (!apiKey) return { ok: false, error: 'hubspot_not_configured' };
 
   try {
-    // Try to find contact by ndp_reference or name
-    if (body.reference) {
-      const search = await fetch('https://api.hubapi.com/crm/v3/objects/contacts/search', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          filterGroups: [{ filters: [{ propertyName: 'ndp_reference', operator: 'EQ', value: body.reference }] }],
-          limit: 1,
-        }),
-      });
-      if (search.ok) {
-        const s = await search.json();
-        const contactId = s.results?.[0]?.id;
-        if (contactId) {
-          await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${contactId}`, {
-            method: 'PATCH',
-            headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              properties: {
-                phone: body.phone,
-                hs_lead_status: 'IN_PROGRESS',
-                ndp_callback_time: body.time,
-              },
-            }),
-          });
-          return { ok: true };
-        }
-      }
-    }
     // If we can't find the contact, create a bare one
     await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
       method: 'POST',
@@ -60,9 +31,7 @@ async function updateHubSpotContact(body: CallbackBody): Promise<{ ok: boolean; 
           phone: body.phone,
           lifecyclestage: 'lead',
           hs_lead_status: 'NEW',
-          ndp_scope: 'callback_only',
-          ndp_callback_time: body.time,
-          message: 'Callback request from /callback page. No email captured.',
+          message: `Callback request${body.reference ? ' for quote ' + body.reference : ''}. Best time: ${body.time}.`,
         },
       }),
     });
