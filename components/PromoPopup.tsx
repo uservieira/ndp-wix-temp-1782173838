@@ -28,7 +28,7 @@ export default function PromoPopup() {
       setOpen(true);
       try { (window as any).dataLayer?.push({ event: 'promo_popup_view', promo: 'LVP10' }); } catch {}
     };
-    const t = window.setTimeout(show, 12000);
+    const t = window.setTimeout(show, 2500);
     const onScroll = () => {
       const h = document.documentElement;
       if (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight) > 0.4) show();
