@@ -334,6 +334,20 @@ export default function QuoteForm() {
     const finalQuote = calculateQuote(form);
     setQuote(finalQuote);
 
+    // Backup delivery: Formspree emails every lead to the office, same as the homepage form.
+    const formspree = fetch('https://formspree.io/f/mlgyeqrg', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: `New /form quote request: ${form.name || 'website lead'}`,
+        form_name: 'form_page_quote',
+        ...form,
+        estimate: `${finalQuote.tierName || ''} $${finalQuote.low ?? ''}-$${finalQuote.high ?? ''}`,
+        promo_used: finalQuote.eligible ? 'LVP10' : '',
+        page: typeof window !== 'undefined' ? window.location.href : '',
+      }),
+    }).then((r) => r.ok).catch(() => false);
+
     try {
       const res = await fetch('/api/quote', {
         method: 'POST',
@@ -341,7 +355,8 @@ export default function QuoteForm() {
         body: JSON.stringify({ ...form, calculatedQuote: finalQuote }),
       });
       const json = await res.json();
-      if (!res.ok || !json.ok) {
+      const backupOk = await formspree;
+      if ((!res.ok || !json.ok) && !backupOk) {
         throw new Error(json.error || 'Something went wrong. Please try again.');
       }
       setSubmitted(true);
@@ -389,8 +404,8 @@ export default function QuoteForm() {
             <path d="M20 6L9 17l-5-5" />
           </svg>
         </div>
-        <h2>Your quote is on its way</h2>
-        <p>Check your inbox at <strong>{form.email}</strong> in the next minute.</p>
+        <h2>Got it. Your quote is on its way.</h2>
+        <p>We&apos;ll reach out within 24 hours to confirm your free in-home measure.</p>
         <p className="quote-success-sub">Redirecting…</p>
       </div>
     );

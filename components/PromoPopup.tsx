@@ -54,8 +54,15 @@ export default function PromoPopup() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) { setState('error'); return; }
     setState('sending');
     try {
-      const r = await fetch('/api/promo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, company_website: hp, source: pathname }) });
-      if (!r.ok) throw new Error(String(r.status));
+      const [r, fs] = await Promise.all([
+        fetch('/api/promo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, company_website: hp, source: pathname }) }).catch(() => null),
+        hp ? Promise.resolve(null) : fetch('https://formspree.io/f/mlgyeqrg', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ _subject: 'New LVP10 pop-up signup', form_name: 'promo_popup_LVP10', email, page: window.location.href }),
+        }).catch(() => null),
+      ]);
+      if (!r?.ok && !fs?.ok) throw new Error('failed');
       setState('done');
       try { localStorage.setItem(KEY, 'claimed'); } catch {}
       try {
@@ -91,7 +98,7 @@ export default function PromoPopup() {
             <>
               <h2 id="promo-pop-title">You&apos;re in. Here&apos;s your code:</h2>
               <div className="promo-pop-code">LVP10</div>
-              <p>We also emailed it to you. Enter it on the quote form for 10% off any supplied LVP package, through Dec 31, 2026.</p>
+              <p>Screenshot it or write it down. Enter it on the quote form for 10% off any supplied LVP package, through Dec 31, 2026.</p>
               <a className="promo-pop-cta" href="/form" onClick={() => setOpen(false)}>Get my price</a>
             </>
           )}
