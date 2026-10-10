@@ -6,6 +6,7 @@ import './globals.css';
 import { SITE_URL } from '@/lib/site';
 import JsonLd from '@/components/JsonLd';
 import MobileCallBar from '@/components/MobileCallBar';
+import PromoPopup from '@/components/PromoPopup';
 import { businessSchema } from '@/lib/schema';
 // vercel analytics active
 
@@ -43,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Archivo:wght@700;800;900&family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap"
         />
         {/* Google Tag Manager */}
         <Script id="gtm" strategy="afterInteractive">
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={businessSchema()} />
         {children}
         <MobileCallBar />
+        <PromoPopup />
         <Analytics />
         <SpeedInsights />
       </body>

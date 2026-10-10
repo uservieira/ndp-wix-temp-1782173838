@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
+import { BUSINESS_PHONE, CLAIMS, SUPPLIER } from '@/lib/site';
 import { serviceAreasHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
-import { duralastSectionHtml, lvpTiersHtml, PRICING_LEDE, pricingFineHtml, tileTiersHtml } from '@/lib/pricingHtml';
+import { duralastSectionHtml, lvpTiersHtml, PRICING_LEDE, pricingFineHtml, priceText, tierByKey, tileTiersHtml } from '@/lib/pricingHtml';
+import { DURALAST_COLLECTIONS } from '@/data/duralast';
 
 export const metadata: Metadata = {
   description:
@@ -62,60 +63,59 @@ const HOMEPAGE_HTML = `
 </header>
 
 <!-- ================================================================
-     HERO
+     HERO — Bold contractor, refined (Oct 2026)
      ================================================================ -->
-<section class="hero" id="top">
-  <div class="hero-inner">
-    <div class="hero-grid">
-      <div>
-        <span class="hero-eyebrow">Central Florida · Insured</span>
-        <h1>Luxury vinyl plank, <em>installed right</em>.</h1>
-        <p class="lede">Supplied &amp; installed from <strong>$4.99/sqft</strong>. Next-day start available. 50% deposit. Free in-home measure.</p>
-        <div class="hero-cta-row">
-          <a class="btn btn-primary" href="#lvp-pricing">
-            See LVP pricing
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a class="btn btn-ghost" href="/form">Get a free measure</a>
-        </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="num">$4.99<small>/sqft</small></span>
-            <span class="label">Starting price</span>
-          </div>
-          <div class="hero-stat">
-            <span class="num">Next-day<small>start</small></span>
-            <span class="label">Most jobs</span>
-          </div>
-          <div class="hero-stat">
-            <span class="num">50<small>%</small></span>
-            <span class="label">Deposit</span>
-          </div>
-        </div>
-      </div>
-      <div class="hero-image-wrap">
-        <img src="/assets/lvp-livingroom-md-v19.jpg"
-             srcset="/assets/lvp-livingroom-md-v19.jpg 1200w, assets/lvp-livingroom-lg-v19.jpg 2400w"
-             sizes="(min-width: 900px) 45vw, 100vw"
-             alt="Warm natural oak LVP flooring in a bright Central Florida living room"
-             fetchpriority="high" />
-      </div>
+<section class="hv2-hero" id="top">
+  <div class="hv2-hl">
+    <div class="hv2-kick">${SUPPLIER.name} LVP · Central Florida</div>
+    <h1>New floors.<em>Real prices.</em>No games.</h1>
+    <p class="hv2-lede">Supplied and installed by a family-run crew. The price you see is the price per square foot.</p>
+    <div class="hv2-ladder" aria-label="LVP package prices per square foot">
+      <a href="#lvp-pricing"><small>${tierByKey('entry').name}</small><b>${priceText('entry')}</b></a>
+      <a href="#lvp-pricing" class="pop"><small>${tierByKey('standard').name}</small><b>${priceText('standard')}</b></a>
+      <a href="#lvp-pricing"><small>${tierByKey('premium').name}</small><b>${priceText('premium')}</b></a>
     </div>
+    <div class="hv2-ladnote">Per sq ft, supplied and installed.</div>
+    <div class="hv2-ctas">
+      <a class="hv2-btn" href="/form">Get my price</a>
+      <a class="hv2-btn ghost" href="tel:${BUSINESS_PHONE.e164}">Call now</a>
+    </div>
+  </div>
+  <div class="hv2-photo">
+    <picture>
+      <source type="image/webp" srcset="/assets/duralast/v-evo-xl/caramel-room-md.webp?v=2 800w, /assets/duralast/v-evo-xl/caramel-room-lg.webp?v=2 1400w" sizes="(min-width: 900px) 60vw, 100vw" />
+      <img src="/assets/duralast/v-evo-xl/caramel-room-md.jpg?v=2" width="800" height="534" alt="Caramel ${SUPPLIER.name} V-EVO XL luxury vinyl plank in a bright living room" fetchpriority="high" />
+    </picture>
+    <span class="hv2-tag">V-EVO XL · Caramel · Room preview</span>
   </div>
 </section>
 
-<!-- ================================================================
-     BLACK TRUST BAR STRIP
-     ================================================================ -->
-<div class="trust-bar">
-  <div class="trust-bar-inner">
-    <span class="trust-bar-item">${CLAIMS.experienceShort}</span>
-    <span class="trust-bar-item">Materials Included Pricing</span>
-    <span class="trust-bar-item">Flexible Payment Plans</span>
-    <span class="trust-bar-item pt">Falamos Português</span>
-    <span class="trust-bar-item">Fully Insured</span>
-  </div>
+<div class="hv2-proof">
+  <div><b>10+ yrs</b>Family-run</div>
+  <div><b>Insured</b>COI on request</div>
+  <div><b>${DURALAST_COLLECTIONS.reduce((n, c) => n + c.colors.length, 0)}</b>${SUPPLIER.name} colors</div>
+  <div><b>24 hr</b>Written quote</div>
 </div>
+
+<!-- ================================================================
+     REVIEWS (moved up, right under the hero)
+     ================================================================ -->
+${reviewStripHtml({ eyebrow: 'Google reviews', title: 'Words from <em>real jobs.</em>' })}
+
+<!-- ================================================================
+     HOW IT WORKS
+     ================================================================ -->
+<section class="hv2-steps" id="how-it-works">
+  <div class="section-inner">
+    <span class="eyebrow">How it works</span>
+    <h2 class="section-title">Three steps to <em>new floors.</em></h2>
+    <ol class="hv2-steps-grid">
+      <li><span class="hv2-step-n">01</span><h3>Free in-home measure</h3><p>We come out, measure every room, check the subfloor and bring real plank samples.</p></li>
+      <li><span class="hv2-step-n">02</span><h3>Written quote in 24 hours</h3><p>One price per square foot, in writing. 50% deposit to book, balance at completion.</p></li>
+      <li><span class="hv2-step-n">03</span><h3>Install and cleanup</h3><p>Most homes are done in two to three days. We haul away the debris and walk the job with you.</p></li>
+    </ol>
+  </div>
+</section>
 
 <!-- WHAT WE INSTALL section moved BELOW LVP pricing (see #services-tabs) -->
 
@@ -125,7 +125,7 @@ const HOMEPAGE_HTML = `
 <section id="lvp-pricing">
   <div class="section-inner">
     <span class="eyebrow">Flooring pricing · transparent, no games</span>
-    <h2 class="section-title">Pick your floor, <em>see the price</em>.</h2>
+    <h2 class="section-title">Pick your <em>package.</em></h2>
     <p class="section-lede">${PRICING_LEDE}</p>
 
     <!-- Flooring type toggle: LVP inline (default), Tile switches to inline preview + links to full /tile page -->
@@ -344,10 +344,6 @@ ${duralastSectionHtml()}
   </div>
 </section>
 
-<!-- ================================================================
-     REVIEWS
-     ================================================================ -->
-${reviewStripHtml({ eyebrow: 'What Central Florida customers say' })}
 
 <!-- ================================================================
      CLIENT LOGOS STRIP
@@ -387,6 +383,20 @@ ${reviewStripHtml({ eyebrow: 'What Central Florida customers say' })}
 </section>
 
 ${serviceAreasHtml('section')}
+
+<!-- ================================================================
+     CLOSING CTA BAND
+     ================================================================ -->
+<section class="hv2-final">
+  <div class="section-inner">
+    <h2>Ready for <em>new floors?</em></h2>
+    <p>Free in-home measure. Written quote in 24 hours.</p>
+    <div class="hv2-ctas">
+      <a class="hv2-btn light" href="tel:${BUSINESS_PHONE.e164}">Call ${BUSINESS_PHONE.display}</a>
+      <a class="hv2-btn dark" href="/form">Get my price</a>
+    </div>
+  </div>
+</section>
 
 <!-- ================================================================
      CONTACT
@@ -515,7 +525,7 @@ ${siteFooterHtml()}
 export default function HomePage() {
   return (
     <>
-      <div dangerouslySetInnerHTML={{ __html: HOMEPAGE_HTML }} />
+      <div className="home-v2" dangerouslySetInnerHTML={{ __html: HOMEPAGE_HTML }} />
       <Script src="/homepage-interactive.js" strategy="afterInteractive" />
     </>
   );
