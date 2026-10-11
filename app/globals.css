@@ -3131,3 +3131,9 @@ blockquote.note {
   .promo-pop h2 { font-size: 29px; }
   .promo-pop-x { background: rgba(255,255,255,.85); }
 }
+
+/* "Changed your mind?" re-open tab for the LVP10 pop-up */
+.promo-tab { position: fixed; left: 16px; bottom: 20px; z-index: 46; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px 9px 9px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; background: #1B1814; color: #fff; font: 700 13px/1 'Manrope', 'DM Sans', system-ui, sans-serif; box-shadow: 0 10px 28px -10px rgba(0,0,0,.55); cursor: pointer; animation: promoUp .35s cubic-bezier(.22,1,.36,1); }
+.promo-tab:hover { background: #2A251F; }
+.promo-tab-k { background: #E8602C; color: #fff; font: 800 11px/1 'Archivo', sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; }
+@media (max-width: 760px) { .promo-tab { bottom: calc(82px + env(safe-area-inset-bottom)); left: 12px; } }

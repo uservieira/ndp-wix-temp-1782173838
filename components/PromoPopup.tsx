@@ -10,6 +10,7 @@ const SKIP_PATHS = ['/form', '/review', '/refer'];
 export default function PromoPopup() {
   const pathname = usePathname() || '/';
   const [open, setOpen] = useState(false);
+  const [declined, setDeclined] = useState(false);
   const [email, setEmail] = useState('');
   const [hp, setHp] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
@@ -19,7 +20,8 @@ export default function PromoPopup() {
     if (SKIP_PATHS.some((p) => pathname.startsWith(p))) return;
     try {
       const v = localStorage.getItem(KEY);
-      if (v && (v === 'claimed' || Date.now() - Number(v) < 7 * 864e5)) return;
+      if (v === 'claimed') return;
+      if (v && Date.now() - Number(v) < 7 * 864e5) { setDeclined(true); return; }
     } catch {}
     let shown = false;
     const show = () => {
@@ -37,16 +39,20 @@ export default function PromoPopup() {
     return () => { window.clearTimeout(t); window.removeEventListener('scroll', onScroll); };
   }, [pathname]);
 
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && close();
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  });
 
   function close() {
     setOpen(false);
-    try { if (localStorage.getItem(KEY) !== 'claimed') localStorage.setItem(KEY, String(Date.now())); } catch {}
+    let claimed = false;
+    try { claimed = localStorage.getItem(KEY) === 'claimed'; if (!claimed) localStorage.setItem(KEY, String(Date.now())); } catch {}
+    if (!claimed) setDeclined(true);
+    try { (window as any).dataLayer?.push({ event: 'promo_popup_decline', promo: 'LVP10' }); } catch {}
+  }
+
+  function reopen() {
+    setDeclined(false);
+    setState('idle');
+    setOpen(true);
+    try { (window as any).dataLayer?.push({ event: 'promo_popup_reopen', promo: 'LVP10' }); } catch {}
   }
 
   async function submit(e: React.FormEvent) {
@@ -72,11 +78,17 @@ export default function PromoPopup() {
     } catch { setState('error'); }
   }
 
-  if (!open) return null;
+  if (!open) {
+    if (!declined || new Date() > EXPIRES || SKIP_PATHS.some((p) => pathname.startsWith(p))) return null;
+    return (
+      <button type="button" className="promo-tab" onClick={reopen} aria-label="Changed your mind? Get 10% off">
+        <span className="promo-tab-k">10% off</span> Changed your mind?
+      </button>
+    );
+  }
   return (
-    <div className="promo-pop" role="dialog" aria-modal="true" aria-labelledby="promo-pop-title" onClick={(e) => e.target === e.currentTarget && close()}>
+    <div className="promo-pop" role="dialog" aria-modal="true" aria-labelledby="promo-pop-title">
       <div className="promo-pop-card">
-        <button type="button" className="promo-pop-x" aria-label="Close" onClick={close}>×</button>
         <div className="promo-pop-photo" aria-hidden="true" />
         <div className="promo-pop-body">
           <span className="promo-pop-act">Act now · Ends Dec 31</span>
@@ -100,6 +112,7 @@ export default function PromoPopup() {
               <div className="promo-pop-code">LVP10</div>
               <p>Screenshot it or write it down. Enter it on the quote form for 10% off any supplied LVP package, through Dec 31, 2026.</p>
               <a className="promo-pop-cta" href="/form" onClick={() => setOpen(false)}>Get my price</a>
+              <button type="button" className="promo-pop-no" onClick={() => setOpen(false)}>Close</button>
             </>
           )}
         </div>
