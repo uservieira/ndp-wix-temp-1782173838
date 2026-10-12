@@ -29,6 +29,7 @@ export const PROJECTS: Project[] = [
     ],
     product: { collection: 'Azul Tortuga', color: 'White Haven', tier: 'standard', href: '/form?tier=standard&collection=Azul%20Tortuga&color=White%20Haven' },
     sqft: 709,
+    days: 2,
     completed: 'October 2026',
     pairs: [
       {
