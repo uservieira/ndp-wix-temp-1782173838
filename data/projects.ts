@@ -22,10 +22,7 @@ export const PROJECTS: Project[] = [
     city: 'Lakeland',
     title: 'Dark laminate out, White Haven LVP in',
     scope: [
-      'Removed and hauled away the old laminate',
-      'Moisture barrier under the new floor',
       'Duralast Azul Tortuga White Haven LVP, 20 mil wear layer, 5mm',
-      'Matched transitions and quarter round',
       'Cleanup and final walkthrough',
     ],
     product: { collection: 'Azul Tortuga', color: 'White Haven', tier: 'standard', href: '/form?tier=standard&collection=Azul%20Tortuga&color=White%20Haven' },
