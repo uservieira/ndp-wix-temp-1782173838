@@ -14,9 +14,17 @@ const nextConfig = {
       { source: '/lvp-installation', destination: '/', permanent: true },
       { source: '/index.html', destination: '/', permanent: true },
       { source: '/home', destination: '/', permanent: true },
-      { source: '/contact', destination: '/', permanent: true },
+      { source: '/contact', destination: '/form', permanent: true },
       { source: '/flooring', destination: '/', permanent: true },
       { source: '/pricing', destination: '/', permanent: true },
+      { source: '/refer-earn', destination: '/refer', permanent: true },
+      // Short review link used on cards, emails, and texts. A config redirect sends a real
+      // Location header (the statically prerendered redirect() in app/review/page.tsx did not).
+      {
+        source: '/review',
+        destination: 'https://search.google.com/local/writereview?placeid=ChIJ04pkC9peBq8RQI3Z0T1XETk',
+        permanent: false,
+      },
     ];
   },
   async headers() {

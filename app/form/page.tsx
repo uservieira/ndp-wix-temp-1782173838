@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import QuoteForm from '@/components/QuoteForm';
+import { BUSINESS, BUSINESS_PHONE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Get a Quote in 60 Seconds — New Design Pro',
+  title: 'Get a Flooring Price Range in 60 Seconds',
   description:
-    'Answer 6 quick questions and get an instant flooring or remodel price range emailed to you in 60 seconds. LVP $4.99/sqft. Insured. Central Florida.',
+    'Answer 6 quick questions and get an instant LVP or remodel price range by email in 60 seconds. LVP from $4.99/sqft installed. Tile quoted after a free measure.',
   robots: { index: true, follow: true },
-  alternates: { canonical: 'https://www.newdesignpro.com/form' },
+  alternates: { canonical: '/form' },
 };
 
 export default function FormPage() {
@@ -33,22 +34,13 @@ export default function FormPage() {
           <p className="form-hero-sub">
             Answer 6 quick questions. We&apos;ll email you a price range instantly, and follow up if you want to book the free in-home measure.
           </p>
-          <div className="form-promo-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M8 12h8M12 8v8" />
-            </svg>
-            <span>
-              Use code <strong>LVP10</strong> for 10% off — expires Dec 31, 2026
-            </span>
-          </div>
         </div>
 
         <QuoteForm />
 
         <footer className="form-page-footer">
           <p>
-            Prefer to talk to a human? Text <strong>(561) 809-3864</strong> or email <a href="mailto:info@newdesignpro.com">info@newdesignpro.com</a>
+            Prefer to talk to a human? Text <strong>{BUSINESS_PHONE.display}</strong> or email <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
           </p>
           <p className="form-fine-print">
             Your info is never sold or shared. See our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>.

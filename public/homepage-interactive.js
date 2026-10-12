@@ -486,72 +486,124 @@
 })();
 
 /* ================================================================
-   RIOS FLOOR LVP CAROUSEL — Aug 12, 2026
+   DURALAST LVP COLLECTIONS — Oct 2026
+   Collection tabs filter the color rail; tapping a color fills the detail
+   panel and points its CTA at /form with the collection + color prefilled.
+   Analytics event names (rios_color_select / rios_quote_cta and the Meta
+   custom events) are kept unchanged so existing GTM triggers keep firing.
    ================================================================ */
 (function () {
   'use strict';
-  var rail = document.getElementById('rios-rail');
-  var detail = document.getElementById('rios-detail');
+  var rail = document.getElementById('lvp-coll-rail');
+  var detail = document.getElementById('lvp-coll-detail');
   if (!rail || !detail) return;
 
-  var cards = rail.querySelectorAll('.rios-card');
-  var arrows = document.querySelectorAll('.rios-arrow');
-  var media = detail.querySelector('.rios-detail-media');
-  var img = document.getElementById('rios-detail-img');
-  var nameEl = document.getElementById('rios-detail-name');
-  var descEl = document.getElementById('rios-detail-desc');
-  var dimsEl = document.getElementById('rios-detail-dims');
-  var wearEl = document.getElementById('rios-detail-wear');
-  var thickEl = document.getElementById('rios-detail-thickness');
-  var ctaLink = document.getElementById('rios-detail-cta-link');
-  var ctaName = document.getElementById('rios-detail-cta-name');
+  var tabs = document.querySelectorAll('.lvp-coll-tab');
+  var cards = rail.querySelectorAll('.lvp-coll-card');
+  var arrows = document.querySelectorAll('.lvp-coll-arrow');
+  var media = detail.querySelector('.lvp-coll-detail-media');
+  var img = document.getElementById('lvp-coll-detail-img');
+  var eyebrowEl = document.getElementById('lvp-coll-detail-eyebrow');
+  var nameEl = document.getElementById('lvp-coll-detail-name');
+  var descEl = document.getElementById('lvp-coll-detail-desc');
+  var tierEl = document.getElementById('lvp-coll-detail-tier');
+  var wearEl = document.getElementById('lvp-coll-detail-wear');
+  var thickEl = document.getElementById('lvp-coll-detail-thickness');
+  var plankEl = document.getElementById('lvp-coll-detail-plank');
+  var skuEl = document.getElementById('lvp-coll-detail-sku');
+  var ctaLink = document.getElementById('lvp-coll-detail-cta-link');
+  var ctaName = document.getElementById('lvp-coll-detail-cta-name');
+  var titleEl = document.getElementById('lvp-coll-title');
+  var subEl = document.getElementById('lvp-coll-sub');
 
-  function selectCard(card) {
+  function tabFor(slug) {
+    for (var i = 0; i < tabs.length; i++) if (tabs[i].dataset.collection === slug) return tabs[i];
+    return null;
+  }
+
+  function imgPath(coll, color, kind, ext) {
+    return '/assets/duralast/' + coll + '/' + color + '-' + kind + '.' + ext + '?v=2';
+  }
+
+  function selectCard(card, silent) {
     if (!card) return;
-    // Update aria-selected on all cards
     cards.forEach(function (c) { c.setAttribute('aria-selected', c === card ? 'true' : 'false'); });
 
-    var sku = card.dataset.sku;
+    var coll = card.dataset.collection;
+    var collName = card.dataset.collectionName;
+    var colorSlug = card.dataset.color;
     var name = card.dataset.name;
-    var desc = card.dataset.desc;
-    var dims = card.dataset.dims;
-    var wear = card.dataset.wear;
-    var thickness = card.dataset.thickness;
+    var sku = card.dataset.sku;
+    var tier = card.dataset.tier;
+    var tab = tabFor(coll);
 
-    // Swap detail image with fade
     if (media && img) {
       media.classList.add('is-swapping');
-      var newSrc = '/assets/rios/hero/lvp_' + sku + '-md.jpg';
-      var newSrcSet = '/assets/rios/hero/lvp_' + sku + '-md.jpg 800w, /assets/rios/hero/lvp_' + sku + '-lg.jpg 1400w';
-      var srcWebp = '/assets/rios/hero/lvp_' + sku + '-md.webp 800w, /assets/rios/hero/lvp_' + sku + '-lg.webp 1400w';
+      var newSrc = imgPath(coll, colorSlug, 'room-md', 'jpg');
+      var srcWebp = imgPath(coll, colorSlug, 'room-md', 'webp') + ' 800w, ' + imgPath(coll, colorSlug, 'room-lg', 'webp') + ' 1400w';
       var sourceWebp = media.querySelector('source[type="image/webp"]');
       var newImage = new Image();
       newImage.onload = function () {
         if (sourceWebp) sourceWebp.setAttribute('srcset', srcWebp);
         img.src = newSrc;
-        img.srcset = newSrcSet;
-        img.alt = name + ' in a real Florida home';
+        img.alt = name + ' Duralast ' + collName + ' LVP in a furnished room';
         setTimeout(function () { media.classList.remove('is-swapping'); }, 30);
       };
       newImage.onerror = function () { media.classList.remove('is-swapping'); };
       newImage.src = newSrc;
     }
 
+    if (eyebrowEl) eyebrowEl.textContent = 'Duralast · ' + collName;
     if (nameEl) nameEl.textContent = name;
-    if (descEl) descEl.textContent = desc;
-    if (dimsEl) dimsEl.textContent = dims;
-    if (wearEl) wearEl.textContent = wear;
-    if (thickEl) thickEl.textContent = thickness;
+    if (skuEl) skuEl.textContent = sku;
+    if (tab) {
+      if (descEl) descEl.textContent = tab.dataset.blurb;
+      if (tierEl) tierEl.textContent = tab.dataset.tierLabel + ' installed';
+      if (wearEl) wearEl.textContent = tab.dataset.wear;
+      if (thickEl) thickEl.textContent = tab.dataset.thickness;
+      if (plankEl) plankEl.textContent = tab.dataset.plank;
+    }
     if (ctaName) ctaName.textContent = name;
-    if (ctaLink) ctaLink.setAttribute('data-name', name);
+    if (ctaLink) {
+      ctaLink.setAttribute('data-name', name);
+      ctaLink.setAttribute('data-collection-name', collName);
+      ctaLink.setAttribute('href', '/form?tier=' + encodeURIComponent(tier) + '&collection=' + encodeURIComponent(collName) + '&color=' + encodeURIComponent(name));
+    }
 
-    // Analytics
+    if (silent) return;
     try {
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'rios_color_select', color_name: name, sku: sku });
-      if (window.fbq) window.fbq('trackCustom', 'RiosColorSelect', { color: name, sku: sku });
+      window.dataLayer.push({ event: 'rios_color_select', color_name: name, sku: sku, collection: collName, brand: 'Duralast' });
+      if (window.fbq) window.fbq('trackCustom', 'RiosColorSelect', { color: name, sku: sku, collection: collName });
     } catch (e) {}
   }
+
+  function showCollection(slug) {
+    var tab = tabFor(slug);
+    if (!tab) return;
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    var first = null;
+    var selectedInColl = null;
+    cards.forEach(function (c) {
+      var on = c.dataset.collection === slug;
+      if (on) c.removeAttribute('hidden'); else c.setAttribute('hidden', '');
+      if (on && !first) first = c;
+      if (on && c.getAttribute('aria-selected') === 'true') selectedInColl = c;
+    });
+    if (titleEl) titleEl.textContent = tab.dataset.name + ' · ' + tab.dataset.tierLabel;
+    if (subEl) subEl.textContent = tab.dataset.count + ' colors · Scroll — or tap the arrows';
+    rail.scrollLeft = 0;
+    selectCard(selectedInColl || first, true);
+    updateArrows();
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () { showCollection(tab.dataset.collection); });
+  });
 
   cards.forEach(function (card) {
     card.addEventListener('click', function () { selectCard(card); });
@@ -560,52 +612,35 @@
     });
   });
 
-  // Arrow scrolling
   function scrollRail(dir) {
-    if (!rail) return;
-    var scrollAmount = rail.clientWidth * 0.7 * dir;
-    rail.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    rail.scrollBy({ left: rail.clientWidth * 0.7 * dir, behavior: 'smooth' });
   }
   arrows.forEach(function (arrow) {
     arrow.addEventListener('click', function () {
-      var dir = parseInt(arrow.dataset.dir, 10) || 1;
-      scrollRail(dir);
+      scrollRail(parseInt(arrow.dataset.dir, 10) || 1);
     });
   });
 
-  // Update arrow disabled state based on scroll position
   function updateArrows() {
-    var prev = document.querySelector('.rios-arrow[data-dir="-1"]');
-    var next = document.querySelector('.rios-arrow[data-dir="1"]');
+    var prev = document.querySelector('.lvp-coll-arrow[data-dir="-1"]');
+    var next = document.querySelector('.lvp-coll-arrow[data-dir="1"]');
     if (!prev || !next) return;
-    var atStart = rail.scrollLeft <= 4;
-    var atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
-    prev.disabled = atStart;
-    next.disabled = atEnd;
+    prev.disabled = rail.scrollLeft <= 4;
+    next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
   }
   rail.addEventListener('scroll', updateArrows, { passive: true });
   window.addEventListener('resize', updateArrows);
   updateArrows();
 
-  // CTA click — prefill notes textarea
+  // CTA click — opens /form with collection + color prefilled (href set above)
   if (ctaLink) {
-    ctaLink.addEventListener('click', function (e) {
-      var name = ctaLink.dataset.name || 'Rios Floor LVP';
-      var notes = document.querySelector('#contact textarea, textarea[name="notes"], textarea[name="message"]');
-      if (notes) {
-        var msg = 'Interested in Rios ' + name + '. Please bring a sample to the free measure.';
-        if (!notes.value || notes.value.trim().length === 0) {
-          notes.value = msg;
-        } else if (!notes.value.includes(name)) {
-          notes.value = msg + '\n\n' + notes.value;
-        }
-        notes.dispatchEvent(new Event('input', { bubbles: true }));
-        notes.dispatchEvent(new Event('change', { bubbles: true }));
-      }
+    ctaLink.addEventListener('click', function () {
+      var name = ctaLink.dataset.name || '';
+      var collName = ctaLink.dataset.collectionName || '';
       try {
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'rios_quote_cta', color_name: name });
-        if (window.fbq) window.fbq('trackCustom', 'RiosQuoteCTA', { color: name });
+        window.dataLayer.push({ event: 'rios_quote_cta', color_name: name, collection: collName, brand: 'Duralast' });
+        if (window.fbq) window.fbq('trackCustom', 'RiosQuoteCTA', { color: name, collection: collName });
       } catch (err) {}
     });
   }

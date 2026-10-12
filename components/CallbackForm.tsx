@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { BUSINESS_PHONE } from '@/lib/site';
 
 type Props = { reference: string };
 
@@ -128,7 +129,7 @@ export default function CallbackForm({ reference }: Props) {
       </button>
 
       <p className="callback-fine">
-        Or text him directly: <a href="sms:+15618093864">(561) 809-3864</a>
+        Or text him directly: <a href={`sms:${BUSINESS_PHONE.e164}`}>{BUSINESS_PHONE.display}</a>
       </p>
     </form>
   );

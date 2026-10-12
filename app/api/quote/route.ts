@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
+import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 
 export const runtime = 'nodejs';
 
@@ -98,7 +99,7 @@ async function sendResendEmail(body: QuoteBody, reference: string): Promise<{ ok
       </div>
 
       <div style="margin-top:24px;font-size:13px;color:#6B6357;line-height:1.55;">
-        Prefer to talk? Text or call Daniel at <a href="tel:+15618093864" style="color:#E85D2F;text-decoration:none;font-weight:600;">(561) 809-3864</a>.
+        Prefer to talk? Text or call Daniel at <a href="tel:${BUSINESS_PHONE.e164}" style="color:#E85D2F;text-decoration:none;font-weight:600;">${BUSINESS_PHONE.display}</a>.
       </div>
 
       <div style="margin-top:16px;font-size:12px;color:#9A9285;border-top:1px solid #EEEAE3;padding-top:16px;">
@@ -108,7 +109,7 @@ async function sendResendEmail(body: QuoteBody, reference: string): Promise<{ ok
     </div>
     <div style="padding:16px 32px;background:#F7F3EE;font-size:12px;color:#6B6357;text-align:center;">
       New Design Pro · Central Florida · newdesignpro.com<br>
-      Insured. 10+ years experience.
+      Insured. ${CLAIMS.experienceShort}.
     </div>
   </div>
 </body>
@@ -162,11 +163,14 @@ async function createHubSpotContact(body: QuoteBody, reference: string): Promise
           zip: body.zip,
           lifecyclestage: 'lead',
           hs_lead_status: 'NEW',
-          ndp_scope: body.scope,
-          ndp_sqft: body.sqftExact || body.sqftRange || '',
-          ndp_promo_used: q?.eligible ? 'LVP10' : '',
-          ndp_reference: reference,
-          message: body.notes || '',
+          message: [
+            `Website quote ${reference}`,
+            `Scope: ${body.scope}`,
+            `Sq ft: ${body.sqftExact || body.sqftRange || 'n/a'}`,
+            q ? `Estimate: ${q.tierName || ''} $${q.low}-$${q.high}` : '',
+            q?.eligible ? 'Promo: LVP10' : '',
+            body.notes ? `Notes: ${body.notes}` : '',
+          ].filter(Boolean).join('\n'),
         },
       }),
     });
@@ -196,8 +200,7 @@ async function createHubSpotContact(body: QuoteBody, reference: string): Promise
                 phone: body.phone || '',
                 zip: body.zip,
                 hs_lead_status: 'NEW',
-                ndp_scope: body.scope,
-                ndp_reference: reference,
+                message: `Website quote ${reference} · ${body.scope} · ${body.sqftExact || body.sqftRange || 'n/a'} sq ft${q?.eligible ? ' · LVP10' : ''}${body.notes ? ' · ' + body.notes : ''}`,
               },
             }),
           });
