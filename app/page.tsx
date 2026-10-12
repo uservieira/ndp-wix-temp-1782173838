@@ -184,7 +184,7 @@ ${v6AreasHtml()}
 
     <div class="svc-panels">
       <article class="svc-panel is-active" id="svc-lvp" role="tabpanel">
-        <div class="svc-photo" style="background-image:url('https://ndp-embed.pplx.app/assets/lvp-livingroom-md-v19.jpg');"></div>
+        <div class="svc-photo" style="background-image:url('/assets/services/lvp-livingroom-md-v19.jpg');"></div>
         <div class="svc-body">
           <h3>Luxury Vinyl Plank</h3>
           <p class="svc-price">Supplied &amp; installed from $4.99/sqft &middot; Labor-only quoted in-home</p>
@@ -194,7 +194,7 @@ ${v6AreasHtml()}
       </article>
 
       <article class="svc-panel" id="svc-tile" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('https://ndp-embed.pplx.app/assets/tile-carrara-md.jpg');"></div>
+        <div class="svc-photo" style="background-image:url('/assets/services/tile-carrara-md.jpg');"></div>
         <div class="svc-body">
           <h3>Tile</h3>
           <p class="svc-price">Floor tile, showers &amp; backsplashes quoted after a free in-home measure</p>
@@ -204,7 +204,7 @@ ${v6AreasHtml()}
       </article>
 
       <article class="svc-panel" id="svc-bath" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('https://ndp-embed.pplx.app/assets/bathroom-new-md.webp');"></div>
+        <div class="svc-photo" style="background-image:url('/assets/services/bathroom-new-md.webp');"></div>
         <div class="svc-body">
           <h3>Bathroom Remodel</h3>
           <p class="svc-price">Quoted after in-home walkthrough</p>
@@ -214,7 +214,7 @@ ${v6AreasHtml()}
       </article>
 
       <article class="svc-panel" id="svc-kitchen" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('https://ndp-embed.pplx.app/assets/kitchen-new-md.webp');"></div>
+        <div class="svc-photo" style="background-image:url('/assets/services/kitchen-new-md.webp');"></div>
         <div class="svc-body">
           <h3>Kitchen Remodel</h3>
           <p class="svc-price">Quoted after in-home walkthrough</p>
@@ -224,7 +224,7 @@ ${v6AreasHtml()}
       </article>
 
       <article class="svc-panel" id="svc-carp" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('https://ndp-embed.pplx.app/assets/carpentry-slatwall-md.jpg');"></div>
+        <div class="svc-photo" style="background-image:url('/assets/services/carpentry-slatwall-md.jpg');"></div>
         <div class="svc-body">
           <h3>Carpentry</h3>
           <p class="svc-price">Quoted per project</p>
@@ -234,7 +234,7 @@ ${v6AreasHtml()}
       </article>
 
       <article class="svc-panel" id="svc-paint" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('https://ndp-embed.pplx.app/assets/paint-roller-md.jpg');"></div>
+        <div class="svc-photo" style="background-image:url('/assets/services/paint-roller-md.jpg');"></div>
         <div class="svc-body">
           <h3>Interior Paint</h3>
           <p class="svc-price">Quoted per room or per project</p>
