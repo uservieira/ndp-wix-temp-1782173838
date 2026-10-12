@@ -21,6 +21,12 @@ export const BUSINESS = {
   country: 'US',
   baseLine: 'Based in Davenport, FL — serving Polk & Osceola',
   gbpUrl: 'https://maps.google.com/maps?cid=4112163857791290688',
+  social: [
+    'https://www.facebook.com/newdesign.pro',
+    'https://www.instagram.com/newdesign.pro',
+    'https://www.youtube.com/@newdesignpro',
+    'https://www.linkedin.com/company/newdesignprod',
+  ],
   reviewUrl: `${SITE_URL}/review`,
   languages: ['en', 'pt'],
 } as const;

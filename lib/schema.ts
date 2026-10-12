@@ -22,6 +22,10 @@ export function businessSchema() {
     image: `${SITE_URL}/assets/lvp-livingroom-md-v19.jpg`,
     logo: `${SITE_URL}/assets/logo-ndp-lockup.png`,
     priceRange: '$$',
+    description:
+      'Family-run LVP flooring installer in Davenport, FL. Luxury vinyl plank supplied and installed from $4.99/sq ft with Duralast flooring, plus tile and interior remodeling across Polk and Osceola counties.',
+    slogan: 'Flooring & Remodeling',
+    knowsAbout: ['Luxury vinyl plank installation', 'SPC flooring', 'Tile installation', 'Slab leveling', 'Baseboards and transitions', 'Interior remodeling'],
     // Service-area business: locality only, never a street address.
     address: {
       '@type': 'PostalAddress',
@@ -39,7 +43,7 @@ export function businessSchema() {
     })),
     knowsLanguage: [...BUSINESS.languages],
     hasMap: BUSINESS.gbpUrl,
-    sameAs: [BUSINESS.gbpUrl],
+    sameAs: [BUSINESS.gbpUrl, ...BUSINESS.social],
   };
 }
 
