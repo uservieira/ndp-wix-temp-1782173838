@@ -3343,3 +3343,15 @@ blockquote.note {
 .pcase-gallery .ba-fig { aspect-ratio: 3 / 4; }
 .pcase-gallery .ba-fig:first-child { aspect-ratio: auto; }
 @media (max-width: 640px) { .pcase-gallery { grid-template-columns: 1fr 1fr; } .pcase-gallery .ba-fig:first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; } }
+
+/* HOMEPAGE V6: FAQ (AI-quotable answers) */
+.home-v6 .v6-faq { display: grid; gap: 10px; max-width: 920px; }
+.home-v6 .v6-faq-item { background: #fff; border: 1px solid #E4DDD1; border-radius: 14px; padding: 0 22px; }
+.home-v6 .v6-faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; }
+.home-v6 .v6-faq-item summary::-webkit-details-marker { display: none; }
+.home-v6 .v6-faq-item summary h3 { margin: 0; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.15; color: #1C1711; }
+.home-v6 .v6-faq-ic { flex: none; width: 28px; height: 28px; border-radius: 50%; background: #F5EBE1; position: relative; }
+.home-v6 .v6-faq-ic::before, .home-v6 .v6-faq-ic::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; background: #DA5626; transform: translate(-50%, -50%); }
+.home-v6 .v6-faq-ic::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform .2s; }
+.home-v6 .v6-faq-item[open] .v6-faq-ic::after { transform: translate(-50%, -50%) rotate(0deg); }
+.home-v6 .v6-faq-item p { margin: 0 0 20px; font-size: 17px; line-height: 1.6; color: #3A342B; max-width: 70ch; }

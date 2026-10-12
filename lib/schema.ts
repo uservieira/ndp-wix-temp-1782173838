@@ -41,6 +41,7 @@ export function businessSchema() {
       opens: h.opens,
       closes: h.closes,
     })),
+    founder: { '@type': 'Person', name: BUSINESS.owner },
     knowsLanguage: [...BUSINESS.languages],
     hasMap: BUSINESS.gbpUrl,
     sameAs: [BUSINESS.gbpUrl, ...BUSINESS.social],

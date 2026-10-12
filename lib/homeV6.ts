@@ -4,6 +4,7 @@ import { BUSINESS_PHONE, SUPPLIER } from '@/lib/site';
 import { DURALAST_COLLECTIONS } from '@/data/duralast';
 import { REVIEWS } from '@/data/reviews';
 import { CITY_LINKS } from '@/data/cities';
+import { HOME_FAQS } from '@/data/faqs';
 import { formHrefFor, priceText, tierByKey } from '@/lib/pricingHtml';
 
 const esc = (s: string) =>
@@ -180,6 +181,21 @@ export function v6FinalHtml(): string {
   <div class="v6-wrap">
     <div><h2>Ready for floors you'll <em>love?</em></h2><p>Free in-home measure. Written quote in 24 hours.</p></div>
     <div class="v6-ctas"><a class="v6-btn light" href="/form">Get my price</a><a class="v6-btn line light" href="tel:${BUSINESS_PHONE.e164}">Call ${BUSINESS_PHONE.display}</a></div>
+  </div>
+</section>`;
+}
+
+
+export function v6FaqHtml(): string {
+  const items = HOME_FAQS.map(
+    (f, i) => `<details class="v6-faq-item"${i === 0 ? ' open' : ''}${f.lang ? ` lang="${f.lang}"` : ''}><summary><h3>${esc(f.q)}</h3><span class="v6-faq-ic" aria-hidden="true"></span></summary><p>${esc(f.a)}</p></details>`,
+  ).join('');
+  return `
+<section class="v6-sec v6-faq-sec" id="faq">
+  <div class="v6-wrap">
+    <h2>Straight <em>answers.</em></h2>
+    <p class="v6-intro">What homeowners ask us most, with real prices.</p>
+    <div class="v6-faq">${items}</div>
   </div>
 </section>`;
 }

@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 import { siteFooterHtml } from '@/lib/chrome';
-import { v6AreasHtml, v6ColorsHtml, v6FinalHtml, v6HeroHtml, v6PackagesHtml, v6ReviewsHtml, v6StepsHtml } from '@/lib/homeV6';
+import JsonLd from '@/components/JsonLd';
+import { faqPageSchema } from '@/lib/schema';
+import { HOME_FAQS } from '@/data/faqs';
+import { v6AreasHtml, v6ColorsHtml, v6FaqHtml, v6FinalHtml, v6HeroHtml, v6PackagesHtml, v6ReviewsHtml, v6StepsHtml } from '@/lib/homeV6';
 
 export const metadata: Metadata = {
   description:
@@ -261,6 +264,8 @@ ${v6AreasHtml()}
   </div>
 </section>
 
+${v6FaqHtml()}
+
 ${v6FinalHtml()}
 
 <!-- ================================================================
@@ -272,7 +277,7 @@ ${v6FinalHtml()}
       <div class="contact-info">
         <span class="eyebrow">Free measure, no hard sell</span>
         <h2 class="section-title">Ready to <em>book a walkthrough?</em></h2>
-        <p class="section-lede">Text is fastest. We'll come by, measure the space, and send a written quote within the hour. Free — no obligation.</p>
+        <p class="section-lede">Text is fastest. We'll come by, measure the space, and send a written quote within 24 hours. Free — no obligation.</p>
 
         <dl>
           <div>
@@ -390,6 +395,7 @@ ${siteFooterHtml()}
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={faqPageSchema(HOME_FAQS, '/')} />
       <div className="home-v6" dangerouslySetInnerHTML={{ __html: HOMEPAGE_HTML }} />
       <Script src="/homepage-interactive.js" strategy="afterInteractive" />
       <Script src="/v6-picker.js" strategy="afterInteractive" />
