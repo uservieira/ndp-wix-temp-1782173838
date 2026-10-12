@@ -3162,10 +3162,6 @@ blockquote.note {
 .home-v6 .nav-links a:hover, .home-v6 .nav-dd-trigger:hover { color: var(--ink); }
 .home-v6 .nav-burger { color: var(--ink); }
 .home-v6 .cta-phone { background: transparent; color: var(--ink); border: 1px solid var(--ink); border-radius: 999px; }
-@media (max-width: 900px) {
-  .home-v6 .nav-links { background: var(--ink); }
-  .home-v6 .nav-links a, .home-v6 .nav-dd-trigger { color: #F5EBE1; }
-}
 .home-v6 h1, .home-v6 h2, .home-v6 h3 { font-family: var(--v6-disp); font-weight: 800; font-stretch: 75%; letter-spacing: -.005em; }
 .home-v6 h1 em, .home-v6 h2 em, .home-v6 .section-title em { font-family: inherit; font-style: normal; font-weight: inherit; color: var(--brand); }
 .home-v6 .section-title { font-family: var(--v6-disp); font-weight: 800; font-stretch: 75%; letter-spacing: -.005em; line-height: 1; }
