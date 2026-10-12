@@ -17,12 +17,8 @@ const PAGE_HTML = `
 
 <header class="site-header">
   <a class="brand-mark" href="/" aria-label="New Design Pro home">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <rect x="2" y="2" width="36" height="36" rx="8" fill="#17140F"/>
-      <path d="M11 30V10M11 10L22 30M22 10V30" stroke="#E85D2F" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter"/>
-      <path d="M25 26.5L29 26.5" stroke="#F7F3EE" stroke-width="2.4" stroke-linecap="square"/>
-    </svg>
-    <span><span class="brand-name">New Design Pro</span><span class="brand-sub">LVP · Flooring · Remodeling</span></span>
+    <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="" width="48" height="52" />
+    <span><span class="brand-name">New Design Pro</span><span class="brand-sub">Flooring &amp; Remodeling</span></span>
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
   <label class="nav-backdrop" for="nav-toggle" aria-hidden="true"></label>

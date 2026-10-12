@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
-import { BUSINESS_PHONE, CLAIMS, SUPPLIER } from '@/lib/site';
-import { serviceAreasHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
-import { duralastSectionHtml, lvpTiersHtml, PRICING_LEDE, pricingFineHtml, priceText, tierByKey, tileTiersHtml } from '@/lib/pricingHtml';
-import { DURALAST_COLLECTIONS } from '@/data/duralast';
+import { BUSINESS_PHONE } from '@/lib/site';
+import { siteFooterHtml } from '@/lib/chrome';
+import { v6AreasHtml, v6ColorsHtml, v6FinalHtml, v6HeroHtml, v6PackagesHtml, v6ReviewsHtml, v6StepsHtml } from '@/lib/homeV6';
 
 export const metadata: Metadata = {
   description:
@@ -24,7 +23,7 @@ const HOMEPAGE_HTML = `
     <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="New Design Pro logo" width="48" height="52" />
     <span>
       <span class="brand-name">New Design Pro</span>
-      <span class="brand-sub">LVP · Tile · Remodeling</span>
+      <span class="brand-sub">Flooring &amp; Remodeling</span>
     </span>
   </a>
 
@@ -62,96 +61,13 @@ const HOMEPAGE_HTML = `
   </div>
 </header>
 
-<!-- ================================================================
-     HERO — Bold contractor, refined (Oct 2026)
-     ================================================================ -->
-<section class="hv2-hero" id="top">
-  <div class="hv2-hl">
-    <div class="hv2-kick">${SUPPLIER.name} LVP · Central Florida</div>
-    <h1>New floors.<em>Real prices.</em>No games.</h1>
-    <p class="hv2-lede">Supplied and installed by a family-run crew. The price you see is the price per square foot.</p>
-    <div class="hv2-ladder" aria-label="LVP package prices per square foot">
-      <a href="#lvp-pricing"><small>${tierByKey('entry').name}</small><b>${priceText('entry')}</b></a>
-      <a href="#lvp-pricing" class="pop"><small>${tierByKey('standard').name}</small><b>${priceText('standard')}</b></a>
-      <a href="#lvp-pricing"><small>${tierByKey('premium').name}</small><b>${priceText('premium')}</b></a>
-    </div>
-    <div class="hv2-ladnote">Per sq ft, supplied and installed.</div>
-    <div class="hv2-ctas">
-      <a class="hv2-btn" href="/form">Get my price</a>
-      <a class="hv2-btn ghost" href="tel:${BUSINESS_PHONE.e164}">Call now</a>
-    </div>
-  </div>
-  <div class="hv2-photo">
-    <picture>
-      <source type="image/webp" srcset="/assets/duralast/v-evo-xl/caramel-room-md.webp?v=2 800w, /assets/duralast/v-evo-xl/caramel-room-lg.webp?v=2 1400w" sizes="(min-width: 900px) 60vw, 100vw" />
-      <img src="/assets/duralast/v-evo-xl/caramel-room-md.jpg?v=2" width="800" height="534" alt="Caramel ${SUPPLIER.name} V-EVO XL luxury vinyl plank in a bright living room" fetchpriority="high" />
-    </picture>
-    <span class="hv2-tag">V-EVO XL · Caramel · Room preview</span>
-  </div>
-</section>
+${v6HeroHtml()}
+${v6PackagesHtml()}
+${v6ColorsHtml()}
+${v6StepsHtml()}
+${v6ReviewsHtml()}
+${v6AreasHtml()}
 
-<div class="hv2-proof">
-  <div><b>10+ yrs</b>Family-run</div>
-  <div><b>Insured</b>COI on request</div>
-  <div><b>${DURALAST_COLLECTIONS.reduce((n, c) => n + c.colors.length, 0)}</b>${SUPPLIER.name} colors</div>
-  <div><b>24 hr</b>Written quote</div>
-</div>
-
-<!-- ================================================================
-     REVIEWS (moved up, right under the hero)
-     ================================================================ -->
-${reviewStripHtml({ eyebrow: 'Google reviews', title: 'Words from <em>real jobs.</em>' })}
-
-<!-- ================================================================
-     HOW IT WORKS
-     ================================================================ -->
-<section class="hv2-steps" id="how-it-works">
-  <div class="section-inner">
-    <span class="eyebrow">How it works</span>
-    <h2 class="section-title">Three steps to <em>new floors.</em></h2>
-    <ol class="hv2-steps-grid">
-      <li><span class="hv2-step-n">01</span><h3>Free in-home measure</h3><p>We come out, measure every room, check the subfloor and bring real plank samples.</p></li>
-      <li><span class="hv2-step-n">02</span><h3>Written quote in 24 hours</h3><p>One price per square foot, in writing. 50% deposit to book, balance at completion.</p></li>
-      <li><span class="hv2-step-n">03</span><h3>Install and cleanup</h3><p>Most homes are done in two to three days. We haul away the debris and walk the job with you.</p></li>
-    </ol>
-  </div>
-</section>
-
-<!-- WHAT WE INSTALL section moved BELOW LVP pricing (see #services-tabs) -->
-
-<!-- ================================================================
-     LVP PRICING — Trump Card
-     ================================================================ -->
-<section id="lvp-pricing">
-  <div class="section-inner">
-    <span class="eyebrow">Flooring pricing · transparent, no games</span>
-    <h2 class="section-title">Pick your <em>package.</em></h2>
-    <p class="section-lede">${PRICING_LEDE}</p>
-
-    <!-- Flooring type toggle: LVP inline (default), Tile switches to inline preview + links to full /tile page -->
-    <div class="floor-toggle" role="tablist" aria-label="Choose flooring type">
-      <button class="floor-tab is-active" role="tab" aria-selected="true" data-target="tiers-lvp">Luxury Vinyl Plank</button>
-      <button class="floor-tab" role="tab" aria-selected="false" data-target="tiers-tile">Tile</button>
-    </div>
-
-    ${lvpTiersHtml({ href: (k) => `/form?tier=${k}` })}
-
-    ${tileTiersHtml({
-      hidden: true,
-      floorHref: '/form?tier=tile-floor',
-      wallHref: '/form?tier=tile-wall',
-      laborHref: '#contact',
-      footerLinkHtml: `<a class="tile-cta-link" href="/#lvp-pricing" data-open-tile="1" style="font-size: 15px;">
-          See the full tile page — scope, gallery, process
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>`,
-    })}
-
-    ${pricingFineHtml()}
-  </div>
-</section>
-
-${duralastSectionHtml()}
 
 <!-- ================================================================
      TILE GALLERY — added Aug 11, 2026
@@ -328,43 +244,6 @@ ${duralastSectionHtml()}
 </section>
 
 <!-- ================================================================
-     MISSION BLOCK
-     ================================================================ -->
-<section id="mission">
-  <div class="section-inner">
-    <div class="mission-grid">
-      <div>
-        <h2>At New Design Pro, we transform spaces with <span class="hl">quality and commitment.</span></h2>
-      </div>
-      <div class="mission-body">
-        <p>${CLAIMS.experienceText} We specialize in flooring installation, tile, finish carpentry, painting, and interior finish work for homes across the Disney corridor and Central Florida.</p>
-        <p>Our skilled team delivers clean, modern spaces with attention to detail — on time, on budget, and without the showroom markup.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ================================================================
-     CLIENT LOGOS STRIP
-     ================================================================ -->
-<section id="clients">
-  <div class="section-inner">
-    <span class="eyebrow">Trusted across Central Florida</span>
-    <h2 class="section-title">Some of the places we've worked.</h2>
-    <div class="client-grid client-chips" style="margin-top:8px;">
-      <span class="client-chip">Orlando City Soccer School</span>
-      <span class="client-chip">Kings Point</span>
-      <span class="client-chip">GFC Orlando</span>
-      <span class="client-chip">Ripley Beach Sports</span>
-      <span class="client-chip">Central Family Dentistry</span>
-      <span class="client-chip">Forever Young Fitness</span>
-      <span class="client-chip">Entire Bar &amp; Restaurante</span>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================
      REFER & EARN CALLOUT
      ================================================================ -->
 <section id="refer-callout">
@@ -382,21 +261,7 @@ ${duralastSectionHtml()}
   </div>
 </section>
 
-${serviceAreasHtml('section')}
-
-<!-- ================================================================
-     CLOSING CTA BAND
-     ================================================================ -->
-<section class="hv2-final">
-  <div class="section-inner">
-    <h2>Ready for <em>new floors?</em></h2>
-    <p>Free in-home measure. Written quote in 24 hours.</p>
-    <div class="hv2-ctas">
-      <a class="hv2-btn light" href="tel:${BUSINESS_PHONE.e164}">Call ${BUSINESS_PHONE.display}</a>
-      <a class="hv2-btn dark" href="/form">Get my price</a>
-    </div>
-  </div>
-</section>
+${v6FinalHtml()}
 
 <!-- ================================================================
      CONTACT
@@ -525,8 +390,9 @@ ${siteFooterHtml()}
 export default function HomePage() {
   return (
     <>
-      <div className="home-v2" dangerouslySetInnerHTML={{ __html: HOMEPAGE_HTML }} />
+      <div className="home-v6" dangerouslySetInnerHTML={{ __html: HOMEPAGE_HTML }} />
       <Script src="/homepage-interactive.js" strategy="afterInteractive" />
+      <Script src="/v6-picker.js" strategy="afterInteractive" />
     </>
   );
 }

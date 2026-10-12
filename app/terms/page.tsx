@@ -15,7 +15,7 @@ const PAGE_HTML = `
 <header class="site-header">
   <a class="brand-mark" href="/" aria-label="New Design Pro home">
     <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="New Design Pro logo" width="48" height="52" />
-    <span><span class="brand-name">New Design Pro</span><span class="brand-sub">LVP · Tile · Remodeling</span></span>
+    <span><span class="brand-name">New Design Pro</span><span class="brand-sub">Flooring &amp; Remodeling</span></span>
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
   <label class="nav-backdrop" for="nav-toggle" aria-hidden="true"></label>

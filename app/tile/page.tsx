@@ -29,7 +29,7 @@ const PAGE_HTML = `
     <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="New Design Pro logo" width="48" height="52" />
     <span>
       <span class="brand-name">New Design Pro</span>
-      <span class="brand-sub">LVP · Tile · Remodeling</span>
+      <span class="brand-sub">Flooring &amp; Remodeling</span>
     </span>
   </a>
 
