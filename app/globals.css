@@ -3339,3 +3339,7 @@ blockquote.note {
 .pcase-body ul { margin: 0 0 20px; padding-left: 20px; color: #3A342B; line-height: 1.7; }
 @media (max-width: 640px) { .ba-pair { grid-template-columns: 1fr; } .ba-fig { aspect-ratio: 4 / 3; } }
 .post-list-inner .project-case { grid-column: 1 / -1; margin: 0; }
+.pcase-gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; }
+.pcase-gallery .ba-fig { aspect-ratio: 3 / 4; }
+.pcase-gallery .ba-fig:first-child { aspect-ratio: auto; }
+@media (max-width: 640px) { .pcase-gallery { grid-template-columns: 1fr 1fr; } .pcase-gallery .ba-fig:first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; } }
