@@ -38,7 +38,7 @@ export const HOME_FAQS: Faq[] = [
   },
   {
     q: 'How long does an LVP installation take?',
-    a: `Most homes take two to three days. A recent 709 sq ft living room in Lakeland took two days, including tearing out the old laminate, a moisture barrier, new LVP, transitions and quarter round.`,
+    a: `Most homes take two to three days. A recent 709 sq ft living room in Lakeland took two days from start to cleanup.`,
   },
   {
     q: 'Do you remove the old flooring?',
@@ -50,7 +50,7 @@ export const HOME_FAQS: Faq[] = [
   },
   {
     q: 'Is LVP a good choice for Florida homes?',
-    a: `For most Central Florida homes, yes. SPC vinyl plank is waterproof and handles humidity better than laminate, and it goes right over a leveled concrete slab with a moisture barrier underneath.`,
+    a: `For most Central Florida homes, yes. SPC vinyl plank is waterproof and handles humidity better than laminate, and it installs right over a leveled concrete slab.`,
   },
   {
     q: 'Are you insured?',
