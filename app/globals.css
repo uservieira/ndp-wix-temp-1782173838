@@ -3355,3 +3355,85 @@ blockquote.note {
 .home-v6 .v6-faq-ic::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform .2s; }
 .home-v6 .v6-faq-item[open] .v6-faq-ic::after { transform: translate(-50%, -50%) rotate(0deg); }
 .home-v6 .v6-faq-item p { margin: 0 0 20px; font-size: 17px; line-height: 1.6; color: #3A342B; max-width: 70ch; }
+
+/* ===== Quote form v2: tap-to-select choices + discount ticket ===== */
+.quote-form .quote-step { animation: qstep-in .38s var(--ease) both; }
+@keyframes qstep-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.qc-list { display: grid; gap: 10px; margin-bottom: 8px; }
+.qc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 6px; }
+.qc {
+  position: relative; display: flex; align-items: center; gap: 14px; width: 100%;
+  text-align: left; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 14px;
+  background: var(--surface); color: var(--ink); cursor: pointer; font: inherit;
+  box-shadow: 0 1px 2px rgba(23,20,15,.04);
+  transition: border-color .18s, background-color .18s, box-shadow .18s, transform .12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.qc:hover { border-color: #C9BFB1; box-shadow: 0 4px 14px rgba(23,20,15,.07); }
+.qc:active { transform: scale(.975); }
+.qc:focus-visible { outline: 3px solid rgba(232,93,47,.35); outline-offset: 2px; }
+.qc.is-on { border-color: var(--brand); background: #FFF5F0; box-shadow: 0 0 0 3px rgba(232,93,47,.14), 0 6px 18px rgba(232,93,47,.12); }
+.qc-icon { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: var(--bg-alt); color: var(--ink); transition: background-color .18s, color .18s; }
+.qc-icon svg { width: 22px; height: 22px; }
+.qc.is-on .qc-icon { background: var(--brand); color: #fff; }
+.qc-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.qc-label { font-size: 16px; font-weight: 650; line-height: 1.25; }
+.qc-sub { font-size: 13px; color: var(--ink-3); line-height: 1.4; }
+.qc-badge { align-self: flex-start; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--brand); background: rgba(232,93,47,.1); padding: 3px 8px; border-radius: 999px; margin-bottom: 3px; }
+.qc-price { flex: 0 0 auto; font-family: var(--font-serif); font-size: 22px; line-height: 1; color: var(--ink); }
+.qc-check { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #CFC6B8; display: grid; place-items: center; color: #fff; transition: background-color .18s, border-color .18s; }
+.qc-check svg { width: 14px; height: 14px; opacity: 0; transform: scale(.4); transition: opacity .18s, transform .28s cubic-bezier(.34,1.56,.64,1); }
+.qc.is-on .qc-check { background: var(--brand); border-color: var(--brand); }
+.qc.is-on .qc-check svg { opacity: 1; transform: scale(1); }
+.qc-grid .qc { flex-direction: column; align-items: flex-start; gap: 4px; min-height: 86px; padding: 14px 14px 14px; }
+.qc-grid .qc { min-width: 0; padding-bottom: 38px; }
+.qc-grid .qc-check { position: absolute; top: auto; bottom: 12px; right: 12px; width: 22px; height: 22px; }
+.qc-grid .qc-label { font-size: 17px; white-space: nowrap; letter-spacing: -0.01em; }
+@media (max-width: 360px) { .qc-grid .qc-label { font-size: 15.5px; } }
+.qc-unit { font-size: 12px; color: var(--ink-3); margin: 6px 2px 0; }
+.qc-inline { margin-top: 14px; animation: qstep-in .3s var(--ease) both; }
+
+.quote-preview-was { font-size: 15px; color: rgba(255,255,255,.5); text-decoration: line-through; margin-bottom: 2px; }
+.quote-preview.has-promo .quote-preview-price { animation: price-pop .5s cubic-bezier(.34,1.56,.64,1) both; }
+@keyframes price-pop { 0% { transform: scale(.92); opacity: .4; } 100% { transform: none; opacity: 1; } }
+
+.promo-ticket { position: relative; margin: 0 0 22px; border-radius: 16px; background: #FFF4EC; border: 2px dashed rgba(232,93,47,.45); }
+.promo-ticket::before, .promo-ticket::after { display: none; content: ''; position: absolute; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--surface); border: 2px dashed rgba(232,93,47,.45); }
+.promo-ticket::before { left: -11px; clip-path: inset(0 0 0 50%); }
+.promo-ticket::after { right: -11px; clip-path: inset(0 50% 0 0); }
+.promo-ticket-open { display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px 18px; background: none; border: 0; font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
+.promo-ticket-tag { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: var(--brand); color: #fff; transform: rotate(-8deg); }
+.promo-ticket-tag svg { width: 22px; height: 22px; }
+.promo-ticket-copy { flex: 1 1 auto; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.promo-ticket-copy strong { font-size: 16px; font-weight: 700; }
+.promo-ticket-copy span { font-size: 13px; color: var(--ink-3); line-height: 1.4; }
+.promo-ticket-plus { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--brand); font-size: 20px; font-weight: 600; box-shadow: 0 2px 6px rgba(232,93,47,.18); }
+.promo-ticket-form { padding: 16px 18px 18px; animation: qstep-in .3s var(--ease) both; }
+.promo-ticket-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.promo-ticket-row { display: flex; gap: 8px; }
+.promo-ticket-row input { flex: 1 1 auto; min-width: 0; height: 52px; padding: 0 16px; border: 2px solid #F0C9B6; border-radius: 12px; background: #fff; font: inherit; font-size: 19px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); }
+.promo-ticket-row input::placeholder { color: #D8C3B6; letter-spacing: .18em; }
+.promo-ticket-row input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(232,93,47,.15); }
+.promo-ticket-row button { flex: 0 0 auto; height: 52px; padding: 0 22px; border: 0; border-radius: 12px; background: var(--ink); color: #fff; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; transition: transform .12s, background-color .18s; }
+.promo-ticket-row button:active { transform: scale(.96); }
+.promo-ticket.is-invalid .promo-ticket-row input { border-color: #D64545; animation: shake .38s; }
+.promo-ticket-err { margin: 8px 2px 0; font-size: 13px; color: #B83232; }
+@keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.promo-ticket.is-applied { border: 2px solid transparent; background: linear-gradient(120deg, #E85D2F, #F2883F); color: #fff; box-shadow: 0 10px 28px rgba(232,93,47,.28); }
+.promo-ticket.is-applied::before, .promo-ticket.is-applied::after { display: none; }
+.promo-ticket-done { position: relative; display: flex; align-items: center; gap: 14px; padding: 16px 18px; animation: price-pop .5s cubic-bezier(.34,1.56,.64,1) both; }
+.promo-ticket-done .promo-ticket-copy strong { font-size: 17px; color: #fff; }
+.promo-ticket-done .promo-ticket-copy span { color: rgba(255,255,255,.88); }
+.promo-ticket-seal { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%; background: #fff; color: var(--brand); display: grid; place-items: center; animation: seal-pop .55s .1s cubic-bezier(.34,1.56,.64,1) both; }
+.promo-ticket-seal svg { width: 22px; height: 22px; }
+@keyframes seal-pop { 0% { transform: scale(0) rotate(-40deg); } 100% { transform: none; } }
+.promo-ticket-x { align-self: flex-start; margin-top: 4px; background: none; border: 0; padding: 0; color: rgba(255,255,255,.85); font: inherit; font-size: 12.5px; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; }
+.promo-burst { position: absolute; left: 39px; top: 50%; width: 0; height: 0; pointer-events: none; }
+.promo-burst i { position: absolute; width: 7px; height: 7px; border-radius: 2px; background: #fff; opacity: 0; animation: burst .8s .12s ease-out both; transform: rotate(calc(var(--i) * 36deg)) translateY(0); }
+.promo-burst i:nth-child(3n) { background: #FFD9A8; } .promo-burst i:nth-child(3n+1) { background: #1C1711; width: 5px; height: 5px; }
+@keyframes burst { 0% { opacity: 1; transform: rotate(calc(var(--i) * 36deg)) translateY(0) scale(1); } 100% { opacity: 0; transform: rotate(calc(var(--i) * 36deg)) translateY(-46px) scale(.6); } }
+@media (max-width: 380px) { .qc-price { font-size: 19px; } .promo-ticket-row button { padding: 0 16px; } }
+@media (prefers-reduced-motion: reduce) {
+  .quote-form .quote-step, .qc-inline, .promo-ticket-form, .promo-ticket-done, .promo-ticket-seal, .quote-preview.has-promo .quote-preview-price { animation: none; }
+  .promo-burst { display: none; }
+}

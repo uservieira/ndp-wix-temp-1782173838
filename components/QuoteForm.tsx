@@ -230,13 +230,52 @@ function calculateQuote(data: FormData): {
   };
 }
 
+
+// ---------- UI helpers ----------
+const ICONS: Record<string, JSX.Element> = {
+  planks: <><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9.3h18M3 14.7h18M9 4v5.3M15 9.3v5.4M7 14.7V20" /></>,
+  hands: <><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z" /></>,
+  tile: <><rect x="3" y="3" width="8" height="8" rx="1" /><rect x="13" y="3" width="8" height="8" rx="1" /><rect x="3" y="13" width="8" height="8" rx="1" /><rect x="13" y="13" width="8" height="8" rx="1" /></>,
+  shower: <><path d="M5 21V8a5 5 0 0 1 10 0" /><path d="M11 8h8l-1 3h-6z" /><path d="M13 14v1M16 14v1M19 14v1M13.5 18v1M16.5 18v1" /></>,
+  kitchen: <><rect x="3" y="10" width="18" height="11" rx="1.5" /><path d="M3 14h18M8 10V6a2 2 0 0 1 4 0M16 4v6" /></>,
+  bath: <><path d="M3 12h18v3a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z" /><path d="M6 12V6a2 2 0 0 1 4 0M7 20l-1 2M17 20l1 2" /></>,
+  spark: <><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6" /></>,
+};
+
+function Choice({ active, onClick, label, sub, icon, badge, price }: {
+  active: boolean; onClick: () => void; label: string; sub?: string; icon?: keyof typeof ICONS; badge?: string; price?: string;
+}) {
+  return (
+    <button type="button" role="radio" aria-checked={active} className={`qc ${active ? 'is-on' : ''} ${icon ? 'has-icon' : ''}`} onClick={onClick}>
+      {icon && (
+        <span className="qc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round">{ICONS[icon]}</svg>
+        </span>
+      )}
+      <span className="qc-text">
+        {badge && <span className="qc-badge">{badge}</span>}
+        <span className="qc-label">{label}</span>
+        {sub && <span className="qc-sub">{sub}</span>}
+      </span>
+      {price && <span className="qc-price">{price}</span>}
+      <span className="qc-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+      </span>
+    </button>
+  );
+}
+
+const VALID_CODE = /^lvp10$/i;
+const PROMO_LIVE = () => new Date() <= new Date('2026-12-31T23:59:59-05:00');
+const money = (n: number) => `$${Math.round(n).toLocaleString()}`;
+
 const STEP_TITLES = [
   '', // 0 not used
   'What do you need?',
   'How much space?',
   'Current floor situation?',
   'Baseboards?',
-  'Floor quality preference?',
+  'Floor package',
   'Any stairs?',
   'Your info',
 ];
@@ -250,6 +289,11 @@ export default function QuoteForm() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [quote, setQuote] = useState<ReturnType<typeof calculateQuote> | null>(null);
+  const [codeDraft, setCodeDraft] = useState('');
+  const [codeStatus, setCodeStatus] = useState<'idle' | 'applied' | 'invalid' | 'expired'>('idle');
+  const [codeOpen, setCodeOpen] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+  const [burst, setBurst] = useState(0);
 
   const isFlooringScope = form.scope === 'lvp-supplied' || form.scope === 'lvp-labor';
   const isTile = form.scope === 'tile-floor' || form.scope === 'tile-wall';
@@ -261,6 +305,9 @@ export default function QuoteForm() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const q = new URLSearchParams(window.location.search);
+    try { if (localStorage.getItem('ndp_promo_popup_v1') === 'claimed') { setUnlocked(true); setCodeDraft((d) => d || 'LVP10'); } } catch {}
+    const urlCode = (q.get('code') || q.get('promo') || '').trim().toUpperCase().slice(0, 20);
+    if (urlCode) { setCodeDraft(urlCode); setCodeOpen(true); if (VALID_CODE.test(urlCode) && PROMO_LIVE()) { setForm((f) => ({ ...f, promoCode: urlCode })); setCodeStatus('applied'); } }
     const tier = (q.get('tier') || '').toLowerCase();
     const collection = (q.get('collection') || '').slice(0, 60);
     const color = (q.get('color') || '').slice(0, 60);
@@ -294,7 +341,27 @@ export default function QuoteForm() {
 
   // Advance
   const next = () => setStep((s) => Math.min(s + 1, effectiveTotal + 1));
-  const back = () => setStep((s) => Math.max(1, s - 1));
+  const back = () => setStep((s) => ((isRemodel || isOther) && s === 3 ? 1 : Math.max(1, s - 1)));
+
+  // Tap a choice: select it, then glide to the next step so it feels quick.
+  const pick = (patch: Partial<FormData>, advance = true) => {
+    setForm((f) => ({ ...f, ...patch }));
+    // Remodels and "something else" skip straight to contact (step 3).
+    const jump = patch.scope === 'kitchen' || patch.scope === 'bathroom' || patch.scope === 'other' ? 2 : 1;
+    if (advance) window.setTimeout(() => setStep((s) => s + jump), 280);
+  };
+
+  const applyCode = (raw?: string) => {
+    const code = (raw ?? codeDraft).trim().toUpperCase();
+    setCodeDraft(code);
+    if (!VALID_CODE.test(code)) { setCodeStatus('invalid'); setForm((f) => ({ ...f, promoCode: '' })); return; }
+    if (!PROMO_LIVE()) { setCodeStatus('expired'); setForm((f) => ({ ...f, promoCode: '' })); return; }
+    setForm((f) => ({ ...f, promoCode: code }));
+    setCodeStatus('applied');
+    setBurst((b) => b + 1);
+    try { (window as any).dataLayer?.push({ event: 'promo_code_applied', promo: code }); } catch {}
+  };
+  const removeCode = () => { setForm((f) => ({ ...f, promoCode: '' })); setCodeStatus('idle'); };
 
   const contactOk = () => !!form.name && !!form.email && /^\S+@\S+\.\S+$/.test(form.email) && !!form.zip;
 
@@ -424,201 +491,103 @@ export default function QuoteForm() {
 
       {/* STEP 1 — Scope */}
       {step === 1 && (
-        <div className="quote-step">
+        <div className="quote-step" key="s1">
           <h2>What do you need?</h2>
-          <div className="quote-cards">
-            {[
-              { v: 'lvp-supplied', label: 'LVP flooring — supplied + installed', sub: `From $${tierRateFor('entry').toFixed(2)}/sqft` },
-              { v: 'lvp-labor', label: 'LVP flooring — labor only (you supply materials)', sub: PRICING.laborQuoted },
-              { v: 'tile-floor', label: 'Tile floor', sub: PRICING.tileQuoted },
-              { v: 'tile-wall', label: 'Tile wall, shower, or backsplash', sub: PRICING.tileQuoted },
-              { v: 'kitchen', label: 'Kitchen remodel', sub: '$8k – $25k typical' },
-              { v: 'bathroom', label: 'Bathroom remodel', sub: '$5k – $18k typical' },
-              { v: 'other', label: 'Something else', sub: 'Tell us what you have in mind' },
-            ].map((opt) => (
-              <button
-                key={opt.v}
-                type="button"
-                className={`quote-card ${form.scope === opt.v ? 'is-active' : ''}`}
-                onClick={() => setForm({ ...form, scope: opt.v as Scope })}
-              >
-                <div className="quote-card-label">{opt.label}</div>
-                <div className="quote-card-sub">{opt.sub}</div>
-              </button>
+          <p className="quote-step-sub">Tap one to keep going.</p>
+          <div className="qc-list" role="radiogroup" aria-label="Project type">
+            {([
+              { v: 'lvp-supplied', icon: 'planks', label: 'LVP flooring, supplied + installed', sub: `${SUPPLIER.name} floors, from $${tierRateFor('entry').toFixed(2)}/sqft`, badge: 'Most popular' },
+              { v: 'lvp-labor', icon: 'hands', label: 'LVP flooring, labor only', sub: `You supply materials · ${PRICING.laborQuoted}` },
+              { v: 'tile-floor', icon: 'tile', label: 'Tile floor', sub: PRICING.tileQuoted },
+              { v: 'tile-wall', icon: 'shower', label: 'Tile wall, shower or backsplash', sub: PRICING.tileQuoted },
+              { v: 'kitchen', icon: 'kitchen', label: 'Kitchen remodel', sub: '$8k – $25k typical' },
+              { v: 'bathroom', icon: 'bath', label: 'Bathroom remodel', sub: '$5k – $18k typical' },
+              { v: 'other', icon: 'spark', label: 'Something else', sub: 'Tell us what you have in mind' },
+            ] as const).map((o) => (
+              <Choice key={o.v} icon={o.icon} label={o.label} sub={o.sub} badge={'badge' in o ? o.badge : undefined} active={form.scope === o.v} onClick={() => pick({ scope: o.v as Scope })} />
             ))}
           </div>
         </div>
       )}
 
-      {/* STEP 2 — Sqft (only for flooring) OR Contact step for remodels */}
+      {/* STEP 2 — Sqft */}
       {step === 2 && (isFlooringScope || isTile) && (
-        <div className="quote-step">
+        <div className="quote-step" key="s2">
           <h2>How much space?</h2>
-          <p className="quote-step-sub">Pick a range, or enter exact square footage if you know it.</p>
-          <div className="quote-cards">
+          <p className="quote-step-sub">A rough range in square feet is fine. We measure exactly at the free visit.</p>
+          <div className="qc-grid" role="radiogroup" aria-label="Square footage">
             {[
-              { v: 'under-500', label: 'Under 500 sqft', sub: 'Small room or hallway' },
-              { v: '500-1000', label: '500–1,000 sqft', sub: 'Single floor or main level' },
-              { v: '1000-1500', label: '1,000–1,500 sqft', sub: 'Most Central FL homes' },
-              { v: '1500-2500', label: '1,500–2,500 sqft', sub: 'Whole home' },
-              { v: '2500+', label: '2,500+ sqft', sub: 'Large home or multi-story' },
-              { v: 'exact', label: 'I know exact sqft', sub: 'Enter below' },
-            ].map((opt) => (
-              <button
-                key={opt.v}
-                type="button"
-                className={`quote-card ${form.sqftRange === opt.v ? 'is-active' : ''}`}
-                onClick={() => setForm({ ...form, sqftRange: opt.v as SqftRange })}
-              >
-                <div className="quote-card-label">{opt.label}</div>
-                <div className="quote-card-sub">{opt.sub}</div>
-              </button>
+              { v: 'under-500', label: 'Under 500', sub: 'A room or hallway' },
+              { v: '500-1000', label: '500–1,000', sub: 'A few rooms' },
+              { v: '1000-1500', label: '1,000–1,500', sub: 'Most Central FL homes' },
+              { v: '1500-2500', label: '1,500–2,500', sub: 'Whole home' },
+              { v: '2500+', label: '2,500+', sub: 'Large or two-story' },
+              { v: 'exact', label: 'I know it', sub: 'Type exact sqft' },
+            ].map((o) => (
+              <Choice key={o.v} label={o.label} sub={o.sub} active={form.sqftRange === o.v} onClick={() => pick({ sqftRange: o.v as SqftRange }, o.v !== 'exact')} />
             ))}
           </div>
           {form.sqftRange === 'exact' && (
-            <div className="quote-field" style={{ marginTop: 16 }}>
+            <div className="quote-field qc-inline">
               <label htmlFor="sqftExact">Exact square footage</label>
-              <input
-                id="sqftExact"
-                type="text"
-                inputMode="numeric"
-                placeholder="e.g. 1250"
-                value={form.sqftExact}
-                onChange={(e) => setForm({ ...form, sqftExact: e.target.value.replace(/\D/g, '') })}
-              />
+              <input id="sqftExact" type="text" inputMode="numeric" placeholder="e.g. 1250" autoFocus value={form.sqftExact} onChange={(e) => setForm({ ...form, sqftExact: e.target.value.replace(/\D/g, '') })} />
             </div>
           )}
         </div>
       )}
 
-      {/* STEP 3 — Current floor condition (only for flooring) */}
+      {/* STEP 3 — Current floor */}
       {step === 3 && isFlooringScope && (
-        <div className="quote-step">
-          <h2>Current floor situation?</h2>
-          <p className="quote-step-sub">This tells us if we need to demo and haul away old floors.</p>
-          <div className="quote-cards">
-            <button
-              type="button"
-              className={`quote-card ${form.condition === 'over-existing' ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, condition: 'over-existing' })}
-            >
-              <div className="quote-card-label">Install over existing floor</div>
-              <div className="quote-card-sub">Concrete, existing LVP, or sealed subfloor — no demo needed</div>
-            </button>
-            <button
-              type="button"
-              className={`quote-card ${form.condition === 'demo-carpet' ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, condition: 'demo-carpet' })}
-            >
-              <div className="quote-card-label">Remove carpet or tile first</div>
-              <div className="quote-card-sub">We demo and haul away the old floor</div>
-            </button>
-            <button
-              type="button"
-              className={`quote-card ${form.condition === 'unsure' ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, condition: 'unsure' })}
-            >
-              <div className="quote-card-label">I&apos;m not sure yet</div>
-              <div className="quote-card-sub">We&apos;ll figure it out at the free measure</div>
-            </button>
+        <div className="quote-step" key="s3">
+          <h2>What&apos;s on the floor now?</h2>
+          <p className="quote-step-sub">Tells us if we need to remove and haul away the old floor.</p>
+          <div className="qc-list" role="radiogroup" aria-label="Current floor">
+            <Choice label="Remove carpet or tile first" sub="We demo and haul away the old floor" active={form.condition === 'demo-carpet'} onClick={() => pick({ condition: 'demo-carpet' })} />
+            <Choice label="Install over existing floor" sub="Concrete, existing LVP or sealed subfloor. No demo needed" active={form.condition === 'over-existing'} onClick={() => pick({ condition: 'over-existing' })} />
+            <Choice label="I'm not sure yet" sub="We'll figure it out at the free measure" active={form.condition === 'unsure'} onClick={() => pick({ condition: 'unsure' })} />
           </div>
         </div>
       )}
 
       {/* STEP 4 — Baseboards */}
       {step === 4 && isFlooringScope && (
-        <div className="quote-step">
+        <div className="quote-step" key="s4">
           <h2>Baseboards?</h2>
-          <p className="quote-step-sub">Quarter round is included with every package. New baseboards are an add-on at ${BASEBOARD_ADDON.price.toFixed(2)}/linear ft installed.</p>
-          <div className="quote-cards">
-            <button
-              type="button"
-              className={`quote-card ${form.baseboards === 'keep-add-qr' ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, baseboards: 'keep-add-qr' })}
-            >
-              <div className="quote-card-label">Keep existing baseboards</div>
-              <div className="quote-card-sub">Quarter round at the wall base, included</div>
-            </button>
-            <button
-              type="button"
-              className={`quote-card ${form.baseboards === 'replace' ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, baseboards: 'replace' })}
-            >
-              <div className="quote-card-label">Replace with new baseboards</div>
-              <div className="quote-card-sub">Add-on: ${BASEBOARD_ADDON.price.toFixed(2)}/linear ft installed. Cleanest finished look</div>
-            </button>
+          <p className="quote-step-sub">Quarter round is included with every package. New baseboards are an add-on.</p>
+          <div className="qc-list" role="radiogroup" aria-label="Baseboards">
+            <Choice label="Keep my baseboards" sub="Quarter round at the wall, included" active={form.baseboards === 'keep-add-qr'} onClick={() => pick({ baseboards: 'keep-add-qr' })} />
+            <Choice label="New baseboards" sub="Cleanest finished look" price={`+$${BASEBOARD_ADDON.price.toFixed(2)}/lf`} active={form.baseboards === 'replace'} onClick={() => pick({ baseboards: 'replace' })} />
           </div>
         </div>
       )}
 
-      {/* STEP 5 — Quality preference */}
+      {/* STEP 5 — Quality */}
       {step === 5 && isFlooringScope && (
-        <div className="quote-step">
-          <h2>Floor quality preference?</h2>
-          <p className="quote-step-sub">All our LVP is 100% waterproof, click-lock, and warranty-backed. Difference is durability and feel.</p>
-          <div className="quote-cards">
-            <button
-              type="button"
-              className={`quote-card ${form.quality === 'standard' ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, quality: 'standard' })}
-            >
-              <div className="quote-card-label">Entry — 12-mil wear layer, 4.7mm Panzu LVP</div>
-              <div className="quote-card-sub">Standard install + quarter round, budget-friendly (${tierRateFor('entry').toFixed(2)}/sqft)</div>
-            </button>
-            <button
-              type="button"
-              className={`quote-card ${form.quality === 'premium' ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, quality: 'premium' })}
-            >
-              <div className="quote-card-label">Standard — 20-mil wear layer, 5mm LVP</div>
-              <div className="quote-card-sub">Most Popular. Carpet demo, haul-away &amp; minor prep included (${tierRateFor('standard').toFixed(2)}/sqft)</div>
-            </button>
-            <button
-              type="button"
-              className={`quote-card ${form.quality === 'luxury' ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, quality: 'luxury' })}
-            >
-              <div className="quote-card-label">Premium — 20-mil, 6mm-core LVP</div>
-              <div className="quote-card-sub">Everything in Standard + documented flatness, moisture &amp; warranty file (${tierRateFor('premium').toFixed(2)}/sqft)</div>
-            </button>
+        <div className="quote-step" key="s5">
+          <h2>Pick your floor package</h2>
+          <p className="quote-step-sub">All 100% waterproof, click-lock and warranty-backed. The difference is thickness and durability.</p>
+          <div className="qc-list" role="radiogroup" aria-label="Floor package">
+            <Choice label="Entry" sub="12-mil wear layer, 4.7mm. Budget-friendly" price={`$${tierRateFor('entry').toFixed(2)}`} active={form.quality === 'standard'} onClick={() => pick({ quality: 'standard' })} />
+            <Choice label="Standard" badge="Most popular" sub="20-mil, 5mm. Carpet demo, haul-away and minor prep included" price={`$${tierRateFor('standard').toFixed(2)}`} active={form.quality === 'premium'} onClick={() => pick({ quality: 'premium' })} />
+            <Choice label="Premium" sub="20-mil, 6mm core. Everything in Standard plus flatness, moisture and warranty file" price={`$${tierRateFor('premium').toFixed(2)}`} active={form.quality === 'luxury'} onClick={() => pick({ quality: 'luxury' })} />
           </div>
+          <p className="qc-unit">Per sq ft, supplied + installed</p>
         </div>
       )}
 
       {/* STEP 6 — Stairs */}
       {step === 6 && isFlooringScope && (
-        <div className="quote-step">
-          <h2>Any stairs to cover?</h2>
-          <p className="quote-step-sub">Stairs (riser + tread) are quoted at your free in-home measure. Skip if none.</p>
-          <div className="quote-cards">
-            <button
-              type="button"
-              className={`quote-card ${!form.hasStairs ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, hasStairs: false, stairsCount: '' })}
-            >
-              <div className="quote-card-label">No stairs</div>
-              <div className="quote-card-sub">Single-story or stairs already handled</div>
-            </button>
-            <button
-              type="button"
-              className={`quote-card ${form.hasStairs ? 'is-active' : ''}`}
-              onClick={() => setForm({ ...form, hasStairs: true, stairsCount: form.stairsCount || '12' })}
-            >
-              <div className="quote-card-label">Yes, I have stairs</div>
-              <div className="quote-card-sub">Enter number of steps below</div>
-            </button>
+        <div className="quote-step" key="s6">
+          <h2>Any stairs?</h2>
+          <p className="quote-step-sub">Stairs are quoted at your free in-home measure.</p>
+          <div className="qc-grid qc-grid-2" role="radiogroup" aria-label="Stairs">
+            <Choice label="No stairs" sub="Single story" active={!form.hasStairs} onClick={() => pick({ hasStairs: false, stairsCount: '' })} />
+            <Choice label="Yes, stairs" sub="Add the step count" active={form.hasStairs} onClick={() => pick({ hasStairs: true, stairsCount: form.stairsCount || '12' }, false)} />
           </div>
           {form.hasStairs && (
-            <div className="quote-field" style={{ marginTop: 16 }}>
+            <div className="quote-field qc-inline">
               <label htmlFor="stairsCount">Number of steps</label>
-              <input
-                id="stairsCount"
-                type="text"
-                inputMode="numeric"
-                placeholder="e.g. 12"
-                value={form.stairsCount}
-                onChange={(e) => setForm({ ...form, stairsCount: e.target.value.replace(/\D/g, '') })}
-              />
+              <input id="stairsCount" type="text" inputMode="numeric" placeholder="e.g. 12" value={form.stairsCount} onChange={(e) => setForm({ ...form, stairsCount: e.target.value.replace(/\D/g, '') })} />
             </div>
           )}
         </div>
@@ -630,19 +599,79 @@ export default function QuoteForm() {
           <h2>Where should we send your quote?</h2>
           <p className="quote-step-sub">Instant email with your estimated price range. No spam. We&apos;ll only follow up if you say yes.</p>
 
-          {quote && quote.low > 0 && (
-            <div className="quote-preview">
-              <div className="quote-preview-label">Your estimated range:</div>
-              <div className="quote-preview-price">
-                ${quote.low.toLocaleString()} – ${quote.high.toLocaleString()}
+          {quote && quote.low > 0 && (() => {
+            const full = calculateQuote({ ...form, promoCode: '' });
+            return (
+              <div className={`quote-preview ${quote.eligible ? 'has-promo' : ''}`}>
+                <div className="quote-preview-label">Your estimated range</div>
+                {quote.eligible && <div className="quote-preview-was">{money(full.low)} – {money(full.high)}</div>}
+                <div className="quote-preview-price" key={quote.eligible ? 'd' : 'f'}>
+                  {money(quote.low)} – {money(quote.high)}
+                </div>
+                <div className="quote-preview-scope">{quote.scopeLabel}</div>
+                {quote.eligible && (
+                  <div className="quote-preview-promo">You save {money(full.low - quote.low)} – {money(full.high - quote.high)}</div>
+                )}
+                <div className="quote-preview-note">Final price confirmed after in-home measure. Free, no obligation.</div>
               </div>
-              <div className="quote-preview-scope">{quote.scopeLabel}</div>
-              {quote.eligible && (
-                <div className="quote-preview-promo">10% LVP10 discount applied</div>
-              )}
-              <div className="quote-preview-note">Final price confirmed after in-home measure. Free, no obligation.</div>
-            </div>
-          )}
+            );
+          })()}
+
+          {/* DISCOUNT CODE TICKET */}
+          <div className={`promo-ticket is-${codeStatus}`} aria-live="polite">
+            {codeStatus === 'applied' ? (
+              <div className="promo-ticket-done" key={burst}>
+                <span className="promo-burst" aria-hidden="true">{Array.from({ length: 10 }).map((_, i) => <i key={i} style={{ ['--i' as string]: i } as React.CSSProperties} />)}</span>
+                <span className="promo-ticket-seal" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                </span>
+                <span className="promo-ticket-copy">
+                  <strong>10% off unlocked</strong>
+                  <span>{form.scope === 'lvp-supplied' ? `Code ${form.promoCode} · already taken off above` : `Code ${form.promoCode} · good on supplied + installed LVP. We\u2019ll note it.`}</span>
+                  <button type="button" className="promo-ticket-x" onClick={removeCode} aria-label="Remove discount code">Remove code</button>
+                </span>
+              </div>
+            ) : !codeOpen && !unlocked ? (
+              <button type="button" className="promo-ticket-open" onClick={() => setCodeOpen(true)}>
+                <span className="promo-ticket-tag" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z" /><circle cx="7.5" cy="7.5" r="1.5" /></svg>
+                </span>
+                <span className="promo-ticket-copy"><strong>Have a discount code?</strong><span>Tap to add it and watch your price drop</span></span>
+                <span className="promo-ticket-plus" aria-hidden="true">+</span>
+              </button>
+            ) : (
+              <div className="promo-ticket-form">
+                <div className="promo-ticket-head">
+                  <span className="promo-ticket-tag" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z" /><circle cx="7.5" cy="7.5" r="1.5" /></svg>
+                  </span>
+                  <span className="promo-ticket-copy">
+                    <strong>{unlocked ? 'You unlocked 10% off' : 'Enter your discount code'}</strong>
+                    <span>{unlocked ? 'Your code from our offer is LVP10. Tap Apply.' : 'From our email or pop-up offer'}</span>
+                  </span>
+                </div>
+                <div className="promo-ticket-row">
+                  <label htmlFor="promoCode" className="sr-only">Discount code</label>
+                  <input
+                    id="promoCode"
+                    type="text"
+                    autoCapitalize="characters"
+                    autoComplete="off"
+                    spellCheck={false}
+                    placeholder="LVP10"
+                    value={codeDraft}
+                    maxLength={20}
+                    onChange={(e) => { setCodeDraft(e.target.value.toUpperCase()); if (codeStatus !== 'idle') setCodeStatus('idle'); }}
+                    onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); applyCode(); } }}
+                  />
+                  <button type="button" onClick={() => applyCode()}>Apply</button>
+                </div>
+                {codeStatus === 'invalid' && <p className="promo-ticket-err">That code didn&apos;t work. Check the spelling and try again.</p>}
+                {codeStatus === 'expired' && <p className="promo-ticket-err">That offer has ended.</p>}
+              </div>
+            )}
+          </div>
+
           {quote && quote.quoted && (
             <div className="quote-preview">
               <div className="quote-preview-label">Your price:</div>
@@ -701,18 +730,6 @@ export default function QuoteForm() {
               placeholder="(407) 555-1234"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            />
-          </div>
-
-          <div className="quote-field">
-            <label htmlFor="promoCode">Promo code <span className="quote-optional">(optional)</span></label>
-            <input
-              id="promoCode"
-              type="text"
-              placeholder="Enter code"
-              value={form.promoCode}
-              onChange={(e) => setForm({ ...form, promoCode: e.target.value.toUpperCase() })}
-              maxLength={20}
             />
           </div>
 
