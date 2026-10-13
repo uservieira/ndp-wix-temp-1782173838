@@ -8,7 +8,7 @@ import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/does-spc-lvp-look-cheap-honest-installer-answer' },
-  title: 'Does SPC LVP look cheap? The honest installer answer',
+  title: "Does SPC LVP Look Cheap? An Installer's Answer",
   description: 'SPC LVP has a reputation for looking plastic. From a Central Florida installer: when that reputation is true, when it isn\'t, and how to tell the difference.',
 };
 
@@ -16,7 +16,7 @@ const PAGE_HTML = `
 
 <header class="site-header">
   <a class="brand-mark" href="/" aria-label="New Design Pro home">
-    <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="" width="48" height="52" />
+    <img class="logo-mark" src="/assets/logo-ndp-N-only-96.webp" alt="" width="48" height="52" />
     <span><span class="brand-name">New Design Pro</span><span class="brand-sub">Flooring &amp; Remodeling</span></span>
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />

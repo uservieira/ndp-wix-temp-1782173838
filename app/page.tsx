@@ -23,7 +23,7 @@ const HOMEPAGE_HTML = `
      ================================================================ -->
 <header class="site-header">
   <a class="brand-mark" href="#top" aria-label="New Design Pro home">
-    <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="New Design Pro logo" width="48" height="52" />
+    <img class="logo-mark" src="/assets/logo-ndp-N-only-96.webp" alt="New Design Pro logo" width="48" height="52" />
     <span>
       <span class="brand-name">New Design Pro</span>
       <span class="brand-sub">Flooring &amp; Remodeling</span>

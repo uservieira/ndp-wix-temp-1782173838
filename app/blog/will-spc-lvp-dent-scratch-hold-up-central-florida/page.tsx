@@ -8,7 +8,7 @@ import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/will-spc-lvp-dent-scratch-hold-up-central-florida' },
-  title: 'Will SPC LVP dent, scratch, or hold up? A Central Florida installer\'s honest take',
+  title: 'Will SPC LVP Dent or Scratch? Honest Take',
   description:
     'SPC luxury vinyl plank durability: dents, scratches, heavy furniture, dogs, kids, and real-world wear from a Central Florida installer. What holds up and why.',
 };
@@ -17,7 +17,7 @@ const PAGE_HTML = `
 
 <header class="site-header">
   <a class="brand-mark" href="/" aria-label="New Design Pro home">
-    <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="" width="48" height="52" />
+    <img class="logo-mark" src="/assets/logo-ndp-N-only-96.webp" alt="" width="48" height="52" />
     <span><span class="brand-name">New Design Pro</span><span class="brand-sub">Flooring &amp; Remodeling</span></span>
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />

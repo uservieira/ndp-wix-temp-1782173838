@@ -98,7 +98,7 @@ export function v6ColorsHtml(): string {
         `<div class="v6-grp" data-g="${c.slug}"><h3>${esc(c.name)}<span>${c.tierName}, ${c.price} per sq ft, ${c.colors.length} colors</span></h3><div class="v6-planks">${c.colors
           .map(
             (x) =>
-              `<button type="button" class="v6-plank" aria-pressed="false" data-g="${c.slug}" data-s="${x.s}"><img src="/assets/duralast/${c.slug}/${x.s}-swatch.webp" alt="" loading="lazy" width="400" height="100" /><span>${esc(x.n)}</span></button>`,
+              `<button type="button" class="v6-plank" aria-pressed="false" data-g="${c.slug}" data-s="${x.s}"><img src="/assets/duralast/${c.slug}/${x.s}-swatch.webp" alt="Duralast ${esc(c.name)} ${esc(x.n)} luxury vinyl plank swatch" loading="lazy" width="400" height="100" /><span>${esc(x.n)}</span></button>`,
           )
           .join('')}</div></div>`,
     )

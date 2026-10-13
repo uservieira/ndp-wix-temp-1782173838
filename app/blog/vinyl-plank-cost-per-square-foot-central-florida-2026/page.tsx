@@ -8,7 +8,7 @@ import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/vinyl-plank-cost-per-square-foot-central-florida-2026' },
-  title: 'Vinyl Plank Cost Per Square Foot in Central Florida (2026 Real Numbers)',
+  title: 'Vinyl Plank Cost per Sq Ft, Central FL 2026',
   description:
     'Real 2026 vinyl plank flooring costs per square foot in Central Florida: labor-only, 12mil, 20mil, and premium supplied pricing from a local installer.',
 };
@@ -17,7 +17,7 @@ const PAGE_HTML = `
 
 <header class="site-header">
   <a class="brand-mark" href="/" aria-label="New Design Pro home">
-    <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="" width="48" height="52" />
+    <img class="logo-mark" src="/assets/logo-ndp-N-only-96.webp" alt="" width="48" height="52" />
     <span><span class="brand-name">New Design Pro</span><span class="brand-sub">Flooring &amp; Remodeling</span></span>
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
