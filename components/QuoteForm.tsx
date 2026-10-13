@@ -514,7 +514,7 @@ export default function QuoteForm() {
       {step === 2 && (isFlooringScope || isTile) && (
         <div className="quote-step" key="s2">
           <h2>How much space?</h2>
-          <p className="quote-step-sub">A rough range is fine. We measure exactly at the free visit.</p>
+          <p className="quote-step-sub">A rough range in square feet is fine. We measure exactly at the free visit.</p>
           <div className="qc-grid" role="radiogroup" aria-label="Square footage">
             {[
               { v: 'under-500', label: 'Under 500', sub: 'A room or hallway' },
@@ -527,7 +527,6 @@ export default function QuoteForm() {
               <Choice key={o.v} label={o.label} sub={o.sub} active={form.sqftRange === o.v} onClick={() => pick({ sqftRange: o.v as SqftRange }, o.v !== 'exact')} />
             ))}
           </div>
-          <p className="qc-unit">Square feet</p>
           {form.sqftRange === 'exact' && (
             <div className="quote-field qc-inline">
               <label htmlFor="sqftExact">Exact square footage</label>

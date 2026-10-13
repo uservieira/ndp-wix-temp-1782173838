@@ -3398,7 +3398,7 @@ blockquote.note {
 @keyframes price-pop { 0% { transform: scale(.92); opacity: .4; } 100% { transform: none; opacity: 1; } }
 
 .promo-ticket { position: relative; margin: 0 0 22px; border-radius: 16px; background: #FFF4EC; border: 2px dashed rgba(232,93,47,.45); }
-.promo-ticket::before, .promo-ticket::after { content: ''; position: absolute; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--surface); border: 2px dashed rgba(232,93,47,.45); }
+.promo-ticket::before, .promo-ticket::after { display: none; content: ''; position: absolute; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--surface); border: 2px dashed rgba(232,93,47,.45); }
 .promo-ticket::before { left: -11px; clip-path: inset(0 0 0 50%); }
 .promo-ticket::after { right: -11px; clip-path: inset(0 50% 0 0); }
 .promo-ticket-open { display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px 18px; background: none; border: 0; font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
