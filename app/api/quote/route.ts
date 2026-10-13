@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
+import { emailSignature, textSignature } from '@/lib/emailSignature';
 
 export const runtime = 'nodejs';
 
@@ -63,7 +64,8 @@ function quoteText(body: QuoteBody, reference: string) {
     `Or text/call Daniel at ${BUSINESS_PHONE.display}. You can also just reply to this email.`,
     '',
     `Reference #: ${reference}`,
-    'New Design Pro - Central Florida - newdesignpro.com',
+    '',
+    textSignature(),
   ].filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n');
 }
 
@@ -72,7 +74,7 @@ function quoteText(body: QuoteBody, reference: string) {
 // -----------------------------------------------------------
 async function sendResendEmail(body: QuoteBody, reference: string): Promise<{ ok: boolean; error?: string }> {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM || 'Daniel at New Design Pro <quote@newdesignpro.com>';
+  const from = process.env.RESEND_FROM || 'Daniel at New Design Pro <contact@newdesignpro.com>';
   const office = process.env.OFFICE_EMAIL || 'contact@newdesignpro.com';
   if (!apiKey) return { ok: false, error: 'resend_not_configured' };
 
@@ -125,10 +127,7 @@ async function sendResendEmail(body: QuoteBody, reference: string): Promise<{ ok
         Reference #: ${reference}<br>
         This is not a binding quote. Final price depends on the in-home measure.
       </div>
-    </div>
-    <div style="padding:16px 32px;background:#F7F3EE;font-size:12px;color:#6B6357;text-align:center;">
-      New Design Pro · Central Florida · newdesignpro.com<br>
-      Insured. ${CLAIMS.insuranceNote}<br>You're getting this because you requested a quote on newdesignpro.com.
+      ${emailSignature("You're getting this because you requested a quote on newdesignpro.com.")}
     </div>
   </div>
 </body>
