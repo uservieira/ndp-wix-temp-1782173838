@@ -34,17 +34,20 @@ async function upsertHubSpot(email: string, source: string) {
 async function sendCodeEmail(email: string) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return { ok: false, error: 'resend_not_configured' };
-  const from = process.env.RESEND_FROM || 'New Design Pro <quote@newdesignpro.com>';
+  const from = process.env.RESEND_FROM || 'Daniel at New Design Pro <quote@newdesignpro.com>';
+  const office = process.env.OFFICE_EMAIL || 'contact@newdesignpro.com';
   const html = `<div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;color:#1B1814">
   <h1 style="font-size:26px;margin:0 0 12px">Your 10% off code is here.</h1>
   <p style="font-size:16px;line-height:1.6">Use <strong style="font-size:20px;color:#E8602C;letter-spacing:1px">${PROMO_CODE}</strong> on our quote form for 10% off any supplied LVP package.</p>
   <p style="font-size:14px;color:#6E665B">Good through Dec 31, 2026. One code per home.</p>
-  <p><a href="https://www.newdesignpro.com/form" style="display:inline-block;background:#E8602C;color:#fff;padding:14px 22px;border-radius:999px;text-decoration:none;font-weight:bold">Get my price</a></p>
-  <p style="font-size:14px;color:#6E665B">Prefer to talk? Call or text (561) 809-3864.<br>New Design Pro · Davenport, FL</p></div>`;
+  <p><a href="https://www.newdesignpro.com/form?code=${PROMO_CODE}" style="display:inline-block;background:#E8602C;color:#fff;padding:14px 22px;border-radius:999px;text-decoration:none;font-weight:bold">Get my price</a></p>
+  <p style="font-size:14px;color:#6E665B">Prefer to talk? Call or text (561) 809-3864, or just reply to this email.<br>New Design Pro · Central Florida</p>
+  <p style="font-size:12px;color:#9A9285">You're getting this because you asked for this code on newdesignpro.com. We won't spam you.</p></div>`;
+  const text = `Your 10% off code: ${PROMO_CODE}\n\nUse it on our quote form for 10% off any supplied LVP package: https://www.newdesignpro.com/form?code=${PROMO_CODE}\nGood through Dec 31, 2026. One code per home.\n\nPrefer to talk? Call or text (561) 809-3864, or just reply to this email.\nNew Design Pro - Central Florida`;
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, to: [email], subject: `Your code: ${PROMO_CODE} for 10% off new floors`, html }),
+    body: JSON.stringify({ from, to: [email], reply_to: office, subject: `Your code: ${PROMO_CODE} for 10% off new floors`, html, text }),
   });
   return { ok: res.ok, error: res.ok ? undefined : `resend_${res.status}` };
 }

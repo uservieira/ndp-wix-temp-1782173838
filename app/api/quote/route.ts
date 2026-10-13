@@ -49,12 +49,31 @@ function normalizePhone(p?: string) {
   return digits.length ? digits : undefined;
 }
 
+function quoteText(body: QuoteBody, reference: string) {
+  const q = body.calculatedQuote;
+  const price = q && q.low > 0 ? `$${q.low.toLocaleString()} - $${q.high.toLocaleString()}` : "We'll price this in person";
+  return [
+    `Hi ${body.name.split(' ')[0]},`,
+    '',
+    `Here's your estimated price range for ${q?.scopeLabel || body.scope}: ${price}`,
+    q?.eligible ? '10% LVP10 discount applied.' : '',
+    'Final price confirmed after a free in-home measure. No obligation.',
+    '',
+    `Book the free measure: https://www.newdesignpro.com/callback?ref=${reference}`,
+    `Or text/call Daniel at ${BUSINESS_PHONE.display}. You can also just reply to this email.`,
+    '',
+    `Reference #: ${reference}`,
+    'New Design Pro - Central Florida - newdesignpro.com',
+  ].filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n');
+}
+
 // -----------------------------------------------------------
 // Resend — instant email to customer
 // -----------------------------------------------------------
 async function sendResendEmail(body: QuoteBody, reference: string): Promise<{ ok: boolean; error?: string }> {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM || 'New Design Pro <quote@newdesignpro.com>';
+  const from = process.env.RESEND_FROM || 'Daniel at New Design Pro <quote@newdesignpro.com>';
+  const office = process.env.OFFICE_EMAIL || 'contact@newdesignpro.com';
   if (!apiKey) return { ok: false, error: 'resend_not_configured' };
 
   const q = body.calculatedQuote;
@@ -109,7 +128,7 @@ async function sendResendEmail(body: QuoteBody, reference: string): Promise<{ ok
     </div>
     <div style="padding:16px 32px;background:#F7F3EE;font-size:12px;color:#6B6357;text-align:center;">
       New Design Pro · Central Florida · newdesignpro.com<br>
-      Insured. ${CLAIMS.experienceShort}.
+      Insured. ${CLAIMS.insuranceNote}<br>You're getting this because you requested a quote on newdesignpro.com.
     </div>
   </div>
 </body>
@@ -122,10 +141,11 @@ async function sendResendEmail(body: QuoteBody, reference: string): Promise<{ ok
       body: JSON.stringify({
         from,
         to: [body.email],
-        bcc: ['info@newdesignpro.com'],
+        bcc: [office],
         subject: q?.low ? `Your quote: $${q.low.toLocaleString()}–$${q.high.toLocaleString()} · New Design Pro` : 'Your quote request — New Design Pro',
         html,
-        reply_to: 'info@newdesignpro.com',
+        text: quoteText(body, reference),
+        reply_to: office,
       }),
     });
     if (!res.ok) {
