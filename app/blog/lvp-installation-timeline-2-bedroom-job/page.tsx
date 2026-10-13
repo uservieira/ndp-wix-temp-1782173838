@@ -8,7 +8,7 @@ import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/lvp-installation-timeline-2-bedroom-job' },
-  title: 'How Long Does LVP Installation Actually Take? A Real 2-Bedroom Timeline',
+  title: 'How Long Does LVP Installation Take?',
   description: 'How long LVP installation really takes, walked through hour by hour on a real 2-bedroom Central Florida job. What happens each day and what can slow it down.',
 };
 
@@ -16,7 +16,7 @@ const PAGE_HTML = `
 
 <header class="site-header">
   <a class="brand-mark" href="/" aria-label="New Design Pro home">
-    <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="" width="48" height="52" />
+    <img class="logo-mark" src="/assets/logo-ndp-N-only-96.webp" alt="" width="48" height="52" />
     <span><span class="brand-name">New Design Pro</span><span class="brand-sub">Flooring &amp; Remodeling</span></span>
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />

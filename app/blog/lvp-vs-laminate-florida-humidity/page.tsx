@@ -8,7 +8,7 @@ import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/lvp-vs-laminate-florida-humidity' },
-  title: 'LVP vs Laminate for Florida Homes: Which Actually Holds Up in Humidity',
+  title: 'LVP vs Laminate in Florida Humidity',
   description: 'LVP vs laminate in humid Florida homes, from a Central Florida installer. Which one survives humidity, spills, and slab moisture, and what each really costs.',
 };
 
@@ -16,7 +16,7 @@ const PAGE_HTML = `
 
 <header class="site-header">
   <a class="brand-mark" href="/" aria-label="New Design Pro home">
-    <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="" width="48" height="52" />
+    <img class="logo-mark" src="/assets/logo-ndp-N-only-96.webp" alt="" width="48" height="52" />
     <span><span class="brand-name">New Design Pro</span><span class="brand-sub">Flooring &amp; Remodeling</span></span>
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />

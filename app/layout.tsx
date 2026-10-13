@@ -8,6 +8,7 @@ import JsonLd from '@/components/JsonLd';
 import MobileCallBar from '@/components/MobileCallBar';
 import PromoPopup from '@/components/PromoPopup';
 import { businessSchema } from '@/lib/schema';
+import { fontVars } from '@/lib/fonts';
 // vercel analytics active
 
 export const metadata: Metadata = {
@@ -38,24 +39,18 @@ export const viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={fontVars}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Archivo:wdth,wght@62..125,500..900&family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,500&display=swap"
-        />
         {/* Google Tag Manager */}
-        <Script id="gtm" strategy="afterInteractive">
+        <Script id="gtm" strategy="lazyOnload">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M53H4VTP');`}
         </Script>
         {/* Meta Pixel */}
-        <Script id="meta-pixel" strategy="afterInteractive">
+        <Script id="meta-pixel" strategy="lazyOnload">
           {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1211317391072105');fbq('track','PageView');`}
         </Script>
         {/* HubSpot */}
-        <Script id="hs-script-loader" src="https://js.hs-scripts.com/246668357.js" strategy="afterInteractive" async defer />
+        <Script id="hs-script-loader" src="https://js.hs-scripts.com/246668357.js" strategy="lazyOnload" async defer />
       </head>
       <body>
         <noscript>

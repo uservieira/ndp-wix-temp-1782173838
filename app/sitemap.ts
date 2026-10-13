@@ -5,10 +5,13 @@ import { BLOG_POSTS } from '@/data/blog';
 import { PROJECTS } from '@/data/projects';
 
 
-type Entry = { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly' };
+type Entry = { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly'; lastModified?: string };
+
+// Real last-content-change date for non-blog pages. Bump when page content changes
+// (a build-time date on every URL teaches Google to ignore lastmod).
+const SITE_UPDATED = '2026-10-13';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const pages: Entry[] = [
     { path: '/', priority: 1.0, changeFrequency: 'weekly' },
     { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
@@ -20,13 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(PROJECTS.length ? [{ path: '/projects', priority: 0.7, changeFrequency: 'weekly' as const }] : []),
     { path: '/blog', priority: 0.9, changeFrequency: 'weekly' },
     ...CITIES.map((c) => ({ path: c.path, priority: 0.85, changeFrequency: 'monthly' as const })),
-    ...BLOG_POSTS.map((b) => ({ path: `/blog/${b.slug}`, priority: 0.7, changeFrequency: 'monthly' as const })),
+    ...BLOG_POSTS.map((b) => ({ path: `/blog/${b.slug}`, priority: 0.7, changeFrequency: 'monthly' as const, lastModified: b.datePublished })),
     { path: '/privacy', priority: 0.2, changeFrequency: 'yearly' },
     { path: '/terms', priority: 0.2, changeFrequency: 'yearly' },
   ];
   return pages.map((p) => ({
     url: p.path === '/' ? SITE_URL : `${SITE_URL}${p.path}`,
-    lastModified: now,
+    lastModified: new Date(p.lastModified ?? SITE_UPDATED),
     changeFrequency: p.changeFrequency,
     priority: p.priority,
   }));

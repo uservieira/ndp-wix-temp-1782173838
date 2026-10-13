@@ -8,7 +8,7 @@ import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog/lvp-installation-kissimmee-cost-process' },
-  title: 'LVP Installation in Kissimmee, FL: What It Costs and How the Job Really Goes',
+  title: 'LVP Installation Cost in Kissimmee, FL (2026)',
   description: 'What LVP installation actually costs in Kissimmee, FL and how the job goes day by day, from a local installer. Real per-sqft pricing, no showroom markup.',
 };
 
@@ -16,7 +16,7 @@ const PAGE_HTML = `
 
 <header class="site-header">
   <a class="brand-mark" href="/" aria-label="New Design Pro home">
-    <img class="logo-mark" src="/assets/logo-ndp-N-only.png" alt="" width="48" height="52" />
+    <img class="logo-mark" src="/assets/logo-ndp-N-only-96.webp" alt="" width="48" height="52" />
     <span><span class="brand-name">New Design Pro</span><span class="brand-sub">Flooring &amp; Remodeling</span></span>
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />

@@ -21,8 +21,8 @@
     --dark-2: #221E17;
     --dark-line: rgba(255,255,255,0.12);
 
-    --font-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+    --font-sans: var(--nf-dmsans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: var(--nf-instrument), 'Times New Roman', serif;
 
     --pad-x: clamp(20px, 6vw, 56px);
     --gap: clamp(16px, 3vw, 32px);
@@ -1489,7 +1489,7 @@ blockquote.note {
 }
 
 .lvp-coll-lockup-x {
-  font-family: 'Instrument Serif', 'Georgia', serif;
+  font-family: var(--nf-instrument), 'Georgia', serif;
   font-size: 24px;
   line-height: 1;
   color: var(--ink-3);
@@ -1497,7 +1497,7 @@ blockquote.note {
 }
 
 .lvp-coll-lockup-brand {
-  font-family: 'Instrument Serif', 'Georgia', serif;
+  font-family: var(--nf-instrument), 'Georgia', serif;
   font-size: 24px;
   line-height: 1;
   color: var(--ink);
@@ -1516,7 +1516,7 @@ blockquote.note {
 }
 
 .lvp-coll-toolbar-title {
-  font-family: 'Instrument Serif', 'Georgia', serif;
+  font-family: var(--nf-instrument), 'Georgia', serif;
   font-size: clamp(24px, 3vw, 32px);
   color: var(--ink);
   line-height: 1.15;
@@ -1642,7 +1642,7 @@ blockquote.note {
 }
 
 .lvp-coll-card-name {
-  font-family: 'Instrument Serif', 'Georgia', serif;
+  font-family: var(--nf-instrument), 'Georgia', serif;
   font-size: 17px;
   line-height: 1.2;
   color: var(--ink);
@@ -1706,7 +1706,7 @@ blockquote.note {
 }
 
 .lvp-coll-detail-name {
-  font-family: 'Instrument Serif', 'Georgia', serif;
+  font-family: var(--nf-instrument), 'Georgia', serif;
   font-size: clamp(30px, 4vw, 44px);
   line-height: 1.1;
   color: var(--ink);
@@ -1830,7 +1830,7 @@ blockquote.note {
 }
 
 .lvp-coll-tab-name {
-  font-family: 'Instrument Serif', 'Georgia', serif;
+  font-family: var(--nf-instrument), 'Georgia', serif;
   font-size: 18px;
   line-height: 1.15;
 }
@@ -1917,7 +1917,7 @@ blockquote.note {
 }
 
 .page-hero h1 {
-  font-family: 'Instrument Serif', 'Georgia', serif;
+  font-family: var(--nf-instrument), 'Georgia', serif;
   font-size: clamp(40px, 6vw, 76px);
   line-height: 1.05;
   color: #fff;
@@ -2939,9 +2939,9 @@ blockquote.note {
   --ink: #1B1814; --ink-2: #3A342B; --ink-3: #6E665B; --line: #E2DACE;
   --brand: #E8602C; --brand-hover: #D24F1E;
   --dark: #1B1814; --dark-2: #24201B; --dark-line: #3A342C;
-  --font-sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  --font-display: 'Archivo', 'Manrope', sans-serif;
-  --font-accent: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: var(--nf-manrope), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-display: var(--nf-archivo), var(--nf-manrope), sans-serif;
+  --font-accent: var(--nf-cormorant), Georgia, serif;
   font-family: var(--font-sans);
   background: var(--bg);
   color: var(--ink);
@@ -3100,17 +3100,17 @@ blockquote.note {
    ===================================================================== */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .promo-pop { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; padding: 16px; background: rgba(20,17,13,.62); backdrop-filter: blur(3px); animation: promoFade .25s ease; }
-.promo-pop-card { position: relative; width: min(760px, 100%); display: grid; grid-template-columns: 42% 58%; background: #F6F1EA; color: #1B1814; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px -20px rgba(0,0,0,.5); animation: promoUp .35s cubic-bezier(.22,1,.36,1); font-family: 'Manrope', 'DM Sans', system-ui, sans-serif; }
+.promo-pop-card { position: relative; width: min(760px, 100%); display: grid; grid-template-columns: 42% 58%; background: #F6F1EA; color: #1B1814; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px -20px rgba(0,0,0,.5); animation: promoUp .35s cubic-bezier(.22,1,.36,1); font-family: var(--nf-manrope), var(--nf-dmsans), system-ui, sans-serif; }
 .promo-pop-photo { background: #24201B url('/assets/duralast/v-evo-xl/caramel-room-md.webp?v=2') 50% 85% / cover no-repeat; min-height: 100%; }
 .promo-pop-body { padding: 36px 32px 28px; }
-.promo-pop-act { display: inline-block; background: #E8602C; color: #fff; font: 800 12px/1 'Archivo', sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 8px 12px; border-radius: 999px; margin-bottom: 16px; animation: promoPulse 2s ease-in-out infinite; }
-.promo-pop h2 { margin: 0 0 10px; font: 900 34px/1.02 'Archivo', sans-serif; letter-spacing: -.03em; color: #1B1814; }
-.promo-pop h2 span { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; color: #E8602C; letter-spacing: 0; font-size: 1.1em; }
+.promo-pop-act { display: inline-block; background: #E8602C; color: #fff; font: 800 12px/1 var(--nf-archivo), sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 8px 12px; border-radius: 999px; margin-bottom: 16px; animation: promoPulse 2s ease-in-out infinite; }
+.promo-pop h2 { margin: 0 0 10px; font: 900 34px/1.02 var(--nf-archivo), sans-serif; letter-spacing: -.03em; color: #1B1814; }
+.promo-pop h2 span { font-family: var(--nf-cormorant), Georgia, serif; font-style: italic; font-weight: 500; color: #E8602C; letter-spacing: 0; font-size: 1.1em; }
 .promo-pop p { margin: 0 0 18px; font-size: 15px; line-height: 1.55; color: #3A342B; }
 .promo-pop form { display: flex; flex-direction: column; gap: 10px; }
 .promo-pop input[type="email"] { font: 500 16px/1 inherit; font-family: inherit; padding: 16px 18px; border: 1px solid #D9D0C3; border-radius: 14px; background: #fff; color: #1B1814; }
 .promo-pop input[type="email"]:focus { outline: 2px solid #E8602C; outline-offset: 1px; border-color: #E8602C; }
-.promo-pop form button, .promo-pop-cta { font: 800 16px/1 'Archivo', sans-serif; padding: 17px 20px; border: 0; border-radius: 999px; background: #E8602C; color: #fff; cursor: pointer; text-align: center; text-decoration: none; display: block; }
+.promo-pop form button, .promo-pop-cta { font: 800 16px/1 var(--nf-archivo), sans-serif; padding: 17px 20px; border: 0; border-radius: 999px; background: #E8602C; color: #fff; cursor: pointer; text-align: center; text-decoration: none; display: block; }
 .promo-pop form button:hover, .promo-pop-cta:hover { background: #D24F1E; }
 .promo-pop form button:disabled { opacity: .7; cursor: wait; }
 .promo-pop-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
@@ -3118,7 +3118,7 @@ blockquote.note {
 .promo-pop-fine { font-size: 12px !important; color: #6E665B !important; margin: 12px 0 6px !important; }
 .promo-pop-no { background: none; border: 0; padding: 4px 0; font: 600 13px/1.4 inherit; font-family: inherit; color: #6E665B; text-decoration: underline; cursor: pointer; }
 .promo-pop-x { position: absolute; top: 12px; right: 12px; z-index: 2; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(27,24,20,.08); color: #1B1814; font-size: 22px; line-height: 1; cursor: pointer; }
-.promo-pop-code { font: 900 44px/1 'Archivo', sans-serif; letter-spacing: .06em; color: #E8602C; background: #fff; border: 2px dashed #E8602C; border-radius: 16px; text-align: center; padding: 18px 0; margin: 6px 0 16px; }
+.promo-pop-code { font: 900 44px/1 var(--nf-archivo), sans-serif; letter-spacing: .06em; color: #E8602C; background: #fff; border: 2px dashed #E8602C; border-radius: 16px; text-align: center; padding: 18px 0; margin: 6px 0 16px; }
 @keyframes promoFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes promoUp { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
 @keyframes promoPulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
@@ -3133,15 +3133,15 @@ blockquote.note {
 }
 
 /* "Changed your mind?" re-open tab for the LVP10 pop-up */
-.promo-tab { position: fixed; left: 16px; bottom: 20px; z-index: 46; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px 9px 9px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; background: #1B1814; color: #fff; font: 700 13px/1 'Manrope', 'DM Sans', system-ui, sans-serif; box-shadow: 0 10px 28px -10px rgba(0,0,0,.55); cursor: pointer; animation: promoUp .35s cubic-bezier(.22,1,.36,1); }
+.promo-tab { position: fixed; left: 16px; bottom: 20px; z-index: 46; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px 9px 9px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; background: #1B1814; color: #fff; font: 700 13px/1 var(--nf-manrope), var(--nf-dmsans), system-ui, sans-serif; box-shadow: 0 10px 28px -10px rgba(0,0,0,.55); cursor: pointer; animation: promoUp .35s cubic-bezier(.22,1,.36,1); }
 .promo-tab:hover { background: #2A251F; }
-.promo-tab-k { background: #E8602C; color: #fff; font: 800 11px/1 'Archivo', sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; }
+.promo-tab-k { background: #E8602C; color: #fff; font: 800 11px/1 var(--nf-archivo), sans-serif; letter-spacing: .06em; text-transform: uppercase; padding: 6px 9px; border-radius: 999px; }
 @media (max-width: 760px) { .promo-tab { bottom: calc(82px + env(safe-area-inset-bottom)); left: 12px; } }
 
 /* =====================================================================
    SITE-WIDE LOGO C LOCKUP (Oct 2026): ruler-tick N + condensed Archivo caps
    ===================================================================== */
-.brand-mark .brand-name { font-family: 'Archivo', 'DM Sans', sans-serif; font-weight: 800; font-stretch: 72%; text-transform: uppercase; font-size: 24px; letter-spacing: .005em; line-height: .9; }
+.brand-mark .brand-name { font-family: var(--nf-archivo), var(--nf-dmsans), sans-serif; font-weight: 800; font-stretch: 72%; text-transform: uppercase; font-size: 24px; letter-spacing: .005em; line-height: .9; }
 .brand-mark .brand-sub { color: #DA5626; font-weight: 700; letter-spacing: .18em; font-size: 9.5px; margin-top: 4px; }
 @media (max-width: 640px) { .brand-mark .brand-name { font-size: 21px; } .brand-mark .brand-sub { display: block; font-size: 8px; letter-spacing: .14em; } }
 @media (max-width: 380px) { .brand-mark .brand-name { font-size: 19px; } }
@@ -3153,7 +3153,7 @@ blockquote.note {
 .home-v6 {
   --bg: #FAF8F4; --paper: #FFFFFF; --ink: #1C1711; --ink-2: #5A5348; --ink-3: #7A7266; --line: #E4DDD1;
   --brand: #DA5626; --brand-hover: #C24A1D; --cream: #F5EBE1;
-  --v6-disp: 'Archivo', Impact, sans-serif; --v6-body: 'DM Sans', system-ui, sans-serif;
+  --v6-disp: var(--nf-archivo), Impact, sans-serif; --v6-body: var(--nf-dmsans), system-ui, sans-serif;
   background: var(--bg); color: var(--ink); font-family: var(--v6-body);
 }
 .home-v6 .site-header { background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: none; color: var(--ink); }
@@ -3327,13 +3327,13 @@ blockquote.note {
 /* Projects: before/after case studies */
 .project-case { background: #fff; border: 1px solid #E4DDD1; border-radius: 16px; padding: clamp(18px, 3vw, 32px); margin: 0 0 28px; color: #1C1711; }
 .project-case .pc-date { font-size: 13px; font-weight: 600; color: #7A7266; margin-bottom: 6px; }
-.project-case h2 { margin: 0 0 6px; font-family: 'Archivo', sans-serif; font-weight: 800; font-stretch: 75%; font-size: clamp(30px, 4vw, 44px); line-height: 1; }
+.project-case h2 { margin: 0 0 6px; font-family: var(--nf-archivo), sans-serif; font-weight: 800; font-stretch: 75%; font-size: clamp(30px, 4vw, 44px); line-height: 1; }
 .pcase-meta { margin: 0 0 18px; color: #5A5348; }
 .pcase-pairs { display: grid; gap: 12px; }
 .ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .ba-fig { position: relative; margin: 0; border-radius: 10px; overflow: hidden; background: #F5EBE1; aspect-ratio: 4 / 3; }
 .ba-fig picture, .ba-fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.ba-fig figcaption { position: absolute; left: 10px; top: 10px; font: 700 12px/1 'DM Sans', sans-serif; padding: 6px 10px; border-radius: 999px; background: rgba(28,23,17,.75); color: #fff; }
+.ba-fig figcaption { position: absolute; left: 10px; top: 10px; font: 700 12px/1 var(--nf-dmsans), sans-serif; padding: 6px 10px; border-radius: 999px; background: rgba(28,23,17,.75); color: #fff; }
 .ba-fig:nth-child(2) figcaption { background: #DA5626; }
 .pcase-body h3 { margin: 22px 0 8px; font-size: 17px; }
 .pcase-body ul { margin: 0 0 20px; padding-left: 20px; color: #3A342B; line-height: 1.7; }
