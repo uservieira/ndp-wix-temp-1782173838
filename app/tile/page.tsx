@@ -135,7 +135,7 @@ const PAGE_HTML = `
 
     <div class="round-services">
       <div class="round-service">
-        <div class="photo" style="background-image:url('/assets/lvp-livingroom-md-v19.jpg');"></div>
+        <div class="photo" style="background-image:url('/assets/lvp-livingroom-md-v19.webp');"></div>
         <h3>Vinyl / LVP</h3>
         <p>Waterproof, scratch-resistant plank supplied &amp; installed from $4.99/sqft.</p>
       </div>

@@ -33,7 +33,7 @@ const HOMEPAGE_HTML = `
   <!-- CSS-only mobile menu toggle (no JS — safe inside Wix embed) -->
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
   <label class="nav-backdrop" for="nav-toggle" aria-hidden="true"></label>
-  <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu">
+  <label class="nav-burger" for="nav-toggle"><span class="sr-only">Toggle menu</span>
     <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
     <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
   </label>
@@ -183,17 +183,17 @@ ${v6AreasHtml()}
     </div>
 
     <div class="svc-panels">
-      <article class="svc-panel is-active" id="svc-lvp" role="tabpanel">
-        <div class="svc-photo" style="background-image:url('/assets/services/lvp-livingroom-md-v19.jpg');"></div>
+      <div class="svc-panel is-active" id="svc-lvp" role="tabpanel">
+        <div class="svc-photo" style="background-image:url('/assets/services/lvp-livingroom-md-v19.webp');"></div>
         <div class="svc-body">
           <h3>Luxury Vinyl Plank</h3>
           <p class="svc-price">Supplied &amp; installed from $4.99/sqft &middot; Labor-only quoted in-home</p>
           <p class="svc-desc">Waterproof, pet-friendly, kid-proof floors. 12-mil, 20-mil, and premium 6mm core options. See the full LVP pricing table above.</p>
           <a class="btn btn-outline" href="#lvp-pricing">See LVP pricing</a>
         </div>
-      </article>
+      </div>
 
-      <article class="svc-panel" id="svc-tile" role="tabpanel" hidden>
+      <div class="svc-panel" id="svc-tile" role="tabpanel" hidden>
         <div class="svc-photo" style="background-image:url('/assets/services/tile-carrara-md.jpg');"></div>
         <div class="svc-body">
           <h3>Tile</h3>
@@ -201,9 +201,9 @@ ${v6AreasHtml()}
           <p class="svc-desc">Porcelain, ceramic, large-format, mosaics, herringbone, chevron. Waterproofed showers with Schluter or equivalent. See the full tile page for scope, gallery, and process.</p>
           <a class="btn btn-outline" href="/#lvp-pricing" data-open-tile="1">See the tile page</a>
         </div>
-      </article>
+      </div>
 
-      <article class="svc-panel" id="svc-bath" role="tabpanel" hidden>
+      <div class="svc-panel" id="svc-bath" role="tabpanel" hidden>
         <div class="svc-photo" style="background-image:url('/assets/services/bathroom-new-md.webp');"></div>
         <div class="svc-body">
           <h3>Bathroom Remodel</h3>
@@ -211,9 +211,9 @@ ${v6AreasHtml()}
           <p class="svc-desc">Tile shower walls, waterproofing, floor tile or LVP, trim, and paint for a full cosmetic refresh. Plumbing, electrical, or structural work is coordinated with licensed trade partners.</p>
           <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
-      </article>
+      </div>
 
-      <article class="svc-panel" id="svc-kitchen" role="tabpanel" hidden>
+      <div class="svc-panel" id="svc-kitchen" role="tabpanel" hidden>
         <div class="svc-photo" style="background-image:url('/assets/services/kitchen-new-md.webp');"></div>
         <div class="svc-body">
           <h3>Kitchen Remodel</h3>
@@ -221,9 +221,9 @@ ${v6AreasHtml()}
           <p class="svc-desc">Backsplash, floor tile or LVP, painted cabinet refresh, and finish carpentry that transforms the space. Plumbing, electrical, or structural work is coordinated with licensed trade partners.</p>
           <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
-      </article>
+      </div>
 
-      <article class="svc-panel" id="svc-carp" role="tabpanel" hidden>
+      <div class="svc-panel" id="svc-carp" role="tabpanel" hidden>
         <div class="svc-photo" style="background-image:url('/assets/services/carpentry-slatwall-md.jpg');"></div>
         <div class="svc-body">
           <h3>Carpentry</h3>
@@ -231,9 +231,9 @@ ${v6AreasHtml()}
           <p class="svc-desc">Baseboards, casing, crown moulding, door trim, built-ins, and interior door installs. Clean lines, tight miters, caulked and paint-ready.</p>
           <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
-      </article>
+      </div>
 
-      <article class="svc-panel" id="svc-paint" role="tabpanel" hidden>
+      <div class="svc-panel" id="svc-paint" role="tabpanel" hidden>
         <div class="svc-photo" style="background-image:url('/assets/services/paint-roller-md.jpg');"></div>
         <div class="svc-body">
           <h3>Interior Paint</h3>
@@ -241,7 +241,7 @@ ${v6AreasHtml()}
           <p class="svc-desc">Interior walls, ceilings, trim, and doors. Prep, patch, prime, and finish. Clean cut-lines at ceilings and trim.</p>
           <a class="btn btn-outline" href="/form">Book a free measure</a>
         </div>
-      </article>
+      </div>
     </div>
   </div>
 </section>
