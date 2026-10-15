@@ -131,6 +131,7 @@ async function alertLead(lead: Lead) {
           phone,
           lifecyclestage: 'lead',
           hs_lead_status: 'NEW',
+          ndp_lead_source: 'meta_lead_ad',
           message: `Facebook lead ad (${lead.ad_name || 'n/a'})\n${text}`,
         },
       }),

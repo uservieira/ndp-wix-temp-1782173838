@@ -1,3 +1,4 @@
+import { leadSourceFrom, type Attribution } from '@/lib/leadSource';
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
@@ -27,6 +28,7 @@ type QuoteBody = {
   promoCode?: string;
   smsConsent?: boolean;
   notes?: string;
+  attribution?: Attribution | null;
   calculatedQuote?: {
     low: number;
     high: number;
@@ -168,6 +170,8 @@ async function createHubSpotContact(body: QuoteBody, reference: string): Promise
   const lastName = lastParts.join(' ') || '';
   const q = body.calculatedQuote;
 
+  const leadSource = leadSourceFrom(body.attribution);
+
   // 1. Upsert contact by email
   try {
     const contactRes = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
@@ -182,6 +186,7 @@ async function createHubSpotContact(body: QuoteBody, reference: string): Promise
           zip: body.zip,
           lifecyclestage: 'lead',
           hs_lead_status: 'NEW',
+          ndp_lead_source: leadSource,
           message: [
             `Website quote ${reference}`,
             `Scope: ${body.scope}`,
@@ -241,7 +246,8 @@ async function createHubSpotContact(body: QuoteBody, reference: string): Promise
           properties: {
             dealname: `${body.name} — ${q?.scopeLabel || body.scope}`,
             pipeline: 'default',
-            dealstage: 'appointmentscheduled', // Adjust based on user's pipeline
+            dealstage: 'appointmentscheduled', // "New Lead" stage
+            ndp_lead_source: leadSource,
             amount: String(Math.round(dealAmount)),
             closedate: new Date(Date.now() + 30 * 86400000).toISOString(),
           },

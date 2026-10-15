@@ -419,7 +419,13 @@ export default function QuoteForm() {
       const res = await fetch('/api/quote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, calculatedQuote: finalQuote }),
+        body: JSON.stringify({
+          ...form,
+          calculatedQuote: finalQuote,
+          attribution: (() => {
+            try { return JSON.parse(localStorage.getItem('ndp_src') || 'null'); } catch { return null; }
+          })(),
+        }),
       });
       const json = await res.json();
       const backupOk = await formspree;
