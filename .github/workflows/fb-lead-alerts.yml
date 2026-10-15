@@ -1,0 +1,33 @@
+name: Facebook lead alerts
+
+# Checks for new Facebook Instant Form leads about every 90 seconds and
+# triggers the email + text alert on newdesignpro.com. Each run polls for
+# ~28 minutes; a new run starts every 10 minutes and replaces the old one,
+# so coverage is continuous. Logs show counts only, never lead details.
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: fb-lead-alerts
+  cancel-in-progress: true
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Poll for new leads
+        env:
+          POLL_SECRET: ${{ secrets.FB_POLL_SECRET }}
+        run: |
+          end=$(( $(date +%s) + 28*60 ))
+          while [ "$(date +%s)" -lt "$end" ]; do
+            code=$(curl -s -o /tmp/r.json -w '%{http_code}' --max-time 50 \
+              -H "x-poll-secret: $POLL_SECRET" \
+              "https://www.newdesignpro.com/api/fb-leads/poll?lookback=900" || echo 000)
+            echo "$(date -u +%H:%M:%S) http=$code alerted=$(jq -r '.alerted // "?"' /tmp/r.json 2>/dev/null) ok=$(jq -r '.ok // "?"' /tmp/r.json 2>/dev/null)"
+            sleep 90
+          done
