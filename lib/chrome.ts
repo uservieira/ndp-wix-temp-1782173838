@@ -30,7 +30,7 @@ export function cityHeaderHtml(): string {
   </a>
   <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
   <label class="nav-backdrop" for="nav-toggle" aria-hidden="true"></label>
-  <label class="nav-burger" for="nav-toggle" aria-label="Toggle menu">
+  <label class="nav-burger" for="nav-toggle"><span class="sr-only">Toggle menu</span>
     <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
     <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
   </label>
