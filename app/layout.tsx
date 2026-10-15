@@ -44,6 +44,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Trackers (GTM, Meta Pixel, HubSpot): load on the visitor's first
             scroll/tap/keypress, or after 6s, so they never compete with the
             first paint. PageView still fires for every real visitor. */}
+        <Script id="ndp-attribution" strategy="afterInteractive">
+          {`(function(){try{var k='ndp_src',p=new URLSearchParams(location.search),o={};['utm_source','utm_medium','utm_campaign','gclid','fbclid'].forEach(function(n){var v=p.get(n);if(v)o[n]=v.slice(0,120)});var r=document.referrer;if(r&&r.indexOf(location.hostname)<0)o.ref=r.slice(0,200);var old=null;try{old=JSON.parse(localStorage.getItem(k)||'null')}catch(e){}var fresh=old&&old.ts&&(Date.now()-old.ts<90*864e5);if(Object.keys(o).length&&(!fresh||o.utm_source||o.gclid||o.fbclid)){o.ts=Date.now();localStorage.setItem(k,JSON.stringify(o))}}catch(e){}})();`}
+        </Script>
         <Script id="deferred-trackers" strategy="afterInteractive">
           {`(function(){var done=false;var ev=['scroll','pointerdown','touchstart','keydown','mousemove'];function load(){if(done)return;done=true;ev.forEach(function(e){removeEventListener(e,load,{passive:true})});
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M53H4VTP');
