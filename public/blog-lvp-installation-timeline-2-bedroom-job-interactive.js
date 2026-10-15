@@ -4,6 +4,6 @@
   document.querySelectorAll('a[href^="tel:"]').forEach(function(a){
     a.addEventListener('click', function(){
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ 'event':'ndp_phone_click', 'phone_number': a.getAttribute('href').replace('tel:','') });
+      window.dataLayer.push({ 'event':'ndp_phone_click_legacy', 'phone_number': a.getAttribute('href').replace('tel:','') });
     });
   });

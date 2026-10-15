@@ -35,6 +35,7 @@ export default function CallbackForm({ reference }: Props) {
       if (typeof window !== 'undefined') {
         const w = window as unknown as { dataLayer?: unknown[]; fbq?: (...args: unknown[]) => void };
         w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({ event: 'ndp_lead_submit', form_name: 'callback_form', form_location: 'callback_page' });
         w.dataLayer.push({ event: 'callback_requested', reference, time });
         if (w.fbq) w.fbq('track', 'Contact', { content_name: 'callback_form' });
       }

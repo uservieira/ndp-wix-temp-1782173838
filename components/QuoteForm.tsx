@@ -431,6 +431,12 @@ export default function QuoteForm() {
       // Fire dataLayer event for GTM / Google Ads conversion
       if (typeof window !== 'undefined' && (window as unknown as { dataLayer: unknown[] }).dataLayer) {
         (window as unknown as { dataLayer: unknown[] }).dataLayer.push({
+          event: 'ndp_lead_submit',
+          form_name: 'quote_form',
+          form_location: 'form_page',
+          lead_scope: form.scope,
+        });
+        (window as unknown as { dataLayer: unknown[] }).dataLayer.push({
           event: 'quote_form_submit',
           scope: form.scope,
           sqft_low: finalQuote.sqftLow,

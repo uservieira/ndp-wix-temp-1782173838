@@ -396,7 +396,7 @@
     a.addEventListener('click', function() {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        'event': 'ndp_phone_click',
+        'event': 'ndp_phone_click_legacy',
         'phone_number': a.getAttribute('href').replace('tel:', '')
       });
     });
