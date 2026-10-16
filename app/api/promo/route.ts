@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sendOwnerAlert } from '@/lib/leadAlert';
 import { emailSignature, textSignature } from '@/lib/emailSignature';
 import { leadSourceFrom, type Attribution } from '@/lib/leadSource';
 
@@ -62,7 +63,11 @@ export async function POST(req: NextRequest) {
   const email = (body.email || '').trim().toLowerCase();
   if (!isEmail(email)) return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
   const source = (body.source || '/').slice(0, 200);
-  const [hs, mail] = await Promise.allSettled([upsertHubSpot(email, source, body.attribution), sendCodeEmail(email)]);
+  const [hs, mail] = await Promise.allSettled([
+    upsertHubSpot(email, source, body.attribution),
+    sendCodeEmail(email),
+    sendOwnerAlert({ kind: 'LVP10 pop-up lead', name: email, email, details: { Page: source }, idem: `promo-${email}` }),
+  ]);
   return NextResponse.json({
     ok: true,
     code: PROMO_CODE,
