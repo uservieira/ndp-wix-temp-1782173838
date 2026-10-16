@@ -350,6 +350,27 @@
       })
     }).catch(function() { /* silent — CAPI is best-effort */ });
 
+    // Owner alert + HubSpot (contact, New Lead deal, NDP Lead Source). Formspree below stays as a backup copy.
+    var ndpSrc = null;
+    try { ndpSrc = JSON.parse(localStorage.getItem('ndp_src') || 'null'); } catch (e) { ndpSrc = null; }
+    fetch('/api/home-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      keepalive: true,
+      body: JSON.stringify({
+        name: nameVal,
+        phone: phoneVal,
+        scope: scopeVal,
+        sqft: sqftVal,
+        zip: zipVal,
+        notes: (form.elements.notes && form.elements.notes.value) || '',
+        smsConsent: smsConsent,
+        page: window.location.pathname,
+        company_website: (form.elements.company_website && form.elements.company_website.value) || '',
+        attribution: ndpSrc
+      })
+    }).catch(function() { /* Formspree is the fallback */ });
+
     fetch('https://formspree.io/f/mlgyeqrg', {
       method: 'POST',
       body: data,

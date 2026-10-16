@@ -389,7 +389,7 @@ export default function Page() {
       <JsonLd data={faqPageSchema(TILE_FAQS, '/tile')} />
       <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Tile installation', path: '/tile' }])} />
       <div dangerouslySetInnerHTML={{ __html: PAGE_HTML }} />
-      
+      <Script src="/homepage-interactive.js" strategy="afterInteractive" />
     </>
   );
 }

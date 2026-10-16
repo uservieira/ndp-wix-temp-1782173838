@@ -1,5 +1,6 @@
 import { leadSourceFrom, type Attribution } from '@/lib/leadSource';
 import { NextRequest, NextResponse } from 'next/server';
+import { sendOwnerAlert } from '@/lib/leadAlert';
 import crypto from 'crypto';
 import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 import { emailSignature, textSignature } from '@/lib/emailSignature';
@@ -399,11 +400,29 @@ export async function POST(req: NextRequest) {
   const userAgent = req.headers.get('user-agent') || undefined;
 
   // Fire everything in parallel
-  const [emailResult, hubspotResult, sheetResult, metaResult] = await Promise.allSettled([
+  const q0 = body.calculatedQuote;
+  const [emailResult, hubspotResult, sheetResult, metaResult, alertResult] = await Promise.allSettled([
     sendResendEmail(body, reference),
     createHubSpotContact(body, reference),
     appendToGoogleSheet(body, reference),
     fireMetaCapi(body, reference, ip, userAgent),
+    sendOwnerAlert({
+      kind: 'Website quote',
+      name: body.name,
+      phone: body.phone,
+      email: body.email,
+      source: leadSourceFrom(body.attribution),
+      details: {
+        Scope: body.scope,
+        'Sq ft': body.sqftExact || body.sqftRange,
+        ZIP: body.zip,
+        Estimate: q0 ? `$${q0.low}-$${q0.high}` : undefined,
+        Promo: q0?.eligible ? 'LVP10' : undefined,
+        Notes: body.notes,
+        Ref: reference,
+      },
+      idem: `quote-${reference}`,
+    }),
   ]);
 
   // Log all outcomes but don't fail the request unless the primary email failed AND we couldn't record anywhere
@@ -412,6 +431,7 @@ export async function POST(req: NextRequest) {
     hubspot: hubspotResult.status === 'fulfilled' ? hubspotResult.value : { ok: false, error: 'promise_rejected' },
     sheet: sheetResult.status === 'fulfilled' ? sheetResult.value : { ok: false, error: 'promise_rejected' },
     meta: metaResult.status === 'fulfilled' ? metaResult.value : { ok: false, error: 'promise_rejected' },
+    alert: alertResult.status === 'fulfilled' ? alertResult.value : { email: 'rejected', sms: 'rejected' },
   };
 
   // Log to console for Vercel logs (Daniel can review)

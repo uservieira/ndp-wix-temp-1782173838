@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sendOwnerAlert } from '@/lib/leadAlert';
 
 export const runtime = 'nodejs';
 
@@ -78,6 +79,13 @@ export async function POST(req: NextRequest) {
   const [h, s] = await Promise.allSettled([
     updateHubSpotContact(body),
     appendCallbackSheet(body),
+    sendOwnerAlert({
+      kind: 'Callback request',
+      name: body.name,
+      phone: body.phone,
+      details: { 'Best time': body.time, Ref: body.reference },
+      idem: `callback-${body.reference || body.phone.replace(/\D/g, '')}-${body.time}`,
+    }),
   ]);
 
   console.log(JSON.stringify({
