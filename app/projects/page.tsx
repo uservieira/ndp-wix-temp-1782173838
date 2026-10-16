@@ -71,8 +71,12 @@ function projectsSchema() {
     contentUrl: `${SITE_URL}${src}-lg.webp`,
     thumbnailUrl: `${SITE_URL}${src}-md.jpg`,
     caption: alt,
-    creator: { '@id': BUSINESS_ID },
-    copyrightHolder: { '@id': BUSINESS_ID },
+    creator: { '@type': 'Organization', '@id': BUSINESS_ID, name: 'New Design Pro', url: SITE_URL },
+    copyrightHolder: { '@type': 'Organization', '@id': BUSINESS_ID, name: 'New Design Pro' },
+    creditText: 'New Design Pro',
+    copyrightNotice: `© ${new Date().getFullYear()} New Design Pro`,
+    license: `${SITE_URL}/terms`,
+    acquireLicensePage: `${SITE_URL}/terms`,
     ...(city ? { contentLocation: { '@type': 'Place', name: `${city}, FL` } } : {}),
   });
   return {
