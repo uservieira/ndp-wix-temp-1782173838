@@ -14,7 +14,7 @@ export function leadSourceFrom(a?: Attribution | null): string {
   const m = (a.utm_medium || '').toLowerCase();
   const ref = (a.ref || '').toLowerCase();
   if (s === 'postcard' || m === 'mail' || m === 'direct_mail') return 'postcard';
-  if (s === 'doorhanger' || s === 'door_hanger' || s === 'sign' || s === 'yard_sign') return 'door_hanger_sign';
+  if (['doorhanger', 'door_hanger', 'sign', 'yardsign', 'yard_sign', 'widesign'].includes(s)) return 'door_hanger_sign';
   if (s === 'referral' || s === 'refer') return 'referral_client';
   if (s === 'gbp' || s === 'google_business' || s === 'gmb') return 'google_maps';
   if (s === 'houzz' || ref.includes('houzz.')) return 'houzz';

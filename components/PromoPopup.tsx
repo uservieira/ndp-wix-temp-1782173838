@@ -61,7 +61,7 @@ export default function PromoPopup() {
     setState('sending');
     try {
       const [r, fs] = await Promise.all([
-        fetch('/api/promo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, company_website: hp, source: pathname }) }).catch(() => null),
+        fetch('/api/promo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, company_website: hp, source: pathname, attribution: (() => { try { return JSON.parse(localStorage.getItem('ndp_src') || 'null'); } catch { return null; } })() }) }).catch(() => null),
         hp ? Promise.resolve(null) : fetch('https://formspree.io/f/xaqgnyoj', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },

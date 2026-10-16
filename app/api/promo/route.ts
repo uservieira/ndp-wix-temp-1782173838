@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { emailSignature, textSignature } from '@/lib/emailSignature';
+import { leadSourceFrom, type Attribution } from '@/lib/leadSource';
 
 export const runtime = 'nodejs';
 
@@ -11,11 +12,11 @@ const PROMO_EXPIRES = '2026-12-31T23:59:59-05:00';
 
 const isEmail = (s: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s);
 
-async function upsertHubSpot(email: string, source: string) {
+async function upsertHubSpot(email: string, source: string, attribution?: Attribution | null) {
   const apiKey = process.env.HUBSPOT_ACCESS_TOKEN;
   if (!apiKey) return { ok: false, error: 'hubspot_not_configured' };
   const headers = { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' };
-  const properties = { email, lifecyclestage: 'lead', hs_lead_status: 'NEW', message: `Requested ${PROMO_CODE} (10% off) via website pop-up on ${source}` };
+  const properties = { email, lifecyclestage: 'lead', hs_lead_status: 'NEW', ndp_lead_source: leadSourceFrom(attribution), message: `Requested ${PROMO_CODE} (10% off) via website pop-up on ${source}` };
   const res = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', { method: 'POST', headers, body: JSON.stringify({ properties }) });
   if (res.ok) return { ok: true };
   if (res.status === 409) {
@@ -55,13 +56,13 @@ async function sendCodeEmail(email: string) {
 
 export async function POST(req: NextRequest) {
   if (new Date() > new Date(PROMO_EXPIRES)) return NextResponse.json({ ok: false, error: 'expired' }, { status: 410 });
-  let body: { email?: string; company_website?: string; source?: string } = {};
+  let body: { email?: string; company_website?: string; source?: string; attribution?: Attribution | null } = {};
   try { body = await req.json(); } catch { return NextResponse.json({ ok: false, error: 'invalid_json' }, { status: 400 }); }
   if (body.company_website) return NextResponse.json({ ok: true, code: PROMO_CODE }); // honeypot
   const email = (body.email || '').trim().toLowerCase();
   if (!isEmail(email)) return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
   const source = (body.source || '/').slice(0, 200);
-  const [hs, mail] = await Promise.allSettled([upsertHubSpot(email, source), sendCodeEmail(email)]);
+  const [hs, mail] = await Promise.allSettled([upsertHubSpot(email, source, body.attribution), sendCodeEmail(email)]);
   return NextResponse.json({
     ok: true,
     code: PROMO_CODE,
