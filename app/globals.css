@@ -3442,3 +3442,6 @@ blockquote.note {
 .city-featured-job { margin: 36px 0; }
 .city-featured-job .project-case h3 { margin: 0 0 6px; font-family: var(--nf-archivo), sans-serif; font-weight: 800; font-stretch: 75%; font-size: clamp(26px, 3.4vw, 38px); line-height: 1; }
 .city-featured-job .pcase-body h4 { margin: 22px 0 8px; font-size: 17px; }
+.city-featured-job figure.ba-fig { margin: 0; }
+.city-featured-job .btn.btn-primary { color: #fff; text-decoration: none; }
+.city-featured-job .project-case { margin-left: 0; margin-right: 0; }
