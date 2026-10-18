@@ -137,6 +137,27 @@ async function alertLead(lead: Lead) {
       }),
     });
     hub = res.ok ? 'created' : res.status === 409 ? 'exists' : `error_${res.status}`;
+    // Another integration (e.g. Zapier) may create the contact first without a name.
+    // On 409, fill in name/phone/source on the existing contact instead of skipping.
+    if (res.status === 409) {
+      const body = await res.json().catch(() => ({} as { message?: string }));
+      const existingId = String((body as { message?: string }).message || '').match(/Existing ID:\s*(\d+)/)?.[1];
+      if (existingId) {
+        const up = await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${existingId}`, {
+          method: 'PATCH',
+          headers: { Authorization: `Bearer ${hsKey}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            properties: {
+              firstname,
+              lastname: rest.join(' '),
+              ...(phone ? { phone } : {}),
+              ndp_lead_source: 'meta_lead_ad',
+            },
+          }),
+        });
+        hub = up.ok ? 'updated' : `update_error_${up.status}`;
+      }
+    }
   }
   return { email: email.ok ? email.id || 'ok' : email.error, sms: text1.ok ? ('id' in text1 && text1.id) || 'ok' : (text1 as { error?: string }).error, hub };
 }
