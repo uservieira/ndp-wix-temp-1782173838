@@ -78,6 +78,8 @@ function prettyTimeline(v?: string) {
 // Branded welcome email to the lead (same template as the website quote email, no price)
 async function welcomeLead(lead: Lead, f: Record<string, string>) {
   const to = (f.email || '').trim();
+  // Leads before this feature went live were handled by hand (e.g. Lisa, Oct 17)
+  if (lead.created_time.replace(/\+0000$/, 'Z') < '2026-10-18T02:20:00Z') return 'skipped_pre_launch';
   if (!to || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) return 'skipped';
   const first = esc(((f.full_name || '').trim().split(' ')[0]) || 'there');
   const scope = [prettySqft(f.sqft), prettyTimeline(f.timeline)].filter(Boolean).join(', ');
