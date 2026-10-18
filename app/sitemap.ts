@@ -24,8 +24,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/blog', priority: 0.9, changeFrequency: 'weekly' },
     ...CITIES.map((c) => ({ path: c.path, priority: 0.85, changeFrequency: 'monthly' as const })),
     ...BLOG_POSTS.map((b) => ({ path: `/blog/${b.slug}`, priority: 0.7, changeFrequency: 'monthly' as const, lastModified: b.datePublished })),
-    { path: '/privacy', priority: 0.2, changeFrequency: 'yearly' },
-    { path: '/terms', priority: 0.2, changeFrequency: 'yearly' },
   ];
   return pages.map((p) => ({
     url: p.path === '/' ? SITE_URL : `${SITE_URL}${p.path}`,

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
     'Terms of Service for New Design Pro flooring and remodeling: quote requests, the SMS text program, deposits and payments, and Florida governing law. Read first.',
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 const PAGE_HTML = `
