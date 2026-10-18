@@ -10,6 +10,10 @@ on:
     - cron: '*/10 * * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+  actions: write
+
 concurrency:
   group: fb-lead-alerts
   cancel-in-progress: true
@@ -24,10 +28,18 @@ jobs:
           POLL_SECRET: ${{ secrets.FB_POLL_SECRET }}
         run: |
           end=$(( $(date +%s) + 28*60 ))
+          # First poll looks back 20h to catch anything missed while GitHub delayed
+          # scheduled runs (duplicates are blocked by per-lead idempotency keys).
+          lookback=72000
           while [ "$(date +%s)" -lt "$end" ]; do
             code=$(curl -s -o /tmp/r.json -w '%{http_code}' --max-time 50 \
               -H "x-poll-secret: $POLL_SECRET" \
-              "https://www.newdesignpro.com/api/fb-leads/poll?lookback=900" || echo 000)
+              "https://www.newdesignpro.com/api/fb-leads/poll?lookback=$lookback" || echo 000)
             echo "$(date -u +%H:%M:%S) http=$code alerted=$(jq -r '.alerted // "?"' /tmp/r.json 2>/dev/null) ok=$(jq -r '.ok // "?"' /tmp/r.json 2>/dev/null)"
+            lookback=900
             sleep 90
           done
+      - name: Start the next run (GitHub delays cron by hours, so chain runs)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run fb-lead-alerts.yml --repo "$GITHUB_REPOSITORY" --ref main
