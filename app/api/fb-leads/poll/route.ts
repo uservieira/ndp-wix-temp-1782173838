@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { emailSignature, textSignature } from '@/lib/emailSignature';
+import { BUSINESS_PHONE } from '@/lib/site';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -10,6 +12,7 @@ export const dynamic = 'force-dynamic';
 //   1. Emails the lead to LEAD_ALERT_EMAIL
 //   2. Texts it via Verizon email-to-text (LEAD_ALERT_SMS_EMAIL)
 //   3. Creates the contact in HubSpot
+//   4. Sends the lead a branded welcome email from contact@newdesignpro.com
 // Resend Idempotency-Key per lead stops duplicate alerts across polls.
 // Response never contains lead details (the poller's logs are public).
 // ============================================================
@@ -57,6 +60,98 @@ function etTime(iso: string) {
 
 function esc(s: string) {
   return s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string));
+}
+
+function prettySqft(v?: string) {
+  if (!v) return '';
+  const parts = v.split('_').map((p) => (/^\d+$/.test(p) ? Number(p).toLocaleString('en-US') : p.replace(/plus/i, '+')));
+  const joined = parts.every((p) => /^[\d,]+$/.test(p)) ? parts.join('–') : parts.join(' ');
+  return `about ${joined} sq ft`;
+}
+
+function prettyTimeline(v?: string) {
+  if (!v) return '';
+  if (/^asap$/i.test(v)) return 'as soon as possible';
+  return v.replace(/_/g, ' ');
+}
+
+// Branded welcome email to the lead (same template as the website quote email, no price)
+async function welcomeLead(lead: Lead, f: Record<string, string>) {
+  const to = (f.email || '').trim();
+  if (!to || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) return 'skipped';
+  const first = esc(((f.full_name || '').trim().split(' ')[0]) || 'there');
+  const scope = [prettySqft(f.sqft), prettyTimeline(f.timeline)].filter(Boolean).join(', ');
+  const scopeHtml = scope ? ` for <strong>${esc(scope)}</strong>` : '';
+  const office = process.env.OFFICE_EMAIL || 'contact@newdesignpro.com';
+  const html = `<!doctype html>
+<html>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#F7F3EE;padding:24px 12px;margin:0;color:#17140F;">
+  <div style="max-width:560px;margin:0 auto;background:#FFFFFF;border:1px solid #DED7CC;border-radius:16px;overflow:hidden;">
+    <div style="padding:24px 32px;border-bottom:1px solid #EEEAE3;">
+      <div style="font-size:14px;color:#6B6357;text-transform:uppercase;letter-spacing:1px;font-weight:600;">Your Flooring Request</div>
+      <div style="font-size:22px;font-weight:800;margin-top:4px;">New Design Pro</div>
+    </div>
+    <div style="padding:32px;">
+      <div style="font-size:14px;color:#6B6357;">Hi ${first},</div>
+      <div style="font-size:15px;line-height:1.55;margin:12px 0;">Thanks for reaching out about new floors. We got your request${scopeHtml}.</div>
+      <div style="font-size:20px;font-weight:700;color:#17140F;margin:8px 0 4px;">Daniel will call or text you soon</div>
+      <div style="color:#6B6357;font-size:13px;line-height:1.5;margin-top:8px;">Usually the same day, or the next morning if it&apos;s late. If you have photos of the space or any details (rooms, current flooring, timeline), just reply to this email. No pressure if not.</div>
+
+      <div style="margin:24px 0;padding:16px;background:#F7F3EE;border-radius:12px;">
+        <div style="font-weight:700;font-size:14px;margin-bottom:8px;">What happens next:</div>
+        <ol style="margin:0 0 0 20px;padding:0;font-size:14px;line-height:1.7;color:#3A342B;">
+          <li>Daniel reaches out to learn about your project</li>
+          <li>We set up a free in-home measure and walk through material choices</li>
+          <li>You get a final price, with no obligation</li>
+          <li>We schedule your install (usually within 5–7 days)</li>
+        </ol>
+      </div>
+
+      <div style="margin-top:24px;text-align:center;">
+        <a href="https://www.newdesignpro.com/callback?ref=fb-${esc(lead.id.slice(-6))}"
+           style="display:inline-block;background:#E85D2F;color:#FFFFFF;padding:14px 28px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;">
+          Book the free measure →
+        </a>
+      </div>
+
+      <div style="margin-top:24px;font-size:13px;color:#6B6357;line-height:1.55;">
+        Prefer to talk sooner? Text or call Daniel at <a href="tel:${BUSINESS_PHONE.e164}" style="color:#E85D2F;text-decoration:none;font-weight:600;">${BUSINESS_PHONE.display}</a>.
+      </div>
+      ${emailSignature("You're getting this because you requested a flooring quote through our Facebook ad.")}
+    </div>
+  </div>
+</body>
+</html>`;
+  const text = [
+    `Hi ${(f.full_name || '').trim().split(' ')[0] || 'there'},`,
+    '',
+    `Thanks for reaching out about new floors. We got your request${scope ? ' for ' + scope : ''}.`,
+    '',
+    "Daniel will call or text you soon, usually the same day, or the next morning if it's late.",
+    'If you have photos of the space or any details, just reply to this email. No pressure if not.',
+    '',
+    'What happens next:',
+    '1. Daniel reaches out to learn about your project',
+    '2. We set up a free in-home measure and walk through material choices',
+    '3. You get a final price, with no obligation',
+    '4. We schedule your install (usually within 5-7 days)',
+    '',
+    `Book the free measure: https://www.newdesignpro.com/callback?ref=fb-${lead.id.slice(-6)}`,
+    `Prefer to talk sooner? Text or call Daniel at ${BUSINESS_PHONE.display}.`,
+    '',
+    textSignature(),
+    'Insured. Certificate of insurance available on request.',
+  ].join('\n');
+  const r = await resend('fblead-welcome', lead.id, {
+    from: 'Daniel at New Design Pro <contact@newdesignpro.com>',
+    to: [to],
+    bcc: [office],
+    reply_to: office,
+    subject: 'We got your flooring request — New Design Pro',
+    html,
+    text,
+  });
+  return r.ok ? 'sent' : r.error;
 }
 
 async function resend(key: string, idem: string, payload: Record<string, unknown>) {
@@ -159,7 +254,8 @@ async function alertLead(lead: Lead) {
       }
     }
   }
-  return { email: email.ok ? email.id || 'ok' : email.error, sms: text1.ok ? ('id' in text1 && text1.id) || 'ok' : (text1 as { error?: string }).error, hub };
+  const welcome = await welcomeLead(lead, f);
+  return { welcome, email: email.ok ? email.id || 'ok' : email.error, sms: text1.ok ? ('id' in text1 && text1.id) || 'ok' : (text1 as { error?: string }).error, hub };
 }
 
 export async function GET(req: NextRequest) {
