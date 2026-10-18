@@ -345,7 +345,7 @@ export const CITIES: City[] = [
     anchor: 'LVP installation in Lakeland',
     title: 'LVP Installation in Lakeland, FL — From $4.99/sqft',
     description:
-      'LVP installation in Lakeland, FL from $4.99/sqft supplied and installed. Prep for slab and raised wood floors in older homes, plus a written quote in 24 hours.',
+      'LVP installation in Lakeland, FL from $4.99/sqft supplied and installed. See a real 709 sq ft Lakeland job: dark laminate out, Duralast LVP in, 2 days on site.',
     kicker: 'Lakeland, FL · Polk County',
     h1: 'Luxury vinyl plank flooring in Lakeland',
     byline: 'Older homes, newer builds, slab or raised wood floor. From $4.99/sqft supplied and installed. Written quote in 24 hours.',
@@ -406,7 +406,7 @@ export const CITIES: City[] = [
     ],
     neighbors: ['winter-haven', 'haines-city'],
     blogSlug: 'spc-lvp-vs-real-hardwood-central-florida',
-    featuredJobId: null,
+    featuredJobId: 'lakeland-white-haven-living-room',
   },
 
   // ---------------------------------------------------------------- CLERMONT

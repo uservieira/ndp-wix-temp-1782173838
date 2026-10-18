@@ -3437,3 +3437,8 @@ blockquote.note {
   .quote-form .quote-step, .qc-inline, .promo-ticket-form, .promo-ticket-done, .promo-ticket-seal, .quote-preview.has-promo .quote-preview-price { animation: none; }
   .promo-burst { display: none; }
 }
+
+/* City page featured job */
+.city-featured-job { margin: 36px 0; }
+.city-featured-job .project-case h3 { margin: 0 0 6px; font-family: var(--nf-archivo), sans-serif; font-weight: 800; font-stretch: 75%; font-size: clamp(26px, 3.4vw, 38px); line-height: 1; }
+.city-featured-job .pcase-body h4 { margin: 22px 0 8px; font-size: 17px; }

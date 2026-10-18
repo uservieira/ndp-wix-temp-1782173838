@@ -8,6 +8,8 @@ import { cityHeaderHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from '@/lib/schema';
 import { BUSINESS, BUSINESS_PHONE, CLAIMS, BASEBOARD_ADDON } from '@/lib/site';
 import { priceText } from '@/lib/pricingHtml';
+import { PROJECTS } from '@/data/projects';
+import { projectCaseHtml } from '@/lib/projectHtml';
 
 export const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -24,6 +26,16 @@ export function cityMetadata(slug: string): Metadata {
 
 const ARROW =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+function featuredJobHtml(c: City): string {
+  const job = c.featuredJobId ? PROJECTS.find((p) => p.id === c.featuredJobId) : undefined;
+  if (!job) return '';
+  return `<section class="city-featured-job">
+<h2>A recent ${esc(c.name)} job, before and after</h2>
+${projectCaseHtml(job, 'h3')}
+<p><a href="/projects">See more real projects</a></p>
+</section>`;
+}
 
 function sectionHtml(s: Section): string {
   const paras = s.paras.map((p) => `<p>${esc(p)}</p>`).join('\n');
@@ -101,6 +113,7 @@ ${cityHeaderHtml()}
   <div class="article">
     <div class="article-inner">
 ${c.intro.map((p) => `<p>${esc(p)}</p>`).join('\n')}
+${featuredJobHtml(c)}
 
 ${c.sections.map(sectionHtml).join('\n\n')}
 
@@ -168,7 +181,6 @@ export default function CityPage({ slug }: { slug: string }) {
       />
       <JsonLd data={faqPageSchema(c.faqs, c.path)} />
       <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: c.title.split(' — ')[0], path: c.path }])} />
-      {/* TODO-DANIEL: featured job slot. Add one real job for this city to data/projects.ts (city, scope, sq ft, days, 2–3 real photos, customer OK to feature), set featuredJobId in data/cities.ts, and render it here. Never invent one. */}
       <div dangerouslySetInnerHTML={{ __html: cityPageHtml(c) }} />
       <Script src="/lvp-installation-kissimmee-interactive.js" strategy="afterInteractive" />
     </>

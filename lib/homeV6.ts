@@ -171,6 +171,7 @@ export function v6AreasHtml(): string {
     <h2>Where we install</h2>
     <p class="v6-intro">Based in Davenport, working across Polk and Osceola counties. Tap your city for local pricing and ZIP codes.</p>
     <ul class="v6-areas">${CITY_LINKS.filter((c, i, a) => a.findIndex((x) => x.name === c.name) === i).map((c) => `<li><a href="${c.path}">${esc(c.name)}</a></li>`).join('')}</ul>
+    <p class="v6-intro">Recent job: <a href="/lvp-installation-lakeland#lakeland-white-haven-living-room">709 sq ft of LVP in Lakeland, dark laminate out in 2 days</a>.</p>
   </div>
 </section>`;
 }

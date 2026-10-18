@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
     'How New Design Pro collects, uses, and protects the information you share through our website, quote forms, and SMS text messaging program, and how to opt out.',
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: true },
 };
 
 const PAGE_HTML = `
