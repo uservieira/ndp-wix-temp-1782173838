@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { BUSINESS_PHONE } from '@/lib/site';
+import { phoneError } from '@/lib/phone';
 
 type Props = { reference: string };
 
@@ -14,7 +15,8 @@ export default function CallbackForm({ reference }: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const canSubmit = name.trim().length >= 2 && phone.replace(/\D/g, '').length >= 10 && time && smsConsent;
+  const cbPhoneErr = phone.replace(/\D/g, '').length >= 10 ? phoneError(phone) : null;
+  const canSubmit = name.trim().length >= 2 && phone.replace(/\D/g, '').length >= 10 && !cbPhoneErr && time && smsConsent;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -86,7 +88,9 @@ export default function CallbackForm({ reference }: Props) {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           required
+          aria-invalid={!!cbPhoneErr}
         />
+        {cbPhoneErr && <div className="callback-error" role="alert">{cbPhoneErr}</div>}
       </div>
 
       <div className="callback-field">
