@@ -1,5 +1,6 @@
 'use client';
 
+import { phoneError } from '@/lib/phone';
 import { useState, useEffect } from 'react';
 import { LVP_TIERS, PRICING, SUPPLIER, BASEBOARD_ADDON } from '@/lib/site';
 
@@ -363,7 +364,8 @@ export default function QuoteForm() {
   };
   const removeCode = () => { setForm((f) => ({ ...f, promoCode: '' })); setCodeStatus('idle'); };
 
-  const contactOk = () => !!form.name && !!form.email && /^\S+@\S+\.\S+$/.test(form.email) && !!form.zip;
+  const contactOk = () => !!form.name && !!form.email && /^\S+@\S+\.\S+$/.test(form.email) && !!form.zip && (!form.phone.trim() || !phoneError(form.phone));
+  const quotePhoneErr = form.phone.trim() && form.phone.replace(/\D/g, '').length >= 10 ? phoneError(form.phone) : null;
 
   const canAdvance = (): boolean => {
     if (step === 1) return !!form.scope;
@@ -742,7 +744,9 @@ export default function QuoteForm() {
               placeholder="(407) 555-1234"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              aria-invalid={!!quotePhoneErr}
             />
+            {quotePhoneErr && <div className="quote-error" role="alert">{quotePhoneErr}</div>}
           </div>
 
           <div className="quote-field">
