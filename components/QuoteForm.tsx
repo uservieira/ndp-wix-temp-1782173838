@@ -403,20 +403,6 @@ export default function QuoteForm() {
     const finalQuote = calculateQuote(form);
     setQuote(finalQuote);
 
-    // Backup delivery: Formspree emails every lead to the office, same as the homepage form.
-    const formspree = fetch('https://formspree.io/f/mlgyeqrg', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        _subject: `New /form quote request: ${form.name || 'website lead'}`,
-        form_name: 'form_page_quote',
-        ...form,
-        estimate: `${finalQuote.tierName || ''} $${finalQuote.low ?? ''}-$${finalQuote.high ?? ''}`,
-        promo_used: finalQuote.eligible ? 'LVP10' : '',
-        page: typeof window !== 'undefined' ? window.location.href : '',
-      }),
-    }).then((r) => r.ok).catch(() => false);
-
     try {
       const res = await fetch('/api/quote', {
         method: 'POST',
@@ -430,8 +416,7 @@ export default function QuoteForm() {
         }),
       });
       const json = await res.json();
-      const backupOk = await formspree;
-      if ((!res.ok || !json.ok) && !backupOk) {
+      if (!res.ok || !json.ok) {
         throw new Error(json.error || 'Something went wrong. Please try again.');
       }
       setSubmitted(true);
