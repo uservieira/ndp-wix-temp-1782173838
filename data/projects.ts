@@ -68,22 +68,30 @@ export const PROJECTS: Project[] = [
   {
     id: 'kissimmee-summer-kitchen',
     city: 'Kissimmee',
-    kind: 'Summer kitchen',
-    title: 'Outdoor summer kitchen, built from the frame up',
+    kind: 'Whole-home remodel',
+    title: 'Summer kitchen, accent walls, kitchen and bath in one Kissimmee home',
     scope: [
-      'Framed the kitchen and the wood-plank ceiling with recessed lights',
-      'Green tile backsplash, countertops and slat-front cabinets',
-      'Stainless grill and range hood set in place',
+      'Outdoor summer kitchen framed from scratch, with a wood-plank ceiling, recessed lights, tile backsplash, slat-front cabinets, grill and hood',
+      'Arched wood-slat accent wall with LED backlighting, plus a full slat feature wall',
+      'Kitchen island wrapped in wood slats',
+      'Bathroom with checkerboard floor tile and a freestanding tub',
       'Gas, plumbing and electrical coordinated with licensed trade partners',
     ],
     completed: '2026',
+    cover: { src: '/assets/projects/kissimmee-summer-kitchen/final-summer-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and slat cabinets' },
     gallery: [
-      { src: '/assets/projects/kissimmee-summer-kitchen/after-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and wood ceiling' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-summer-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and slat cabinets' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-arch-wall', alt: 'Arched wood-slat accent wall with warm LED backlighting' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-kitchen', alt: 'Kitchen with a wood-slat island and pendant lights' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-bathroom', alt: 'Bathroom with checkerboard tile floor and freestanding tub' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-slat-wall', alt: 'Living room with a full wood-slat feature wall' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/after-kitchen', alt: 'Summer kitchen at night with the recessed lights on' },
     ],
     process: [
       { src: '/assets/projects/kissimmee-summer-kitchen/step-framing', alt: 'Step 1: framing the summer kitchen and ceiling' },
       { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Step 2: bringing in the cabinet panels' },
       { src: '/assets/projects/kissimmee-summer-kitchen/step-grill', alt: 'Step 3: setting the grill with the homeowner' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/after-accent-wall', alt: 'Step 4: mounting the TV on the arched accent wall' },
     ],
   },
   {
@@ -109,20 +117,6 @@ export const PROJECTS: Project[] = [
         before: { src: `${P}/before-living`, alt: 'Living room at floor level before, with dark laminate' },
         after: { src: `${P}/after-living`, alt: 'Living room at floor level after, with White Haven LVP running to the kitchen' },
       },
-    ],
-  },
-  {
-    id: 'kissimmee-accent-wall',
-    city: 'Kissimmee',
-    kind: 'Accent wall',
-    title: 'Arched wood-slat accent wall',
-    scope: [
-      'Arched feature wall with wood slats behind the TV',
-      'Clean, paint-ready finish around the arch',
-    ],
-    completed: '2026',
-    gallery: [
-      { src: '/assets/projects/kissimmee-accent-wall/after-accent-wall', alt: 'Arched wood-slat accent wall with a mounted TV and LED-lit console' },
     ],
   },
   {

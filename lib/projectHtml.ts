@@ -13,7 +13,7 @@ export function projectCaseHtml(p: Project, headingTag: 'h2' | 'h3' = 'h2'): str
         ${p.sqft || p.product ? `<p class="pcase-meta">${p.sqft ? `${p.sqft.toLocaleString('en-US')} sq ft` : ''}${p.days ? ` · ${p.days} ${p.days === 1 ? 'day' : 'days'} on site` : ''}${p.product ? ` · Duralast ${esc(p.product.collection)}, ${esc(p.product.color)}` : ''}</p>` : ''}
       </div>
       ${p.pairs ? `<div class="pcase-pairs">${p.pairs.map((pr) => `<div class="ba-pair">${pic(pr.before, 'Before')}${pic(pr.after, 'After')}</div>`).join('')}</div>` : ''}
-      ${p.gallery ? `<div class="pcase-gallery">${p.gallery.map((g) => pic(g, '')).join('')}</div>` : ''}
+      ${p.gallery ? `<div class="pcase-gallery${p.gallery.length > 3 ? ' is-many' : ''}">${p.gallery.map((g) => pic(g, '')).join('')}</div>` : ''}
       ${p.process ? `<div class="pcase-process"><${sub}>How we built it</${sub}><div class="pcase-gallery">${p.process.map((g, i) => pic(g, `Step ${i + 1}`)).join('')}</div></div>` : ''}
       <div class="pcase-body">
         <${sub}>What we did</${sub}>
