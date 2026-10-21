@@ -75,7 +75,7 @@ export const PROJECTS: Project[] = [
       'Three wood-slat accent walls, including an arched wall with LED backlighting',
       'New kitchen cabinets, stone countertops, a waterfall island and backsplash',
       'Two tubs converted to walk-in showers and a freestanding tub layout',
-      'New tile flooring, baseboards and 18 interior doors refinished in paint',
+      'New tile flooring, baseboards and 18 interior doors painted',
       'Gas, plumbing and electrical coordinated with licensed trade partners',
     ],
     completed: '2026',
