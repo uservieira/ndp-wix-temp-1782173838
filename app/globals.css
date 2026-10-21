@@ -3445,3 +3445,18 @@ blockquote.note {
 .city-featured-job figure.ba-fig { margin: 0; }
 .city-featured-job .btn.btn-primary { color: #fff; text-decoration: none; }
 .city-featured-job .project-case { margin-left: 0; margin-right: 0; }
+
+/* Homepage project catalog + process strips (Oct 2026) */
+#project-catalog { background: var(--bg-alt); }
+.proj-card { text-decoration: none; }
+.proj-card figure { margin: 0; display: flex; flex-direction: column; height: 100%; }
+.proj-card picture { aspect-ratio: 4 / 5; }
+.proj-card .tc-kind { color: #DA5626; font-weight: 600; margin-bottom: 4px; }
+.pcase-process { margin-top: 14px; }
+.pcase-process h3, .pcase-process h4 { margin: 0 0 8px; }
+.pcase-process .pcase-gallery { grid-template-columns: repeat(4, 1fr); }
+.pcase-process .pcase-gallery .ba-fig, .pcase-process .pcase-gallery .ba-fig:first-child { aspect-ratio: 3 / 4; grid-column: auto; }
+.pcase-process .ba-fig figcaption { background: rgba(28,23,17,.75); }
+@media (max-width: 640px) { .pcase-process .pcase-gallery { grid-template-columns: 1fr 1fr; } }
+.pcase-credit { font-size: 14px; margin: 6px 0 14px; }
+.pcase-credit a { color: #DA5626; font-weight: 600; }
