@@ -50,6 +50,7 @@ export const PROJECTS: Project[] = [
       'Corner shelf and black-frame sliding glass door',
     ],
     completed: '2026',
+    credit: { name: 'Armando', href: 'https://search.google.com/local/reviews?placeid=ChIJ04pkC9peBq8RQI3Z0T1XETk', label: "Read Armando's 5-star Google review" },
     cover: { src: '/assets/projects/viera-shower-conversion/after-shower', alt: 'Finished walk-in shower with white tile and black-frame glass door' },
     pairs: [
       {
