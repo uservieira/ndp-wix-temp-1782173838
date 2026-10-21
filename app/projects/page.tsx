@@ -35,7 +35,7 @@ ${cityHeaderHtml()}
   <div class="bih-inner">
     <span class="eyebrow">Projects</span>
     <h1>Recent <em>projects</em>.</h1>
-    <p>Real LVP and tile jobs from around Polk and Osceola counties, with before and after photos, the scope and the square footage.</p>
+    <p>Real flooring, shower and outdoor kitchen jobs from around Central Florida, with before, process and after photos.</p>
   </div>
 </section>
 
@@ -85,6 +85,7 @@ function projectsSchema() {
           image: [
             ...(p.pairs ?? []).flatMap((pr) => [img(pr.before.src, pr.before.alt, p.city), img(pr.after.src, pr.after.alt, p.city)]),
             ...(p.gallery ?? []).map((g) => img(g.src, g.alt, p.city)),
+            ...(p.process ?? []).map((g) => img(g.src, g.alt, p.city)),
           ],
         },
       })),

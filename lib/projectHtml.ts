@@ -14,10 +14,35 @@ export function projectCaseHtml(p: Project, headingTag: 'h2' | 'h3' = 'h2'): str
       </div>
       ${p.pairs ? `<div class="pcase-pairs">${p.pairs.map((pr) => `<div class="ba-pair">${pic(pr.before, 'Before')}${pic(pr.after, 'After')}</div>`).join('')}</div>` : ''}
       ${p.gallery ? `<div class="pcase-gallery">${p.gallery.map((g) => pic(g, '')).join('')}</div>` : ''}
+      ${p.process ? `<div class="pcase-process"><${sub}>How we built it</${sub}><div class="pcase-gallery">${p.process.map((g, i) => pic(g, `Step ${i + 1}`)).join('')}</div></div>` : ''}
       <div class="pcase-body">
         <${sub}>What we did</${sub}>
         <ul>${p.scope.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
+        ${p.credit ? `<p class="pcase-credit">${esc(p.credit.name)}'s job. <a href="${p.credit.href}" target="_blank" rel="noopener">${esc(p.credit.label)}</a></p>` : ''}
         ${p.product ? `<a class="btn btn-primary" href="${p.product.href}">Get a quote for ${esc(p.product.color)}</a>` : '<a class="btn btn-primary" href="/form">Get my price</a>'}
       </div>
     </article>`;
+}
+
+const coverOf = (p: Project) => p.cover ?? p.gallery?.[0] ?? p.pairs?.[0]?.after;
+
+// Homepage catalog: one card per job, linking to its write-up on /projects.
+export function projectCatalogHtml(list: Project[]): string {
+  return list
+    .map((p) => {
+      const c = coverOf(p);
+      if (!c) return '';
+      return `<a class="tile-card proj-card" href="/projects#${p.id}"><figure>
+        <picture>
+          <source type="image/webp" srcset="${c.src}-md.webp 800w, ${c.src}-lg.webp 1600w" sizes="(min-width:1000px) 33vw, (min-width:640px) 50vw, 100vw" />
+          <img src="${c.src}-md.jpg" alt="${esc(c.alt)}" loading="lazy" decoding="async" width="600" height="800" />
+        </picture>
+        <figcaption>
+          <div class="tc-meta tc-kind">${esc(p.kind ?? 'Project')} &middot; ${p.city ? `${esc(p.city)}, FL` : 'Central Florida'}</div>
+          <div class="tc-title">${esc(p.title)}</div>
+          <div class="tc-meta">${p.process ? `${p.process.length + 1} steps &middot; ` : ''}See the job &rarr;</div>
+        </figcaption>
+      </figure></a>`;
+    })
+    .join('\n');
 }

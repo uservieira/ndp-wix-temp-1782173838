@@ -5,6 +5,8 @@ import { siteFooterHtml } from '@/lib/chrome';
 import JsonLd from '@/components/JsonLd';
 import { faqPageSchema } from '@/lib/schema';
 import { HOME_FAQS } from '@/data/faqs';
+import { PROJECTS } from '@/data/projects';
+import { projectCatalogHtml } from '@/lib/projectHtml';
 import { v6AreasHtml, v6ColorsHtml, v6FaqHtml, v6FinalHtml, v6HeroHtml, v6PackagesHtml, v6ReviewsHtml, v6StepsHtml } from '@/lib/homeV6';
 
 export const metadata: Metadata = {
@@ -67,6 +69,25 @@ const HOMEPAGE_HTML = `
 ${v6HeroHtml()}
 ${v6PackagesHtml()}
 ${v6ColorsHtml()}
+
+<!-- ================================================================
+     PROJECT CATALOG: one card per real job (data/projects.ts)
+     ================================================================ -->
+<section id="project-catalog">
+  <div class="section-inner">
+    <div class="section-head" style="text-align:center; margin-bottom:clamp(28px,5vw,44px);">
+      <span class="eyebrow">Real jobs, real photos</span>
+      <h2 class="section-title" style="margin-left:auto;margin-right:auto;">What we've <em>done lately</em>.</h2>
+      <p class="section-lede" style="margin-left:auto;margin-right:auto;">Floors, showers, summer kitchens and more around Central Florida. Tap a job to see how we built it, step by step.</p>
+    </div>
+    <div class="tile-gallery-grid">
+      ${projectCatalogHtml(PROJECTS)}
+    </div>
+    <div class="lvp-color-cta">
+      <a class="btn btn-primary" href="/projects">See all projects</a>
+    </div>
+  </div>
+</section>
 ${v6StepsHtml()}
 ${v6ReviewsHtml()}
 ${v6AreasHtml()}
@@ -161,90 +182,6 @@ ${v6AreasHtml()}
   </div>
 </section>
 
-
-<!-- ================================================================
-     WHAT WE INSTALL (6 tabs, below LVP pricing per Daniel's spec)
-     ================================================================ -->
-<section id="services-tabs">
-  <div class="section-inner">
-    <div class="section-head" style="text-align:center; margin-bottom:clamp(32px,6vw,52px);">
-      <span class="eyebrow">Clean, modern spaces — without the showroom markup</span>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;">What we install.</h2>
-      <p class="section-lede" style="margin-left:auto;margin-right:auto;">Tap any service to see the details.</p>
-    </div>
-
-    <div class="svc-tabs" role="tablist" aria-label="What we install">
-      <button class="svc-tab is-active" role="tab" data-target="svc-lvp" aria-selected="true">Luxury Vinyl Plank</button>
-      <button class="svc-tab" role="tab" data-target="svc-tile" aria-selected="false">Tile</button>
-      <button class="svc-tab" role="tab" data-target="svc-bath" aria-selected="false">Bathroom Remodel</button>
-      <button class="svc-tab" role="tab" data-target="svc-kitchen" aria-selected="false">Kitchen Remodel</button>
-      <button class="svc-tab" role="tab" data-target="svc-carp" aria-selected="false">Carpentry</button>
-      <button class="svc-tab" role="tab" data-target="svc-paint" aria-selected="false">Interior Paint</button>
-    </div>
-
-    <div class="svc-panels">
-      <div class="svc-panel is-active" id="svc-lvp" role="tabpanel">
-        <div class="svc-photo" style="background-image:url('/assets/services/lvp-livingroom-md-v19.webp');"></div>
-        <div class="svc-body">
-          <h3>Luxury Vinyl Plank</h3>
-          <p class="svc-price">Supplied &amp; installed from $4.99/sqft &middot; Labor-only quoted in-home</p>
-          <p class="svc-desc">Waterproof, pet-friendly, kid-proof floors. 12-mil, 20-mil, and premium 6mm core options. See the full LVP pricing table above.</p>
-          <a class="btn btn-outline" href="#lvp-pricing">See LVP pricing</a>
-        </div>
-      </div>
-
-      <div class="svc-panel" id="svc-tile" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('/assets/services/tile-carrara-md.jpg');"></div>
-        <div class="svc-body">
-          <h3>Tile</h3>
-          <p class="svc-price">Floor tile, showers &amp; backsplashes quoted after a free in-home measure</p>
-          <p class="svc-desc">Porcelain, ceramic, large-format, mosaics, herringbone, chevron. Waterproofed showers with Schluter or equivalent. See the full tile page for scope, gallery, and process.</p>
-          <a class="btn btn-outline" href="/#lvp-pricing" data-open-tile="1">See the tile page</a>
-        </div>
-      </div>
-
-      <div class="svc-panel" id="svc-bath" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('/assets/services/bathroom-new-md.webp');"></div>
-        <div class="svc-body">
-          <h3>Bathroom Remodel</h3>
-          <p class="svc-price">Quoted after in-home walkthrough</p>
-          <p class="svc-desc">Tile shower walls, waterproofing, floor tile or LVP, trim, and paint for a full cosmetic refresh. Plumbing, electrical, or structural work is coordinated with licensed trade partners.</p>
-          <a class="btn btn-outline" href="/form">Book a free measure</a>
-        </div>
-      </div>
-
-      <div class="svc-panel" id="svc-kitchen" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('/assets/services/kitchen-new-md.webp');"></div>
-        <div class="svc-body">
-          <h3>Kitchen Remodel</h3>
-          <p class="svc-price">Quoted after in-home walkthrough</p>
-          <p class="svc-desc">Backsplash, floor tile or LVP, painted cabinet refresh, and finish carpentry that transforms the space. Plumbing, electrical, or structural work is coordinated with licensed trade partners.</p>
-          <a class="btn btn-outline" href="/form">Book a free measure</a>
-        </div>
-      </div>
-
-      <div class="svc-panel" id="svc-carp" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('/assets/services/carpentry-slatwall-md.jpg');"></div>
-        <div class="svc-body">
-          <h3>Carpentry</h3>
-          <p class="svc-price">Quoted per project</p>
-          <p class="svc-desc">Baseboards, casing, crown moulding, door trim, built-ins, and interior door installs. Clean lines, tight miters, caulked and paint-ready.</p>
-          <a class="btn btn-outline" href="/form">Book a free measure</a>
-        </div>
-      </div>
-
-      <div class="svc-panel" id="svc-paint" role="tabpanel" hidden>
-        <div class="svc-photo" style="background-image:url('/assets/services/paint-roller-md.jpg');"></div>
-        <div class="svc-body">
-          <h3>Interior Paint</h3>
-          <p class="svc-price">Quoted per room or per project</p>
-          <p class="svc-desc">Interior walls, ceilings, trim, and doors. Prep, patch, prime, and finish. Clean cut-lines at ceilings and trim.</p>
-          <a class="btn btn-outline" href="/form">Book a free measure</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ================================================================
      REFER & EARN CALLOUT
