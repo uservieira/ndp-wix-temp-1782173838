@@ -20,7 +20,7 @@ export function businessSchema() {
     telephone: BUSINESS_PHONE.e164,
     email: BUSINESS.email,
     image: `${SITE_URL}/assets/lvp-livingroom-md-v19.jpg`,
-    logo: `${SITE_URL}/assets/logo-ndp-lockup.png`,
+    logo: `${SITE_URL}/assets/logo-ndp-2026.png`,
     priceRange: '$$',
     description:
       'Family-run LVP flooring installer in Davenport, FL. Luxury vinyl plank supplied and installed from $4.99/sq ft with Duralast flooring, plus tile and interior remodeling across Polk and Osceola counties.',

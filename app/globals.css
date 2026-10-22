@@ -90,16 +90,16 @@
     flex-shrink: 0;
     color: #F7F3EE;
   }
-  .brand-mark img.logo-mark { display: block; width: auto; height: 38px; flex-shrink: 0; }
+  .brand-mark .logo-mark { display: block; width: auto; height: 38px; aspect-ratio: 943 / 414; flex-shrink: 0; }
   .brand-mark .brand-name { line-height: 1; color: #F7F3EE; }
   .brand-mark .brand-sub { display: block; font-size: 10px; font-weight: 500; color: rgba(247,243,238,0.55); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 3px; }
   @media (max-width: 640px) {
-    .brand-mark img.logo-mark { height: 32px; }
+    .brand-mark .logo-mark { height: 32px; }
     .brand-mark .brand-sub { display: none; }
   }
   @media (max-width: 380px) {
     .brand-mark .brand-name { font-size: 15px; }
-    .brand-mark img.logo-mark { height: 28px; }
+    .brand-mark .logo-mark { height: 28px; }
   }
 
   /* Nav links */
@@ -3318,7 +3318,7 @@ blockquote.note {
 @media (max-width: 480px) {
   .site-header { gap: 10px; }
   .brand-mark { gap: 7px; }
-  .brand-mark img.logo-mark { height: 28px; }
+  .brand-mark .logo-mark { height: 28px; }
   .brand-mark .brand-name { font-size: 18px; }
   .brand-mark .brand-sub { font-size: 7px; letter-spacing: .1em; margin-top: 3px; }
   .cta-phone svg { display: none; }

@@ -14,7 +14,7 @@ export function emailSignature(reason: string): string {
       <a href="https://www.newdesignpro.com" style="color:#6B6357;text-decoration:underline;">newdesignpro.com</a>
     </div>
     <a href="https://www.newdesignpro.com" style="display:inline-block;margin-top:14px;text-decoration:none;">
-      <img src="https://www.newdesignpro.com/assets/email-signature-logo.png" width="230" height="67" alt="New Design Pro" style="display:block;width:230px;height:auto;border:0;">
+      <img src="https://www.newdesignpro.com/assets/email-signature-logo-2026.png" width="230" height="57" alt="New Design Pro" style="display:block;width:230px;height:auto;border:0;">
     </a>
     <div style="font-size:12px;color:#6B6357;margin-top:8px;">LVP Flooring &amp; Remodeling · Central Florida</div>
     <div style="font-size:11px;line-height:1.6;color:#9A9285;margin-top:14px;">
