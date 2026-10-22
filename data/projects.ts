@@ -72,7 +72,7 @@ export const PROJECTS: Project[] = [
     title: 'Outdoor summer kitchen, built from the frame up',
     scope: [
       'Framed the kitchen and the wood-plank ceiling with recessed lights',
-      'Green tile backsplash, countertops and slat-front cabinets',
+      'Green tile backsplash, countertops and PVC slat panels over cement board',
       'Stainless grill and range hood set in place',
       'Gas, plumbing and electrical coordinated with licensed trade partners',
     ],
@@ -82,7 +82,7 @@ export const PROJECTS: Project[] = [
     ],
     process: [
       { src: '/assets/projects/kissimmee-summer-kitchen/step-framing', alt: 'Step 1: framing the summer kitchen and ceiling' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Step 2: bringing in cement board for the walls' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Step 2: cement board goes up first, before the PVC slat panels' },
       { src: '/assets/projects/kissimmee-summer-kitchen/step-grill', alt: 'Step 3: setting the grill with the homeowner' },
     ],
   },
