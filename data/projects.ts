@@ -90,7 +90,7 @@ export const PROJECTS: Project[] = [
     ],
     process: [
       { src: '/assets/projects/kissimmee-summer-kitchen/step-framing', alt: 'Step 1: framing the summer kitchen and ceiling' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Step 2: bringing in the cabinet panels' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Step 2: bringing in cement board for the walls' },
       { src: '/assets/projects/kissimmee-summer-kitchen/step-grill', alt: 'Step 3: setting the grill with the homeowner' },
       { src: '/assets/projects/kissimmee-summer-kitchen/after-accent-wall', alt: 'Step 4: mounting the TV on the arched accent wall' },
     ],
