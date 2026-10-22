@@ -115,14 +115,14 @@ export const PROJECTS: Project[] = [
     id: 'kissimmee-accent-wall',
     city: 'Kissimmee',
     kind: 'Accent wall',
-    title: 'Arched wood-slat accent wall',
+    title: 'Arched PVC slat accent wall',
     scope: [
-      'Arched feature wall with wood slats behind the TV',
+      'Arched feature wall with PVC slats behind the TV',
       'Clean, paint-ready finish around the arch',
     ],
     completed: '2026',
     gallery: [
-      { src: '/assets/projects/kissimmee-accent-wall/after-accent-wall', alt: 'Arched wood-slat accent wall with a mounted TV and LED-lit console' },
+      { src: '/assets/projects/kissimmee-accent-wall/after-accent-wall', alt: 'Arched PVC slat accent wall with a mounted TV and LED-lit console' },
     ],
   },
   {
