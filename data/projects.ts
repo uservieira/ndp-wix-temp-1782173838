@@ -72,7 +72,7 @@ export const PROJECTS: Project[] = [
     title: 'Summer kitchen, accent walls, kitchen and bath in one Kissimmee home',
     scope: [
       'Outdoor summer kitchen built from the frame up, with countertop, sink, grill and lighting',
-      'Three wood-slat accent walls, including an arched wall with LED backlighting',
+      'Three PVC slat accent walls, including an arched wall with LED backlighting',
       'New kitchen cabinets, stone countertops, a waterfall island and backsplash',
       'Two tubs converted to walk-in showers and a freestanding tub layout',
       'New tile flooring, baseboards and 18 interior doors painted',
@@ -82,10 +82,10 @@ export const PROJECTS: Project[] = [
     cover: { src: '/assets/projects/kissimmee-summer-kitchen/final-summer-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and slat cabinets' },
     gallery: [
       { src: '/assets/projects/kissimmee-summer-kitchen/final-summer-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and slat cabinets' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/final-arch-wall', alt: 'Arched wood-slat accent wall with warm LED backlighting' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/final-kitchen', alt: 'Kitchen with a wood-slat island and pendant lights' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-arch-wall', alt: 'Arched PVC slat accent wall with warm LED backlighting' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-kitchen', alt: 'Kitchen with a PVC slat island and pendant lights' },
       { src: '/assets/projects/kissimmee-summer-kitchen/final-bathroom', alt: 'Bathroom with checkerboard tile floor and freestanding tub' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/final-slat-wall', alt: 'Living room with a full wood-slat feature wall' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-slat-wall', alt: 'Living room with a full PVC slat feature wall' },
       { src: '/assets/projects/kissimmee-summer-kitchen/after-kitchen', alt: 'Summer kitchen at night with the recessed lights on' },
     ],
     process: [
