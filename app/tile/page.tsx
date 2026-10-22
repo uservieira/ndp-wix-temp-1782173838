@@ -100,10 +100,9 @@ const PAGE_HTML = `
         </div>
       </div>
       <div class="hero-image-wrap">
-        <img src="/assets/projects/kissimmee-summer-kitchen/final-bathroom-md.jpg"
-             srcset="/assets/projects/kissimmee-summer-kitchen/final-bathroom-md.jpg 800w, /assets/projects/kissimmee-summer-kitchen/final-bathroom-lg.webp 1600w"
+        <img src="/assets/tile-carrara-md.jpg"
              sizes="(min-width: 900px) 45vw, 100vw"
-             alt="Checkerboard tile bathroom floor we installed in a Kissimmee remodel"
+             alt="Porcelain floor tile"
              fetchpriority="high" />
       </div>
     </div>
