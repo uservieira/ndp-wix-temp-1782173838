@@ -90,16 +90,16 @@
     flex-shrink: 0;
     color: #F7F3EE;
   }
-  .brand-mark img.logo-mark { display: block; width: auto; height: 38px; flex-shrink: 0; }
+  .brand-mark .logo-mark { display: block; width: auto; height: 38px; aspect-ratio: 943 / 414; flex-shrink: 0; }
   .brand-mark .brand-name { line-height: 1; color: #F7F3EE; }
   .brand-mark .brand-sub { display: block; font-size: 10px; font-weight: 500; color: rgba(247,243,238,0.55); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 3px; }
   @media (max-width: 640px) {
-    .brand-mark img.logo-mark { height: 32px; }
+    .brand-mark .logo-mark { height: 32px; }
     .brand-mark .brand-sub { display: none; }
   }
   @media (max-width: 380px) {
     .brand-mark .brand-name { font-size: 15px; }
-    .brand-mark img.logo-mark { height: 28px; }
+    .brand-mark .logo-mark { height: 28px; }
   }
 
   /* Nav links */
@@ -3318,7 +3318,7 @@ blockquote.note {
 @media (max-width: 480px) {
   .site-header { gap: 10px; }
   .brand-mark { gap: 7px; }
-  .brand-mark img.logo-mark { height: 28px; }
+  .brand-mark .logo-mark { height: 28px; }
   .brand-mark .brand-name { font-size: 18px; }
   .brand-mark .brand-sub { font-size: 7px; letter-spacing: .1em; margin-top: 3px; }
   .cta-phone svg { display: none; }
@@ -3460,6 +3460,19 @@ blockquote.note {
 @media (max-width: 640px) { .pcase-process .pcase-gallery { grid-template-columns: 1fr 1fr; } }
 .pcase-credit { font-size: 14px; margin: 6px 0 14px; }
 .pcase-credit a { color: #DA5626; font-weight: 600; }
+
+/* =====================================================================
+   NDP PLANK LOGO REBRAND (Oct 2026): black header on the homepage too,
+   matching inner pages, owner shirt and invoices.
+   ===================================================================== */
+.home-v6 .site-header { background: #1C1711; border-bottom-color: #1C1711; }
+.home-v6 .brand-mark, .home-v6 .brand-mark .brand-name { color: #F7F3EE; }
+.home-v6 .nav-burger { color: #F7F3EE; }
+@media (min-width: 901px) {
+  .home-v6 .nav-links a, .home-v6 .nav-dd-trigger { color: rgba(247,243,238,.8); }
+  .home-v6 .nav-links a:hover, .home-v6 .nav-dd-trigger:hover { color: #F7F3EE; }
+}
+.home-v6 .cta-phone { background: #DA5626; color: #fff; border-color: #DA5626; }
 .pcase-gallery.is-many { grid-template-columns: repeat(3, 1fr); }
 .pcase-gallery.is-many .ba-fig { aspect-ratio: 4 / 3; }
 .pcase-gallery.is-many .ba-fig:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }

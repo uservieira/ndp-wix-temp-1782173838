@@ -221,7 +221,7 @@ export function duralastSectionHtml(): string {
   <div class="section-inner">
     <div class="section-head" style="text-align:center; margin-bottom:clamp(28px,5vw,44px);">
       <div class="lvp-coll-lockup" aria-label="New Design Pro × ${SUPPLIER.name}">
-        <img src="/assets/logo-ndp-mark-transparent.png" alt="New Design Pro" class="lvp-coll-lockup-ndp" />
+        <img src="/assets/logo-ndp-planks-icon.png" alt="New Design Pro" class="lvp-coll-lockup-ndp" />
         <span class="lvp-coll-lockup-x" aria-hidden="true">×</span>
         <span class="lvp-coll-lockup-brand">${SUPPLIER.name}</span>
       </div>
