@@ -13,6 +13,8 @@ export type Project = {
   pairs?: { before: ProjectPhoto; after: ProjectPhoto }[];
   gallery?: ProjectPhoto[]; // after-only photos
   process?: ProjectPhoto[]; // step-by-step job photos, in order
+  before?: ProjectPhoto[]; // before-only photos
+  processGroups?: { title: string; photos: ProjectPhoto[] }[]; // several step sequences in one job
   kind?: string; // short label for the homepage catalog, e.g. "LVP flooring"
   cover?: ProjectPhoto; // homepage catalog cover (defaults to first after/gallery photo)
   credit?: { name: string; href: string; label: string }; // only with Daniel's explicit OK
@@ -88,11 +90,47 @@ export const PROJECTS: Project[] = [
       { src: '/assets/projects/kissimmee-summer-kitchen/final-slat-wall', alt: 'Living room with a full PVC slat feature wall' },
       { src: '/assets/projects/kissimmee-summer-kitchen/after-kitchen', alt: 'Summer kitchen at night with the recessed lights on' },
     ],
-    process: [
-      { src: '/assets/projects/kissimmee-summer-kitchen/step-framing', alt: 'Step 1: framing the summer kitchen and ceiling' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Step 2: cement board goes up first, before the PVC slat panels' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/step-grill', alt: 'Step 3: setting the grill with the homeowner' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/after-accent-wall', alt: 'Step 4: mounting the TV on the arched accent wall' },
+    before: [
+      { src: '/assets/projects/kissimmee-summer-kitchen/before-kitchen', alt: 'Kitchen before: white cabinets and laminate counters' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/before-living', alt: 'Living room before, with the old tile floor' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/before-dining', alt: 'Dining area before: yellow walls and old tile' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/before-bath-vanity', alt: 'Master bathroom vanity before' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/before-tub', alt: 'Master bathroom tub before' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/before-shower', alt: 'Master bathroom shower before' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/before-lanai', alt: 'Lanai corner before the summer kitchen' },
+    ],
+    processGroups: [
+      {
+        title: 'Inside the house',
+        photos: [
+        { src: '/assets/projects/kissimmee-summer-kitchen/h01-demo-floors', alt: 'Old tile floors torn out' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h02-demo-kitchen', alt: 'Old kitchen removed' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h03-bath-gutted', alt: 'Bathroom opened to the studs' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h04-vanity-out', alt: 'Old vanity out, floor prepped' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h05-shower-board', alt: 'Cement board up in the shower' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h06-plumbing', alt: 'Plumbing trenched in the floor, coordinated with licensed trade partners' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h07-tile-floors', alt: 'Wood-look tile floors going down' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h08-checkerboard', alt: 'Checkerboard bathroom floor' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h09-shower-tile', alt: 'Shower walls tiled' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h10-cabinets', alt: 'New kitchen cabinets going in' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h11-island', alt: 'Waterfall island set' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h12-arch-wall', alt: 'Arched PVC slat wall with LED backlighting' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h13-backsplash', alt: 'Kitchen backsplash finished' },
+        ],
+      },
+      {
+        title: 'Summer kitchen',
+        photos: [
+        { src: '/assets/projects/kissimmee-summer-kitchen/step-framing', alt: 'Framing the summer kitchen' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/s02-framing-osb', alt: 'Walls sheathed and framed' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/s03-ceiling-frame', alt: 'Ceiling framing' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/s04-house-wrap', alt: 'House wrap on the framing' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Carrying in the cement board' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/s05-cement-board', alt: 'Cement board goes up before the PVC slat panels' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/s06-counters-slats', alt: 'Countertops set and PVC slats going on' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/step-grill', alt: 'Setting the grill with the homeowner' },
+        ],
+      },
     ],
   },
   {
