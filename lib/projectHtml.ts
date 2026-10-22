@@ -13,7 +13,9 @@ export function projectCaseHtml(p: Project, headingTag: 'h2' | 'h3' = 'h2'): str
         ${p.sqft || p.product ? `<p class="pcase-meta">${p.sqft ? `${p.sqft.toLocaleString('en-US')} sq ft` : ''}${p.days ? ` · ${p.days} ${p.days === 1 ? 'day' : 'days'} on site` : ''}${p.product ? ` · Duralast ${esc(p.product.collection)}, ${esc(p.product.color)}` : ''}</p>` : ''}
       </div>
       ${p.pairs ? `<div class="pcase-pairs">${p.pairs.map((pr) => `<div class="ba-pair">${pic(pr.before, 'Before')}${pic(pr.after, 'After')}</div>`).join('')}</div>` : ''}
-      ${p.gallery ? `<div class="pcase-gallery">${p.gallery.map((g) => pic(g, '')).join('')}</div>` : ''}
+      ${p.gallery ? `<div class="pcase-gallery${p.gallery.length > 3 ? ' is-many' : ''}">${p.gallery.map((g) => pic(g, '')).join('')}</div>` : ''}
+      ${p.before ? `<div class="pcase-process"><${sub}>Before</${sub}><div class="pcase-gallery">${p.before.map((g) => pic(g, esc(g.alt.replace(/ before.*$/i, '').replace(/^Lanai corner$/, 'Lanai')) + ': before')).join('')}</div></div>` : ''}
+      ${(p.processGroups ?? []).map((grp) => `<div class="pcase-process"><${sub}>How we built it: ${esc(grp.title)}</${sub}><div class="pcase-gallery">${grp.photos.map((g, i) => pic(g, `${i + 1}. ${esc(g.alt)}`)).join('')}</div></div>`).join('')}
       ${p.process ? `<div class="pcase-process"><${sub}>How we built it</${sub}><div class="pcase-gallery">${p.process.map((g, i) => pic(g, `Step ${i + 1}`)).join('')}</div></div>` : ''}
       <div class="pcase-body">
         <${sub}>What we did</${sub}>
@@ -40,7 +42,7 @@ export function projectCatalogHtml(list: Project[]): string {
         <figcaption>
           <div class="tc-meta tc-kind">${esc(p.kind ?? 'Project')} &middot; ${p.city ? `${esc(p.city)}, FL` : 'Central Florida'}</div>
           <div class="tc-title">${esc(p.title)}</div>
-          <div class="tc-meta">${p.process ? `${p.process.length + 1} steps &middot; ` : ''}See the job &rarr;</div>
+          <div class="tc-meta">${p.process ? `${p.process.length + 1} steps &middot; ` : p.processGroups ? `${p.processGroups.reduce((n, g) => n + g.photos.length, 0)} steps &middot; ` : ''}See the job &rarr;</div>
         </figcaption>
       </figure></a>`;
     })

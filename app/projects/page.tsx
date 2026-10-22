@@ -86,6 +86,8 @@ function projectsSchema() {
             ...(p.pairs ?? []).flatMap((pr) => [img(pr.before.src, pr.before.alt, p.city), img(pr.after.src, pr.after.alt, p.city)]),
             ...(p.gallery ?? []).map((g) => img(g.src, g.alt, p.city)),
             ...(p.process ?? []).map((g) => img(g.src, g.alt, p.city)),
+            ...(p.before ?? []).map((g) => img(g.src, g.alt, p.city)),
+            ...(p.processGroups ?? []).flatMap((grp) => grp.photos.map((g) => img(g.src, g.alt, p.city))),
           ],
         },
       })),
