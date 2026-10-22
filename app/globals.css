@@ -3473,3 +3473,8 @@ blockquote.note {
   .home-v6 .nav-links a:hover, .home-v6 .nav-dd-trigger:hover { color: #F7F3EE; }
 }
 .home-v6 .cta-phone { background: #DA5626; color: #fff; border-color: #DA5626; }
+.pcase-gallery.is-many { grid-template-columns: repeat(3, 1fr); }
+.pcase-gallery.is-many .ba-fig { aspect-ratio: 4 / 3; }
+.pcase-gallery.is-many .ba-fig:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+@media (max-width: 640px) { .pcase-gallery.is-many { grid-template-columns: 1fr 1fr; } .pcase-gallery.is-many .ba-fig:first-child { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; } }
+.pcase-process .ba-fig figcaption { top: auto; bottom: 8px; left: 8px; right: 8px; width: fit-content; max-width: calc(100% - 16px); line-height: 1.3; font-size: 11px; padding: 6px 9px; border-radius: 8px; }
