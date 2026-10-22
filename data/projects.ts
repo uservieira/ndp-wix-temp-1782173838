@@ -79,9 +79,9 @@ export const PROJECTS: Project[] = [
       'Gas, plumbing and electrical coordinated with licensed trade partners',
     ],
     completed: '2026',
-    cover: { src: '/assets/projects/kissimmee-summer-kitchen/final-summer-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and slat cabinets' },
+    cover: { src: '/assets/projects/kissimmee-summer-kitchen/final-summer-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and PVC slat panels' },
     gallery: [
-      { src: '/assets/projects/kissimmee-summer-kitchen/final-summer-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and slat cabinets' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-summer-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and PVC slat panels' },
       { src: '/assets/projects/kissimmee-summer-kitchen/final-arch-wall', alt: 'Arched PVC slat accent wall with warm LED backlighting' },
       { src: '/assets/projects/kissimmee-summer-kitchen/final-kitchen', alt: 'Kitchen with a PVC slat island and pendant lights' },
       { src: '/assets/projects/kissimmee-summer-kitchen/final-bathroom', alt: 'Bathroom with checkerboard tile floor and freestanding tub' },
@@ -90,7 +90,7 @@ export const PROJECTS: Project[] = [
     ],
     process: [
       { src: '/assets/projects/kissimmee-summer-kitchen/step-framing', alt: 'Step 1: framing the summer kitchen and ceiling' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Step 2: bringing in cement board for the walls' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Step 2: cement board goes up first, before the PVC slat panels' },
       { src: '/assets/projects/kissimmee-summer-kitchen/step-grill', alt: 'Step 3: setting the grill with the homeowner' },
       { src: '/assets/projects/kissimmee-summer-kitchen/after-accent-wall', alt: 'Step 4: mounting the TV on the arched accent wall' },
     ],
