@@ -153,6 +153,7 @@ ${v6AreasHtml()}
         </div>
         <figcaption>
           <div class="tc-title">Shower &mdash; Walk-in, frameless glass</div>
+          <div class="tc-meta">Winter Park</div>
           <div class="tc-meta">Swipe to see it before &rarr; &middot; <a href="/projects#walk-in-shower-remodel">See the video</a></div>
         </figcaption>
       </figure>
