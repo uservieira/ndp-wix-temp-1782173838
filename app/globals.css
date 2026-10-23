@@ -3478,3 +3478,22 @@ blockquote.note {
 .pcase-gallery.is-many .ba-fig:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
 @media (max-width: 640px) { .pcase-gallery.is-many { grid-template-columns: 1fr 1fr; } .pcase-gallery.is-many .ba-fig:first-child { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; } }
 .pcase-process .ba-fig figcaption { top: auto; bottom: 8px; left: 8px; right: 8px; width: fit-content; max-width: calc(100% - 16px); line-height: 1.3; font-size: 11px; padding: 6px 9px; border-radius: 8px; }
+/* Tile gallery: swipe after -> before inside one card */
+.tc-swipe { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; aspect-ratio: 4 / 3; }
+.tc-swipe::-webkit-scrollbar { display: none; }
+.tc-swipe picture { flex: 0 0 100%; scroll-snap-align: start; aspect-ratio: auto !important; }
+.tc-swipe img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tile-card .tc-meta a { color: #DA5626; font-weight: 600; text-decoration: none; }
+.tc-swipe .tc-before { position: relative; }
+.tc-swipe .tc-before::after { content: 'Before'; position: absolute; left: 10px; top: 10px; font: 700 12px/1 var(--nf-dmsans), sans-serif; padding: 6px 10px; border-radius: 999px; background: rgba(28,23,17,.75); color: #fff; }
+/* Project swipes (after first) + walkthrough video */
+.pcase-swipes { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 14px 0; }
+.pcase-swipe { margin: 0; }
+.pcase-swipe .tc-swipe { aspect-ratio: 3 / 4; border-radius: 14px; }
+.pcase-swipe .tc-swipe .ba-fig { flex: 0 0 100%; scroll-snap-align: start; margin: 0; position: relative; }
+.pcase-swipe .tc-swipe .ba-fig picture, .pcase-swipe .tc-swipe .ba-fig img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pcase-swipe > figcaption, .pcase-video figcaption { font-size: 13px; color: #6b6259; margin-top: 6px; }
+.pcase-video { margin: 14px auto; max-width: 360px; }
+.pcase-video video { width: 100%; aspect-ratio: 9 / 16; border-radius: 14px; background: #1c1711; display: block; }
+.pcase-swipe .tc-swipe .ba-fig { aspect-ratio: auto; height: 100%; min-width: 100%; border-radius: 0; }
+.pcase-swipe .tc-swipe { overflow-y: hidden; }

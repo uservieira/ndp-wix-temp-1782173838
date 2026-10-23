@@ -67,6 +67,24 @@ const HOMEPAGE_HTML = `
 </header>
 
 ${v6HeroHtml()}
+
+<!-- ================================================================
+     REFER & EARN CALLOUT
+     ================================================================ -->
+<section id="refer-callout">
+  <div class="section-inner">
+    <div class="refer-card">
+      <div class="refer-text">
+        <h2>Refer a friend, earn up to <em>$500</em></h2>
+        <p>$50&ndash;$100 cash per closed referral. Refer 3 closed jobs in 90 days and we send you a $500 bonus.</p>
+      </div>
+      <a class="btn btn-white" href="/refer">
+        Refer a friend
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
 ${v6PackagesHtml()}
 ${v6ColorsHtml()}
 
@@ -101,29 +119,42 @@ ${v6AreasHtml()}
     <div class="section-head" style="text-align:center; margin-bottom:clamp(28px,5vw,44px);">
       <span class="eyebrow">Tile installs — recent Central Florida jobs</span>
       <h2 class="section-title" style="margin-left:auto;margin-right:auto;">Tile that <em>lasts twenty years</em>.</h2>
-      <p class="section-lede" style="margin-left:auto;margin-right:auto;">Kitchens, showers, floors, backsplashes. Waterproofed the right way, cut clean, and grouted straight. Six of our recent tile installs.</p>
+      <p class="section-lede" style="margin-left:auto;margin-right:auto;">Kitchens, showers, floors, backsplashes. Waterproofed the right way, cut clean, and grouted straight. A few of our recent tile installs.</p>
     </div>
 
     <div class="tile-gallery-grid">
       <figure class="tile-card">
-        <picture>
-          <source type="image/webp" srcset="/assets/gallery/tile-1-kitchen-porcelain-md.webp 800w, /assets/gallery/tile-1-kitchen-porcelain-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-          <img src="/assets/gallery/tile-1-kitchen-porcelain-md.jpg" srcset="/assets/gallery/tile-1-kitchen-porcelain-md.jpg 800w, /assets/gallery/tile-1-kitchen-porcelain-lg.jpg 1600w" sizes="(min-width:900px) 33vw, 100vw" alt="Large-format light gray porcelain floor tile in a modern kitchen" loading="lazy" />
-        </picture>
+        <div class="tc-swipe" tabindex="0" aria-label="Swipe to see this kitchen before">
+          <picture>
+            <source type="image/webp" srcset="/assets/projects/kissimmee-summer-kitchen/final-kitchen-md.webp 800w, /assets/projects/kissimmee-summer-kitchen/final-kitchen-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
+            <img src="/assets/projects/kissimmee-summer-kitchen/final-kitchen-md.jpg" alt="Kissimmee kitchen after: new cabinets, waterfall island and tile" loading="lazy" decoding="async" width="800" height="533" />
+          </picture>
+          <picture class="tc-before">
+            <source type="image/webp" srcset="/assets/projects/kissimmee-summer-kitchen/before-kitchen-md.webp 800w, /assets/projects/kissimmee-summer-kitchen/before-kitchen-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
+            <img src="/assets/projects/kissimmee-summer-kitchen/before-kitchen-md.jpg" alt="Same Kissimmee kitchen before the remodel" loading="lazy" decoding="async" width="450" height="800" />
+          </picture>
+        </div>
         <figcaption>
-          <div class="tc-title">Kitchen — Large-format porcelain</div>
-          <div class="tc-meta">24 &times; 48 in &middot; light gray &middot; rectified edge</div>
+          <div class="tc-title">Kitchen &mdash; Kissimmee</div>
+          <div class="tc-meta">Swipe to see it before &rarr; &middot; <a href="/projects#kissimmee-summer-kitchen">See the whole job</a></div>
         </figcaption>
       </figure>
 
       <figure class="tile-card">
-        <picture>
-          <source type="image/webp" srcset="/assets/gallery/tile-2-shower-marble-look-md.webp 800w, /assets/gallery/tile-2-shower-marble-look-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-          <img src="/assets/gallery/tile-2-shower-marble-look-md.jpg" srcset="/assets/gallery/tile-2-shower-marble-look-md.jpg 800w, /assets/gallery/tile-2-shower-marble-look-lg.jpg 1600w" sizes="(min-width:900px) 33vw, 100vw" alt="Marble-look porcelain shower with black fixtures and teak bench" loading="lazy" />
-        </picture>
+        <div class="tc-swipe" tabindex="0" aria-label="Swipe to see this shower before">
+          <picture>
+            <source type="image/webp" srcset="/assets/projects/walk-in-shower-remodel/after-shower-md.webp 800w, /assets/projects/walk-in-shower-remodel/after-shower-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
+            <img src="/assets/projects/walk-in-shower-remodel/after-shower-md.jpg" alt="Walk-in tile shower after, with frameless glass and gold fixtures" loading="lazy" decoding="async" width="600" height="800" />
+          </picture>
+          <picture class="tc-before">
+            <source type="image/webp" srcset="/assets/projects/walk-in-shower-remodel/before-shower-md.webp 800w, /assets/projects/walk-in-shower-remodel/before-shower-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
+            <img src="/assets/projects/walk-in-shower-remodel/before-shower-md.jpg" alt="Same shower before, with framed glass and beige tile" loading="lazy" decoding="async" width="600" height="800" />
+          </picture>
+        </div>
         <figcaption>
-          <div class="tc-title">Shower — Marble-look porcelain</div>
-          <div class="tc-meta">Waterproofed with Schluter &middot; frameless glass</div>
+          <div class="tc-title">Shower &mdash; Walk-in, frameless glass</div>
+          <div class="tc-meta">Winter Park</div>
+          <div class="tc-meta">Swipe to see it before &rarr; &middot; <a href="/projects#walk-in-shower-remodel">See the video</a></div>
         </figcaption>
       </figure>
 
@@ -149,27 +180,6 @@ ${v6AreasHtml()}
         </figcaption>
       </figure>
 
-      <figure class="tile-card">
-        <picture>
-          <source type="image/webp" srcset="/assets/gallery/tile-5-hex-mosaic-bathroom-md.webp 800w, /assets/gallery/tile-5-hex-mosaic-bathroom-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-          <img src="/assets/gallery/tile-5-hex-mosaic-bathroom-md.jpg" srcset="/assets/gallery/tile-5-hex-mosaic-bathroom-md.jpg 800w, /assets/gallery/tile-5-hex-mosaic-bathroom-lg.jpg 1600w" sizes="(min-width:900px) 33vw, 100vw" alt="Warm gray hexagon mosaic floor tile in a spa-like bathroom" loading="lazy" />
-        </picture>
-        <figcaption>
-          <div class="tc-title">Bathroom floor — Hex mosaic</div>
-          <div class="tc-meta">Warm gray penny-hex &middot; matte finish</div>
-        </figcaption>
-      </figure>
-
-      <figure class="tile-card">
-        <picture>
-          <source type="image/webp" srcset="/assets/gallery/tile-6-living-large-format-md.webp 800w, /assets/gallery/tile-6-living-large-format-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-          <img src="/assets/gallery/tile-6-living-large-format-md.jpg" srcset="/assets/gallery/tile-6-living-large-format-md.jpg 800w, /assets/gallery/tile-6-living-large-format-lg.jpg 1600w" sizes="(min-width:900px) 33vw, 100vw" alt="Sand-toned large-format porcelain floor tile in an open Florida living room" loading="lazy" />
-        </picture>
-        <figcaption>
-          <div class="tc-title">Living room — Sand porcelain</div>
-          <div class="tc-meta">24 &times; 48 in &middot; open-plan indoor/outdoor</div>
-        </figcaption>
-      </figure>
     </div>
 
     <div class="lvp-color-cta">
@@ -177,29 +187,12 @@ ${v6AreasHtml()}
         Get a free in-home measure
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <p class="lvp-color-note">Every tile job includes waterproofing where it belongs — Schluter or equivalent on showers, proper prep on floors. Nothing gets skipped.</p>
+      
     </div>
   </div>
 </section>
 
 
-<!-- ================================================================
-     REFER & EARN CALLOUT
-     ================================================================ -->
-<section id="refer-callout">
-  <div class="section-inner">
-    <div class="refer-card">
-      <div class="refer-text">
-        <h2>Refer a friend, earn up to <em>$500</em></h2>
-        <p>$50&ndash;$100 cash per closed referral. Refer 3 closed jobs in 90 days and we send you a $500 bonus.</p>
-      </div>
-      <a class="btn btn-white" href="/refer">
-        Refer a friend
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
 
 ${v6FaqHtml()}
 

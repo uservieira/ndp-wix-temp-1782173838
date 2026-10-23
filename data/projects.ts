@@ -15,6 +15,8 @@ export type Project = {
   process?: ProjectPhoto[]; // step-by-step job photos, in order
   before?: ProjectPhoto[]; // before-only photos
   processGroups?: { title: string; photos: ProjectPhoto[] }[]; // several step sequences in one job
+  swipes?: { label: string; after: ProjectPhoto; before: ProjectPhoto }[]; // after first, swipe to see before
+  video?: { src: string; poster: string; caption: string }; // short muted looping clip
   kind?: string; // short label for the homepage catalog, e.g. "LVP flooring"
   cover?: ProjectPhoto; // homepage catalog cover (defaults to first after/gallery photo)
   credit?: { name: string; href: string; label: string }; // only with Daniel's explicit OK
@@ -39,6 +41,35 @@ export const PROJECTS: Project[] = [
       { src: '/assets/projects/davenport-bedroom-lvp/after-bedroom', alt: 'Davenport bedroom with new light oak LVP' },
       { src: '/assets/projects/davenport-bedroom-lvp/after-bedside', alt: 'Light oak LVP running from the bedroom door to the window' },
     ],
+  },
+  {
+    id: 'walk-in-shower-remodel',
+    city: 'Winter Park',
+    kind: 'Bathroom remodel',
+    title: 'Primary bathroom reworked: frameless walk-in shower and a new layout',
+    scope: [
+      'Garden tub and its tile surround removed',
+      'Shower retiled, with frameless glass and gold fixtures',
+      'Toilet closet wall and door demolished to make room for a double-sink vanity',
+      'Two old vanities by the entrance replaced with storage cabinetry',
+      'New mirrors, relocated lighting and wood-look flooring',
+      'Plumbing and electrical moved, coordinated with licensed trade partners',
+    ],
+    completed: '2026',
+    cover: { src: '/assets/projects/walk-in-shower-remodel/after-shower', alt: 'Finished walk-in shower with frameless glass and gold fixtures' },
+    swipes: [
+      {
+        label: 'Shower',
+        after: { src: '/assets/projects/walk-in-shower-remodel/after-shower', alt: 'Walk-in shower after, with frameless glass and gold fixtures' },
+        before: { src: '/assets/projects/walk-in-shower-remodel/before-shower', alt: 'Same shower before: framed glass and beige tile' },
+      },
+      {
+        label: 'Bathroom',
+        after: { src: '/assets/projects/walk-in-shower-remodel/after-bathroom', alt: 'Bathroom after: new vanity, arched mirrors and gold lights' },
+        before: { src: '/assets/projects/walk-in-shower-remodel/before-bathroom', alt: 'Same bathroom before: dark vanity and granite top' },
+      },
+    ],
+    video: { src: '/assets/projects/walk-in-shower-remodel/walkthrough.mp4', poster: '/assets/projects/walk-in-shower-remodel/after-shower-md.jpg', caption: 'Walkthrough, sped up: before, then after' },
   },
   {
     id: 'viera-shower-conversion',
@@ -86,7 +117,7 @@ export const PROJECTS: Project[] = [
       { src: '/assets/projects/kissimmee-summer-kitchen/final-summer-kitchen', alt: 'Finished outdoor summer kitchen with green tile backsplash, grill and PVC slat panels' },
       { src: '/assets/projects/kissimmee-summer-kitchen/final-arch-wall', alt: 'Arched PVC slat accent wall with warm LED backlighting' },
       { src: '/assets/projects/kissimmee-summer-kitchen/final-kitchen', alt: 'Kitchen with a PVC slat island and pendant lights' },
-      { src: '/assets/projects/kissimmee-summer-kitchen/final-bathroom', alt: 'Bathroom with checkerboard tile floor and freestanding tub' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/final-bathroom', alt: 'Bathroom with checkerboard vinyl floor and freestanding tub' },
       { src: '/assets/projects/kissimmee-summer-kitchen/final-slat-wall', alt: 'Living room with a full PVC slat feature wall' },
       { src: '/assets/projects/kissimmee-summer-kitchen/after-kitchen', alt: 'Summer kitchen at night with the recessed lights on' },
     ],
@@ -110,7 +141,7 @@ export const PROJECTS: Project[] = [
         { src: '/assets/projects/kissimmee-summer-kitchen/h05-shower-board', alt: 'Cement board up in the shower' },
         { src: '/assets/projects/kissimmee-summer-kitchen/h06-plumbing', alt: 'Plumbing trenched in the floor, coordinated with licensed trade partners' },
         { src: '/assets/projects/kissimmee-summer-kitchen/h07-tile-floors', alt: 'Wood-look tile floors going down' },
-        { src: '/assets/projects/kissimmee-summer-kitchen/h08-checkerboard', alt: 'Checkerboard bathroom floor' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/h08-checkerboard', alt: 'Checkerboard vinyl bathroom floor' },
         { src: '/assets/projects/kissimmee-summer-kitchen/h09-shower-tile', alt: 'Shower walls tiled' },
         { src: '/assets/projects/kissimmee-summer-kitchen/h10-cabinets', alt: 'New kitchen cabinets going in' },
         { src: '/assets/projects/kissimmee-summer-kitchen/h11-island', alt: 'Waterfall island set' },

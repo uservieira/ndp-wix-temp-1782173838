@@ -101,9 +101,8 @@ const PAGE_HTML = `
       </div>
       <div class="hero-image-wrap">
         <img src="/assets/tile-carrara-md.jpg"
-             srcset="/assets/tile-carrara-md.jpg 800w, assets/tile-kitchen-lg.jpg 1600w"
              sizes="(min-width: 900px) 45vw, 100vw"
-             alt="Recently installed porcelain floor tile in a Central Florida kitchen remodel"
+             alt="Porcelain floor tile"
              fetchpriority="high" />
       </div>
     </div>
@@ -123,47 +122,6 @@ const PAGE_HTML = `
   </div>
 </div>
 
-<!-- ================================================================
-     ROUND-PHOTO SERVICE ICONS
-     ================================================================ -->
-<section id="flooring">
-  <div class="section-inner">
-    <div class="section-head" style="text-align:center; margin-bottom:clamp(40px,7vw,64px);">
-      <span class="eyebrow">Clean, modern floors — without the showroom markup</span>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;">What we install.</h2>
-    </div>
-
-    <div class="round-services">
-      <div class="round-service">
-        <div class="photo" style="background-image:url('/assets/lvp-livingroom-md-v19.webp');"></div>
-        <h3>Vinyl / LVP</h3>
-        <p>Waterproof, scratch-resistant plank supplied &amp; installed from $4.99/sqft.</p>
-      </div>
-      <div class="round-service">
-        <div class="photo" style="background-image:url('/assets/tile-carrara-md.jpg');"></div>
-        <h3>Tile</h3>
-        <p>Floor tile, shower walls, backsplash — porcelain, ceramic, large format.</p>
-      </div>
-      <div class="round-service">
-        <div class="photo" style="background-image:url('/assets/services/carpentry-slatwall-md.jpg');"></div>
-        <h3>Carpentry &amp; Trim</h3>
-        <p>Baseboards, casing, crown, doors, built-ins. Finish carpentry that looks intentional.</p>
-      </div>
-      <div class="round-service">
-        <div class="photo" style="background-image:url('/assets/services/bathroom-new-md.webp');"></div>
-        <h3>Bathroom Redesign</h3>
-        <p>Tile, vanity swap, fixture upgrades and full cosmetic refresh.</p>
-      </div>
-      <div class="round-service">
-        <div class="photo" style="background-image:url('/assets/services/kitchen-new-md.webp');"></div>
-        <h3>Kitchen Redesign</h3>
-        <p>Backsplash, flooring, cabinet refresh and finish work that transforms the space.</p>
-      </div>
-    </div>
-
-
-  </div>
-</section>
 
 <!-- ================================================================
      LVP PRICING — Trump Card

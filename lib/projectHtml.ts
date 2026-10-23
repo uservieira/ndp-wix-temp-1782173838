@@ -12,6 +12,8 @@ export function projectCaseHtml(p: Project, headingTag: 'h2' | 'h3' = 'h2'): str
         <${headingTag}>${esc(p.title)}</${headingTag}>
         ${p.sqft || p.product ? `<p class="pcase-meta">${p.sqft ? `${p.sqft.toLocaleString('en-US')} sq ft` : ''}${p.days ? ` · ${p.days} ${p.days === 1 ? 'day' : 'days'} on site` : ''}${p.product ? ` · Duralast ${esc(p.product.collection)}, ${esc(p.product.color)}` : ''}</p>` : ''}
       </div>
+      ${p.swipes ? `<div class="pcase-swipes">${p.swipes.map((w) => `<figure class="pcase-swipe"><div class="tc-swipe" tabindex="0" aria-label="Swipe to see the ${esc(w.label.toLowerCase())} before">${pic(w.after, `${esc(w.label)}: after`)}${pic(w.before, `${esc(w.label)}: before`)}</div><figcaption>Swipe to see it before &rarr;</figcaption></figure>`).join('')}</div>` : ''}
+      ${p.video ? `<figure class="pcase-video"><video src="${p.video.src}" poster="${p.video.poster}" autoplay muted loop playsinline preload="metadata"></video><figcaption>${esc(p.video.caption)}</figcaption></figure>` : ''}
       ${p.pairs ? `<div class="pcase-pairs">${p.pairs.map((pr) => `<div class="ba-pair">${pic(pr.before, 'Before')}${pic(pr.after, 'After')}</div>`).join('')}</div>` : ''}
       ${p.gallery ? `<div class="pcase-gallery${p.gallery.length > 3 ? ' is-many' : ''}">${p.gallery.map((g) => pic(g, '')).join('')}</div>` : ''}
       ${p.before ? `<div class="pcase-process"><${sub}>Before</${sub}><div class="pcase-gallery">${p.before.map((g) => pic(g, esc(g.alt.replace(/ before.*$/i, '').replace(/^Lanai corner$/, 'Lanai')) + ': before')).join('')}</div></div>` : ''}
