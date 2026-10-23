@@ -15,6 +15,8 @@ export type Project = {
   process?: ProjectPhoto[]; // step-by-step job photos, in order
   before?: ProjectPhoto[]; // before-only photos
   processGroups?: { title: string; photos: ProjectPhoto[] }[]; // several step sequences in one job
+  swipes?: { label: string; after: ProjectPhoto; before: ProjectPhoto }[]; // after first, swipe to see before
+  video?: { src: string; poster: string; caption: string }; // short muted looping clip
   kind?: string; // short label for the homepage catalog, e.g. "LVP flooring"
   cover?: ProjectPhoto; // homepage catalog cover (defaults to first after/gallery photo)
   credit?: { name: string; href: string; label: string }; // only with Daniel's explicit OK
@@ -39,6 +41,33 @@ export const PROJECTS: Project[] = [
       { src: '/assets/projects/davenport-bedroom-lvp/after-bedroom', alt: 'Davenport bedroom with new light oak LVP' },
       { src: '/assets/projects/davenport-bedroom-lvp/after-bedside', alt: 'Light oak LVP running from the bedroom door to the window' },
     ],
+  },
+  {
+    id: 'walk-in-shower-remodel',
+    kind: 'Bathroom remodel',
+    title: 'Framed shower out, frameless walk-in shower in',
+    scope: [
+      'Old framed shower and tile surround removed',
+      'New tiled walk-in shower with frameless glass and gold fixtures',
+      'New vanity, mirrors and lighting',
+      'New wood-look flooring',
+      'Plumbing coordinated with licensed trade partners',
+    ],
+    completed: '2026',
+    cover: { src: '/assets/projects/walk-in-shower-remodel/after-shower', alt: 'Finished walk-in shower with frameless glass and gold fixtures' },
+    swipes: [
+      {
+        label: 'Shower',
+        after: { src: '/assets/projects/walk-in-shower-remodel/after-shower', alt: 'Walk-in shower after, with frameless glass and gold fixtures' },
+        before: { src: '/assets/projects/walk-in-shower-remodel/before-shower', alt: 'Same shower before: framed glass and beige tile' },
+      },
+      {
+        label: 'Bathroom',
+        after: { src: '/assets/projects/walk-in-shower-remodel/after-bathroom', alt: 'Bathroom after: new vanity, arched mirrors and gold lights' },
+        before: { src: '/assets/projects/walk-in-shower-remodel/before-bathroom', alt: 'Same bathroom before: dark vanity and granite top' },
+      },
+    ],
+    video: { src: '/assets/projects/walk-in-shower-remodel/walkthrough.mp4', poster: '/assets/projects/walk-in-shower-remodel/after-shower-md.jpg', caption: 'Walkthrough, sped up: before, then after' },
   },
   {
     id: 'viera-shower-conversion',

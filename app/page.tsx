@@ -141,13 +141,19 @@ ${v6AreasHtml()}
       </figure>
 
       <figure class="tile-card">
-        <picture>
-          <source type="image/webp" srcset="/assets/projects/viera-shower-conversion/after-shower-md.webp 800w, /assets/projects/viera-shower-conversion/after-shower-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-          <img src="/assets/projects/viera-shower-conversion/after-shower-md.jpg" alt="Tub-to-shower conversion with white tile and black-frame glass door" loading="lazy" decoding="async" width="600" height="800" />
-        </picture>
+        <div class="tc-swipe" tabindex="0" aria-label="Swipe to see this shower before">
+          <picture>
+            <source type="image/webp" srcset="/assets/projects/walk-in-shower-remodel/after-shower-md.webp 800w, /assets/projects/walk-in-shower-remodel/after-shower-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
+            <img src="/assets/projects/walk-in-shower-remodel/after-shower-md.jpg" alt="Walk-in tile shower after, with frameless glass and gold fixtures" loading="lazy" decoding="async" width="600" height="800" />
+          </picture>
+          <picture class="tc-before">
+            <source type="image/webp" srcset="/assets/projects/walk-in-shower-remodel/before-shower-md.webp 800w, /assets/projects/walk-in-shower-remodel/before-shower-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
+            <img src="/assets/projects/walk-in-shower-remodel/before-shower-md.jpg" alt="Same shower before, with framed glass and beige tile" loading="lazy" decoding="async" width="600" height="800" />
+          </picture>
+        </div>
         <figcaption>
-          <div class="tc-title">Shower &mdash; Tub-to-shower conversion</div>
-          <div class="tc-meta">Viera &middot; <a href="/projects#viera-shower-conversion">See every step</a></div>
+          <div class="tc-title">Shower &mdash; Walk-in, frameless glass</div>
+          <div class="tc-meta">Swipe to see it before &rarr; &middot; <a href="/projects#walk-in-shower-remodel">See the video</a></div>
         </figcaption>
       </figure>
 
