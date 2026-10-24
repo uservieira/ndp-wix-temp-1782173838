@@ -154,9 +154,8 @@ export const PROJECTS: Project[] = [
         photos: [
         { src: '/assets/projects/kissimmee-summer-kitchen/step-framing', alt: 'Framing the summer kitchen' },
         { src: '/assets/projects/kissimmee-summer-kitchen/s02-framing-osb', alt: 'Walls sheathed and framed' },
-        { src: '/assets/projects/kissimmee-summer-kitchen/s03-ceiling-frame', alt: 'Ceiling framing' },
+        { src: '/assets/projects/kissimmee-summer-kitchen/s03-ceiling-frame', alt: 'Steel base framing' },
         { src: '/assets/projects/kissimmee-summer-kitchen/s04-house-wrap', alt: 'House wrap on the framing' },
-        { src: '/assets/projects/kissimmee-summer-kitchen/step-cabinets', alt: 'Carrying in the cement board' },
         { src: '/assets/projects/kissimmee-summer-kitchen/s05-cement-board', alt: 'Cement board goes up before the PVC slat panels' },
         { src: '/assets/projects/kissimmee-summer-kitchen/s06-counters-slats', alt: 'Countertops set and PVC slats going on' },
         { src: '/assets/projects/kissimmee-summer-kitchen/step-grill', alt: 'Setting the grill with the homeowner' },
