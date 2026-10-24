@@ -69,7 +69,7 @@ export const PROJECTS: Project[] = [
         before: { src: '/assets/projects/walk-in-shower-remodel/before-bathroom', alt: 'Same bathroom before: dark vanity and granite top' },
       },
     ],
-    video: { src: '/assets/projects/walk-in-shower-remodel/walkthrough.mp4', poster: '/assets/projects/walk-in-shower-remodel/after-shower-md.jpg', caption: 'Walkthrough, sped up: before, then after' },
+    video: { src: '/assets/projects/walk-in-shower-remodel/after-walkthrough.mp4', poster: '/assets/projects/walk-in-shower-remodel/after-walkthrough-poster.jpg', caption: 'After walkthrough, sped up' },
   },
   {
     id: 'viera-shower-conversion',
