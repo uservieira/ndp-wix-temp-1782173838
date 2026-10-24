@@ -3497,3 +3497,24 @@ blockquote.note {
 .pcase-video video { width: 100%; aspect-ratio: 9 / 16; border-radius: 14px; background: #1c1711; display: block; }
 .pcase-swipe .tc-swipe .ba-fig { aspect-ratio: auto; height: 100%; min-width: 100%; border-radius: 0; }
 .pcase-swipe .tc-swipe { overflow-y: hidden; }
+
+/* About: "How we work" value cards */
+.values-section { padding: clamp(48px, 7vw, 88px) 0; }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+.value-card { background: #fff; border: 1px solid #E4DDD1; border-radius: 14px; padding: 20px; }
+.value-card .vicon { width: 44px; height: 44px; border-radius: 12px; background: #FBEDE6; color: #DA5626; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.value-card .vicon svg { width: 22px; height: 22px; }
+.value-card h3 { margin: 0 0 6px; font-size: 17px; }
+.value-card p { margin: 0; font-size: 14.5px; line-height: 1.55; color: #4A4238; }
+@media (max-width: 900px) { .values-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .values-grid { grid-template-columns: 1fr; gap: 12px; } }
+
+/* Header: keep the phone button fully on screen on 375-414px phones */
+@media (max-width: 420px) {
+  .site-header { gap: 8px; }
+  .brand-mark .brand-name { font-size: 15.5px; }
+  .brand-mark .logo-mark { height: 24px; }
+  .nav-right { gap: 6px; }
+  .cta-phone, .home-v2 .cta-phone { padding: 8px 10px; }
+  .cta-phone .cta-label::before { font-size: 12px; }
+}
