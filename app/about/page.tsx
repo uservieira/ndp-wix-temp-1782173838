@@ -69,7 +69,7 @@ const PAGE_HTML = `
         <h2 class="section-title" style="margin-bottom:22px;">${CLAIMS.experienceShort}.</h2>
         <p>New Design Pro installs flooring and handles interior finish work for homeowners across Central Florida: ${CLAIMS.experienceText} We're based in Davenport, FL, right in the Disney corridor, and we work throughout Kissimmee, Haines City, Winter Haven, Lakeland, Clermont, ChampionsGate, Celebration, and Poinciana.</p>
         <p>The company is owned and operated by Daniel Vieira. When you call, you're talking to the person who's going to be responsible for your job — not a call center. Our team is bilingual, so we're just as comfortable working with you in English or Portuguese.</p>
-        <p>We stay focused on what we're genuinely good at: luxury vinyl plank, tile, hardwood, finish carpentry, painting, and cosmetic bathroom and kitchen refreshes. Plumbing, electrical, or structural work is coordinated with licensed trade partners. Clean, modern spaces, without the showroom markup.</p>
+        <p>We stay focused on what we're genuinely good at: luxury vinyl plank, tile, finish carpentry, painting, and cosmetic bathroom and kitchen refreshes. Plumbing, electrical, or structural work is coordinated with licensed trade partners. Clean, modern spaces, without the showroom markup.</p>
         <div class="areas">
           <span>Davenport</span><span>Kissimmee</span><span>Haines City</span><span>Winter Haven</span>
           <span>Lakeland</span><span>Clermont</span><span>ChampionsGate</span><span>Celebration</span><span>Poinciana</span>
