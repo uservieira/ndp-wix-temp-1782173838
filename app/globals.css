@@ -3521,3 +3521,6 @@ blockquote.note {
 
 /* Refer: make the $500 pop a little */
 #refer-hero h1 em { display: inline-block; font-size: 1.28em; line-height: 1; font-weight: 700; background: linear-gradient(100deg, #FF8A4C 0%, #FFC46B 55%, #FF8A4C 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 2px 14px rgba(255, 138, 76, .45)); padding-right: .04em; }
+
+/* Home refer card: $500 was orange on orange; make it readable and a touch bigger */
+.refer-card .refer-text h2 em { color: #1C1711; font-style: normal; font-size: 1.15em; white-space: nowrap; }
