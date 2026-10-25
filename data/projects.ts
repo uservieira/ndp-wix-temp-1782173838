@@ -221,4 +221,58 @@ export const PROJECTS: Project[] = [
       { src: '/assets/projects/homeowner/ho-bonus-room', alt: 'Homeowner bonus room with new LVP' },
     ],
   },
+  {
+    id: 'alafaya-black-stair-rails',
+    city: 'Alafaya',
+    kind: 'Stair rails',
+    title: 'New stair rails, painted black',
+    scope: [
+      'New newel posts, handrails and balusters on the stairs and landing',
+      'Balcony rail run across the upstairs opening',
+      'Posts and rails painted black, with clean white skirt boards',
+      'Cleanup and final walkthrough',
+    ],
+    completed: '2026',
+    cover: { src: '/assets/projects/alafaya-black-stair-rails/after-stairs', alt: 'Black stair rails and balusters on carpeted stairs' },
+    gallery: [
+      { src: '/assets/projects/alafaya-black-stair-rails/after-stairs', alt: 'Black stair rails and balusters on carpeted stairs' },
+      { src: '/assets/projects/alafaya-black-stair-rails/after-up-stairs', alt: 'Looking up the stairs at the new black rail' },
+      { src: '/assets/projects/alafaya-black-stair-rails/after-landing', alt: 'Black newel post and rail at the landing' },
+      { src: '/assets/projects/alafaya-black-stair-rails/after-balcony', alt: 'Black balcony rail across the upstairs opening' },
+    ],
+    before: [
+      { src: '/assets/projects/alafaya-black-stair-rails/before-stairs', alt: 'Stairs before the new rails' },
+    ],
+    processGroups: [
+      {
+        title: 'New rails',
+        photos: [
+        { src: '/assets/projects/alafaya-black-stair-rails/step-bottom-post', alt: 'Bottom newel post and handrail set' },
+        { src: '/assets/projects/alafaya-black-stair-rails/step-rail-run', alt: 'Rail run up to the landing' },
+        { src: '/assets/projects/alafaya-black-stair-rails/step-landing', alt: 'Landing posts and balcony rail framed' },
+        ],
+      },
+    ],
+    video: { src: '/assets/projects/alafaya-black-stair-rails/after-walkthrough.mp4', poster: '/assets/projects/alafaya-black-stair-rails/after-walkthrough-poster.jpg', caption: 'Finished rails, sped up' },
+  },
+  {
+    id: 'orlando-lvp-stairs-rails',
+    city: 'Orlando',
+    kind: 'Stairs & rails',
+    title: 'LVP stairs with new rails',
+    scope: [
+      'LVP installed on every tread and riser',
+      'New wood handrail with black balusters',
+      'Wall-mounted handrail on the second run',
+      'Cleanup and final walkthrough',
+    ],
+    completed: '2026',
+    cover: { src: '/assets/projects/orlando-lvp-stairs-rails/after-stairs', alt: 'LVP stairs with a new wood rail and black balusters' },
+    gallery: [
+      { src: '/assets/projects/orlando-lvp-stairs-rails/after-stairs', alt: 'LVP stairs with a new wood rail and black balusters' },
+      { src: '/assets/projects/orlando-lvp-stairs-rails/after-stairs-side', alt: 'Side view of the LVP stairs and new rail' },
+      { src: '/assets/projects/orlando-lvp-stairs-rails/after-top-post', alt: 'Wood newel post and black balusters at the top of the stairs' },
+      { src: '/assets/projects/orlando-lvp-stairs-rails/after-handrail', alt: 'Wall-mounted wood handrail over the LVP stairs' },
+    ],
+  },
 ];
