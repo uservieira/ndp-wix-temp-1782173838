@@ -51,7 +51,7 @@ const PAGE_HTML = `
 
 <!-- HERO -->
 <section class="page-hero">
-  <div class="ph-bg" style="background-image:url('/assets/carpentry-new-lg.webp');"></div>
+  <div class="ph-bg" style="background-image:url('/assets/about/stair-rails-lg.webp');"></div>
   <div class="ph-fade"></div>
   <div class="ph-inner">
     <span class="eyebrow">About us</span>
@@ -76,7 +76,7 @@ const PAGE_HTML = `
         </div>
       </div>
       <div class="story-img">
-        <img src="/assets/carpentry-new-lg.webp" alt="Finish carpentry and trim work by New Design Pro in a Central Florida home" loading="lazy" />
+        <img src="/assets/about/stair-rails-lg.webp" alt="Oak stair rails with black iron balusters by New Design Pro in an Orlando home" loading="lazy" />
       </div>
     </div>
   </div>
