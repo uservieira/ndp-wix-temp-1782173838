@@ -229,7 +229,7 @@ export const PROJECTS: Project[] = [
     scope: [
       'New newel posts, handrails and balusters on the stairs and landing',
       'Balcony rail run across the upstairs opening',
-      'Posts and rails painted black, with clean white skirt boards',
+      'Posts and rails painted black',
       'Cleanup and final walkthrough',
     ],
     completed: '2026',
