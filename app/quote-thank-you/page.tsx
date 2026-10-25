@@ -40,7 +40,7 @@ async function ThankYouWrapper({ searchParams }: { searchParams: Promise<{ ref?:
             <li><strong>Daniel will text or call</strong> to schedule your free in-home measure (usually same-day or next-day).</li>
             <li><strong>We measure</strong> and confirm final pricing on-site.</li>
             <li><strong>50% deposit</strong> to lock the install date, usually within 5–7 days.</li>
-            <li><strong>Job done, balance due at completion.</strong> No games.</li>
+            <li><strong>Job done, balance due at completion.</strong></li>
           </ol>
         </div>
 
