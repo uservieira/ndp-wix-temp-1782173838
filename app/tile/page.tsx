@@ -128,7 +128,7 @@ const PAGE_HTML = `
      ================================================================ -->
 <section id="tile-pricing">
   <div class="section-inner">
-    <span class="eyebrow">Flooring pricing · transparent, no games</span>
+    <span class="eyebrow">Flooring pricing · clear and upfront</span>
     <h2 class="section-title">Pick your floor, <em>see the price</em>.</h2>
     <p class="section-lede">${PRICING_LEDE}</p>
 
