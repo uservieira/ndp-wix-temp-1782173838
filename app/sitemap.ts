@@ -9,7 +9,7 @@ type Entry = { path: string; priority: number; changeFrequency: 'weekly' | 'mont
 
 // Real last-content-change date for non-blog pages. Bump when page content changes
 // (a build-time date on every URL teaches Google to ignore lastmod).
-const SITE_UPDATED = '2026-10-13';
+const SITE_UPDATED = '2026-10-22'; // plank-logo header + referral move went live site-wide
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: Entry[] = [
