@@ -6,7 +6,7 @@ export const WARRANTY_TIERS = [
   { tier: 'Entry', price: '$4.99/sq ft', term: '1-year workmanship warranty', short: '1 year' },
   { tier: 'Standard', price: '$5.99/sq ft', term: '3-year workmanship warranty', short: '3 years' },
   { tier: 'Premium', price: '$7.99/sq ft', term: 'Lifetime limited workmanship warranty (original owner)', short: 'Lifetime limited' },
-  { tier: 'Labor-only (your material)', price: 'Quoted in-home', term: '1-year workmanship warranty on installation labor only', short: '1 year (labor)' },
+  { tier: 'Labor-only', price: 'Your material, quoted in-home', term: '1-year workmanship warranty on installation labor only', short: '1 year (labor)' },
 ] as const;
 
 export const WARRANTY_COVERS = [
