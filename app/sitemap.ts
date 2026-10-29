@@ -9,7 +9,7 @@ type Entry = { path: string; priority: number; changeFrequency: 'weekly' | 'mont
 
 // Real last-content-change date for non-blog pages. Bump when page content changes
 // (a build-time date on every URL teaches Google to ignore lastmod).
-const SITE_UPDATED = '2026-10-22'; // plank-logo header + referral move went live site-wide
+const SITE_UPDATED = '2026-10-29'; // footer trust links + warranty/showroom/no-surprise pages
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages: Entry[] = [
@@ -19,6 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/reviews', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/refer', priority: 0.5, changeFrequency: 'monthly' },
     { path: '/form', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/warranty', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/no-surprise-charges', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/in-home-showroom', priority: 0.8, changeFrequency: 'monthly' },
     // /projects joins the sitemap once it has real projects (noindex while empty).
     ...(PROJECTS.length ? [{ path: '/projects', priority: 0.7, changeFrequency: 'weekly' as const }] : []),
     { path: '/blog', priority: 0.9, changeFrequency: 'weekly' },

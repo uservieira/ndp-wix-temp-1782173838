@@ -134,6 +134,9 @@ export function siteFooterHtml(): string {
         <li><a href="/refer">Refer &amp; Earn</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/blog">Blog</a></li>
+        <li><a href="/warranty">Written warranty</a></li>
+        <li><a href="/no-surprise-charges">No surprise charges</a></li>
+        <li><a href="/in-home-showroom">In-Home Showroom</a></li>
         <li><a href="/form">Get a quote</a></li>
       </ul>
     </div>

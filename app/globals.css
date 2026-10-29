@@ -3524,3 +3524,10 @@ blockquote.note {
 
 /* Home refer card: $500 was orange on orange; make it readable and a touch bigger */
 .refer-card .refer-text h2 em { color: #1C1711; font-style: normal; font-size: 1.15em; white-space: nowrap; }
+
+/* Trust pages: simple data table inside articles */
+.article-inner .trust-table { width: 100%; border-collapse: collapse; margin: 1.4em 0 1.8em; font-size: 15px; }
+.article-inner .trust-table th, .article-inner .trust-table td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
+.article-inner .trust-table th { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.article-inner .trust-table td strong { color: var(--ink); }
+@media (max-width: 560px) { .article-inner .trust-table { font-size: 14px; } .article-inner .trust-table th, .article-inner .trust-table td { padding: 10px 6px; } }

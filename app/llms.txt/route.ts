@@ -6,6 +6,7 @@ import { CITIES } from '@/data/cities';
 import { BLOG_POSTS } from '@/data/blog';
 import { PROJECTS } from '@/data/projects';
 import { REVIEWS } from '@/data/reviews';
+import { WARRANTY_TIERS, WARRANTY_COVERS, WARRANTY_EXCLUDES, SHOWROOM, NO_SURPRISE } from '@/data/trust';
 
 export const dynamic = 'force-static';
 
@@ -41,6 +42,22 @@ ${tiers}
 - Tile, labor-only installs and stairs are quoted after a free in-home measure.
 - ${PRICING.quoteTurnaround}. ${PRICING.depositPct}% deposit to schedule.
 
+## Written warranty (workmanship, in writing on every job)
+${WARRANTY_TIERS.map((t) => `- ${t.tier} (${t.price}): ${t.term}`).join('\n')}
+- Industry comparison: most national flooring chains and big-box installers offer a 1-year installation warranty.
+- Covers: ${WARRANTY_COVERS.join('; ')}.
+- Not covered: ${WARRANTY_EXCLUDES.join('; ')}.
+- Material is covered separately by the ${SUPPLIER.name} manufacturer warranty, registered for the customer.
+- Full terms: ${SITE_URL}/warranty
+
+## No surprise charges
+- ${NO_SURPRISE.promise}
+- Details: ${SITE_URL}/no-surprise-charges
+
+## In-Home Showroom
+- ${SHOWROOM.summary}
+- Details: ${SITE_URL}/in-home-showroom
+
 ## Services
 - Luxury vinyl plank (LVP / SPC) supplied and installed
 - Labor-only LVP installation when the homeowner already has flooring
@@ -49,6 +66,7 @@ ${tiers}
 - Baseboards, quarter round, transitions and stairs
 - Tile installation (floors, showers, backsplashes)
 - Interior remodeling in Davenport and nearby
+- In-Home Showroom: full boxes of up to 3 Duralast colors built on the customer's current floor ($${SHOWROOM.fee}, credited toward the project)
 
 ## City pages
 ${cityPages}

@@ -50,6 +50,50 @@ const PAGE_HTML = `
 
 <section class="post-list">
   <div class="post-list-inner">
+    <a class="post-card" href="/blog/how-to-compare-flooring-quotes-central-florida">
+      <div class="pc-thumb" style="background-image:url('/blog-img/vinyl-cost-thumb.webp');" aria-hidden="true"></div>
+      <div class="pc-body">
+        <div class="pc-date">October 29, 2026</div>
+        <h2>How to Compare Flooring Quotes: 5 Questions Before You Sign</h2>
+        <p>Got three flooring quotes and one is way lower? A Central Florida installer explains what cheap quotes leave out and the 5 questions to ask before you sign.</p>
+        <span class="pc-more">Read the post
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+    <a class="post-card" href="/blog/cheapest-flooring-quote-overhead">
+      <div class="pc-thumb" style="background-image:url('/blog-img/lvp-kissimmee-thumb.webp');" aria-hidden="true"></div>
+      <div class="pc-body">
+        <div class="pc-date">October 29, 2026</div>
+        <h2>Why the Cheapest Flooring Quote Can Cost You More (Overhead, Explained)</h2>
+        <p>What overhead is, why a flooring contractor who doesn't price it won't be around in six months, and what that means for your floor, your warranty and you.</p>
+        <span class="pc-more">Read the post
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+    <a class="post-card" href="/blog/flooring-installation-warranty-what-it-covers">
+      <div class="pc-thumb" style="background-image:url('/blog-img/lvp-timeline-thumb.webp');" aria-hidden="true"></div>
+      <div class="pc-body">
+        <div class="pc-date">October 29, 2026</div>
+        <h2>Flooring Installation Warranty: What It Covers and What's Normal</h2>
+        <p>Manufacturer vs. workmanship warranty, why 1 year is the industry norm, what is and isn't covered, and how New Design Pro's 1-year, 3-year and lifetime limited tiers compare.</p>
+        <span class="pc-more">Read the post
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
+    <a class="post-card" href="/blog/how-to-choose-flooring-installer-central-florida">
+      <div class="pc-thumb" style="background-image:url('/blog-img/lvp-kissimmee-thumb.webp');" aria-hidden="true"></div>
+      <div class="pc-body">
+        <div class="pc-date">October 29, 2026</div>
+        <h2>How to Choose a Flooring Installer in Central Florida (and Avoid the Common Nightmares)</h2>
+        <p>The 8 things homeowners in Davenport, Kissimmee and Polk County fear most about flooring contractors, and exactly how to check for each one before you hire.</p>
+        <span class="pc-more">Read the post
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>
     <a class="post-card" href="/blog/does-spc-lvp-look-cheap-honest-installer-answer">
       <div class="pc-thumb" style="background-image:url('/blog-img/lvp-kissimmee-thumb.webp');" aria-hidden="true"></div>
       <div class="pc-body">

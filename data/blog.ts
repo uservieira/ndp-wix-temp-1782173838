@@ -15,6 +15,10 @@ export const BLOG_POSTS: BlogPost[] = [
   { slug: 'will-spc-lvp-dent-scratch-hold-up-central-florida', title: "Will SPC LVP Dent, Scratch, or Hold Up? A Central Florida Installer's Honest Take", datePublished: '2026-08-18', image: '/blog-img/lvp-kissimmee-hero.webp' },
   { slug: 'does-spc-lvp-look-cheap-honest-installer-answer', title: 'Does SPC LVP Look Cheap? The Honest Installer Answer', datePublished: '2026-08-18', image: '/blog-img/lvp-kissimmee-hero.webp' },
   { slug: 'spc-lvp-vs-real-hardwood-central-florida', title: "\"But It's Not Real Wood\": Why SPC LVP Wins in Central Florida Homes", datePublished: '2026-08-18', image: '/blog-img/lvp-kissimmee-hero.webp' },
+  { slug: 'how-to-compare-flooring-quotes-central-florida', title: 'How to Compare Flooring Quotes: 5 Questions Before You Sign', datePublished: '2026-10-29', image: '/blog-img/vinyl-cost-hero.webp' },
+  { slug: 'cheapest-flooring-quote-overhead', title: 'Why the Cheapest Flooring Quote Can Cost You More (Overhead, Explained)', datePublished: '2026-10-29', image: '/blog-img/lvp-kissimmee-hero.webp' },
+  { slug: 'flooring-installation-warranty-what-it-covers', title: "Flooring Installation Warranty: What It Covers and What's Normal", datePublished: '2026-10-29', image: '/blog-img/lvp-timeline-hero.webp' },
+  { slug: 'how-to-choose-flooring-installer-central-florida', title: 'How to Choose a Flooring Installer in Central Florida (and Avoid the Common Nightmares)', datePublished: '2026-10-29', image: '/blog-img/lvp-kissimmee-hero.webp' },
 ];
 
 export function getPost(slug: string): BlogPost {
