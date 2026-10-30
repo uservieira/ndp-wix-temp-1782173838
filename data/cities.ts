@@ -480,7 +480,7 @@ export const CITIES: City[] = [
     ],
     neighbors: ['davenport', 'kissimmee'],
     blogSlug: 'vinyl-plank-cost-per-square-foot-central-florida-2026',
-    featuredJobId: null,
+    featuredJobId: 'clermont-antigua-bedrooms',
   },
 
   // ---------------------------------------------------------------- REMODELING DAVENPORT
