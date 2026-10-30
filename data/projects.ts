@@ -26,6 +26,24 @@ const P = '/assets/projects/lakeland-white-haven';
 
 export const PROJECTS: Project[] = [
   {
+    id: 'clermont-antigua-bedrooms',
+    city: 'Clermont',
+    kind: 'LVP flooring',
+    title: 'Upstairs bedrooms in Antigua LVP',
+    scope: [
+      'Duralast Azul Tortuga Antigua LVP through the bedrooms, closets and hallway',
+      'Quarter round along the baseboards',
+      'Cleanup and final walkthrough',
+    ],
+    product: { collection: 'Azul Tortuga', color: 'Antigua', tier: 'standard', href: '/form?tier=standard&collection=Azul%20Tortuga&color=Antigua' },
+    completed: 'October 2026',
+    gallery: [
+      { src: '/assets/projects/clermont-antigua-bedrooms/after-bedroom', alt: 'Clermont bedroom with Antigua LVP running from the door to the window' },
+      { src: '/assets/projects/clermont-antigua-bedrooms/after-kids-room', alt: 'Kids bedroom with light gray Antigua LVP in natural window light' },
+      { src: '/assets/projects/clermont-antigua-bedrooms/after-bunk-room', alt: 'Close view of Antigua LVP grain and plank seams beside a bunk bed' },
+    ],
+  },
+  {
     id: 'davenport-bedroom-lvp',
     city: 'Davenport',
     kind: 'LVP flooring',

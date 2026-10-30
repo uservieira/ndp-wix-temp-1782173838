@@ -10,7 +10,7 @@ export function projectCaseHtml(p: Project, headingTag: 'h2' | 'h3' = 'h2'): str
       <div class="pcase-head">
         <div class="pc-date">${p.city ? `${esc(p.city)}, FL · ` : 'Central Florida · '}${esc(p.completed)}</div>
         <${headingTag}>${esc(p.title)}</${headingTag}>
-        ${p.sqft || p.product ? `<p class="pcase-meta">${p.sqft ? `${p.sqft.toLocaleString('en-US')} sq ft` : ''}${p.days ? ` · ${p.days} ${p.days === 1 ? 'day' : 'days'} on site` : ''}${p.product ? ` · Duralast ${esc(p.product.collection)}, ${esc(p.product.color)}` : ''}</p>` : ''}
+        ${p.sqft || p.product ? `<p class="pcase-meta">${[p.sqft ? `${p.sqft.toLocaleString('en-US')} sq ft` : '', p.days ? `${p.days} ${p.days === 1 ? 'day' : 'days'} on site` : '', p.product ? `Duralast ${esc(p.product.collection)}, ${esc(p.product.color)}` : ''].filter(Boolean).join(' · ')}</p>` : ''}
       </div>
       ${p.swipes ? `<div class="pcase-swipes">${p.swipes.map((w) => `<figure class="pcase-swipe"><div class="tc-swipe" tabindex="0" aria-label="Swipe to see the ${esc(w.label.toLowerCase())} before">${pic(w.after, `${esc(w.label)}: after`)}${pic(w.before, `${esc(w.label)}: before`)}</div><figcaption>Swipe to see it before &rarr;</figcaption></figure>`).join('')}</div>` : ''}
       ${p.video ? `<figure class="pcase-video"><video src="${p.video.src}" poster="${p.video.poster}" autoplay muted loop playsinline preload="metadata"></video><figcaption>${esc(p.video.caption)}</figcaption></figure>` : ''}
