@@ -3342,6 +3342,7 @@ blockquote.note {
 .pcase-gallery { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; }
 .pcase-gallery .ba-fig { aspect-ratio: 3 / 4; }
 .pcase-gallery .ba-fig:first-child { aspect-ratio: auto; }
+.pcase-gallery .ba-fig:has(img[src*="-wide-"]) { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
 @media (max-width: 640px) { .pcase-gallery { grid-template-columns: 1fr 1fr; } .pcase-gallery .ba-fig:first-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; } }
 
 /* HOMEPAGE V6: FAQ (AI-quotable answers) */
