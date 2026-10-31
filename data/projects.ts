@@ -85,7 +85,7 @@ export const PROJECTS: Project[] = [
       },
       {
         label: 'Bathroom',
-        after: { src: '/assets/projects/walk-in-shower-remodel/after-bathroom', alt: 'Bathroom after: new vanity, arched mirrors and gold lights' },
+        after: { src: '/assets/projects/walk-in-shower-remodel/after-cabinetry', alt: 'Bathroom after: new wood cabinetry with upper and under-cabinet lighting' },
         before: { src: '/assets/projects/walk-in-shower-remodel/before-bathroom', alt: 'Same bathroom before: dark vanity and granite top' },
       },
       {
