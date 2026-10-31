@@ -46,6 +46,7 @@ const ROWS: Row[] = [
   { label: 'Flatness and moisture check, documented', entry: 'no', standard: 'no', premium: 'yes' },
   { label: 'Written walkthroughs and warranty file', entry: 'no', standard: 'no', premium: 'yes' },
   { label: 'Workmanship warranty', entry: '1 year', standard: '3 years', premium: 'Lifetime limited' },
+  { label: 'Durato Lifetime Residential Limited Warranty on the plank', entry: 'yes', standard: 'yes', premium: 'yes' },
 ];
 const KEYS = ['entry', 'standard', 'premium'] as const;
 const cell = (v: string) => (v === 'yes' ? 'Included' : v === 'no' ? '<span class="v6-no">Not included</span>' : v);
