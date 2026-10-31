@@ -43,6 +43,7 @@ export function lvpTiersHtml(opts: {
           <li>Standard install</li>
           <li>Quarter round added at wall base</li>
           <li><a href="/warranty">1-year workmanship warranty</a></li>
+          <li>Durato Lifetime Residential Limited Warranty on the plank</li>
         </ul>
         <a class="btn btn-tier" href="${href('entry')}" data-tier="entry">Book entry</a>
         <p class="tier-note">Final price confirmed after in-home measurement.</p>
@@ -60,6 +61,7 @@ export function lvpTiersHtml(opts: {
           <li>Carpet demo &amp; haul-away included</li>
           <li>Minor subfloor prep</li>
           <li><a href="/warranty">3-year workmanship warranty</a></li>
+          <li>Durato Lifetime Residential Limited Warranty on the plank</li>
         </ul>
         <a class="btn btn-tier" href="${href('standard')}" data-tier="standard">Get a free measure</a>
         <p class="tier-note">Final price confirmed after in-home measurement.</p>
@@ -78,6 +80,7 @@ export function lvpTiersHtml(opts: {
           <li>Written pre-install walkthrough &amp; final walkthrough</li>
           <li>Warranty job file kept on record</li>
           <li><a href="/warranty">Lifetime limited workmanship warranty</a></li>
+          <li>Durato Lifetime Residential Limited Warranty on the plank</li>
         </ul>
         <a class="btn btn-tier" href="${href('premium')}" data-tier="premium">Book premium</a>
         <p class="tier-note">Final price confirmed after in-home measurement. No underlayment under click-lock LVP — most manufacturers void warranty when it's added.</p>
