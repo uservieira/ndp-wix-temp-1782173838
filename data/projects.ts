@@ -41,6 +41,8 @@ export const PROJECTS: Project[] = [
       { src: '/assets/projects/clermont-antigua-bedrooms/after-bedroom', alt: 'Clermont bedroom with Antigua LVP running from the door to the window' },
       { src: '/assets/projects/clermont-antigua-bedrooms/after-kids-room', alt: 'Kids bedroom with light gray Antigua LVP in natural window light' },
       { src: '/assets/projects/clermont-antigua-bedrooms/after-bunk-room', alt: 'Close view of Antigua LVP grain and plank seams beside a bunk bed' },
+      { src: '/assets/projects/clermont-antigua-bedrooms/after-guest-room', alt: 'Guest bedroom with Antigua LVP running under the bed to the far wall' },
+      { src: '/assets/projects/clermont-antigua-bedrooms/after-guest-room-2', alt: 'Guest bedroom from the doorway, Antigua LVP wall to wall' },
     ],
   },
   {
@@ -85,6 +87,11 @@ export const PROJECTS: Project[] = [
         label: 'Bathroom',
         after: { src: '/assets/projects/walk-in-shower-remodel/after-bathroom', alt: 'Bathroom after: new vanity, arched mirrors and gold lights' },
         before: { src: '/assets/projects/walk-in-shower-remodel/before-bathroom', alt: 'Same bathroom before: dark vanity and granite top' },
+      },
+      {
+        label: 'Tub to vanity',
+        after: { src: '/assets/projects/walk-in-shower-remodel/after-double-vanity', alt: 'Double-sink vanity where the garden tub used to be' },
+        before: { src: '/assets/projects/walk-in-shower-remodel/before-tub', alt: 'Same corner before: the garden tub and its tile surround' },
       },
     ],
     video: { src: '/assets/projects/walk-in-shower-remodel/after-walkthrough.mp4', poster: '/assets/projects/walk-in-shower-remodel/after-walkthrough-poster.jpg', caption: 'After walkthrough, sped up' },
@@ -147,6 +154,8 @@ export const PROJECTS: Project[] = [
       { src: '/assets/projects/kissimmee-summer-kitchen/before-tub', alt: 'Master bathroom tub before' },
       { src: '/assets/projects/kissimmee-summer-kitchen/before-shower', alt: 'Master bathroom shower before' },
       { src: '/assets/projects/kissimmee-summer-kitchen/before-lanai', alt: 'Lanai corner before the summer kitchen' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/before-kitchen-stove-wall-wide', alt: 'Kitchen fridge and stove wall before' },
+      { src: '/assets/projects/kissimmee-summer-kitchen/before-kitchen-sink-wide', alt: 'Kitchen sink and peninsula before' },
     ],
     processGroups: [
       {
