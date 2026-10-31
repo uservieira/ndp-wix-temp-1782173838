@@ -45,6 +45,7 @@ const ROWS: Row[] = [
   { label: 'Minor subfloor prep', entry: 'no', standard: 'yes', premium: 'yes' },
   { label: 'Flatness and moisture check, documented', entry: 'no', standard: 'no', premium: 'yes' },
   { label: 'Written walkthroughs and warranty file', entry: 'no', standard: 'no', premium: 'yes' },
+  { label: 'Workmanship warranty', entry: '1 year', standard: '3 years', premium: 'Lifetime limited' },
 ];
 const KEYS = ['entry', 'standard', 'premium'] as const;
 const cell = (v: string) => (v === 'yes' ? 'Included' : v === 'no' ? '<span class="v6-no">Not included</span>' : v);
@@ -61,7 +62,7 @@ export function v6PackagesHtml(): string {
   ).join('');
   const stack = KEYS.map((k) => {
     const items = ROWS.slice(2)
-      .map((r) => `<li class="${r[k] === 'no' ? 'no' : ''}">${r.label}</li>`)
+      .map((r) => `<li class="${r[k] === 'no' ? 'no' : ''}">${r[k] === 'yes' || r[k] === 'no' ? r.label : `${r[k].replace(/^(\d+) years?$/, '$1-year')} ${r.label.toLowerCase()}`}</li>`)
       .join('');
     const pl = `${ROWS[0][k]} plank, ${ROWS[1][k]} wear layer`;
     return `<article class="v6-pk ${k === 'standard' ? 'pop' : ''}">${k === 'standard' ? '<span class="v6-pick">Most homes pick this</span>' : ''}<h3>${tierByKey(k).name}</h3><div class="v6-tp">${priceText(k)}</div><span class="v6-tu">per sq ft, installed</span><p class="v6-pl">${pl}</p><ul>${items}</ul><a class="v6-btn ${k === 'standard' ? '' : 'line'}" href="/form?tier=${k}" data-tier="${k}">Choose ${tierByKey(k).name}</a></article>`;
