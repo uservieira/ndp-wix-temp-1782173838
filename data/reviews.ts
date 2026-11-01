@@ -10,6 +10,13 @@ export type Review = {
 
 export const REVIEWS: Review[] = [
   {
+    author: 'Homeowner, Central Florida',
+    rating: 5,
+    date: '2026-10-31',
+    text: 'They made what seemed like a monumental task feel so easy, from beginning to end. Very professional, honest, and easy to communicate with. What impressed me the most was how he handled any challenges along the way. Instead of just telling us there was a problem, he would say, ‘There’s a problem, and this is what we’re going to do to fix it.’ Brilliant! Because that’s exactly what a homeowner wants to hear, especially when you live on the other side of the country and can’t be there in person.',
+    source: 'Google',
+  },
+  {
     author: 'Cris Karabin',
     rating: 5,
     date: '2026-09-28',
