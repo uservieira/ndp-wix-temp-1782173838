@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 import { faqSectionHtml, reviewStripHtml, siteFooterHtml } from '@/lib/chrome';
-import { lvpTiersHtml, PRICING_LEDE, pricingFineHtml, tileTiersHtml } from '@/lib/pricingHtml';
 import JsonLd from '@/components/JsonLd';
 import { TILE_FAQS } from '@/data/faqs';
 import { breadcrumbSchema, faqPageSchema, serviceSchema } from '@/lib/schema';
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/tile' },
   title: 'Tile Installation in Central Florida — Free In-Home Measure',
   description:
-    'Floor tile, showers, and backsplashes installed across Polk and Osceola counties, quoted after a free in-home measure. Insured crew, written quote in 24 hours.',
+    'Porcelain and ceramic floor tile, showers and backsplashes installed around Orlando, Kissimmee, Davenport and Lakeland. Free in-home measure, written quote in 24 hours. Insured.',
 };
 
 const tileFaqHtml = () => faqSectionHtml('tile-faq', 'Tile questions', 'Tile installation, <em>answered</em>.', TILE_FAQS);
@@ -74,12 +73,12 @@ const PAGE_HTML = `
   <div class="hero-inner">
     <div class="hero-grid">
       <div>
-        <span class="hero-eyebrow">Central Florida · Insured · Tile Specialists</span>
-        <h1>Tile &amp; stone, <em>installed right</em>.</h1>
-        <p class="lede">Floor tile, showers, backsplashes, and large-format — <strong>quoted after a free in-home measure</strong>. Use your own tile or have it sourced for your job.</p>
+        <span class="hero-eyebrow">Central Florida · Insured · Tile</span>
+        <h1>Tile, <em>installed right</em> from the slab up.</h1>
+        <p class="lede">Floor tile, showers, backsplashes and large-format porcelain. Every job is <strong>quoted after a free in-home measure</strong>, with your own tile or tile sourced for your job.</p>
         <div class="hero-cta-row">
           <a class="btn btn-primary" href="#tile-pricing">
-            See tile pricing
+            How tile is quoted
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a class="btn btn-ghost" href="#contact">Get a free measure</a>
@@ -90,8 +89,8 @@ const PAGE_HTML = `
             <span class="label">Tile quoted<br/>in your home</span>
           </div>
           <div class="hero-stat">
-            <span class="num">Next-day<small>start</small></span>
-            <span class="label">Available<br/>on most jobs</span>
+            <span class="num">24<small>hr</small></span>
+            <span class="label">Written quote<br/>after the measure</span>
           </div>
           <div class="hero-stat">
             <span class="num">50<small>%</small></span>
@@ -100,9 +99,9 @@ const PAGE_HTML = `
         </div>
       </div>
       <div class="hero-image-wrap">
-        <img src="/assets/tile-carrara-md.jpg"
+        <img src="/assets/projects/kissimmee-summer-kitchen/h08-checkerboard-lg.webp"
              sizes="(min-width: 900px) 45vw, 100vw"
-             alt="Porcelain floor tile"
+             alt="Black and white checkerboard tile floor installed by New Design Pro"
              fetchpriority="high" />
       </div>
     </div>
@@ -124,33 +123,93 @@ const PAGE_HTML = `
 
 
 <!-- ================================================================
-     LVP PRICING — Trump Card
+     HOW TILE IS QUOTED
      ================================================================ -->
+<style>
+  .tq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+  @media (max-width:980px){.tq-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.tq-grid{grid-template-columns:1fr}}
+  .tq-card{background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:14px;padding:22px;color:#1a1a1a}
+  .tq-card h3{font-size:19px;margin:0 0 6px;color:#111}
+  .tq-card .tq-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#B8431A;margin-bottom:10px}
+  .tq-card p,.tq-card li{font-size:15px;line-height:1.5;color:#333}
+  .tq-card ul{margin:10px 0 0;padding-left:18px}
+  .tq-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:36px}
+  .tq-two h3{font-size:20px;margin:0 0 10px;color:#111}
+  .tq-two li{font-size:15px;line-height:1.55;color:#333;margin-bottom:6px}
+  .tq-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+  .tq-photos figure{margin:0}
+  .tq-photos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;display:block}
+  .tq-photos figcaption{font-size:13px;color:#444;margin-top:6px;line-height:1.4}
+  .tq-cta{margin-top:28px}
+  @media (max-width:640px){.tq-photos{grid-template-columns:1fr 1fr}.tq-photos figure:last-child{display:none}}
+</style>
 <section id="tile-pricing">
   <div class="section-inner">
-    <span class="eyebrow">Flooring pricing · clear and upfront</span>
-    <h2 class="section-title">Pick your floor, <em>see the price</em>.</h2>
-    <p class="section-lede">${PRICING_LEDE}</p>
+    <span class="eyebrow">Tile pricing · quoted, never guessed</span>
+    <h2 class="section-title">How tile is <em>quoted</em>.</h2>
+    <p class="section-lede">Every tile job is quoted after a free in-home measure. We check the slab, walls and layout, then send a written, itemized quote within 24 hours.</p>
 
-    <!-- Flooring type toggle: LVP inline (default), Tile switches to inline preview + links to full /tile page -->
-    <div class="floor-toggle" role="tablist" aria-label="Choose flooring type">
-      <button class="floor-tab" role="tab" aria-selected="false" data-target="tiers-lvp" onclick="window.location.href='/#lvp-pricing'">Luxury Vinyl Plank</button>
-      <button class="floor-tab is-active" role="tab" aria-selected="true" data-target="tiers-tile">Tile</button>
+    <div class="tq-grid">
+      <div class="tq-card">
+        <span class="tq-tag">Floors</span>
+        <h3>Floor tile</h3>
+        <p>Porcelain, ceramic and wood-look plank tile in living areas, kitchens, baths and lanais.</p>
+        <ul><li>Demo and haul-away of old floor</li><li>Slab check, leveling and crack-isolation</li><li>Layout, movement joints, grout and transitions</li></ul>
+      </div>
+      <div class="tq-card">
+        <span class="tq-tag">Wet areas</span>
+        <h3>Showers and tub surrounds</h3>
+        <p>Tub-to-shower conversions, walk-in showers, niches and benches.</p>
+        <ul><li>Tear-out to the studs where needed</li><li>Backer board and waterproofing membrane</li><li>Plumbing coordinated with licensed trade partners</li></ul>
+      </div>
+      <div class="tq-card">
+        <span class="tq-tag">Walls</span>
+        <h3>Backsplashes and accent walls</h3>
+        <p>Kitchen backsplashes, bar areas and feature walls, cut clean around outlets and windows.</p>
+        <ul><li>Wall prep and layout centered on the room</li><li>Edge trim or metal profiles</li><li>Grout and caulk at counters and corners</li></ul>
+      </div>
+      <div class="tq-card">
+        <span class="tq-tag">Your tile</span>
+        <h3>Labor-only installs</h3>
+        <p>Already bought your tile? We install it and give you the exact quantity to buy after measuring.</p>
+        <ul><li>Same prep and setting standards</li><li>We check the tile lot and sizes before setting</li><li>Workmanship covered; tile covered by its maker</li></ul>
+      </div>
     </div>
 
-    ${lvpTiersHtml({ hidden: true, href: () => '/#contact' })}
+    <div class="tq-two">
+      <div>
+        <h3>What changes the price</h3>
+        <ul>
+          <li>What comes out first: carpet, old tile or a full shower tear-out</li>
+          <li>How flat the slab is, and how much leveling it needs</li>
+          <li>Tile size: large-format and long planks need a flatter floor and more care</li>
+          <li>Pattern: straight lay costs less than diagonal or herringbone</li>
+          <li>Shower details: niches, benches, curbless entries and glass</li>
+          <li>Trim, transitions and grout type</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What your written quote spells out</h3>
+        <ul>
+          <li>Rooms and square footage, measured in person</li>
+          <li>Who supplies the tile, and how much to order</li>
+          <li>Prep: demo, leveling, membranes and backer board</li>
+          <li>Grout type, sealing, trims and transitions</li>
+          <li>A day-by-day schedule, including cure time</li>
+          <li>Payment: 50% deposit, balance at completion</li>
+        </ul>
+      </div>
+    </div>
 
-    ${tileTiersHtml({
-      floorHref: '#contact',
-      wallHref: '#contact',
-      laborHref: '#contact',
-      footerLinkHtml: `<a class="tile-cta-link" href="/#lvp-pricing" style="font-size: 15px;">
-          Looking for LVP? See our luxury vinyl plank pricing
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>`,
-    })}
+    <div class="tq-photos">
+      <figure><img src="/assets/projects/kissimmee-summer-kitchen/h05-shower-board-md.webp" alt="Cement backer board installed in a shower before tile" loading="lazy" /><figcaption>Backer board up before any tile.</figcaption></figure>
+      <figure><img src="/assets/projects/kissimmee-summer-kitchen/h09-shower-tile-md.webp" alt="Shower wall tile set with a leveling system" loading="lazy" /><figcaption>Leveling clips keep every edge flush.</figcaption></figure>
+      <figure><img src="/assets/projects/kissimmee-summer-kitchen/h07-tile-floors-md.webp" alt="Finished wood-look plank tile floor" loading="lazy" /><figcaption>Finished wood-look plank tile.</figcaption></figure>
+    </div>
 
-    ${pricingFineHtml()}
+    <div class="tq-cta"><a class="btn btn-primary" href="#contact">Book a free measure
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -165,7 +224,7 @@ const PAGE_HTML = `
         <h2>At New Design Pro, we transform spaces with <span class="hl">quality and commitment.</span></h2>
       </div>
       <div class="mission-body">
-        <p>${CLAIMS.experienceText} We specialize in flooring installation, tile, finish carpentry, painting, and interior finish work for homes across the Disney corridor and Central Florida.</p>
+        <p>${CLAIMS.experienceText} We specialize in flooring installation, tile, finish carpentry, painting, and interior finish work for homes around Lake Buena Vista, Orlando, Kissimmee, Davenport and Lakeland.</p>
         <p>Our skilled team delivers clean, modern spaces with attention to detail — on time, on budget, and without the showroom markup.</p>
       </div>
     </div>
@@ -225,7 +284,7 @@ ${tileFaqHtml()}
       <div class="contact-info">
         <span class="eyebrow">Free measure, no hard sell</span>
         <h2 class="section-title">Ready to <em>book a walkthrough?</em></h2>
-        <p class="section-lede">Text is fastest. We'll come by, measure the space, and send a written quote within the hour. Free — no obligation.</p>
+        <p class="section-lede">Text is fastest. We'll come by, measure the space, and send a written quote within 24 hours. Free — no obligation.</p>
 
         <dl>
           <div>
@@ -238,7 +297,7 @@ ${tileFaqHtml()}
           </div>
           <div>
             <dt>Service area</dt>
-            <dd>Polk &amp; Osceola — Davenport, Kissimmee, Haines City, Winter Haven, Lakeland, Clermont &amp; nearby</dd>
+            <dd>About 30 miles around Lake Buena Vista: Orlando, Kissimmee, Davenport, Clermont, Haines City, Winter Haven, Lakeland &amp; nearby</dd>
           </div>
           <div>
             <dt>Payment methods</dt>

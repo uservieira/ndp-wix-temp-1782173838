@@ -3,20 +3,44 @@ import type { Faq } from '@/data/cities';
 // Visible on /tile and mirrored in its FAQPage JSON-LD.
 export const TILE_FAQS: Faq[] = [
   {
-    q: 'How much does tile installation cost?',
-    a: `Every tile job is quoted after a free in-home measure, because the slab, the layout, and the tile itself change the work. Floors, showers, backsplashes, and patterns like herringbone are all priced that way. You can supply your own tile, or we source it for your specific job. You get a written quote within 24 hours of the measure, and a 50% deposit holds your date.`,
+    q: 'Why don\'t you list a price per square foot for tile?',
+    a: `Because two tile jobs of the same size can be very different work. The slab condition, tile size, layout pattern, demo and waterproofing all change the labor. We measure in your home for free and send a written quote within 24 hours that lists each part of the job, so you can compare it line by line with any other bid.`,
+  },
+  {
+    q: 'Porcelain or ceramic: which should I choose?',
+    a: `For floors, showers and outdoor areas we usually recommend porcelain. It is denser and absorbs very little water (0.5% or less under the ANSI A137.1 standard), so it holds up better to wet areas and heavy traffic. Ceramic is a good, lower-cost choice for walls and backsplashes.`,
+  },
+  {
+    q: 'How do you keep large tiles from having uneven edges?',
+    a: `Uneven edges (lippage) usually come from a slab that isn't flat. Industry standards call for a much flatter floor under tiles with any side 15 inches or longer, so we check the slab with a straightedge and level low spots before setting. We use a tile leveling system, and with long plank-style tile we keep the offset to a third of the tile length or less to avoid edges sticking up.`,
+  },
+  {
+    q: 'What causes tile to crack or pop up, and how do you prevent it?',
+    a: `Most failures come from three things: poor mortar coverage, slab cracks moving under the tile, or no room for the floor to expand. We back-butter large tiles and check coverage as we set, use a crack-isolation membrane over slab cracks, and leave movement joints at walls and in large or sunny rooms, following the TCNA Handbook. In Florida heat, sunny rooms and lanais need extra joints.`,
+  },
+  {
+    q: 'How do you waterproof a shower?',
+    a: `Tile and grout are not waterproof on their own. Before any tile goes up, the shower walls, floor and niches get a waterproofing membrane system installed per the manufacturer's instructions, with sealed corners, seams and pipe openings. Your quote names the system we'll use. Plumbing, electrical or structural work is coordinated with licensed trade partners.`,
+  },
+  {
+    q: 'Which grout should I use, and does it need sealing?',
+    a: `Standard cement grout is affordable but stains and needs sealing. Upgraded grouts (urethane or epoxy) resist stains much better and are worth it in kitchens, showers and light colors. The grout joint width is set by the tile itself; rectified tile allows thinner joints. Your quote states the grout type and whether sealing is included.`,
   },
   {
     q: 'Can you tile over my existing tile?',
-    a: `Usually we don't recommend it. Tiling over tile adds height at doors and transitions and hides problems in the old installation. In most cases the old tile comes up, the slab is cleaned and flattened, and the new tile goes down on a sound base.`,
+    a: `Usually we don't recommend it. It raises the floor at doors and transitions and can hide loose or cracked tile underneath. In most cases the old tile comes up, the slab is cleaned and flattened, and the new tile goes down on a sound base. If the old tile is fully bonded and the height works, we'll tell you at the measure.`,
   },
   {
-    q: 'Do you waterproof showers before tiling?',
-    a: `Yes. Shower walls and floors get a waterproofing membrane before tile goes up, because tile and grout aren't waterproof on their own. Plumbing, electrical, or structural work is coordinated with licensed trade partners.`,
+    q: 'How much extra tile should I buy?',
+    a: `It depends on the layout: about 10% extra for a straight lay, and more for diagonal, herringbone or large-format tile with more cuts. Buy it all at once from the same lot so color and size match, and keep a box after the job for future repairs. If you're supplying the tile, we'll give you the exact quantity after measuring.`,
   },
   {
-    q: 'Is large-format tile a good choice on a Florida slab?',
-    a: `It can be, if the slab is flat. Large tiles show any dip as lippage at the edges, so the floor is checked and leveled first, and we use the right trowel and mortar for full coverage under every tile.`,
+    q: 'How long does a tile job take, and when can we use it?',
+    a: `Tile takes longer than LVP because mortar, membranes and grout each need to cure. Most floors need a day or two before normal foot traffic after grouting, and a shower needs its full cure time before the first use, which can be several days. Your quote includes a day-by-day schedule so you know when each room is back in use.`,
+  },
+  {
+    q: 'What happens where tile meets carpet, wood or a door?',
+    a: `We plan transitions at the measure. Tile with mortar sits higher than most floors, so we choose the right transition strip or metal profile, and check that doors swing clear. Doors that rub may need to be trimmed, and we note that in the quote.`,
   },
   {
     q: 'Vocês falam português? (Do you speak Portuguese?)',
