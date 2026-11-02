@@ -500,7 +500,7 @@ export const CITIES: City[] = [
     heroImage: '/assets/bathroom-new-lg.webp',
     zips: ['33837', '33896', '33897'],
     poBoxZips: ['33836'],
-    zipNote: `We take remodeling work across Davenport's 33837, 33896, and 33897 ZIP codes (33836 is the PO box ZIP), and nearby in Polk and Osceola counties.`,
+    zipNote: `We take remodeling work across Davenport's 33837, 33896, and 33897 ZIP codes (33836 is the PO box ZIP), and nearby towns.`,
     intro: [
       `Most of the remodels we do in Davenport are finish-work remodels: the floors, the tile, the trim, and the paint that make a house feel new without moving walls. That's the work my crew does with our own hands, and it's where most of the visual change in a room comes from.`,
       `Here's what that covers, how it's priced, and how we handle the parts of a remodel that need other trades.`,

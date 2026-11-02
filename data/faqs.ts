@@ -58,7 +58,7 @@ export const HOME_FAQS: Faq[] = [
   },
   {
     q: 'What areas does New Design Pro serve?',
-    a: `We're based in Davenport, FL and install floors across Polk and Osceola counties: Davenport, Kissimmee, Haines City, Winter Haven, Lakeland, Clermont, ChampionsGate, Celebration and Poinciana.`,
+    a: `We're based in Davenport, FL and install floors about 30 miles around Lake Buena Vista: Orlando, Kissimmee, Davenport, Clermont, Haines City, Winter Haven, Lakeland, ChampionsGate, Celebration and Poinciana. For the right job we'll go farther past Davenport or north of Orlando.`,
   },
   {
     q: 'How long does an LVP installation take?',
