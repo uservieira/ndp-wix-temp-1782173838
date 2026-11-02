@@ -10,13 +10,13 @@ export default function CallbackForm({ reference }: Props) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [time, setTime] = useState<'now' | 'today-pm' | 'tomorrow-am' | 'tomorrow-pm' | ''>('');
-  const [smsConsent, setSmsConsent] = useState(true);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const cbPhoneErr = phone.replace(/\D/g, '').length >= 10 ? phoneError(phone) : null;
-  const canSubmit = name.trim().length >= 2 && phone.replace(/\D/g, '').length >= 10 && !cbPhoneErr && time && smsConsent;
+  const canSubmit = name.trim().length >= 2 && phone.replace(/\D/g, '').length >= 10 && !cbPhoneErr && time;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -122,7 +122,7 @@ export default function CallbackForm({ reference }: Props) {
             onChange={(e) => setSmsConsent(e.target.checked)}
           />
           <span>
-            I agree to receive texts and calls from New Design Pro about my quote and appointment. Msg &amp; data rates may apply. Reply STOP to opt out. See <a href="/privacy" target="_blank">Privacy</a> &amp; <a href="/terms" target="_blank">Terms</a>.
+            (Optional) I agree to receive text messages from New Design Pro about my quote and appointment. Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See <a href="/privacy" target="_blank">Privacy</a> &amp; <a href="/terms" target="_blank">Terms</a>.
           </span>
         </label>
       </div>

@@ -754,7 +754,7 @@ export default function QuoteForm() {
                   onChange={(e) => setForm({ ...form, smsConsent: e.target.checked })}
                 />
                 <span>
-                  I agree to receive text messages from New Design Pro about my quote. Msg &amp; data rates may apply. ~1–4 msgs per active quote. Reply STOP to opt out. See <a href="/privacy" target="_blank">Privacy</a> &amp; <a href="/terms" target="_blank">Terms</a>.
+                  I agree to receive text messages from New Design Pro about my quote. Msg &amp; data rates may apply. ~1–4 msgs per active quote. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See <a href="/privacy" target="_blank">Privacy</a> &amp; <a href="/terms" target="_blank">Terms</a>.
                 </span>
               </label>
             </div>
