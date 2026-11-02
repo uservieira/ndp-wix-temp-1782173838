@@ -11,7 +11,7 @@ const PATH = '/in-home-showroom';
 export const metadata: Metadata = {
   alternates: { canonical: PATH },
   title: 'In-Home Flooring Showroom: See Full Floors in Your Light',
-  description: 'See up to 3 Duralast LVP colors built out as full boxes on top of your current floor, in your own lighting. $99, credited in full toward your project. Polk and Osceola counties.',
+  description: 'See up to 3 Duralast LVP colors built out as full boxes on top of your current floor, in your own lighting. $99, credited in full toward your project. Orlando, Kissimmee, Davenport, Lakeland and nearby.',
 };
 
 const body = `

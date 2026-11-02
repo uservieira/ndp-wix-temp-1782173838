@@ -19,7 +19,7 @@ export const BUSINESS = {
   region: 'FL',
   postalCode: '33837',
   country: 'US',
-  baseLine: 'Based in Davenport, FL — serving Polk & Osceola',
+  baseLine: 'Based in Davenport, FL — serving Orlando to Lakeland',
   gbpUrl: 'https://maps.google.com/maps?cid=4112163857791290688',
   social: [
     'https://www.facebook.com/newdesign.pro',
@@ -38,6 +38,8 @@ export const HOURS = [
 ] as const;
 
 export const SERVICE_AREA = [
+  'Orlando',
+  'Lake Buena Vista',
   'Davenport',
   'Kissimmee',
   'Haines City',

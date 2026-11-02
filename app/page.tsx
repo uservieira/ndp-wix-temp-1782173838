@@ -11,7 +11,7 @@ import { v6AreasHtml, v6ColorsHtml, v6FaqHtml, v6FinalHtml, v6HeroHtml, v6Packag
 
 export const metadata: Metadata = {
   description:
-    'LVP supplied & installed from $4.99/sqft in Davenport, Kissimmee and nearby Polk & Osceola towns. Tile quoted after a free measure. Written quote in 24 hours.',
+    'LVP supplied & installed from $4.99/sqft in Orlando, Kissimmee, Davenport, Lakeland and nearby. Tile quoted after a free measure. Written quote in 24 hours.',
   title: { absolute: 'LVP Flooring Installation, Davenport & Kissimmee FL | New Design Pro' },
   alternates: { canonical: '/' },
 };
@@ -220,7 +220,7 @@ ${v6FinalHtml()}
           </div>
           <div>
             <dt>Service area</dt>
-            <dd>Polk &amp; Osceola — Davenport, Kissimmee, Haines City, Winter Haven, Lakeland, Clermont &amp; nearby</dd>
+            <dd>About 30 miles around Lake Buena Vista: Orlando, Kissimmee, Davenport, Clermont, Haines City, Winter Haven, Lakeland &amp; nearby</dd>
           </div>
           <div>
             <dt>Payment methods</dt>

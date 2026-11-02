@@ -66,6 +66,7 @@ export default function PromoPopup() {
       try { localStorage.setItem(KEY, 'claimed'); } catch {}
       try {
         (window as any).dataLayer?.push({ event: 'promo_popup_signup', promo: 'LVP10' });
+        (function () { (window as any).dataLayer?.push(arguments); } as (...a: unknown[]) => void)('event', 'conversion', { send_to: 'AW-18264120794/NGHXCMzJ17AdENq7gYVE', value: 50, currency: 'USD' });
         (window as any).fbq?.('track', 'Lead', { content_name: 'promo_popup_LVP10' });
       } catch {}
     } catch { setState('error'); }

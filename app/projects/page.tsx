@@ -10,7 +10,7 @@ import { BUSINESS_ID, breadcrumbSchema } from '@/lib/schema';
 export const metadata: Metadata = {
   title: 'Recent Flooring Projects in Central Florida',
   description:
-    'Real LVP and tile projects completed by New Design Pro across Polk and Osceola counties, with the city, scope, square footage, and days on site for each job.',
+    'Real LVP and tile projects completed by New Design Pro across Central Florida, with the city, scope, square footage, and days on site for each job.',
   alternates: { canonical: '/projects' },
   // Keep out of the index until real projects are published (honest empty state).
   robots: PROJECTS.length ? { index: true, follow: true } : { index: false, follow: true },

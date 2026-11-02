@@ -18,7 +18,7 @@ const PAGE_HTML = articlePageHtml({
   image: '/blog-img/lvp-kissimmee-hero.webp',
   back: true,
   body: `<p>Ask anyone who's redone their floors and you'll hear a story. The contractor who vanished after the deposit. The "small" leveling fee that wasn't small. The floor that started gapping by summer. Most homeowners are less worried about price than about hiring the wrong person.</p>
-<p>Here are the 8 fears I hear most from homeowners in Davenport, Kissimmee, Haines City and around Polk and Osceola, and how to check for each one before you hire.</p>
+<p>Here are the 8 fears I hear most from homeowners in Orlando, Kissimmee, Davenport, Lakeland and the towns in between, and how to check for each one before you hire.</p>
 
 <h2>1. "He'll disappear."</h2>
 <p><strong>Check:</strong> How long have they been in business? Do they have a real website, a Google Business Profile and reviews from real neighbors? Same name and phone number everywhere?</p>

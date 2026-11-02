@@ -22,7 +22,7 @@ export function GET() {
 
   const body = `# ${BUSINESS.name}
 
-> ${BUSINESS.name} (${BUSINESS.legalName}) is a family-run LVP flooring installer based in ${BUSINESS.locality}, FL, serving Polk and Osceola counties in Central Florida. Luxury vinyl plank supplied and installed from $${PRICING.lvpFrom.toFixed(2)}/sq ft with ${SUPPLIER.name} (also sold as ${SUPPLIER.altName}) flooring, plus tile installation and interior remodeling.
+> ${BUSINESS.name} (${BUSINESS.legalName}) is a family-run LVP flooring installer based in ${BUSINESS.locality}, FL, serving about a 30-mile radius around Lake Buena Vista in Central Florida, including Orlando, Kissimmee, Davenport, Clermont, Haines City, Winter Haven and Lakeland. Luxury vinyl plank supplied and installed from $${PRICING.lvpFrom.toFixed(2)}/sq ft with ${SUPPLIER.name} (also sold as ${SUPPLIER.altName}) flooring, plus tile installation and interior remodeling.
 
 ## Key facts
 - Phone and text: ${BUSINESS_PHONE.display}

@@ -15,7 +15,7 @@ export function serviceAreasHtml(variant: 'section' | 'footer' = 'section'): str
   <div class="section-inner">
     <span class="eyebrow">Service areas</span>
     <h2 class="section-title" id="service-areas-title">Local LVP and tile crews, <em>close to home</em>.</h2>
-    <p class="sa-lead">We're based in Davenport and work across Polk and Osceola counties. Pick your city for local pricing, ZIP codes, and the questions homeowners there ask us most. Need tile? See <a href="/tile">tile installation</a>, or read our <a href="/reviews">Google reviews</a>.</p>
+    <p class="sa-lead">We're based in Davenport and work about 30 miles around Lake Buena Vista, including Orlando, Kissimmee, Clermont, Haines City, Winter Haven and Lakeland. Pick your city for local pricing, ZIP codes, and the questions homeowners there ask us most. Need tile? See <a href="/tile">tile installation</a>, or read our <a href="/reviews">Google reviews</a>.</p>
     <ul class="sa-grid">${CITY_LINKS.map((c) => `<li><a class="sa-link" href="${c.path}"><span class="sa-name">${c.anchor}</span><span class="sa-county">${c.name}, FL · ${c.county}</span></a></li>`).join('')}</ul>
   </div>
 </section>`;
