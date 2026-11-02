@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendOwnerAlert } from '@/lib/leadAlert';
 import { emailSignature, textSignature } from '@/lib/emailSignature';
-import { leadSourceFrom, type Attribution } from '@/lib/leadSource';
+import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSource';
 
 export const runtime = 'nodejs';
 
@@ -17,7 +17,7 @@ async function upsertHubSpot(email: string, source: string, attribution?: Attrib
   const apiKey = process.env.HUBSPOT_ACCESS_TOKEN;
   if (!apiKey) return { ok: false, error: 'hubspot_not_configured' };
   const headers = { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' };
-  const properties = { email, lifecyclestage: 'lead', hs_lead_status: 'NEW', ndp_lead_source: leadSourceFrom(attribution), message: `Requested ${PROMO_CODE} (10% off) via website pop-up on ${source}` };
+  const properties = { email, lifecyclestage: 'lead', hs_lead_status: 'NEW', ndp_lead_source: leadSourceFrom(attribution), ...googleClickProps(attribution), message: `Requested ${PROMO_CODE} (10% off) via website pop-up on ${source}` };
   const res = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', { method: 'POST', headers, body: JSON.stringify({ properties }) });
   if (res.ok) return { ok: true };
   if (res.status === 409) {

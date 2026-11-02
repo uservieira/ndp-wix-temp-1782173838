@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { leadSourceFrom, type Attribution } from '@/lib/leadSource';
+import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSource';
 import { sendOwnerAlert } from '@/lib/leadAlert';
 
 export const runtime = 'nodejs';
@@ -33,7 +33,7 @@ async function hubspot(b: Body, source: string) {
     } else {
       const c = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
         method: 'POST', headers: H,
-        body: JSON.stringify({ properties: { firstname, lastname: rest.join(' '), phone, zip: b.zip || '', lifecyclestage: 'lead', hs_lead_status: 'NEW', ndp_lead_source: source, message } }),
+        body: JSON.stringify({ properties: { firstname, lastname: rest.join(' '), phone, zip: b.zip || '', lifecyclestage: 'lead', hs_lead_status: 'NEW', ndp_lead_source: source, ...googleClickProps(b.attribution), message } }),
       });
       if (!c.ok) return { ok: false, error: `hubspot_contact_${c.status}:${(await c.text()).slice(0, 160)}` };
       contactId = (await c.json()).id;
@@ -41,7 +41,7 @@ async function hubspot(b: Body, source: string) {
     const d = await fetch('https://api.hubapi.com/crm/v3/objects/deals', {
       method: 'POST', headers: H,
       body: JSON.stringify({
-        properties: { dealname: `${(b.name || 'Website lead').trim()} — ${b.scope || 'Flooring'} (website)`, pipeline: 'default', dealstage: 'appointmentscheduled', ndp_lead_source: source },
+        properties: { dealname: `${(b.name || 'Website lead').trim()} — ${b.scope || 'Flooring'} (website)`, pipeline: 'default', dealstage: 'appointmentscheduled', ndp_lead_source: source, ...googleClickProps(b.attribution) },
         associations: [{ to: { id: contactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 3 }] }],
       }),
     });
