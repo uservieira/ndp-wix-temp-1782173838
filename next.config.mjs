@@ -7,7 +7,6 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      { source: '/lvp', destination: '/', permanent: true },
       { source: '/services', destination: '/', permanent: true },
       { source: '/services/:path*', destination: '/', permanent: true },
       { source: '/quote', destination: '/', permanent: true },

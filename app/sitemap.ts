@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages: Entry[] = [
     { path: '/', priority: 1.0, changeFrequency: 'weekly' },
     { path: '/about', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/lvp', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/tile', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/reviews', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/refer', priority: 0.5, changeFrequency: 'monthly' },
