@@ -99,9 +99,9 @@ const PAGE_HTML = `
         </div>
       </div>
       <div class="hero-image-wrap">
-        <img src="/assets/projects/kissimmee-summer-kitchen/h08-checkerboard-lg.webp"
+        <img src="/assets/tile-carrara-md.jpg"
              sizes="(min-width: 900px) 45vw, 100vw"
-             alt="Black and white checkerboard tile floor installed by New Design Pro"
+             alt="Porcelain floor tile"
              fetchpriority="high" />
       </div>
     </div>
@@ -137,12 +137,12 @@ const PAGE_HTML = `
   .tq-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:36px}
   .tq-two h3{font-size:20px;margin:0 0 10px;color:#111}
   .tq-two li{font-size:15px;line-height:1.55;color:#333;margin-bottom:6px}
-  .tq-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+  .tq-photos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:36px;max-width:720px}
   .tq-photos figure{margin:0}
   .tq-photos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;display:block}
   .tq-photos figcaption{font-size:13px;color:#444;margin-top:6px;line-height:1.4}
   .tq-cta{margin-top:28px}
-  @media (max-width:640px){.tq-photos{grid-template-columns:1fr 1fr}.tq-photos figure:last-child{display:none}}
+  
 </style>
 <section id="tile-pricing">
   <div class="section-inner">
@@ -205,7 +205,6 @@ const PAGE_HTML = `
     <div class="tq-photos">
       <figure><img src="/assets/projects/kissimmee-summer-kitchen/h05-shower-board-md.webp" alt="Cement backer board installed in a shower before tile" loading="lazy" /><figcaption>Backer board up before any tile.</figcaption></figure>
       <figure><img src="/assets/projects/kissimmee-summer-kitchen/h09-shower-tile-md.webp" alt="Shower wall tile set with a leveling system" loading="lazy" /><figcaption>Leveling clips keep every edge flush.</figcaption></figure>
-      <figure><img src="/assets/projects/kissimmee-summer-kitchen/h07-tile-floors-md.webp" alt="Finished wood-look plank tile floor" loading="lazy" /><figcaption>Finished wood-look plank tile.</figcaption></figure>
     </div>
 
     <div class="tq-cta"><a class="btn btn-primary" href="#contact">Book a free measure
