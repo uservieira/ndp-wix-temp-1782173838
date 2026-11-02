@@ -1,4 +1,4 @@
-import { leadSourceFrom, type Attribution } from '@/lib/leadSource';
+import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSource';
 import { NextRequest, NextResponse } from 'next/server';
 import { sendOwnerAlert } from '@/lib/leadAlert';
 import crypto from 'crypto';
@@ -188,6 +188,7 @@ async function createHubSpotContact(body: QuoteBody, reference: string): Promise
           lifecyclestage: 'lead',
           hs_lead_status: 'NEW',
           ndp_lead_source: leadSource,
+          ...googleClickProps(body.attribution),
           message: [
             `Website quote ${reference}`,
             `Scope: ${body.scope}`,
@@ -225,6 +226,7 @@ async function createHubSpotContact(body: QuoteBody, reference: string): Promise
                 phone: body.phone || '',
                 zip: body.zip,
                 hs_lead_status: 'NEW',
+                ...googleClickProps(body.attribution),
                 message: `Website quote ${reference} · ${body.scope} · ${body.sqftExact || body.sqftRange || 'n/a'} sq ft${q?.eligible ? ' · LVP10' : ''}${body.notes ? ' · ' + body.notes : ''}`,
               },
             }),
@@ -249,6 +251,7 @@ async function createHubSpotContact(body: QuoteBody, reference: string): Promise
             pipeline: 'default',
             dealstage: 'appointmentscheduled', // "New Lead" stage
             ndp_lead_source: leadSource,
+            ...googleClickProps(body.attribution),
             amount: String(Math.round(dealAmount)),
             closedate: new Date(Date.now() + 30 * 86400000).toISOString(),
           },
