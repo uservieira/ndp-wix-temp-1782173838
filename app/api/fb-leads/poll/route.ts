@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sendSms, ownerPhone, leadAutoText } from '@/lib/sms';
 import { emailSignature, textSignature } from '@/lib/emailSignature';
 import { BUSINESS_PHONE } from '@/lib/site';
 
@@ -184,7 +185,6 @@ async function alertLead(lead: Lead) {
   const when = etTime(lead.created_time);
   const from = process.env.RESEND_FROM || 'New Design Pro Leads <contact@newdesignpro.com>';
   const to = (process.env.LEAD_ALERT_EMAIL || 'newdesignproo@gmail.com').split(',').map((s) => s.trim());
-  const sms = (process.env.LEAD_ALERT_SMS_EMAIL || '5618093864@vtext.com').split(',').map((s) => s.trim()).filter(Boolean);
 
   const rows = Object.entries(f)
     .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#6B6357;">${esc(LABELS[k] || k)}</td><td style="padding:6px 0;font-weight:600;">${esc(v)}</td></tr>`)
@@ -206,11 +206,13 @@ async function alertLead(lead: Lead) {
     text,
   });
 
-  // Short text for the phone (Verizon email-to-text, keep under 160 chars)
-  const smsBody = [`FB LEAD: ${name}`, phone, f.sqft, f.timeline].filter(Boolean).join(' | ').slice(0, 155);
-  const text1 = sms.length
-    ? await resend('fblead-sms', lead.id, { from, to: sms, subject: 'NDP lead', text: smsBody })
-    : { ok: true };
+  // Short text to Daniel's phone (Twilio). Lead ID marker prevents repeat texts when the poller sees the lead again.
+  const ref = lead.id.slice(-6);
+  const smsBody = [`NDP FB LEAD: ${name}`, phone, f.sqft, f.timeline].filter(Boolean).join(' | ').slice(0, 140) + ` #${ref}`;
+  const smsRes = await sendSms(ownerPhone(), smsBody, `#${ref}`);
+  const text1 = smsRes === 'ok' || smsRes === 'duplicate_skipped' ? { ok: true } : { ok: false, error: smsRes };
+  const consent = Object.entries(f).some(([k, v]) => /sms|text|consent/i.test(k) && /^(yes|true|1|on|i agree|agree|checked)/i.test(String(v)));
+  const autoText = await leadAutoText(f.full_name, phone, consent);
 
   // HubSpot contact (best effort; duplicates return 409 and are ignored)
   let hub = 'skipped';
@@ -257,7 +259,7 @@ async function alertLead(lead: Lead) {
     }
   }
   const welcome = await welcomeLead(lead, f);
-  return { welcome, email: email.ok ? email.id || 'ok' : email.error, sms: text1.ok ? ('id' in text1 && text1.id) || 'ok' : (text1 as { error?: string }).error, hub };
+  return { welcome, autoText, email: email.ok ? email.id || 'ok' : email.error, sms: text1.ok ? ('id' in text1 && text1.id) || 'ok' : (text1 as { error?: string }).error, hub };
 }
 
 export async function GET(req: NextRequest) {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSource';
 import { sendOwnerAlert } from '@/lib/leadAlert';
+import { leadAutoText } from '@/lib/sms';
 
 export const runtime = 'nodejs';
 
@@ -58,11 +59,12 @@ export async function POST(req: NextRequest) {
   if (!b.name || !b.phone) return NextResponse.json({ ok: false, error: 'missing_required_fields' }, { status: 400 });
   const source = leadSourceFrom(b.attribution);
   const idem = `home-${(b.phone || '').replace(/\D/g, '')}-${new Date().toISOString().slice(0, 16)}`;
-  const [hs, alert] = await Promise.allSettled([
+  const [hs, alert, auto] = await Promise.allSettled([
     hubspot(b, source),
+    leadAutoText(b.name, b.phone, !!b.smsConsent),
     sendOwnerAlert({ kind: 'Website quote', name: b.name, phone: b.phone, source, details: { Scope: b.scope, 'Sq ft': b.sqft, ZIP: b.zip, Notes: b.notes, Page: b.page }, idem }),
   ]);
-  const results = { hubspot: hs.status === 'fulfilled' ? hs.value : { ok: false }, alert: alert.status === 'fulfilled' ? alert.value : { email: 'rejected', sms: 'rejected' } };
+  const results = { hubspot: hs.status === 'fulfilled' ? hs.value : { ok: false }, alert: alert.status === 'fulfilled' ? alert.value : { email: 'rejected', sms: 'rejected' }, autoText: auto.status === 'fulfilled' ? auto.value : 'rejected' };
   console.log(JSON.stringify({ event: 'home_lead_submit', name: b.name, source, results }));
   return NextResponse.json({ ok: true, results });
 }

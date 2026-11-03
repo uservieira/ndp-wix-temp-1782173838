@@ -1,4 +1,5 @@
-// Owner lead alerts: email + text (Verizon email-to-text) for every website lead.
+// Owner lead alerts: email (Resend) + text (Twilio) for every website lead.
+import { sendSms, ownerPhone } from './sms';
 // Same channels as the Facebook lead poller. Best effort: never throws.
 type Alert = {
   kind: string; // e.g. "Website quote", "Homepage quote", "Callback request", "LVP10 pop-up"
@@ -29,7 +30,6 @@ export async function sendOwnerAlert(a: Alert): Promise<{ email: string; sms: st
   try {
     const from = process.env.RESEND_FROM || 'New Design Pro Leads <contact@newdesignpro.com>';
     const to = (process.env.LEAD_ALERT_EMAIL || 'newdesignproo@gmail.com').split(',').map((s) => s.trim()).filter(Boolean);
-    const sms = (process.env.LEAD_ALERT_SMS_EMAIL || '5618093864@vtext.com').split(',').map((s) => s.trim()).filter(Boolean);
     const name = (a.name || 'Website lead').trim();
     const digits = (a.phone || '').replace(/\D/g, '');
     const when = new Date().toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
@@ -45,8 +45,9 @@ export async function sendOwnerAlert(a: Alert): Promise<{ email: string; sms: st
 </div>`;
     const text = [`New ${a.kind} (${when})`, `Name: ${name}`, ...Object.entries({ Phone: a.phone, Email: a.email, Source: a.source, ...(a.details || {}) }).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`)].join('\n');
     const email = await send(key, { from, to, subject: `New ${a.kind}: ${name}${a.phone ? ' · ' + a.phone : ''}`, html, text }, `alert-email-${a.idem}`);
-    const smsBody = [`${a.kind.toUpperCase()}: ${name}`, a.phone || a.email, a.details?.['Sq ft'], a.details?.Scope].filter(Boolean).join(' | ').slice(0, 155);
-    const smsRes = sms.length ? await send(key, { from, to: sms, subject: 'NDP lead', text: smsBody }, `alert-sms-${a.idem}`) : 'skipped';
+    const ref = a.idem.replace(/[^a-z0-9]/gi, '').slice(-6);
+    const smsBody = [`NDP ${a.kind.toUpperCase()}: ${name}`, a.phone || a.email, a.details?.['Sq ft'], a.details?.Scope].filter(Boolean).join(' | ').slice(0, 140) + ` #${ref}`;
+    const smsRes = await sendSms(ownerPhone(), smsBody, `#${ref}`);
     return { email, sms: smsRes };
   } catch (e) {
     return { email: e instanceof Error ? e.message : 'alert_error', sms: 'alert_error' };

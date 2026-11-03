@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendOwnerAlert } from '@/lib/leadAlert';
+import { leadAutoText } from '@/lib/sms';
 
 export const runtime = 'nodejs';
 
@@ -76,7 +77,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: 'missing_required_fields' }, { status: 400 });
   }
 
-  const [h, s] = await Promise.allSettled([
+  const [h, s, , auto] = await Promise.allSettled([
     updateHubSpotContact(body),
     appendCallbackSheet(body),
     sendOwnerAlert({
@@ -86,6 +87,7 @@ export async function POST(req: NextRequest) {
       details: { 'Best time': body.time, Ref: body.reference },
       idem: `callback-${body.reference || body.phone.replace(/\D/g, '')}-${body.time}`,
     }),
+    leadAutoText(body.name, body.phone, !!body.smsConsent),
   ]);
 
   console.log(JSON.stringify({
@@ -96,6 +98,7 @@ export async function POST(req: NextRequest) {
     time: body.time,
     hubspot: h.status === 'fulfilled' ? h.value : { ok: false },
     sheet: s.status === 'fulfilled' ? s.value : { ok: false },
+    autoText: auto.status === 'fulfilled' ? auto.value : 'rejected',
   }));
 
   return NextResponse.json({ ok: true });

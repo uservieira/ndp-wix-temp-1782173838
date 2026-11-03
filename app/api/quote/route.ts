@@ -1,6 +1,7 @@
 import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSource';
 import { NextRequest, NextResponse } from 'next/server';
 import { sendOwnerAlert } from '@/lib/leadAlert';
+import { leadAutoText } from '@/lib/sms';
 import crypto from 'crypto';
 import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 import { emailSignature, textSignature } from '@/lib/emailSignature';
@@ -404,7 +405,7 @@ export async function POST(req: NextRequest) {
 
   // Fire everything in parallel
   const q0 = body.calculatedQuote;
-  const [emailResult, hubspotResult, sheetResult, metaResult, alertResult] = await Promise.allSettled([
+  const [emailResult, hubspotResult, sheetResult, metaResult, alertResult, autoTextResult] = await Promise.allSettled([
     sendResendEmail(body, reference),
     createHubSpotContact(body, reference),
     appendToGoogleSheet(body, reference),
@@ -426,6 +427,7 @@ export async function POST(req: NextRequest) {
       },
       idem: `quote-${reference}`,
     }),
+    leadAutoText(body.name, body.phone, !!body.smsConsent),
   ]);
 
   // Log all outcomes but don't fail the request unless the primary email failed AND we couldn't record anywhere
@@ -435,6 +437,7 @@ export async function POST(req: NextRequest) {
     sheet: sheetResult.status === 'fulfilled' ? sheetResult.value : { ok: false, error: 'promise_rejected' },
     meta: metaResult.status === 'fulfilled' ? metaResult.value : { ok: false, error: 'promise_rejected' },
     alert: alertResult.status === 'fulfilled' ? alertResult.value : { email: 'rejected', sms: 'rejected' },
+    autoText: autoTextResult.status === 'fulfilled' ? autoTextResult.value : 'rejected',
   };
 
   // Log to console for Vercel logs (Daniel can review)
