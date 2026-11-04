@@ -131,7 +131,6 @@ export function siteFooterHtml(): string {
     <div class="footer-col">
       <div class="footer-brand-name">${BUSINESS.name}</div>
       <p>LVP &middot; Tile &middot; Remodeling. ${BUSINESS.baseLine}.</p>
-      <span class="footer-lang-chip" lang="pt">Falamos Português</span>
       <div class="footer-bbb">${bbbSealHtml('dark')}</div>
     </div>
 

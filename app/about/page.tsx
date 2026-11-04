@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/about' },
   title: 'About Daniel Vieira & the Family-Run Crew',
   description:
-    'Meet Daniel Vieira and the family-run New Design Pro crew in Davenport, FL. LVP and tile installed with honest pricing, insured work, and Portuguese spoken.',
+    'Meet Daniel Vieira and the family-run New Design Pro crew in Davenport, FL. LVP and tile installed with honest pricing, and insured work.',
 };
 
 const PAGE_HTML = `
@@ -68,7 +68,7 @@ const PAGE_HTML = `
         <span class="eyebrow">Our story</span>
         <h2 class="section-title" style="margin-bottom:22px;">${CLAIMS.experienceShort}.</h2>
         <p>New Design Pro installs flooring and handles interior finish work for homeowners across Central Florida: ${CLAIMS.experienceText} We're based in Davenport, FL, right in the Disney corridor, and we work throughout Kissimmee, Haines City, Winter Haven, Lakeland, Clermont, ChampionsGate, Celebration, and Poinciana.</p>
-        <p>The company is owned and operated by Daniel Vieira. When you call, you're talking to the person who's going to be responsible for your job — not a call center. Our team is bilingual, so we're just as comfortable working with you in English or Portuguese.</p>
+        <p>The company is owned and operated by Daniel Vieira. When you call, you're talking to the person who's going to be responsible for your job — not a call center.</p>
         <p>We stay focused on what we're genuinely good at: luxury vinyl plank, tile, hardwood, finish carpentry, painting, and cosmetic bathroom and kitchen refreshes. Plumbing, electrical, or structural work is coordinated with licensed trade partners. Clean, modern spaces, without the showroom markup.</p>
         <div class="areas">
           <span>Davenport</span><span>Kissimmee</span><span>Haines City</span><span>Winter Haven</span>
@@ -115,8 +115,8 @@ const PAGE_HTML = `
       </div>
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-        <h3>Bilingual team</h3>
-        <p>English and Portuguese. Falamos Português — you'll always be understood.</p>
+        <h3>Owner on every job</h3>
+        <p>You talk to Daniel, not a call center. He's the one responsible for your job.</p>
       </div>
     </div>
   </div>

@@ -42,11 +42,6 @@ export const TILE_FAQS: Faq[] = [
     q: 'What happens where tile meets carpet, wood or a door?',
     a: `We plan transitions at the measure. Tile with mortar sits higher than most floors, so we choose the right transition strip or metal profile, and check that doors swing clear. Doors that rub may need to be trimmed, and we note that in the quote.`,
   },
-  {
-    q: 'Vocês falam português? (Do you speak Portuguese?)',
-    a: `Sim, falamos português. Yes, we speak Portuguese, so you can talk through tile choices and the quote in either language.`,
-    lang: 'pt',
-  },
 ];
 
 // Homepage Q&A: written as direct answers that AI assistants and Google can quote.
@@ -83,10 +78,5 @@ export const HOME_FAQS: Faq[] = [
   {
     q: 'How do I get a quote?',
     a: `Call or text (561) 809-3864, or get a price range online at newdesignpro.com/form. We do a free in-home measure, send a written quote within 24 hours, and a 50% deposit books your install date.`,
-  },
-  {
-    q: 'Vocês falam português? (Do you speak Portuguese?)',
-    a: `Sim, falamos português. Yes, we speak Portuguese, so you can go over colors and the quote in either language.`,
-    lang: 'pt',
   },
 ];

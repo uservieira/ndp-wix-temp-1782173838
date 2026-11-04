@@ -30,7 +30,6 @@ export function GET() {
 - Website: ${SITE_URL}
 - Google Business Profile: ${BUSINESS.gbpUrl}
 - Hours: ${hours}
-- Languages: English and Portuguese
 - Experience: ${CLAIMS.experienceText}
 - Insurance: Insured. ${CLAIMS.insuranceNote}
 - Licensed-trade work (electrical, plumbing and similar) is coordinated with licensed trade partners.

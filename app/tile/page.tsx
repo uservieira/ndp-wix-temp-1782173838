@@ -116,7 +116,6 @@ const PAGE_HTML = `
     <span class="trust-bar-item">${CLAIMS.experienceShort}</span>
     <span class="trust-bar-item">Free In-Home Measure</span>
     <span class="trust-bar-item">Flexible Payment Plans</span>
-    <span class="trust-bar-item pt">Falamos Português</span>
     <span class="trust-bar-item">Fully Insured</span>
   </div>
 </div>

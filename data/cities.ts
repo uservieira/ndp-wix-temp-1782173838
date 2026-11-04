@@ -103,11 +103,6 @@ export const CITIES: City[] = [
         q: 'How soon can you start?',
         a: `You get a written quote within 24 hours of the measure. The start date depends on the calendar and material availability, and the quote lists the real date rather than a promise we can't keep.`,
       },
-      {
-        q: 'Vocês atendem em português? (Do you speak Portuguese?)',
-        a: `Sim. Falamos português, então você pode tirar dúvidas sobre o orçamento e o cronograma no seu idioma. Yes, we speak Portuguese, so the quote and the schedule can be talked through in Portuguese.`,
-        lang: 'pt',
-      },
     ],
     neighbors: ['haines-city', 'kissimmee'],
     blogSlug: 'lvp-installation-timeline-2-bedroom-job',
@@ -183,11 +178,6 @@ export const CITIES: City[] = [
       {
         q: 'Do I need to move my furniture?',
         a: `No. We move standard furniture out of the way and put it back. Pianos, safes, and very heavy pieces we'll talk through at the measure.`,
-      },
-      {
-        q: 'Vocês falam português? (Do you speak Portuguese?)',
-        a: `Sim, falamos português. Pode ligar ou mandar mensagem em português. Yes, we speak Portuguese, so you can call or text in whichever language is easier.`,
-        lang: 'pt',
       },
     ],
     neighbors: ['davenport', 'clermont'],
@@ -399,10 +389,6 @@ export const CITIES: City[] = [
         q: 'Which plank looks best in an older home?',
         a: `Usually a warmer, lower-sheen wood look with natural variation between boards. I bring samples so you can judge them in your own light, next to your trim and cabinets.`,
       },
-      {
-        q: 'Do you speak Portuguese?',
-        a: `Yes. Falamos Português. Daniel and the crew can walk you through the quote in English or Portuguese.`,
-      },
     ],
     neighbors: ['winter-haven', 'haines-city'],
     blogSlug: 'spc-lvp-vs-real-hardwood-central-florida',
@@ -471,11 +457,6 @@ export const CITIES: City[] = [
       {
         q: 'Is it better to do upstairs and downstairs at the same time?',
         a: `It's usually more efficient: one setup, one material order, and matching planks throughout. The per-square-foot price is the same, but you avoid a second round of disruption and a color-match risk later.`,
-      },
-      {
-        q: 'Vocês falam português?',
-        a: `Sim, falamos português. Yes, we speak Portuguese, so you can call or text in either language.`,
-        lang: 'pt',
       },
     ],
     neighbors: ['davenport', 'kissimmee'],
@@ -557,11 +538,6 @@ export const CITIES: City[] = [
       {
         q: 'Can we live in the house during the work?',
         a: `Usually, yes. We work room by room where possible and clean up at the end of each day. Bathroom tile jobs need that bathroom out of service for several days, so plan around a second bathroom if you have one.`,
-      },
-      {
-        q: 'Falam português?',
-        a: `Sim. Falamos Português. Yes, we speak Portuguese, from the walkthrough to the final cleanup.`,
-        lang: 'pt',
       },
     ],
     neighbors: ['davenport', 'haines-city'],
