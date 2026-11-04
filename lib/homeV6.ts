@@ -75,6 +75,7 @@ export function v6PackagesHtml(): string {
     <p class="v6-intro">Every package includes the plank, the install and the cleanup. We confirm your final price at the free measure.</p>
     <div class="v6-sheet"><table><thead><tr><th scope="col" class="v6-rowh">What's included</th>${head}</tr></thead><tbody>${body}<tr class="v6-btnrow"><th></th>${btns}</tr></tbody></table></div>
     <div class="v6-stack">${stack}</div>
+    <div class="v6-soon"><span class="v6-soon-k">Coming soon</span><div><h3>Herringbone LVP</h3><p>Anthology herringbone luxury vinyl is coming to our lineup. Ask about it at your free in-home measure.</p></div><a class="v6-btn line" href="/form">Ask about herringbone</a></div>
     <p class="v6-fine">New baseboards add $3.50 per linear foot on any package. Stairs, tile and labor-only jobs are quoted at your free measure. <a href="/tile">See tile</a></p>
   </div>
 </section>`;

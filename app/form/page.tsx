@@ -45,7 +45,7 @@ export default function FormPage() {
           <p className="form-bbb">
             <a href="https://www.bbb.org/us/fl/davenport/profile/flooring-contractors/new-design-pro-0733-235983416/#sealclick" target="_blank" rel="nofollow">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://seal-centralflorida.bbb.org/seals/blue-seal-293-61-bbb-235983416.png" style={{ border: 0 }} alt="New Design Pro BBB Business Review" width={293} height={61} />
+              <img src="/assets/bbb-seal-h.png" style={{ border: 0, width: 180, height: "auto" }} alt="New Design Pro BBB Business Review" width={600} height={214} />
             </a>
           </p>
           <p className="form-fine-print">

@@ -84,10 +84,16 @@ export function reviewCardHtml(r: (typeof REVIEWS)[number], withGoogleLink = fal
 // BBB rules: use only as provided, always linked to the BBB profile. Image updates with the rating.
 export const BBB_PROFILE_URL = 'https://www.bbb.org/us/fl/davenport/profile/flooring-contractors/new-design-pro-0733-235983416/#sealclick';
 export function bbbSealHtml(variant: 'light' | 'dark' = 'light'): string {
-  const img = variant === 'dark'
-    ? 'https://seal-centralflorida.bbb.org/seals/blue-seal-200-42-whitetxt-bbb-235983416.png'
-    : 'https://seal-centralflorida.bbb.org/seals/blue-seal-293-61-bbb-235983416.png';
-  return `<a class="bbb-seal" href="${BBB_PROFILE_URL}" target="_blank" rel="nofollow"><img src="${img}" style="border: 0;" alt="New Design Pro BBB Business Review" loading="lazy" /></a>`;
+  const img = variant === 'dark' ? '/assets/bbb-seal-h-white.png' : '/assets/bbb-seal-h.png';
+  return `<a class="bbb-seal" href="${BBB_PROFILE_URL}" target="_blank" rel="nofollow"><img src="${img}" width="600" height="214" style="border: 0;" alt="New Design Pro BBB Business Review" loading="lazy" /></a>`;
+}
+
+export function bbbTrustHtml(): string {
+  return `<div class="bbb-trust">${bbbSealHtml('light')}<p><strong>BBB Accredited since October 2026.</strong> <a href="${BBB_PROFILE_URL}" target="_blank" rel="nofollow">Check our BBB Business Review</a></p></div>`;
+}
+
+export function bbbFloatHtml(): string {
+  return `<a class="bbb-float" href="${BBB_PROFILE_URL}" target="_blank" rel="nofollow" aria-label="New Design Pro BBB Business Review"><img src="/assets/bbb-seal-v.png" width="240" height="356" alt="New Design Pro BBB Business Review" /></a>`;
 }
 
 export function reviewStripHtml(opts: { eyebrow?: string; title?: string } = {}): string {
@@ -126,7 +132,8 @@ const SOCIAL_HTML = `<div class="footer-social">
 // Global footer used by every string-rendered page (and React pages via <SiteFooter />).
 export function siteFooterHtml(): string {
   const year = new Date().getFullYear();
-  return `<footer class="site-footer" id="footer">
+  return `${bbbFloatHtml()}
+<footer class="site-footer" id="footer">
   <div class="footer-grid">
     <div class="footer-col">
       <div class="footer-brand-name">${BUSINESS.name}</div>

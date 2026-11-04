@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
-import { siteFooterHtml } from '@/lib/chrome';
+import { siteFooterHtml, bbbTrustHtml } from '@/lib/chrome';
 import JsonLd from '@/components/JsonLd';
 import { faqPageSchema } from '@/lib/schema';
 import { HOME_FAQS } from '@/data/faqs';
@@ -67,6 +67,7 @@ const HOMEPAGE_HTML = `
 </header>
 
 ${v6HeroHtml()}
+${bbbTrustHtml()}
 
 <!-- ================================================================
      REFER & EARN CALLOUT
@@ -111,86 +112,7 @@ ${v6ReviewsHtml()}
 ${v6AreasHtml()}
 
 
-<!-- ================================================================
-     TILE GALLERY — added Aug 11, 2026
-     ================================================================ -->
-<section id="tile-gallery">
-  <div class="section-inner">
-    <div class="section-head" style="text-align:center; margin-bottom:clamp(28px,5vw,44px);">
-      <span class="eyebrow">Tile installs — recent Central Florida jobs</span>
-      <h2 class="section-title" style="margin-left:auto;margin-right:auto;">Tile that <em>lasts twenty years</em>.</h2>
-      <p class="section-lede" style="margin-left:auto;margin-right:auto;">Kitchens, showers, floors, backsplashes. Waterproofed the right way, cut clean, and grouted straight. A few of our recent tile installs.</p>
-    </div>
 
-    <div class="tile-gallery-grid">
-      <figure class="tile-card">
-        <div class="tc-swipe" tabindex="0" aria-label="Swipe to see this kitchen before">
-          <picture>
-            <source type="image/webp" srcset="/assets/projects/kissimmee-summer-kitchen/final-kitchen-md.webp 800w, /assets/projects/kissimmee-summer-kitchen/final-kitchen-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-            <img src="/assets/projects/kissimmee-summer-kitchen/final-kitchen-md.jpg" alt="Kissimmee kitchen after: new cabinets, waterfall island and tile" loading="lazy" decoding="async" width="800" height="533" />
-          </picture>
-          <picture class="tc-before">
-            <source type="image/webp" srcset="/assets/projects/kissimmee-summer-kitchen/before-kitchen-md.webp 800w, /assets/projects/kissimmee-summer-kitchen/before-kitchen-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-            <img src="/assets/projects/kissimmee-summer-kitchen/before-kitchen-md.jpg" alt="Same Kissimmee kitchen before the remodel" loading="lazy" decoding="async" width="450" height="800" />
-          </picture>
-        </div>
-        <figcaption>
-          <div class="tc-title">Kitchen &mdash; Kissimmee</div>
-          <div class="tc-meta">Swipe to see it before &rarr; &middot; <a href="/projects#kissimmee-summer-kitchen">See the whole job</a></div>
-        </figcaption>
-      </figure>
-
-      <figure class="tile-card">
-        <div class="tc-swipe" tabindex="0" aria-label="Swipe to see this shower before">
-          <picture>
-            <source type="image/webp" srcset="/assets/projects/walk-in-shower-remodel/after-shower-md.webp 800w, /assets/projects/walk-in-shower-remodel/after-shower-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-            <img src="/assets/projects/walk-in-shower-remodel/after-shower-md.jpg" alt="Walk-in tile shower after, with frameless glass and gold fixtures" loading="lazy" decoding="async" width="600" height="800" />
-          </picture>
-          <picture class="tc-before">
-            <source type="image/webp" srcset="/assets/projects/walk-in-shower-remodel/before-shower-md.webp 800w, /assets/projects/walk-in-shower-remodel/before-shower-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-            <img src="/assets/projects/walk-in-shower-remodel/before-shower-md.jpg" alt="Same shower before, with framed glass and beige tile" loading="lazy" decoding="async" width="600" height="800" />
-          </picture>
-        </div>
-        <figcaption>
-          <div class="tc-title">Shower &mdash; Walk-in, frameless glass</div>
-          <div class="tc-meta">Winter Park</div>
-          <div class="tc-meta">Swipe to see it before &rarr; &middot; <a href="/projects#walk-in-shower-remodel">See the video</a></div>
-        </figcaption>
-      </figure>
-
-      <figure class="tile-card">
-        <picture>
-          <source type="image/webp" srcset="/assets/gallery/tile-3-herringbone-wood-look-md.webp 800w, /assets/gallery/tile-3-herringbone-wood-look-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-          <img src="/assets/gallery/tile-3-herringbone-wood-look-md.jpg" srcset="/assets/gallery/tile-3-herringbone-wood-look-md.jpg 800w, /assets/gallery/tile-3-herringbone-wood-look-lg.jpg 1600w" sizes="(min-width:900px) 33vw, 100vw" alt="Herringbone wood-look porcelain floor tile in a modern entryway" loading="lazy" />
-        </picture>
-        <figcaption>
-          <div class="tc-title">Entryway — Herringbone wood-look</div>
-          <div class="tc-meta">Porcelain plank &middot; tight grout lines</div>
-        </figcaption>
-      </figure>
-
-      <figure class="tile-card">
-        <picture>
-          <source type="image/webp" srcset="/assets/gallery/tile-4-backsplash-subway-md.webp 800w, /assets/gallery/tile-4-backsplash-subway-lg.webp 1600w" sizes="(min-width:900px) 33vw, 100vw" />
-          <img src="/assets/gallery/tile-4-backsplash-subway-md.jpg" srcset="/assets/gallery/tile-4-backsplash-subway-md.jpg 800w, /assets/gallery/tile-4-backsplash-subway-lg.jpg 1600w" sizes="(min-width:900px) 33vw, 100vw" alt="Vertical stacked white subway tile kitchen backsplash" loading="lazy" />
-        </picture>
-        <figcaption>
-          <div class="tc-title">Backsplash — Stacked subway</div>
-          <div class="tc-meta">3 &times; 12 in glossy &middot; vertical layout</div>
-        </figcaption>
-      </figure>
-
-    </div>
-
-    <div class="lvp-color-cta">
-      <a class="btn btn-primary" href="/form">
-        Get a free in-home measure
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      
-    </div>
-  </div>
-</section>
 
 
 
