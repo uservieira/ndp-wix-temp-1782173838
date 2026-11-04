@@ -3533,3 +3533,9 @@ blockquote.note {
 .article-inner .trust-table th { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
 .article-inner .trust-table td strong { color: var(--ink); }
 @media (max-width: 560px) { .article-inner .trust-table { font-size: 14px; } .article-inner .trust-table th, .article-inner .trust-table td { padding: 10px 6px; } }
+
+/* BBB Accredited Business seal (official dynamic seal, unaltered) */
+.review-strip .review-bbb { margin-top: 20px; }
+.footer-bbb { margin-top: 16px; }
+.bbb-seal img, .form-bbb img { display: block; max-width: 100%; height: auto; }
+.form-bbb { display: flex; justify-content: center; margin: 16px 0; }

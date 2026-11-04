@@ -80,6 +80,16 @@ export function reviewCardHtml(r: (typeof REVIEWS)[number], withGoogleLink = fal
 }
 
 // Real-review strip (homepage, /tile, every city page). Source: data/reviews.ts.
+// Official BBB dynamic seals (code from the BBB business portal, BBB ID 235983416).
+// BBB rules: use only as provided, always linked to the BBB profile. Image updates with the rating.
+export const BBB_PROFILE_URL = 'https://www.bbb.org/us/fl/davenport/profile/flooring-contractors/new-design-pro-0733-235983416/#sealclick';
+export function bbbSealHtml(variant: 'light' | 'dark' = 'light'): string {
+  const img = variant === 'dark'
+    ? 'https://seal-centralflorida.bbb.org/seals/blue-seal-200-42-whitetxt-bbb-235983416.png'
+    : 'https://seal-centralflorida.bbb.org/seals/blue-seal-293-61-bbb-235983416.png';
+  return `<a class="bbb-seal" href="${BBB_PROFILE_URL}" target="_blank" rel="nofollow"><img src="${img}" style="border: 0;" alt="New Design Pro BBB Business Review" loading="lazy" /></a>`;
+}
+
 export function reviewStripHtml(opts: { eyebrow?: string; title?: string } = {}): string {
   return `<section id="reviews" class="review-strip" aria-labelledby="reviews-title">
   <div class="section-inner">
@@ -92,6 +102,7 @@ export function reviewStripHtml(opts: { eyebrow?: string; title?: string } = {})
       <a class="btn btn-ghost" href="${BUSINESS.gbpUrl}" target="_blank" rel="noopener">Read our reviews on Google</a>
       <a class="btn btn-primary" href="/review" data-ga-event="review_cta_click">Leave a review</a>
     </div>
+    <div class="review-bbb">${bbbSealHtml('light')}</div>
   </div>
 </section>`;
 }
@@ -121,6 +132,7 @@ export function siteFooterHtml(): string {
       <div class="footer-brand-name">${BUSINESS.name}</div>
       <p>LVP &middot; Tile &middot; Remodeling. ${BUSINESS.baseLine}.</p>
       <span class="footer-lang-chip" lang="pt">Falamos Português</span>
+      <div class="footer-bbb">${bbbSealHtml('dark')}</div>
     </div>
 
     <div class="footer-col">

@@ -42,6 +42,12 @@ export default function FormPage() {
           <p>
             Prefer to talk to a human? Text <strong>{BUSINESS_PHONE.display}</strong> or email <a href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
           </p>
+          <p className="form-bbb">
+            <a href="https://www.bbb.org/us/fl/davenport/profile/flooring-contractors/new-design-pro-0733-235983416/#sealclick" target="_blank" rel="nofollow">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="https://seal-centralflorida.bbb.org/seals/blue-seal-293-61-bbb-235983416.png" style={{ border: 0 }} alt="New Design Pro BBB Business Review" width={293} height={61} />
+            </a>
+          </p>
           <p className="form-fine-print">
             Your info is never sold or shared. See our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>.
           </p>
