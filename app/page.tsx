@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
-import { siteFooterHtml, bbbTrustHtml } from '@/lib/chrome';
+import { siteFooterHtml } from '@/lib/chrome';
 import JsonLd from '@/components/JsonLd';
 import { faqPageSchema } from '@/lib/schema';
 import { HOME_FAQS } from '@/data/faqs';
@@ -67,7 +67,6 @@ const HOMEPAGE_HTML = `
 </header>
 
 ${v6HeroHtml()}
-${bbbTrustHtml()}
 
 <!-- ================================================================
      REFER & EARN CALLOUT

@@ -4,6 +4,7 @@ import { BUSINESS_PHONE, SUPPLIER } from '@/lib/site';
 import { DURALAST_COLLECTIONS } from '@/data/duralast';
 import { REVIEWS } from '@/data/reviews';
 import { CITY_LINKS } from '@/data/cities';
+import { PROJECTS } from '@/data/projects';
 import { HOME_FAQS } from '@/data/faqs';
 import { formHrefFor, priceText, tierByKey } from '@/lib/pricingHtml';
 
@@ -167,6 +168,18 @@ export function v6ReviewsHtml(): string {
 </section>`;
 }
 
+// Newest real job with a "Month YYYY" completion date. Updates itself when a newer project is added to data/projects.ts.
+const LATEST_EXCLUDED_CITIES = ['Lakeland'];
+function latestJobHtml(): string {
+  const dated = PROJECTS.map((p, i) => ({ p, i, t: Date.parse(`1 ${p.completed}`) }))
+    .filter((x) => !Number.isNaN(x.t) && /[a-z]/i.test(x.p.completed) && !LATEST_EXCLUDED_CITIES.includes(x.p.city ?? ''));
+  if (!dated.length) return '';
+  dated.sort((a, b) => b.t - a.t || a.i - b.i);
+  const { p } = dated[0];
+  const where = p.city ? `, ${esc(p.city)}` : '';
+  return `<p class="v6-intro">Latest job (${esc(p.completed)}): <a href="/projects#${p.id}">${esc(p.title)}${where}. See the photos</a>.</p>`;
+}
+
 export function v6AreasHtml(): string {
   return `
 <section class="v6-sec" id="service-areas">
@@ -174,8 +187,7 @@ export function v6AreasHtml(): string {
     <h2>Where we install</h2>
     <p class="v6-intro">Based in Davenport, working about 30 miles around Lake Buena Vista, from Orlando to Lakeland. Tap your city for local pricing and ZIP codes.</p>
     <ul class="v6-areas">${CITY_LINKS.filter((c, i, a) => a.findIndex((x) => x.name === c.name) === i).map((c) => `<li><a href="${c.path}">${esc(c.name)}</a></li>`).join('')}</ul>
-    <p class="v6-intro">Recent job: <a href="/lvp-installation-lakeland#lakeland-white-haven-living-room">709 sq ft of LVP in Lakeland, dark laminate out in 2 days</a>.</p>
-  </div>
+    ${latestJobHtml()}  </div>
 </section>`;
 }
 
