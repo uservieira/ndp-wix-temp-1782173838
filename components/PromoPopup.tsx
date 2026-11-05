@@ -11,6 +11,7 @@ export default function PromoPopup() {
   const pathname = usePathname() || '/';
   const [open, setOpen] = useState(false);
   const [declined, setDeclined] = useState(false);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [hp, setHp] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
@@ -57,10 +58,10 @@ export default function PromoPopup() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) { setState('error'); return; }
+    if (name.trim().length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) { setState('error'); return; }
     setState('sending');
     try {
-      const r = await fetch('/api/promo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, company_website: hp, source: pathname, attribution: (() => { try { return JSON.parse(localStorage.getItem('ndp_src') || 'null'); } catch { return null; } })() }) }).catch(() => null);
+      const r = await fetch('/api/promo', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name.trim(), email, company_website: hp, source: pathname, attribution: (() => { try { return JSON.parse(localStorage.getItem('ndp_src') || 'null'); } catch { return null; } })() }) }).catch(() => null);
       if (!r?.ok) throw new Error('failed');
       setState('done');
       try { localStorage.setItem(KEY, 'claimed'); } catch {}
@@ -89,14 +90,16 @@ export default function PromoPopup() {
           {state !== 'done' ? (
             <>
               <h2 id="promo-pop-title">Get <span>10% off</span> your new floors.</h2>
-              <p>Enter your email and we&apos;ll send your code. Good on any supplied LVP package.</p>
+              <p>Enter your name and email and we&apos;ll send your code. Good on any supplied LVP package.</p>
               <form onSubmit={submit} noValidate>
                 <input type="text" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} className="promo-pop-hp" aria-hidden="true" />
+                <label htmlFor="promo-name" className="sr-only">First name</label>
+                <input id="promo-name" type="text" className="promo-pop-name" autoComplete="given-name" autoCapitalize="words" placeholder="First name" value={name} onChange={(e) => { setName(e.target.value); if (state === 'error') setState('idle'); }} required />
                 <label htmlFor="promo-email" className="sr-only">Email address</label>
                 <input id="promo-email" type="email" inputMode="email" autoComplete="email" placeholder="you@email.com" value={email} onChange={(e) => { setEmail(e.target.value); if (state === 'error') setState('idle'); }} required />
                 <button type="submit" disabled={state === 'sending'}>{state === 'sending' ? 'Sending…' : 'Send my code'}</button>
               </form>
-              {state === 'error' && <p className="promo-pop-err">Please enter a valid email address.</p>}
+              {state === 'error' && <p className="promo-pop-err">Please enter your first name and a valid email address.</p>}
               <p className="promo-pop-fine">We&apos;ll only email you about this offer and your quote. Unsubscribe anytime.</p>
               <button type="button" className="promo-pop-no" onClick={close}>No thanks, I&apos;ll pay full price</button>
             </>

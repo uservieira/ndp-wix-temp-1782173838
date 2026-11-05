@@ -3108,8 +3108,8 @@ blockquote.note {
 .promo-pop h2 span { font-family: var(--nf-cormorant), Georgia, serif; font-style: italic; font-weight: 500; color: #E8602C; letter-spacing: 0; font-size: 1.1em; }
 .promo-pop p { margin: 0 0 18px; font-size: 15px; line-height: 1.55; color: #3A342B; }
 .promo-pop form { display: flex; flex-direction: column; gap: 10px; }
-.promo-pop input[type="email"] { font: 500 16px/1 inherit; font-family: inherit; padding: 16px 18px; border: 1px solid #D9D0C3; border-radius: 14px; background: #fff; color: #1B1814; }
-.promo-pop input[type="email"]:focus { outline: 2px solid #E8602C; outline-offset: 1px; border-color: #E8602C; }
+.promo-pop input[type="email"], .promo-pop input.promo-pop-name { font: 500 16px/1 inherit; font-family: inherit; padding: 16px 18px; border: 1px solid #D9D0C3; border-radius: 14px; background: #fff; color: #1B1814; }
+.promo-pop input[type="email"]:focus, .promo-pop input.promo-pop-name:focus { outline: 2px solid #E8602C; outline-offset: 1px; border-color: #E8602C; }
 .promo-pop form button, .promo-pop-cta { font: 800 16px/1 var(--nf-archivo), sans-serif; padding: 17px 20px; border: 0; border-radius: 999px; background: #E8602C; color: #fff; cursor: pointer; text-align: center; text-decoration: none; display: block; }
 .promo-pop form button:hover, .promo-pop-cta:hover { background: #D24F1E; }
 .promo-pop form button:disabled { opacity: .7; cursor: wait; }
