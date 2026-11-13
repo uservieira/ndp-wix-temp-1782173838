@@ -68,7 +68,7 @@ export const WARRANTY_FAQS: Faq[] = [
   { q: 'Does New Design Pro offer a written warranty?', a: 'Yes. Every job gets a written workmanship warranty: 1 year on Entry ($4.99/sq ft), 3 years on Standard ($5.99/sq ft), and a lifetime limited workmanship warranty for the original owner on Premium ($7.99/sq ft). Labor-only installs get 1 year on installation labor. The Duralast manufacturer warranty on the material is separate.' },
   { q: 'What does the workmanship warranty cover?', a: 'Installation problems: planks separating or lifting, gaps over 3mm, loose transitions, quarter round or baseboards we installed, and expansion-gap mistakes. We repair or replace the affected area.' },
   { q: 'What is not covered?', a: 'Slab or subfloor movement, moisture or water events, heavy fixtures installed on the floor after we leave, pet damage and misuse, storms and other insurable events, and repairs by anyone else. Normal wear is covered by the manufacturer.' },
-  { q: 'How does that compare to other flooring companies?', a: 'Most national chains and big-box installers offer a 1-year installation warranty. Our Standard tier doubles that to 3 years, and Premium is lifetime limited for the original owner.' },
+  { q: 'How does that compare to other flooring companies?', a: 'Most national chains and big-box installers offer a 1-year installation warranty. Our Standard tier triples that to 3 years, and Premium is lifetime limited for the original owner.' },
   { q: 'How do I file a warranty claim?', a: 'Call, text or email us a photo of the issue. We come out, inspect it, and tell you in writing what we will fix.' },
 ];
 
