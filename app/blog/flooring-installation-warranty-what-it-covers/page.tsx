@@ -49,7 +49,7 @@ const PAGE_HTML = articlePageHtml({
 <tr><td><strong>Premium</strong> ($7.99/sq ft)</td><td>Lifetime limited, original owner</td></tr>
 <tr><td><strong>Labor-only</strong> (your material)</td><td>1 year on installation labor</td></tr>
 </tbody></table>
-<p>Every job also keeps the Duralast manufacturer warranty on the material, and we register it for you. Premium jobs include a documented flatness check, slab moisture reading and a written job file, which is what lets us stand behind them for the long haul.</p>
+<p>Every job also keeps the Durato Lifetime Limited Residential Warranty on the material, and we register it for you. Premium jobs include a documented flatness check, slab moisture reading and a written job file, which is what lets us stand behind them for the long haul.</p>
 <p>Read the full terms on our <a href="/warranty">written warranty page</a>.</p>
 
 <h2>3 questions to ask about any warranty</h2>

@@ -28,7 +28,7 @@ export const BUSINESS = {
     'https://www.linkedin.com/company/newdesignprod',
   ],
   reviewUrl: `${SITE_URL}/review`,
-  languages: ['en', 'pt'],
+  languages: ['en'],
 } as const;
 
 export const HOURS = [
@@ -119,6 +119,6 @@ export const SUPPLIER = {
 export const CLAIMS = {
   insured: true,
   insuranceNote: 'Certificate of insurance available on request.',
-  experienceText: '10+ years as a family business, with installers who each bring 10+ years on the tools.',
-  experienceShort: '10+ Years, Family-Run',
+  experienceText: 'A family business since 2015 (LLC since 2024), with experienced installers.',
+  experienceShort: 'Family business since 2015 · LLC since 2024',
 } as const;

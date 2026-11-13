@@ -50,7 +50,7 @@ const PAGE_HTML = articlePageHtml({
 </ul>
 
 <h2>How we price</h2>
-<p>We're 10+ years as a family business, with installers who each bring 10+ years on the tools. We price so we're still here to answer the phone years from now. Our packages are public: $4.99, $5.99 and $7.99 per square foot, supplied and installed, with a <a href="/warranty">written warranty from 1 year to lifetime limited</a>. Insured, with a certificate of insurance available on request. And the price at the measure is the price. See our <a href="/no-surprise-charges">no surprise charges promise</a>.</p>
+<p>We're a family business since 2015 (LLC since 2024), with experienced installers. We price so we're still here to answer the phone years from now. Our packages are public: $4.99, $5.99 and $7.99 per square foot, supplied and installed, with a <a href="/warranty">written warranty from 1 year to lifetime limited</a>. Insured, with a certificate of insurance available on request. And the price at the measure is the price. See our <a href="/no-surprise-charges">no surprise charges promise</a>.</p>
 <p>Comparing quotes right now? Read <a href="/blog/how-to-compare-flooring-quotes-central-florida">the 5 questions to ask before you sign</a>.</p>`,
 });
 

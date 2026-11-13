@@ -94,7 +94,7 @@ const PAGE_HTML = `
       <p><strong>Huios Construction LLC (DBA New Design Pro)</strong></p>
       <p>Central Florida</p>
       <p>Phone: <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a></p>
-      <p>Email: <a href="mailto:daniel@newdesignpro.com">daniel@newdesignpro.com</a></p>
+      <p>Email: <a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></p>
     </div>
 
     <p class="legal-footer-note">Huios Construction LLC (DBA New Design Pro) · 221 Aylesbury Ln, Davenport, FL 33837 · <a href="https://newdesignpro.com">newdesignpro.com</a></p>
