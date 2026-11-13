@@ -48,7 +48,7 @@ const PAGE_HTML = articlePageHtml({
 
 <h2>How New Design Pro answers them</h2>
 <ul>
-<li><strong>Staying power:</strong> 10+ years as a family business, with installers who each bring 10+ years on the tools.</li>
+<li><strong>Staying power:</strong> A family business since 2015 (LLC since 2024), with experienced installers.</li>
 <li><strong>Locked price:</strong> your price is set at the free in-home measure. <a href="/no-surprise-charges">No surprise charges.</a></li>
 <li><strong>Prep first:</strong> we look at your floor at the measure and put the prep on the quote. Premium adds a documented flatness check, slab moisture reading and written job file.</li>
 <li><strong>Written warranty:</strong> 1 year, 3 years or lifetime limited, depending on the package. <a href="/warranty">See the terms.</a></li>

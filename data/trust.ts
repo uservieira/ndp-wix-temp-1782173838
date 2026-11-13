@@ -31,7 +31,7 @@ export const WARRANTY_TERMS = [
   'Covers the original owner who hired us, for the home where the floor was installed.',
   'The Premium lifetime limited warranty lasts as long as that original owner owns the home.',
   'We repair or replace the affected area. Coverage is our labor and the installation fix, not the whole floor.',
-  'Material defects are covered separately by the Duralast (Durato) manufacturer warranty. We register it for you.',
+  'Material defects are covered separately by the Durato Lifetime Limited Residential Warranty. We register it for you.',
   'Report an issue by phone, text or email with a photo. We come out, look at it, and tell you in writing what we will do.',
 ];
 

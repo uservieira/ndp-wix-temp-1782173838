@@ -22,7 +22,7 @@ const body = `
   <tbody>${WARRANTY_TIERS.map((t) => `<tr><td><strong>${t.tier}</strong></td><td>${t.price}</td><td>${t.term}</td></tr>`).join('')}</tbody>
 </table>
 <p>For comparison, most national flooring chains and big-box installers offer a 1-year installation warranty. Our Standard package triples that, and Premium is a lifetime limited warranty for as long as you own the home.</p>
-<p>On top of our workmanship warranty, your Duralast (Durato) flooring carries its own manufacturer warranty on the material. We register it for you.</p>
+<p>On top of our workmanship warranty, your Duralast (Durato) flooring carries the Durato Lifetime Limited Residential Warranty on the material. We register it for you.</p>
 
 <h2>What we cover</h2>
 ${list(WARRANTY_COVERS)}
@@ -35,7 +35,7 @@ ${list(WARRANTY_EXCLUDES)}
 ${list(WARRANTY_TERMS)}
 
 <h2>Why we can stand behind it</h2>
-<p>10+ years as a family business, with installers who each bring 10+ years on the tools. We price every job so the business is still here years from now to answer the phone. A warranty is only worth something if the company is still around to honor it. Insured. Certificate of insurance available on request.</p>
+<p>A family business since 2015 (LLC since 2024), with experienced installers. We price every job so the business is still here years from now to answer the phone. A warranty is only worth something if the company is still around to honor it. Insured. Certificate of insurance available on request.</p>
 <p>Want to know what else is in the price? Read our <a href="/no-surprise-charges">no surprise charges promise</a>, or see how we <a href="/blog/flooring-installation-warranty-what-it-covers">compare warranties across the industry</a>.</p>
 `;
 

@@ -43,7 +43,7 @@ ${cityHeaderHtml()}
     <span class="eyebrow">Why homeowners choose us</span>
     <h2 class="section-title">Family-run, insured, and <em>upfront</em>.</h2>
     <ul class="reviews-why-list">
-      <li><strong>${CLAIMS.experienceShort}.</strong> ${CLAIMS.experienceText}</li>
+      <li><strong>Family-run.</strong> ${CLAIMS.experienceText}</li>
       <li><strong>Insured crew.</strong> Every job carries general liability coverage. ${CLAIMS.insuranceNote}</li>
       <li><strong>Written scope and price up front.</strong> You approve materials, labor, and timeline before anything starts, with a written quote in 24 hours.</li>
       <li><strong>Photo record of every job.</strong> Before, during, and after photos are shared so you can see the work.</li>

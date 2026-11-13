@@ -46,7 +46,7 @@ ${WARRANTY_TIERS.map((t) => `- ${t.tier} (${t.price}): ${t.term}`).join('\n')}
 - Industry comparison: most national flooring chains and big-box installers offer a 1-year installation warranty.
 - Covers: ${WARRANTY_COVERS.join('; ')}.
 - Not covered: ${WARRANTY_EXCLUDES.join('; ')}.
-- Material is covered separately by the ${SUPPLIER.name} manufacturer warranty, registered for the customer.
+- Material is covered separately by the Durato Lifetime Limited Residential Warranty, registered for the customer.
 - Full terms: ${SITE_URL}/warranty
 
 ## No surprise charges
