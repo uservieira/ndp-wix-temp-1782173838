@@ -83,7 +83,7 @@ const PAGE_HTML = `
       <li>You may opt out of SMS at any time by replying STOP.</li>
       <li>You may opt out of email marketing by clicking the unsubscribe link.</li>
     </ul>
-    <p>To exercise any of these rights, email <a href="mailto:daniel@newdesignpro.com">daniel@newdesignpro.com</a>.</p>
+    <p>To exercise any of these rights, email <a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a>.</p>
 
     <h2>Data retention</h2>
     <p>We keep contact information and quote details for up to 24 months from your last interaction, after which we delete or anonymize it. If you become a customer, we retain records as required by tax and business law (typically 7 years).</p>
@@ -102,7 +102,7 @@ const PAGE_HTML = `
       <p><strong>Huios Construction LLC (DBA New Design Pro)</strong></p>
       <p>Central Florida</p>
       <p>Phone: <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.short}</a></p>
-      <p>Email: <a href="mailto:daniel@newdesignpro.com">daniel@newdesignpro.com</a></p>
+      <p>Email: <a href="mailto:contact@newdesignpro.com">contact@newdesignpro.com</a></p>
     </div>
 
     <p class="legal-footer-note">Huios Construction LLC (DBA New Design Pro) · 221 Aylesbury Ln, Davenport, FL 33837 · <a href="https://newdesignpro.com">newdesignpro.com</a></p>
