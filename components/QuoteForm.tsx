@@ -657,7 +657,7 @@ export default function QuoteForm() {
                     autoCapitalize="characters"
                     autoComplete="off"
                     spellCheck={false}
-                    placeholder="LVP10"
+                    placeholder="Enter code"
                     value={codeDraft}
                     maxLength={20}
                     onChange={(e) => { setCodeDraft(e.target.value.toUpperCase()); if (codeStatus !== 'idle') setCodeStatus('idle'); }}
