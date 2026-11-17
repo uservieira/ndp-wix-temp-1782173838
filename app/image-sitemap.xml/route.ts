@@ -2,6 +2,7 @@
 import { SITE_URL } from '@/lib/site';
 import { PROJECTS } from '@/data/projects';
 import { BLOG_POSTS } from '@/data/blog';
+import { holoAsBlogPosts } from '@/lib/holo/posts';
 
 export const dynamic = 'force-static';
 
@@ -16,7 +17,7 @@ export function GET() {
   ]).map((ph) => imgTag(`${SITE_URL}${ph.src}-lg.webp`, ph.alt));
   const urls = [
     `<url><loc>${SITE_URL}/projects</loc>${projectImgs.join('')}</url>`,
-    ...BLOG_POSTS.filter((b) => b.image).map(
+    ...[...BLOG_POSTS, ...holoAsBlogPosts()].filter((b) => b.image).map(
       (b) => `<url><loc>${SITE_URL}/blog/${b.slug}</loc>${imgTag(`${SITE_URL}${b.image}`, b.title)}</url>`,
     ),
   ];

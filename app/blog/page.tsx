@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { BUSINESS_PHONE } from '@/lib/site';
 import { siteFooterHtml } from '@/lib/chrome';
+import { displayDate, esc, holoPosts, thumbImage } from '@/lib/holo/posts';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/blog' },
@@ -9,6 +10,24 @@ export const metadata: Metadata = {
   description:
     'Honest flooring guides from a Central Florida installer: LVP costs, LVP vs laminate, install timelines, durability, and real per-square-foot pricing for 2026.',
 };
+
+// Posts published from Holo (data/holo-posts), newest first, shown above the hand-written posts.
+const HOLO_CARDS = holoPosts()
+  .map(
+    (p) => `
+    <a class="post-card" href="/blog/${p.slug}">
+      <div class="pc-thumb" style="background-image:url('${thumbImage(p).replace(/&/g, '&amp;')}');" aria-hidden="true"></div>
+      <div class="pc-body">
+        <div class="pc-date">${displayDate(p.publishedAt)}</div>
+        <h2>${esc(p.title)}</h2>
+        <p>${esc(p.excerpt || p.metaDescription)}</p>
+        <span class="pc-more">Read the post
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </div>
+    </a>`,
+  )
+  .join('');
 
 const PAGE_HTML = `
 
@@ -49,7 +68,7 @@ const PAGE_HTML = `
 </section>
 
 <section class="post-list">
-  <div class="post-list-inner">
+  <div class="post-list-inner">${HOLO_CARDS}
     <a class="post-card" href="/blog/how-to-compare-flooring-quotes-central-florida">
       <div class="pc-thumb" style="background-image:url('/blog-img/vinyl-cost-thumb.webp');" aria-hidden="true"></div>
       <div class="pc-body">

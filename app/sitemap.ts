@@ -3,6 +3,7 @@ import { SITE_URL } from '@/lib/site';
 import { CITIES } from '@/data/cities';
 import { BLOG_POSTS } from '@/data/blog';
 import { PROJECTS } from '@/data/projects';
+import { holoAsBlogPosts } from '@/lib/holo/posts';
 
 
 type Entry = { path: string; priority: number; changeFrequency: 'weekly' | 'monthly' | 'yearly'; lastModified?: string };
@@ -28,6 +29,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/blog', priority: 0.9, changeFrequency: 'weekly' },
     ...CITIES.map((c) => ({ path: c.path, priority: 0.85, changeFrequency: 'monthly' as const })),
     ...BLOG_POSTS.map((b) => ({ path: `/blog/${b.slug}`, priority: 0.7, changeFrequency: 'monthly' as const, lastModified: b.datePublished })),
+    // Posts published from Holo (data/holo-posts), with their real last-update date.
+    ...holoAsBlogPosts().map((b) => ({ path: `/blog/${b.slug}`, priority: 0.7, changeFrequency: 'monthly' as const, lastModified: b.dateModified })),
   ];
   return pages.map((p) => ({
     url: p.path === '/' ? SITE_URL : `${SITE_URL}${p.path}`,

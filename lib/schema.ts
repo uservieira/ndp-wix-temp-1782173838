@@ -125,7 +125,7 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
-export function articleSchema(post: BlogPost) {
+export function articleSchema(post: BlogPost & { dateModified?: string; description?: string }) {
   const url = abs(`/blog/${post.slug}`);
   return {
     '@context': 'https://schema.org',
@@ -135,6 +135,8 @@ export function articleSchema(post: BlogPost) {
     url,
     mainEntityOfPage: url,
     datePublished: post.datePublished,
+    ...(post.dateModified ? { dateModified: post.dateModified } : {}),
+    ...(post.description ? { description: post.description } : {}),
     image: [abs(post.image)],
     author: { '@type': 'Person', name: BUSINESS.owner, url: abs('/about') },
     publisher: { '@id': BUSINESS_ID },

@@ -4,6 +4,7 @@ import { SITE_URL, BUSINESS, BUSINESS_PHONE, SERVICE_AREA, LVP_TIERS, BASEBOARD_
 import { DURALAST_COLLECTIONS } from '@/data/duralast';
 import { CITIES } from '@/data/cities';
 import { BLOG_POSTS } from '@/data/blog';
+import { holoAsBlogPosts } from '@/lib/holo/posts';
 import { PROJECTS } from '@/data/projects';
 import { REVIEWS } from '@/data/reviews';
 import { WARRANTY_TIERS, WARRANTY_COVERS, WARRANTY_EXCLUDES, SHOWROOM, NO_SURPRISE } from '@/data/trust';
@@ -16,7 +17,7 @@ export function GET() {
     (t) => `- ${t.name}: $${t.price.toFixed(2)}/sq ft supplied and installed. ${t.includes.join(', ')}. ${SUPPLIER.name} collections: ${cols(t.key)}.`,
   ).join('\n');
   const cityPages = CITIES.filter((c) => c.path.startsWith('/lvp-installation')).map((c) => `- [LVP installation in ${c.name}, FL](${SITE_URL}${c.path})`).join('\n');
-  const posts = BLOG_POSTS.map((b) => `- [${b.title}](${SITE_URL}/blog/${b.slug})`).join('\n');
+  const posts = [...holoAsBlogPosts(), ...BLOG_POSTS].map((b) => `- [${b.title}](${SITE_URL}/blog/${b.slug})`).join('\n');
   const projects = PROJECTS.map((p) => `- ${p.title}${p.city ? ` (${p.city}, FL)` : ''}${p.sqft ? `, ${p.sqft} sq ft` : ''}${p.days ? `, ${p.days} days` : ''}: ${SITE_URL}/projects#${p.id}`).join('\n');
   const hours = HOURS.map((h) => `${h.label} ${h.text}`).join('; ');
 
