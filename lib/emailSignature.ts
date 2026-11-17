@@ -18,7 +18,7 @@ export function emailSignature(reason: string): string {
     </a>
     <div style="font-size:12px;color:#6B6357;margin-top:8px;">LVP Flooring &amp; Remodeling · Central Florida</div>
     <div style="font-size:11px;line-height:1.6;color:#9A9285;margin-top:14px;">
-      <strong>Insured.</strong> ${CLAIMS.insuranceNote} Work coordinated with licensed trade partners where required.<br>
+      Work coordinated with licensed trade partners where required.<br>
       ${reason}
     </div>
   </td></tr>

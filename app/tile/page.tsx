@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/tile' },
   title: 'Tile Installation in Central Florida — Free In-Home Measure',
   description:
-    'Porcelain and ceramic floor tile, showers and backsplashes installed around Orlando, Kissimmee, Davenport and Lakeland. Free in-home measure, written quote in 24 hours. Insured.',
+    'Porcelain and ceramic floor tile, showers and backsplashes installed around Orlando, Kissimmee, Davenport and Lakeland. Free in-home measure, written quote in 24 hours.',
 };
 
 const tileFaqHtml = () => faqSectionHtml('tile-faq', 'Tile questions', 'Tile installation, <em>answered</em>.', TILE_FAQS);
@@ -73,7 +73,7 @@ const PAGE_HTML = `
   <div class="hero-inner">
     <div class="hero-grid">
       <div>
-        <span class="hero-eyebrow">Central Florida · Insured · Tile</span>
+        <span class="hero-eyebrow">Central Florida · Tile</span>
         <h1>Tile, <em>installed right</em> from the slab up.</h1>
         <p class="lede">Floor tile, showers, backsplashes and large-format porcelain. Every job is <strong>quoted after a free in-home measure</strong>, with your own tile or tile sourced for your job.</p>
         <div class="hero-cta-row">

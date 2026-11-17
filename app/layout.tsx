@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: '%s | New Design Pro',
   },
   description:
-    'Central Florida luxury vinyl plank flooring. Supplied & installed from $4.99/sqft. Next-day start available. 50% deposit. Insured.',
+    'Central Florida luxury vinyl plank flooring. Supplied & installed from $4.99/sqft. Next-day start available. 50% deposit.',
   openGraph: {
     type: 'website',
     locale: 'en_US',

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/about' },
   title: 'About Daniel Vieira & the Family-Run Crew',
   description:
-    'Meet Daniel Vieira and the family-run New Design Pro crew in Davenport, FL. LVP and tile installed with honest pricing, and insured work.',
+    'Meet Daniel Vieira and the family-run New Design Pro crew in Davenport, FL. LVP and tile installed with honest pricing.',
 };
 
 const PAGE_HTML = `
@@ -91,8 +91,8 @@ const PAGE_HTML = `
     <div class="values-grid">
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3>Insured</h3>
-        <p>We carry general liability insurance, so your home is covered on every job. ${CLAIMS.insuranceNote}</p>
+        <h3>Written warranty</h3>
+        <p>Every install comes with a written workmanship warranty. Material is covered by Durato&#39;s Lifetime Limited Residential Warranty, on Durato&#39;s terms. <a href="/warranty">See the terms.</a></p>
       </div>
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>

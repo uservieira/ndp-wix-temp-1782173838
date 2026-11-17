@@ -69,7 +69,7 @@ const PAGE_HTML = `
     <p>Supported US carriers include AT&amp;T, Verizon, T-Mobile, and most regional carriers. Carriers are not liable for delayed or undelivered messages.</p>
 
     <h2>Services and installations</h2>
-    <p>New Design Pro is a residential remodeling and flooring installation business. All work is subject to a separate written services agreement, which will detail scope, price, deposit, timeline, warranties, and cancellation terms. We are insured; we are not a licensed general contractor. We perform work permitted for insured non-GC contractors in Florida.</p>
+    <p>New Design Pro is a residential remodeling and flooring installation business. All work is subject to a separate written services agreement, which will detail scope, price, deposit, timeline, warranties, and cancellation terms. We are not a licensed general contractor. Any licensed-trade work is coordinated with licensed trade partners.</p>
 
     <h2>Payments</h2>
     <p>A 50% deposit is typically required to schedule an installation, with the balance due upon completion. Third-party financing (e.g. Wisetack) may be available through independent providers; New Design Pro is not the lender and does not underwrite, approve, or guarantee any financing.</p>
