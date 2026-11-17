@@ -72,10 +72,6 @@ export const HOME_FAQS: Faq[] = [
     a: `For most Central Florida homes, yes. SPC vinyl plank is waterproof and handles humidity better than laminate, and it installs right over a leveled concrete slab.`,
   },
   {
-    q: 'Are you insured?',
-    a: `Yes, New Design Pro is insured, and a certificate of insurance is available on request. Any licensed-trade work is coordinated with licensed trade partners.`,
-  },
-  {
     q: 'How do I get a quote?',
     a: `Call or text (561) 809-3864, or get a price range online at newdesignpro.com/form. We do a free in-home measure, send a written quote within 24 hours, and a 50% deposit books your install date.`,
   },

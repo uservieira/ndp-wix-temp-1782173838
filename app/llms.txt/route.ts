@@ -32,7 +32,6 @@ export function GET() {
 - Google Business Profile: ${BUSINESS.gbpUrl}
 - Hours: ${hours}
 - Experience: ${CLAIMS.experienceText}
-- Insurance: Insured. ${CLAIMS.insuranceNote}
 - Licensed-trade work (electrical, plumbing and similar) is coordinated with licensed trade partners.
 - Service area: ${SERVICE_AREA.map((c) => `${c}, FL`).join('; ')}
 

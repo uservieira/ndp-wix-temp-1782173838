@@ -32,7 +32,7 @@ export function v6HeroHtml(): string {
 <div class="v6-facts">
   <div><strong>${priceText('entry')}</strong>Installed price from, per sq ft</div>
   <div><strong>Since 2015</strong>Family business · LLC since 2024</div>
-  <div><strong>Insured</strong>COI on request</div>
+  <div><strong>Free</strong>In-home measure</div>
   <div><strong>24 hrs</strong>Written quote</div>
 </div>`;
 }

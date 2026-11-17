@@ -143,7 +143,6 @@ async function welcomeLead(lead: Lead, f: Record<string, string>) {
     `Prefer to talk sooner? Text or call Daniel at ${BUSINESS_PHONE.display}.`,
     '',
     textSignature(),
-    'Insured. Certificate of insurance available on request.',
   ].join('\n');
   const r = await resend('fblead-welcome', lead.id, {
     from: 'Daniel at New Design Pro <contact@newdesignpro.com>',

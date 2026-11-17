@@ -117,7 +117,7 @@ export const SUPPLIER = {
 
 // Owner-confirmed claims. Route all insurance / experience wording through here.
 export const CLAIMS = {
-  insured: true,
+  insured: false,
   insuranceNote: 'Certificate of insurance available on request.',
   experienceText: 'A family business since 2015 (LLC since 2024), with experienced installers.',
   experienceShort: 'Family business since 2015 · LLC since 2024',

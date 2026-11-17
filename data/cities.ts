@@ -198,7 +198,7 @@ export const CITIES: City[] = [
       'LVP installation in Haines City, FL: replace builder carpet with waterproof SPC plank from $4.99/sqft installed. Slab leveling included, quote in 24 hours.',
     kicker: 'Haines City, FL · Polk County',
     h1: 'Luxury vinyl plank flooring in Haines City',
-    byline: 'Waterproof SPC plank, from $4.99/sqft supplied and installed. Insured crew, 50% deposit, written quote in 24 hours.',
+    byline: 'Waterproof SPC plank, from $4.99/sqft supplied and installed. 50% deposit, written quote in 24 hours.',
     heroImage: '/assets/lvp-hallway-lg.webp',
     zips: ['33844'],
     poBoxZips: ['33845'],
@@ -474,7 +474,7 @@ export const CITIES: City[] = [
     anchor: 'Flooring & interior remodeling in Davenport',
     title: 'Flooring & Interior Remodeling in Davenport, FL',
     description:
-      'Flooring and interior remodeling in Davenport, FL: LVP, tile, trim, and paint finish work from a local crew. Insured, 50% deposit, written quote in 24 hours.',
+      'Flooring and interior remodeling in Davenport, FL: LVP, tile, trim, and paint finish work from a local crew. 50% deposit, written quote in 24 hours.',
     kicker: 'Davenport, FL · Polk County · Interior remodeling',
     h1: 'Flooring and interior remodeling in Davenport',
     byline: 'Floors, tile, trim, and paint, from the crew based in Davenport. LVP from $4.99/sqft, tile quoted after a free measure. Written quote in 24 hours.',

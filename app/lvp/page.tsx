@@ -85,7 +85,7 @@ ${CITY_LINKS.map((c) => `  <li><a href="${c.path}">${esc(c.anchor)}</a></li>`).j
 </ul>
 
 <h2>Who shows up, and how you're covered</h2>
-<p>${esc(CLAIMS.experienceText)} New Design Pro operates under ${esc(BUSINESS.legalName)} and carries general liability insurance on every job. ${esc(CLAIMS.insuranceNote)} Workmanship is covered by a written warranty: <a href="/warranty">see the warranty terms</a>.</p>
+<p>${esc(CLAIMS.experienceText)} New Design Pro operates under ${esc(BUSINESS.legalName)}. Workmanship is covered by a written warranty: <a href="/warranty">see the warranty terms</a>.</p>
 
 <h2>LVP questions, answered</h2>
 ${faqs}

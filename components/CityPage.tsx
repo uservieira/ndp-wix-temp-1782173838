@@ -128,7 +128,7 @@ ${processHtml(c)}
 <ul class="city-zips">${zips.map((z) => `<li>${z}</li>`).join('')}</ul>
 
 <h2>Who shows up, and how you're covered</h2>
-<p>The short version: ${esc(CLAIMS.experienceText)} New Design Pro operates under ${esc(BUSINESS.legalName)} and carries general liability insurance on every job. ${esc(CLAIMS.insuranceNote)}</p>
+<p>The short version: ${esc(CLAIMS.experienceText)} New Design Pro operates under ${esc(BUSINESS.legalName)}.</p>
 
 <h2>${esc(c.name)} ${c.kind === 'remodeling' ? 'remodeling' : 'flooring'} questions, answered</h2>
 ${faqs}
