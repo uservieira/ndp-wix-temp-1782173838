@@ -61,6 +61,11 @@ export type ConsentSource = 'quote_form' | 'callback_form' | 'home_form' | 'text
 // Writes to the contact we were handed plus any other contact with the same phone (the callback form
 // creates a second, phone-only contact for someone who already has a quote contact).
 export async function saveSmsConsent(a: { contactId?: string; phone?: string; consent: boolean; source: ConsentSource }): Promise<string> {
+  // Capped at 5 seconds so a slow HubSpot can never hold up the form's reply to the visitor.
+  return Promise.race([saveConsent(a), new Promise<string>((r) => setTimeout(() => r('consent_timeout'), 5000))]);
+}
+
+async function saveConsent(a: { contactId?: string; phone?: string; consent: boolean; source: ConsentSource }): Promise<string> {
   try {
     if (!process.env.HUBSPOT_ACCESS_TOKEN) return 'hubspot_not_configured';
     const ids = new Map<string, string | null>(); // id -> current value (null = unknown / empty)
