@@ -2661,6 +2661,14 @@ blockquote.note {
 }
 
 .thank-you-cta:hover { background: var(--brand-hover); }
+/* Stop-follow-ups page (/quote-follow-ups) reuses the thank-you layout; the button is a real <button>. */
+.followup-stop { min-height: 70vh; padding-top: 72px; }
+.followup-stop h1 { text-wrap: balance; }
+.followup-stop .thank-you-sub { text-wrap: pretty; margin-bottom: 24px; }
+.followup-stop .thank-you-contact { margin-top: 32px; }
+.followup-stop .thank-you-sub a { color: var(--brand); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.followup-stop-btn { border: 0; cursor: pointer; font-family: inherit; min-height: 52px; margin-top: 8px; }
+.followup-stop-btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .thank-you-cta svg { width: 16px; height: 16px; }
 
 .thank-you-contact {

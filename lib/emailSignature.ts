@@ -2,7 +2,8 @@ import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 
 // Shared sign-off for every customer email (quote + discount code).
 // Logo is a self-contained dark tile so it reads the same in light and dark mode.
-export function emailSignature(reason: string): string {
+// tradeLine=false drops the trade-partner line (quote follow-ups carry no licensing wording at all).
+export function emailSignature(reason: string, tradeLine = true): string {
   return `
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;border-top:1px solid #E6E0D6;padding-top:20px;width:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
   <tr><td style="padding-top:20px;">
@@ -18,7 +19,7 @@ export function emailSignature(reason: string): string {
     </a>
     <div style="font-size:12px;color:#6B6357;margin-top:8px;">LVP Flooring &amp; Remodeling · Central Florida</div>
     <div style="font-size:11px;line-height:1.6;color:#9A9285;margin-top:14px;">
-      Work coordinated with licensed trade partners where required.<br>
+      ${tradeLine ? 'Work coordinated with licensed trade partners where required.<br>' : ''}
       ${reason}
     </div>
   </td></tr>

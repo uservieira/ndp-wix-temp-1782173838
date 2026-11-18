@@ -3,6 +3,7 @@
 // "NDP Print Line") so iPhone call screening lets it ring. The whisper reads the caller's number.
 // Calls are logged automatically in Twilio's call log (counted in the monthly review).
 import { sendOwnerAlert } from '@/lib/leadAlert';
+import { flag } from '@/lib/sms';
 
 export const runtime = 'nodejs';
 const CELL = process.env.PRINT_LINE_FORWARD_TO || '+15618093864';
@@ -10,9 +11,12 @@ const LINE = '+16893487406';
 
 function twiml() {
   const base = 'https://www.newdesignpro.com';
+  // With MISSED_CALL_TEXT test/on, Twilio reports how the forward ended to /api/voice/after, which plays the
+  // "we missed you" line and texts the caller. Off (default): this response is exactly what it was before.
+  const after = flag('MISSED_CALL_TEXT') === 'off' ? '' : ` action="${base}/api/voice/after" method="POST"`;
   return `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Dial callerId="${LINE}" timeout="25" answerOnBridge="true">
+  <Dial callerId="${LINE}" timeout="25" answerOnBridge="true"${after}>
     <Number url="${base}/api/voice/whisper{{Q}}">${CELL}</Number>
   </Dial>
   <Say voice="Polly.Joanna">Thanks for calling New Design Pro. We missed you, but we will call you right back.</Say>

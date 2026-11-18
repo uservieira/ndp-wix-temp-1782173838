@@ -2,6 +2,7 @@ import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSo
 import { NextRequest, NextResponse } from 'next/server';
 import { sendOwnerAlert } from '@/lib/leadAlert';
 import { leadAutoText } from '@/lib/sms';
+import { saveSmsConsent } from '@/lib/hubspot';
 import crypto from 'crypto';
 import { BUSINESS_PHONE, CLAIMS } from '@/lib/site';
 import { emailSignature, textSignature } from '@/lib/emailSignature';
@@ -440,9 +441,15 @@ export async function POST(req: NextRequest) {
     autoText: autoTextResult.status === 'fulfilled' ? autoTextResult.value : 'rejected',
   };
 
+  // Keep the SMS consent answer on the HubSpot contact (yes/no, when, which form). Best effort, never blocks the lead.
+  const consentSaved = body.phone
+    ? await saveSmsConsent({ contactId: results.hubspot.ok ? (results.hubspot as { contactId?: string }).contactId : undefined, phone: body.phone, consent: !!body.smsConsent, source: 'quote_form' })
+    : 'no_phone';
+
   // Log to console for Vercel logs (Daniel can review)
   console.log(JSON.stringify({
     event: 'quote_form_submit',
+    consentSaved,
     reference,
     name: body.name,
     email: body.email,

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { BUSINESS_PHONE } from '@/lib/site';
 
-const EXCLUDED = ['/form', '/callback', '/quote-thank-you', '/review'];
+const EXCLUDED = ['/form', '/callback', '/quote-thank-you', '/review', '/quote-follow-ups'];
 const AVOID = 'footer.site-footer, #contact, form, .post-cta, .form-page';
 
 export default function MobileCallBar() {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendOwnerAlert } from '@/lib/leadAlert';
 import { leadAutoText } from '@/lib/sms';
+import { saveSmsConsent } from '@/lib/hubspot';
 
 export const runtime = 'nodejs';
 
@@ -17,13 +18,13 @@ type CallbackBody = {
   smsConsent?: boolean;
 };
 
-async function updateHubSpotContact(body: CallbackBody): Promise<{ ok: boolean; error?: string }> {
+async function updateHubSpotContact(body: CallbackBody): Promise<{ ok: boolean; error?: string; contactId?: string }> {
   const apiKey = process.env.HUBSPOT_ACCESS_TOKEN;
   if (!apiKey) return { ok: false, error: 'hubspot_not_configured' };
 
   try {
     // If we can't find the contact, create a bare one
-    await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
+    const res = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
       method: 'POST',
       headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -37,7 +38,9 @@ async function updateHubSpotContact(body: CallbackBody): Promise<{ ok: boolean; 
         },
       }),
     });
-    return { ok: true };
+    let contactId: string | undefined;
+    try { if (res.ok) contactId = (await res.json()).id; } catch { /* keep going */ }
+    return { ok: true, contactId };
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : 'unknown' };
   }
@@ -90,8 +93,12 @@ export async function POST(req: NextRequest) {
     leadAutoText(body.name, body.phone, !!body.smsConsent),
   ]);
 
+  // Keep the SMS consent answer on the HubSpot contact(s) with this phone. Best effort, never blocks the lead.
+  const consentSaved = await saveSmsConsent({ contactId: h.status === 'fulfilled' ? h.value.contactId : undefined, phone: body.phone, consent: !!body.smsConsent, source: 'callback_form' });
+
   console.log(JSON.stringify({
     event: 'callback_form_submit',
+    consentSaved,
     name: body.name,
     phone: body.phone,
     reference: body.reference,

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 const KEY = 'ndp_promo_popup_v1';
 const EXPIRES = new Date('2026-12-31T23:59:59-05:00');
-const SKIP_PATHS = ['/form', '/review', '/refer'];
+const SKIP_PATHS = ['/form', '/review', '/refer', '/quote-follow-ups'];
 
 export default function PromoPopup() {
   const pathname = usePathname() || '/';
@@ -92,11 +92,11 @@ export default function PromoPopup() {
               <h2 id="promo-pop-title">Get <span>10% off</span> your new floors.</h2>
               <p>Enter your name and email and we&apos;ll send your code. Good on any supplied LVP package.</p>
               <form onSubmit={submit} noValidate>
-                <input type="text" tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} className="promo-pop-hp" aria-hidden="true" />
+                <input type="text" name="company_website" tabIndex={-1} autoComplete="off" data-lpignore="true" data-1p-ignore="true" data-form-type="other" value={hp} onChange={(e) => setHp(e.target.value)} className="promo-pop-hp" aria-hidden="true" />
                 <label htmlFor="promo-name" className="sr-only">First name</label>
-                <input id="promo-name" type="text" className="promo-pop-name" autoComplete="given-name" autoCapitalize="words" placeholder="First name" value={name} onChange={(e) => { setName(e.target.value); if (state === 'error') setState('idle'); }} required />
+                <input id="promo-name" name="firstname" type="text" className="promo-pop-name" autoComplete="given-name" autoCapitalize="words" placeholder="First name" value={name} onChange={(e) => { setName(e.target.value); if (state === 'error') setState('idle'); }} required />
                 <label htmlFor="promo-email" className="sr-only">Email address</label>
-                <input id="promo-email" type="email" inputMode="email" autoComplete="email" placeholder="you@email.com" value={email} onChange={(e) => { setEmail(e.target.value); if (state === 'error') setState('idle'); }} required />
+                <input id="promo-email" name="email" type="email" inputMode="email" autoComplete="email" placeholder="you@email.com" value={email} onChange={(e) => { setEmail(e.target.value); if (state === 'error') setState('idle'); }} required />
                 <button type="submit" disabled={state === 'sending'}>{state === 'sending' ? 'Sending…' : 'Send my code'}</button>
               </form>
               {state === 'error' && <p className="promo-pop-err">Please enter your first name and a valid email address.</p>}

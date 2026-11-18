@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sendOwnerAlert } from '@/lib/leadAlert';
 import { emailSignature, textSignature } from '@/lib/emailSignature';
 import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSource';
+import { contactByEmail, honeypot } from '@/lib/hubspot';
 
 export const runtime = 'nodejs';
 
@@ -21,15 +22,12 @@ async function upsertHubSpot(email: string, first: string, source: string, attri
   const res = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', { method: 'POST', headers, body: JSON.stringify({ properties }) });
   if (res.ok) return { ok: true };
   if (res.status === 409) {
-    const s = await fetch('https://api.hubapi.com/crm/v3/objects/contacts/search', {
-      method: 'POST', headers,
-      body: JSON.stringify({ filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: email }] }], properties: ['firstname'], limit: 1 }),
-    });
-    const hit = s.ok ? (await s.json()).results?.[0] : undefined;
-    const id = hit?.id;
-    const keepName = hit?.properties?.firstname;
-    if (id) {
-      await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${id}`, { method: 'PATCH', headers, body: JSON.stringify({ properties: { message: `Requested ${PROMO_CODE} (10% off) via website pop-up on ${source}`, ...(!keepName && first ? { firstname: first } : {}) } }) });
+    // Already in HubSpot (often created a second earlier by HubSpot's own page tracker). Read by email directly:
+    // the search index lags by seconds, which used to leave the note and lead source unsaved.
+    const hit = await contactByEmail(email);
+    if (hit) {
+      const keepName = hit.properties.firstname && !hit.properties.firstname.includes('@');
+      await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${hit.id}`, { method: 'PATCH', headers, body: JSON.stringify({ properties: { hs_lead_status: 'NEW', ndp_lead_source: leadSourceFrom(attribution), ...googleClickProps(attribution), message: `Requested ${PROMO_CODE} (10% off) via website pop-up on ${source}`, ...(!keepName && first ? { firstname: first } : {}) } }) });
       return { ok: true };
     }
   }
@@ -64,11 +62,18 @@ export async function POST(req: NextRequest) {
   if (new Date() > new Date(PROMO_EXPIRES)) return NextResponse.json({ ok: false, error: 'expired' }, { status: 410 });
   let body: { name?: string; email?: string; company_website?: string; source?: string; attribution?: Attribution | null } = {};
   try { body = await req.json(); } catch { return NextResponse.json({ ok: false, error: 'invalid_json' }, { status: 400 }); }
-  if (body.company_website) return NextResponse.json({ ok: true, code: PROMO_CODE }); // honeypot
   const email = (body.email || '').trim().toLowerCase();
-  const first = (body.name || '').trim().split(/\s+/)[0].replace(/[^\p{L}'\-]/gu, '').slice(0, 40);
+  // An email typed (or autofilled) into the first-name box is not a name.
+  const rawName = (body.name || '').includes('@') ? '' : (body.name || '');
+  const first = rawName.trim().split(/\s+/)[0].replace(/[^\p{L}'\-]/gu, '').slice(0, 40);
   const firstCap = first ? first[0].toUpperCase() + first.slice(1) : '';
-  if (!isEmail(email)) return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
+  if (!isEmail(email)) return body.company_website ? NextResponse.json({ ok: true, code: PROMO_CODE }) : NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
+  // Hidden anti-bot field. Autofill can fill it for real people (a Nov 7 lead was dropped this way), so:
+  // a value that just repeats what they typed is treated as a person; anything else is emailed to the owner as filtered.
+  if (honeypot(body.company_website, [body.name, email]) === 'filtered') {
+    await sendOwnerAlert({ kind: 'Filtered pop-up entry (possible bot)', name: email, email, details: { 'Name box': (body.name || '').slice(0, 80), 'Hidden field': body.company_website?.slice(0, 80), Note: 'The spam filter caught this one, so no code email was sent and it was not added to HubSpot. If it looks like a real person, email them the LVP10 code.' }, idem: `promo-filtered-${email}`, emailOnly: true });
+    return NextResponse.json({ ok: true, code: PROMO_CODE });
+  }
   const source = (body.source || '/').slice(0, 200);
   const [hs, mail] = await Promise.allSettled([
     upsertHubSpot(email, firstCap, source, body.attribution),
