@@ -1,4 +1,5 @@
 // Owner lead alerts: email (Resend) + text (Twilio) for every website lead.
+import { createHash } from 'crypto';
 import { sendSms, ownerPhone } from './sms';
 // Same channels as the Facebook lead poller. Best effort: never throws.
 type Alert = {
@@ -9,6 +10,8 @@ type Alert = {
   source?: string;
   details?: Record<string, string | undefined>;
   idem: string; // idempotency key
+  emailOnly?: boolean; // skip the text (used for entries the spam filter caught)
+  smsNote?: string; // short extra line for the text, e.g. the start of a customer's reply
 };
 
 function esc(s: string) {
@@ -45,9 +48,11 @@ export async function sendOwnerAlert(a: Alert): Promise<{ email: string; sms: st
 </div>`;
     const text = [`New ${a.kind} (${when})`, `Name: ${name}`, ...Object.entries({ Phone: a.phone, Email: a.email, Source: a.source, ...(a.details || {}) }).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`)].join('\n');
     const email = await send(key, { from, to, subject: `New ${a.kind}: ${name}${a.phone ? ' · ' + a.phone : ''}`, html, text }, `alert-email-${a.idem}`);
-    const ref = a.idem.replace(/[^a-z0-9]/gi, '').slice(-6);
-    const smsBody = [`NDP ${a.kind.toUpperCase()}: ${name}`, a.phone || a.email, a.details?.['Sq ft'], a.details?.Scope].filter(Boolean).join(' | ').slice(0, 140) + ` #${ref}`;
-    const smsRes = await sendSms(ownerPhone(), smsBody, `#${ref}`);
+    // Short hash of the whole key. (The old "last 6 characters" made every @gmail.com pop-up lead share one
+    // reference, so a second lead within two days looked like a duplicate and its text was skipped.)
+    const ref = createHash('sha1').update(a.idem).digest('hex').slice(0, 6);
+    const smsBody = [`NDP ${a.kind.toUpperCase()}: ${name}`, a.phone || a.email, a.details?.['Sq ft'], a.details?.Scope, a.smsNote].filter(Boolean).join(' | ').slice(0, 140) + ` #${ref}`;
+    const smsRes = a.emailOnly ? 'email_only' : await sendSms(ownerPhone(), smsBody, `#${ref}`);
     return { email, sms: smsRes };
   } catch (e) {
     return { email: e instanceof Error ? e.message : 'alert_error', sms: 'alert_error' };

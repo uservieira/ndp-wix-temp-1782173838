@@ -2,6 +2,7 @@
 // Env: TWILIO_ACCOUNT_SID, TWILIO_API_KEY, TWILIO_API_SECRET, TWILIO_MESSAGING_SERVICE_SID
 //      LEAD_ALERT_SMS_TO (owner phone, default +15618093864)
 //      LEAD_AUTOTEXT=on  (turns on the instant text to leads who gave SMS consent)
+//      MISSED_CALL_TEXT=off|test|on  (text-back after a missed print-line call; unset = off)
 
 const API = 'https://api.twilio.com/2010-04-01';
 
@@ -60,6 +61,54 @@ export async function leadAutoText(name: string | undefined, phone: string | und
   if (!consent) return 'no_consent';
   if (process.env.LEAD_AUTOTEXT !== 'on') return 'autotext_off';
   const first = (name || '').trim().split(/\s+/)[0];
-  const body = `Hi${first ? ' ' + first : ''}, this is New Design Pro. We got your flooring request and will call you shortly to set up your free in-home measure. Reply STOP to opt out.`;
+  const body = `Hi${first ? ' ' + first : ''}, this is New Design Pro. We got your flooring request and will call you to set up your free in-home measure. Reply STOP to opt out.`;
   return sendSms(phone, body, 'We got your flooring request');
+}
+
+// ---- Twilio lookups. Used to confirm a webhook really came from Twilio (we hold an API key, not the auth token):
+// the SID in the request must exist in our account, be recent, and we only trust the fields Twilio returns.
+export type TwilioMessage = { sid: string; from: string; to: string; body: string; direction: string; date_created: string };
+export async function fetchTwilioMessage(sid: string): Promise<TwilioMessage | null> {
+  const c = cfg();
+  if (!c || !/^(SM|MM)[0-9a-f]{32}$/i.test(sid)) return null;
+  try {
+    const r = await fetch(`${API}/Accounts/${c.sid}/Messages/${sid}.json`, { headers: { Authorization: c.auth }, cache: 'no-store' });
+    return r.ok ? ((await r.json()) as TwilioMessage) : null;
+  } catch {
+    return null;
+  }
+}
+
+export type TwilioCall = { sid: string; from: string; to: string; direction: string; start_time: string | null; date_created: string };
+export async function fetchTwilioCall(sid: string): Promise<TwilioCall | null> {
+  const c = cfg();
+  if (!c || !/^CA[0-9a-f]{32}$/i.test(sid)) return null;
+  try {
+    const r = await fetch(`${API}/Accounts/${c.sid}/Calls/${sid}.json`, { headers: { Authorization: c.auth }, cache: 'no-store' });
+    return r.ok ? ((await r.json()) as TwilioCall) : null;
+  } catch {
+    return null;
+  }
+}
+
+// ---- Test allowlist. In "test" mode nothing leaves for anyone but the owner's own phone and the office inbox.
+export const TEST_PHONE = '+15618093864';
+export const TEST_EMAIL = 'contact@newdesignpro.com';
+export type Flag = 'off' | 'test' | 'on';
+export function flag(name: 'QUOTE_FOLLOWUP' | 'MISSED_CALL_TEXT'): Flag {
+  const v = (process.env[name] || '').trim().toLowerCase();
+  return v === 'on' || v === 'test' ? v : 'off';
+}
+
+export const MISSED_CALL_BODY = "Sorry we missed you, this is New Design Pro. We'll call you back. Or reply here with your name and what you need done. Reply STOP to opt out.";
+
+// Text-back after a missed call on the print line. Off unless MISSED_CALL_TEXT is test/on.
+// In test mode it only ever texts the owner's own phone.
+export async function missedCallText(callerPhone: string | undefined): Promise<string> {
+  const mode = flag('MISSED_CALL_TEXT');
+  if (mode === 'off') return 'missed_call_text_off';
+  const to = toE164(callerPhone);
+  if (!to) return 'bad_phone';
+  if (mode === 'test' && to !== TEST_PHONE) return 'test_mode_skipped';
+  return sendSms(to, MISSED_CALL_BODY, 'Sorry we missed you');
 }

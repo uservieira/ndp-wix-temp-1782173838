@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSource';
 import { sendOwnerAlert } from '@/lib/leadAlert';
 import { leadAutoText } from '@/lib/sms';
+import { saveSmsConsent, honeypot } from '@/lib/hubspot';
 
 export const runtime = 'nodejs';
 
@@ -55,8 +56,14 @@ async function hubspot(b: Body, source: string) {
 export async function POST(req: NextRequest) {
   let b: Body = {};
   try { b = await req.json(); } catch { return NextResponse.json({ ok: false, error: 'invalid_json' }, { status: 400 }); }
-  if (b.company_website) return NextResponse.json({ ok: true }); // honeypot
-  if (!b.name || !b.phone) return NextResponse.json({ ok: false, error: 'missing_required_fields' }, { status: 400 });
+  if (!b.name || !b.phone) return b.company_website ? NextResponse.json({ ok: true }) : NextResponse.json({ ok: false, error: 'missing_required_fields' }, { status: 400 });
+  // Hidden anti-bot field. Autofill can fill it for real people, so a filled field no longer drops the lead silently:
+  // a value that just repeats what they typed is treated as a person, anything else is emailed to the owner as filtered.
+  if (honeypot(b.company_website, [b.name, b.phone, b.zip]) === 'filtered') {
+    const alert = await sendOwnerAlert({ kind: 'Filtered form entry (possible bot)', name: b.name, phone: b.phone, details: { Scope: b.scope, 'Sq ft': b.sqft, ZIP: b.zip, Notes: b.notes, Page: b.page, 'Hidden field': b.company_website?.slice(0, 80), Note: 'The spam filter caught this one, so it was not added to HubSpot. If it looks like a real person, call them.' }, idem: `home-filtered-${(b.phone || '').replace(/\D/g, '')}`, emailOnly: true });
+    console.log(JSON.stringify({ event: 'home_lead_filtered', alert }));
+    return NextResponse.json({ ok: true });
+  }
   const source = leadSourceFrom(b.attribution);
   const idem = `home-${(b.phone || '').replace(/\D/g, '')}-${new Date().toISOString().slice(0, 16)}`;
   const [hs, alert, auto] = await Promise.allSettled([
@@ -65,6 +72,8 @@ export async function POST(req: NextRequest) {
     sendOwnerAlert({ kind: 'Website quote', name: b.name, phone: b.phone, source, details: { Scope: b.scope, 'Sq ft': b.sqft, ZIP: b.zip, Notes: b.notes, Page: b.page }, idem }),
   ]);
   const results = { hubspot: hs.status === 'fulfilled' ? hs.value : { ok: false }, alert: alert.status === 'fulfilled' ? alert.value : { email: 'rejected', sms: 'rejected' }, autoText: auto.status === 'fulfilled' ? auto.value : 'rejected' };
-  console.log(JSON.stringify({ event: 'home_lead_submit', name: b.name, source, results }));
+  // Keep the SMS consent answer on the HubSpot contact (yes/no, when, which form). Best effort, never blocks the lead.
+  const consentSaved = await saveSmsConsent({ contactId: (results.hubspot as { contactId?: string }).contactId, phone: b.phone, consent: !!b.smsConsent, source: 'home_form' });
+  console.log(JSON.stringify({ event: 'home_lead_submit', name: b.name, source, results, consentSaved }));
   return NextResponse.json({ ok: true, results });
 }

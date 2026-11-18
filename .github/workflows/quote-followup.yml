@@ -1,0 +1,50 @@
+name: Quote follow-up
+
+# Runs the quote follow-up on newdesignpro.com a few times a day. The site decides what is due
+# (day 2, 5 and 10 after a quote is sent) and only sends 9 am to 7 pm Eastern, Monday to Saturday.
+# Each touch is claimed before it is sent, so extra runs never send anything twice.
+# While QUOTE_FOLLOWUP is off on the site, every run is a no-op. Logs show counts only.
+
+on:
+  schedule:
+    - cron: '10 15 * * 1-6'
+    - cron: '10 18 * * 1-6'
+    - cron: '10 21 * * 1-6'
+  workflow_dispatch:
+    inputs:
+      preview:
+        description: 'Send one message to the owner phone / office inbox only (needs the flag at test or on)'
+        type: choice
+        default: none
+        options: [none, day2, day5, day10, missed, instant]
+      channel:
+        description: 'For day2/day5/day10 previews'
+        type: choice
+        default: both
+        options: [both, sms, email]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quote-followup
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Run
+        env:
+          POLL_SECRET: ${{ secrets.FB_POLL_SECRET }}
+          PREVIEW: ${{ inputs.preview }}
+          CHANNEL: ${{ inputs.channel }}
+        run: |
+          url="https://www.newdesignpro.com/api/followup/run"
+          if [ -n "$PREVIEW" ] && [ "$PREVIEW" != "none" ]; then url="$url?preview=$PREVIEW&channel=${CHANNEL:-both}"; fi
+          code=$(curl -s -o /tmp/r.json -w '%{http_code}' --max-time 90 -H "x-poll-secret: $POLL_SECRET" "$url" || echo 000)
+          echo "http=$code"
+          cat /tmp/r.json 2>/dev/null || true
+          echo
+          [ "$code" = "200" ]

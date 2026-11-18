@@ -278,9 +278,27 @@
     var errBox = form.querySelector('.form-validation-error');
     if (errBox) { errBox.style.display = 'none'; errBox.textContent = ''; }
 
-    // Honeypot: silent success on bot
+    // Hidden anti-bot field. Autofill can fill it for real people, so the entry is no longer dropped here:
+    // it is still sent to /api/home-lead (with the hidden value), and the server decides. A value that only
+    // repeats the name or phone counts as a person; anything else is emailed to the owner as "filtered".
     var hp = document.getElementById('company_website');
     if (hp && hp.value) {
+      fetch('/api/home-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({
+          name: (form.elements.name && form.elements.name.value) || '',
+          phone: (form.elements.phone && form.elements.phone.value) || '',
+          scope: (document.getElementById('scope') || {}).value || '',
+          sqft: (document.getElementById('sqft') || {}).value || '',
+          zip: (document.getElementById('zip') || {}).value || '',
+          notes: (form.elements.notes && form.elements.notes.value) || '',
+          smsConsent: !!((document.getElementById('sms_consent') || {}).checked),
+          page: window.location.pathname,
+          company_website: hp.value
+        })
+      }).catch(function() {});
       form.classList.add('state-success');
       form.reset();
       return;
