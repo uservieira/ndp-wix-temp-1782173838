@@ -211,7 +211,7 @@ async function alertLead(lead: Lead) {
   const smsRes = await sendSms(ownerPhone(), smsBody, `#${ref}`);
   const text1 = smsRes === 'ok' || smsRes === 'duplicate_skipped' ? { ok: true } : { ok: false, error: smsRes };
   const consent = Object.entries(f).some(([k, v]) => /sms|text|consent/i.test(k) && /^(yes|true|1|on|i agree|agree|checked)/i.test(String(v)));
-  const autoText = await leadAutoText(f.full_name, phone, consent);
+  const autoText = await leadAutoText(f.full_name, phone, consent, f.email);
 
   // HubSpot contact (best effort; duplicates return 409 and are ignored)
   let hub = 'skipped';

@@ -428,7 +428,7 @@ export async function POST(req: NextRequest) {
       },
       idem: `quote-${reference}`,
     }),
-    leadAutoText(body.name, body.phone, !!body.smsConsent),
+    leadAutoText(body.name, body.phone, !!body.smsConsent, body.email),
   ]);
 
   // Log all outcomes but don't fail the request unless the primary email failed AND we couldn't record anywhere
