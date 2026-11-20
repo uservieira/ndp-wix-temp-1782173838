@@ -4,6 +4,8 @@
 //      LEAD_AUTOTEXT=on  (turns on the instant text to leads who gave SMS consent)
 //      MISSED_CALL_TEXT=off|test|on  (text-back after a missed print-line call; unset = off)
 
+import { isOptedOut } from './hubspot';
+
 const API = 'https://api.twilio.com/2010-04-01';
 
 function cfg() {
@@ -57,9 +59,13 @@ export function ownerPhone() {
 }
 
 // Instant text to the lead. Only when they opted in and LEAD_AUTOTEXT=on.
-export async function leadAutoText(name: string | undefined, phone: string | undefined, consent: boolean): Promise<string> {
+// Skipped for anyone HubSpot shows as opted out (unsubscribed, or an OPTED OUT note), and when that cannot be checked.
+export async function leadAutoText(name: string | undefined, phone: string | undefined, consent: boolean, email?: string): Promise<string> {
   if (!consent) return 'no_consent';
   if (process.env.LEAD_AUTOTEXT !== 'on') return 'autotext_off';
+  if (!toE164(phone)) return 'bad_phone';
+  const out = await isOptedOut({ phone, email });
+  if (out !== 'no') return out === 'yes' ? 'opted_out' : 'optout_check_failed';
   const first = (name || '').trim().split(/\s+/)[0];
   const body = `Hi${first ? ' ' + first : ''}, this is New Design Pro. We got your flooring request and will call you to set up your free in-home measure. Reply STOP to opt out.`;
   return sendSms(phone, body, 'We got your flooring request');
@@ -103,12 +109,14 @@ export function flag(name: 'QUOTE_FOLLOWUP' | 'MISSED_CALL_TEXT'): Flag {
 export const MISSED_CALL_BODY = "Sorry we missed you, this is New Design Pro. We'll call you back. Or reply here with your name and what you need done. Reply STOP to opt out.";
 
 // Text-back after a missed call on the print line. Off unless MISSED_CALL_TEXT is test/on.
-// In test mode it only ever texts the owner's own phone.
+// In test mode it only ever texts the owner's own phone. Never texts someone who opted out.
 export async function missedCallText(callerPhone: string | undefined): Promise<string> {
   const mode = flag('MISSED_CALL_TEXT');
   if (mode === 'off') return 'missed_call_text_off';
   const to = toE164(callerPhone);
   if (!to) return 'bad_phone';
   if (mode === 'test' && to !== TEST_PHONE) return 'test_mode_skipped';
+  const out = await isOptedOut({ phone: to, stopText: true });
+  if (out !== 'no') return out === 'yes' ? 'opted_out' : 'optout_check_failed';
   return sendSms(to, MISSED_CALL_BODY, 'Sorry we missed you');
 }

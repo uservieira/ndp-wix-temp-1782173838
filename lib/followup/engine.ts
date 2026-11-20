@@ -6,7 +6,8 @@
 //         phone / the office inbox. Everyone else is counted as "would send" and nothing is written.
 // It stops on its own when the deal leaves Quote Sent (signed or lost), when the customer uses the
 // stop link, replies by text, texts STOP, or when someone ticks "NDP No Auto Follow-up" on the deal.
-import { hs, type HsObject } from '@/lib/hubspot';
+// It also never contacts anyone HubSpot shows as opted out: unsubscribed from email, or an OPTED OUT note on the contact.
+import { hs, optOutNote, unsubscribed, type HsObject } from '@/lib/hubspot';
 import { sendSms, toE164, flag, TEST_PHONE, TEST_EMAIL, type Flag } from '@/lib/sms';
 import { email as buildEmail, smsBody, firstName, SMS_MARKER, stopPageUrl, stopApiUrl, TOUCH_DAY, type Touch } from './messages';
 
@@ -55,6 +56,8 @@ export function plan(deal: HsObject, contacts: HsObject[], now: Date): Plan {
   const status = (p.ndp_followup_status || '').toLowerCase();
   if (status.startsWith('stopped') || status.startsWith('finished')) return { action: 'skip', reason: 'stopped' };
   if (isBuildline(p.dealname, ...contacts.flatMap((c) => [c.properties.company, (c.properties.email || '').split('@')[1]]))) return { action: 'skip', reason: 'excluded_buildline' };
+  // Unsubscribed from email in HubSpot = opted out of everything automatic, texts included.
+  if (contacts.some(unsubscribed)) return { action: 'skip', reason: 'opted_out' };
 
   const today = etParts(now).date;
   const manual = (p.ndp_followup_start || '').slice(0, 10);
@@ -74,11 +77,10 @@ export function plan(deal: HsObject, contacts: HsObject[], now: Date): Plan {
   const phone = toE164(c.properties.mobilephone || undefined) || toE164(c.properties.phone || undefined);
   const consent = (c.properties.ndp_sms_consent || '').toLowerCase() === 'yes';
   const addr = (c.properties.email || '').trim().toLowerCase();
-  const optedOut = String(c.properties.hs_email_optout).toLowerCase() === 'true';
-  // Text only with consent on file. Email whenever there is an address that has not opted out.
+  // Text only with consent on file. Email whenever there is an address.
   // Phone-only contact with consent: text only. No consent: email only. Neither: nothing.
   const sms = phone && consent ? phone : null;
-  const email = addr && !optedOut ? addr : null;
+  const email = addr || null;
   if (!sms && !email) return { action: 'skip', reason: 'no_channel' };
   return { action: 'send', touch, day, sms, email, first: firstName(c.properties.firstname), contactId: c.id };
 }
@@ -150,6 +152,16 @@ export async function runFollowups(now = new Date()): Promise<RunResult> {
       if (pl.action === 'finish') {
         if (mode === 'on') await hs('PATCH', `/crm/v3/objects/deals/${id}`, { properties: { ndp_followup_status: 'finished' } });
         bump('finished');
+        continue;
+      }
+
+      // 2b. Something is due. Last check before any send: an OPTED OUT note on any of the deal's contacts.
+      // If HubSpot cannot answer, nothing is sent and the next run tries again.
+      const out = await optOutNote(contactIds);
+      if (out === 'unknown') { bump('error'); continue; }
+      if (out === 'yes') {
+        if (mode === 'on') await hs('PATCH', `/crm/v3/objects/deals/${id}`, { properties: { ndp_followup_status: 'stopped: opted out' } });
+        bump('opted_out');
         continue;
       }
 

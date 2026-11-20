@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
   }
   const source = leadSourceFrom(b.attribution);
   const idem = `home-${(b.phone || '').replace(/\D/g, '')}-${new Date().toISOString().slice(0, 16)}`;
-  const [hs, alert, auto] = await Promise.allSettled([
+  const [hs, auto, alert] = await Promise.allSettled([
     hubspot(b, source),
     leadAutoText(b.name, b.phone, !!b.smsConsent),
     sendOwnerAlert({ kind: 'Website quote', name: b.name, phone: b.phone, source, details: { Scope: b.scope, 'Sq ft': b.sqft, ZIP: b.zip, Notes: b.notes, Page: b.page }, idem }),
