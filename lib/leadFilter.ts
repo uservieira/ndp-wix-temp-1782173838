@@ -30,7 +30,7 @@ export function zipOutsideFlorida(zip?: string): boolean {
 const PITCH: RegExp[] = [
   /backing of contractors/i,
   /\bfunding\b/i,
-  /\bcapital\b/i,
+  /\b(?:working capital|capital funding|merchant capital)\b/i,
   /\bseo\b/i,
   /\brank(?:ing)? your (?:web)?site\b/i,
   /\bsynergy\b/i,
