@@ -11,7 +11,7 @@ import { v6AreasHtml, v6ColorsHtml, v6FaqHtml, v6FinalHtml, v6HeroHtml, v6Packag
 
 export const metadata: Metadata = {
   description:
-    'LVP supplied & installed from $5.99/sqft plus material tax in Orlando, Kissimmee, Davenport, Lakeland and nearby. Tile quoted after a free measure. Written quote typically within 24 hours.',
+    'LVP supplied & installed from $4.99/sqft plus material tax in Orlando, Kissimmee, Davenport, Lakeland and nearby. Tile quoted after a free measure. Written quote typically within 24 hours.',
   title: { absolute: 'LVP Flooring Installation, Davenport & Kissimmee FL | New Design Pro' },
   alternates: { canonical: '/' },
 };
@@ -188,7 +188,7 @@ ${v6FinalHtml()}
           <select id="scope" name="scope" required>
             <option value="">Choose one…</option>
             <option value="lvp-labor">LVP install — I supply materials (labor-only quote)</option>
-            <option value="lvp-supplied">LVP install — we supply materials ($5.99–$7.99/sqft plus material tax)</option>
+            <option value="lvp-supplied">LVP install — we supply materials ($4.99–$7.99/sqft plus material tax)</option>
             <option value="tile-hardwood">Tile or hardwood</option>
             <option value="kitchen">Kitchen remodel</option>
             <option value="bathroom">Bathroom remodel</option>

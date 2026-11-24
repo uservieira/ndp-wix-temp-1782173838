@@ -74,12 +74,12 @@ const PAGE_HTML = `
 <p>Then there's water. A sliding door left open during an afternoon storm, a leaky ice maker, a puppy that isn't housebroken yet. Real hardwood absorbs it. Even a fast cleanup can leave a black stain that only sanding will fix, and if the water sat overnight the plank is done — cupped, warped, or crowned. I've pulled up a lot of real hardwood in this state and it's almost always water damage that killed it.</p>
 
 <h2>Where SPC LVP has real advantages</h2>
-<h3>It handles spills and humidity better</h3>
-<p>SPC plank has a stone-plastic core, so spills, wet paws and Florida humidity don't make it swell the way real wood can. It doesn't fix a leak or a damp slab, so I still look for signs of moisture at the measure, and any standing water should be cleaned up quickly.</p>
+<h3>Durato rates the core waterproof</h3>
+<p>Durato rates its SPC core waterproof, so spills, wet paws and Florida humidity don't make the plank swell the way real wood can. That's the manufacturer's rating for the plank, not a promise about the whole floor. It doesn't fix a leak or a damp slab, so I still look for signs of moisture at the measure, and any standing water should be cleaned up quickly.</p>
 <h3>The install is faster and cleaner</h3>
 <p>Real hardwood takes 4 to 6 days for a decent-sized job, plus a week of no walking on it while the finish cures, plus dust and fumes throughout your house. SPC LVP over a properly prepped slab goes down in 2 to 3 days, no fumes, no sanding, you can walk on it the same day.</p>
 <h3>It's a fraction of the cost</h3>
-<p>Real 3/4" oak, delivered and installed with site-finished poly? You're looking at $12 to $18 a square foot in this market once you count sanding, staining, and finishing. My SPC LVP packages run $5.99 to $7.99 a square foot supplied and installed. On a 1,000-sqft job that's the difference between a $17,000 floor and a $6,000 floor.</p>
+<p>Real 3/4" oak, delivered and installed with site-finished poly? You're looking at $12 to $18 a square foot in this market once you count sanding, staining, and finishing. My SPC LVP tiers run $4.99 to $7.99 a square foot supplied and installed. On a 1,000-sqft job that's the difference between a $17,000 floor and a $6,000 floor.</p>
 <h3>Scratches are cosmetic, not structural</h3>
 <p>Hardwood scratches through the finish and exposes bare wood. To fix it you have to sand and refinish. SPC's wear layer is a hard urethane coat over the print layer. A deep scratch is possible but rare, and the plank underneath is exactly the same color the whole way through.</p>
 

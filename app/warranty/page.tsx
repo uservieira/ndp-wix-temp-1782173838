@@ -10,7 +10,7 @@ const PATH = '/warranty';
 export const metadata: Metadata = {
   alternates: { canonical: PATH },
   title: 'Written Flooring Warranty: 1 Year to Lifetime Limited',
-  description: 'New Design Pro puts its flooring workmanship warranty in writing: 3 years on Standard, lifetime limited on Premium. What it covers, what it does not, and how to file a claim.',
+  description: 'New Design Pro puts its flooring workmanship warranty in writing: 1 year on Entry, 3 years on Standard, lifetime limited on Premium. What it covers, what it does not, and how to file a claim.',
 };
 
 const body = `

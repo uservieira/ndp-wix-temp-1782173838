@@ -1,6 +1,6 @@
 // Shared HTML-string blocks for pricing and the Duralast collection section.
 // The homepage and /tile render the same tier copy from here so the owner-locked
-// LVP packages ($5.99 / $7.99) can never drift between pages.
+// LVP packages ($4.99 / $5.99 / $7.99) can never drift between pages.
 import { LVP_TIERS, PRICING, SUPPLIER, BASEBOARD_ADDON, type LvpTierKey } from '@/lib/site';
 import {
   DEFAULT_COLLECTION,
@@ -28,10 +28,27 @@ export function lvpTiersHtml(opts: {
   href: (key: LvpTierKey | 'labor') => string;
 }): string {
   const { hidden = false, href } = opts;
+  const entry = tierByKey('entry');
   const standard = tierByKey('standard');
   const premium = tierByKey('premium');
-  return `<!-- LVP tiers (ascending: ${priceText('standard')} → ${priceText('premium')} → Labor Only) -->
+  return `<!-- LVP tiers (ascending: ${priceText('entry')} → ${priceText('standard')} → ${priceText('premium')} → Labor Only) -->
     <div class="price-tiers${hidden ? ' is-hidden' : ''}" id="tiers-lvp" role="tabpanel"${hidden ? ' aria-hidden="true"' : ''}>
+      <div class="tier">
+        <div class="tier-name">${entry.name} Supplied</div>
+        <div class="tier-price"><span class="amount">${priceText('entry')}</span><span class="unit">/sqft</span></div>
+        <p class="tier-desc">Budget-friendly ${entry.wear} LVP, standard install + quarter round. ${joinOr(collectionsFor('entry'))} colors.</p>
+        <ul>
+          <li>12-mil wear layer LVP</li>
+          <li>4.7mm Panzu LVP plank</li>
+          <li>Standard install</li>
+          <li>Quarter round added at wall base</li>
+          <li><a href="/warranty">1-year workmanship warranty</a></li>
+          <li>Durato Lifetime Limited Residential Warranty on the plank</li>
+        </ul>
+        <a class="btn btn-tier" href="${href('entry')}" data-tier="entry">Book entry</a>
+        <p class="tier-note">Final price confirmed after in-home measurement.</p>
+      </div>
+
       <div class="tier featured">
         <div class="tier-badge">${standard.badge}</div>
         <div class="tier-name">${standard.name} Supplied</div>
@@ -214,7 +231,7 @@ export function duralastSectionHtml(): string {
         <span class="lvp-coll-lockup-brand">${SUPPLIER.name}</span>
       </div>
       <h2 class="section-title" style="margin-left:auto;margin-right:auto;">Pick your color from the <em>${SUPPLIER.name} collections</em>.</h2>
-      <p class="section-lede" style="margin-left:auto;margin-right:auto;">We install ${SUPPLIER.name} (${SUPPLIER.altName}) SPC rigid-core plank: water-resistant, click-lock, with an attached pad. Each collection matches one of our all-in price tiers. Tap any color to see it in a room.</p>
+      <p class="section-lede" style="margin-left:auto;margin-right:auto;">We install ${SUPPLIER.name} (${SUPPLIER.altName}) SPC rigid-core plank: waterproof SPC core (per Durato), click-lock, with an attached pad. Each collection matches one of our all-in price tiers. Tap any color to see it in a room.</p>
     </div>
 
     <div class="lvp-coll-tabs" role="tablist" aria-label="${SUPPLIER.name} collections">
@@ -258,7 +275,7 @@ export function duralastSectionHtml(): string {
           <div><dt>Wear layer</dt><dd id="lvp-coll-detail-wear">${esc(activeColl.wear)}</dd></div>
           <div><dt>Thickness</dt><dd id="lvp-coll-detail-thickness">${esc(activeColl.thickness)}</dd></div>
           <div><dt>Plank size</dt><dd id="lvp-coll-detail-plank">${esc(activeColl.plank)}</dd></div>
-          <div><dt>Core</dt><dd>SPC rigid core, water-resistant</dd></div>
+          <div><dt>Core</dt><dd>SPC rigid core, waterproof (per Durato)</dd></div>
           <div><dt>SKU</dt><dd id="lvp-coll-detail-sku">${activeColor.sku}</dd></div>
         </dl>
         <div class="lvp-coll-detail-cta">

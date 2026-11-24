@@ -49,7 +49,7 @@ export const CITIES: City[] = [
       'Vinyl plank flooring in Davenport, FL from a local installer based in Davenport (33837). Free in-home measure, honest slab prep, and a written, itemized quote.',
     kicker: 'Davenport, FL · Polk County · Our home base',
     h1: 'Vinyl plank flooring in Davenport, FL',
-    byline: 'Based in Davenport 33837. Supplied & installed from $5.99/sqft plus material tax. Typically 50% deposit, written quote typically within 24 hours.',
+    byline: 'Based in Davenport 33837. Supplied & installed from $4.99/sqft plus material tax. Typically 50% deposit, written quote typically within 24 hours.',
     heroImage: '/assets/lvp-livingroom-lg.webp',
     zips: ['33837', '33896', '33897'],
     poBoxZips: ['33836'],
@@ -131,12 +131,12 @@ export const CITIES: City[] = [
     county: 'Osceola County',
     kind: 'lvp',
     anchor: 'LVP installation in Kissimmee',
-    title: 'LVP Installation in Kissimmee, FL — From $5.99/sqft',
+    title: 'LVP Installation in Kissimmee, FL — From $4.99/sqft',
     description:
-      'LVP installed in Kissimmee, FL from $5.99/sqft plus material tax. Slab flatness and moisture-sign checks, rental-friendly scheduling, quote typically in 24 hrs.',
+      'LVP installed in Kissimmee, FL from $4.99/sqft plus material tax. Slab flatness and moisture-sign checks, rental-friendly scheduling, quote typically in 24 hrs.',
     kicker: 'Kissimmee, FL · Osceola County',
     h1: 'Luxury vinyl plank flooring in Kissimmee, installed right',
-    byline: 'A short drive from our Davenport base. Supplied & installed from $5.99/sqft plus material tax. Typically 50% deposit, written quote typically within 24 hours.',
+    byline: 'A short drive from our Davenport base. Supplied & installed from $4.99/sqft plus material tax. Typically 50% deposit, written quote typically within 24 hours.',
     heroImage: '/blog-img/lvp-kissimmee-hero.webp',
     zips: ['34741', '34743', '34744', '34746', '34747', '34758', '34759'],
     poBoxZips: ['34742', '34745'],
@@ -156,7 +156,7 @@ export const CITIES: City[] = [
       {
         h2: 'Slab moisture and humidity in Osceola County',
         paras: [
-          `SPC plank is water-resistant and holds up to spills and humidity, but what's underneath still matters. Moisture moving up through a slab can get trapped under the floor, and a closed-up house in August can hold enough humidity to swell wood baseboards and door casings. When a slab reads high, I use a moisture-barrier underlayment instead of hoping for the best. If a slab is clearly wet from a plumbing leak or bad drainage outside, I'll tell you to fix that first, because no floor fixes a water problem.`,
+          `Durato rates its SPC core waterproof, but what's underneath still matters. Moisture moving up through a slab can get trapped under the floor, and a closed-up house in August can hold enough humidity to swell wood baseboards and door casings. When a slab reads high, I use a moisture-barrier underlayment instead of hoping for the best. If a slab is clearly wet from a plumbing leak or bad drainage outside, I'll tell you to fix that first, because no floor fixes a water problem.`,
           `For rentals and second homes, I also ask how the AC is set when nobody's there. Planks and trim do best when the house stays climate controlled. Shutting the system off for weeks at a time is hard on any floor in this climate.`,
         ],
       },
@@ -212,7 +212,7 @@ export const CITIES: City[] = [
       'Vinyl plank flooring installation in Haines City, FL 33844. Builder carpet out, slab leveled, SPC plank in. Free in-home measure and a written, itemized quote.',
     kicker: 'Haines City, FL · Polk County',
     h1: 'Luxury vinyl plank flooring in Haines City',
-    byline: 'SPC vinyl plank, from $5.99/sqft plus material tax, supplied and installed. Typically 50% deposit, written quote typically within 24 hours.',
+    byline: 'SPC vinyl plank, from $4.99/sqft plus material tax, supplied and installed. Typically 50% deposit, written quote typically within 24 hours.',
     heroImage: '/assets/lvp-hallway-lg.webp',
     zips: ['33844'],
     poBoxZips: ['33845'],
@@ -239,7 +239,7 @@ export const CITIES: City[] = [
       {
         h2: 'Choosing a wear layer for guests, pets, and part-time living',
         paras: [
-          `Owners who rent their homes, or only spend part of the year here, ask about durability more than anything. That's why every package we supply starts at a 20-mil wear layer: it holds up to guests, dogs and heavy use. For homes that see the most traffic, Premium adds a thicker 6mm core and a documented install.`,
+          `Owners who rent their homes, or only spend part of the year here, ask about durability more than anything. For homes that see a lot of guests or dogs, I usually recommend the 20-mil wear layer over the 12-mil. The price difference is a dollar a square foot, and the difference in how it looks after a few years of heavy use is noticeable. For a single owner with no pets, the 12-mil is a solid floor and the honest recommendation.`,
           `If you're planning to age in place, tell me. A floating SPC floor with low-profile transitions means fewer edges to catch a foot between rooms, and a matte finish hides scuffs better than a glossy one.`,
         ],
       },
@@ -261,7 +261,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'What does it cost to replace carpet with LVP in a 3-bedroom home?',
-        a: `It depends on square footage, the tier you pick, and how much leveling the slab needs. At $5.99 per square foot supplied and installed, 1,200 square feet comes to about $7,188 plus material tax, before stairs or extra leveling. You get a written quote typically within 24 hours of the measure.`,
+        a: `It depends on square footage, the tier you pick, and how much leveling the slab needs. At $4.99 per square foot supplied and installed for 12-mil, 1,200 square feet comes to about $5,988 plus material tax, before stairs or extra leveling. You get a written quote typically within 24 hours of the measure.`,
       },
       {
         q: 'Water-resistant vinyl plank vs laminate: what is the difference?',
@@ -286,7 +286,7 @@ export const CITIES: City[] = [
       'Vinyl plank flooring in Winter Haven, FL. Honest prep for older slabs and lake homes, a moisture check at the measure, and a written, itemized quote.',
     kicker: 'Winter Haven, FL · Polk County',
     h1: 'Luxury vinyl plank flooring in Winter Haven',
-    byline: 'SPC plank for older homes and lake houses alike. From $5.99/sqft plus material tax, supplied and installed. Written quote typically within 24 hours.',
+    byline: 'SPC plank for older homes and lake houses alike. From $4.99/sqft plus material tax, supplied and installed. Written quote typically within 24 hours.',
     heroImage: '/assets/lvp-kitchen-lg.webp',
     zips: ['33880', '33881', '33884'],
     poBoxZips: ['33882', '33883', '33885', '33888'],
@@ -360,7 +360,7 @@ export const CITIES: City[] = [
       'Vinyl plank flooring in Lakeland, FL for older homes and new builds. See a real Lakeland job: dark laminate out, vinyl plank in. Free measure, written quote.',
     kicker: 'Lakeland, FL · Polk County',
     h1: 'Vinyl plank flooring in Lakeland, FL',
-    byline: 'Older homes, newer builds, slab or raised wood floor. From $5.99/sqft plus material tax, supplied and installed. Written quote typically within 24 hours.',
+    byline: 'Older homes, newer builds, slab or raised wood floor. From $4.99/sqft plus material tax, supplied and installed. Written quote typically within 24 hours.',
     heroImage: '/assets/lvp-livingroom-lg-v18.webp',
     zips: ['33801', '33803', '33805', '33809', '33810', '33811', '33812', '33813', '33815'],
     poBoxZips: ['33802', '33804', '33806', '33807'],
@@ -429,12 +429,12 @@ export const CITIES: City[] = [
     county: 'Lake County',
     kind: 'lvp',
     anchor: 'LVP installation in Clermont',
-    title: 'LVP Installation in Clermont, FL — From $5.99/sqft',
+    title: 'LVP Installation in Clermont, FL — From $4.99/sqft',
     description:
-      'LVP installed in Clermont, FL from $5.99/sqft plus material tax. Stairs, two-story homes and open floor plans. Written quote typically in 24 hours.',
+      'LVP installed in Clermont, FL from $4.99/sqft plus material tax. Stairs, two-story homes and open floor plans. Written quote typically in 24 hours.',
     kicker: 'Clermont, FL · Lake County',
     h1: 'Luxury vinyl plank flooring in Clermont',
-    byline: 'Two-story homes, stairs, and big open rooms. From $5.99/sqft plus material tax, supplied and installed. No trip charges.',
+    byline: 'Two-story homes, stairs, and big open rooms. From $4.99/sqft plus material tax, supplied and installed. No trip charges.',
     heroImage: '/assets/lvp-livingroom-lg.webp',
     zips: ['34711', '34714', '34715'],
     poBoxZips: ['34712', '34713'],
@@ -458,9 +458,9 @@ export const CITIES: City[] = [
         ],
       },
       {
-        h2: 'Busy households: Standard or Premium?',
+        h2: 'Busy households: 12-mil or 20-mil?',
         paras: [
-          `Both packages we supply use a 20-mil wear layer, which stands up to kids, dogs, and a lot of foot traffic through an open kitchen and family room. Premium adds a thicker 6mm core and a documented install with a flatness check and a warranty job file. For most busy households, Standard is plenty; Premium is for owners who want the extra margin.`,
+          `With kids, dogs, and a lot of foot traffic through an open kitchen and family room, the 20-mil wear layer earns its extra dollar per square foot. For quieter homes, or upstairs bedrooms that see socks more than shoes, the 12-mil is plenty. Some owners split it: 20-mil downstairs, 12-mil upstairs, in matching colors from the same line. It's an honest way to put the money where the wear actually happens.`,
           `Whichever you pick, the habits that protect it are the same: felt pads under chair and table legs, a mat at every exterior door to catch grit before it grinds the wear layer, and a damp mop with a cleaner the manufacturer approves instead of a steam mop. Over the life of the floor, those three things matter more than the difference between two good planks.`,
         ],
       },
@@ -503,7 +503,7 @@ export const CITIES: City[] = [
       'Flooring and interior remodeling in Davenport, FL: LVP, tile, trim, and paint finish work from a locally owned company. Typically 50% deposit, written quote typically within 24 hours.',
     kicker: 'Davenport, FL · Polk County · Interior remodeling',
     h1: 'Flooring and interior remodeling in Davenport',
-    byline: 'Floors, tile, trim, and paint, from a locally owned company in Davenport. LVP from $5.99/sqft plus material tax, tile quoted after a free measure. Written quote typically within 24 hours.',
+    byline: 'Floors, tile, trim, and paint, from a locally owned company in Davenport. LVP from $4.99/sqft plus material tax, tile quoted after a free measure. Written quote typically within 24 hours.',
     heroImage: '/assets/bathroom-new-lg.webp',
     zips: ['33837', '33896', '33897'],
     poBoxZips: ['33836'],
@@ -519,7 +519,7 @@ export const CITIES: City[] = [
           `A typical Davenport refresh starts with the floor, because it touches every room. From there it usually grows into tile in a bathroom or kitchen, new baseboards and casing, and fresh paint, so everything lines up at the end. Doing them as one project means one schedule, one crew, and trim that's installed after the floor instead of patched around it.`,
         ],
         list: [
-          `LVP flooring, supplied and installed from $5.99/sqft.`,
+          `LVP flooring, supplied and installed from $4.99/sqft.`,
           `Floor tile, shower walls, and backsplashes, quoted after a free in-home measure, with tile you supply or tile sourced for the job.`,
           `Baseboards, quarter round, door casing, and other trim, installed, caulked, and paint-ready.`,
           `Interior painting: walls, ceilings, trim, and doors.`,
@@ -559,7 +559,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'How is a remodel quoted?',
-        a: `After a free in-home walkthrough. LVP starts at $5.99/sqft supplied and installed. Floor tile, trim, and paint are quoted by scope after the measure. You get a written quote typically within 24 hours, and a 50% deposit holds the date.`,
+        a: `After a free in-home walkthrough. LVP starts at $4.99/sqft supplied and installed. Floor tile, trim, and paint are quoted by scope after the measure. You get a written quote typically within 24 hours, and a 50% deposit holds the date.`,
       },
       {
         q: 'Can we live in the house during the work?',

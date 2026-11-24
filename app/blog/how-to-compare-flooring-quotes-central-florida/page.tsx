@@ -47,7 +47,7 @@ const PAGE_HTML = articlePageHtml({
 
 <h2>How we quote</h2>
 <p>We measure every room in person, check how flat your floor is, and write down the prep your home needs. Then it goes on an itemized written quote. Disposal, haul-away and standard subfloor prep identified at the measure are included, and the price doesn't change on install day. That's our <a href="/no-surprise-charges">no surprise charges promise</a>. Every job also comes with a <a href="/warranty">written workmanship warranty</a>.</p>
-<p>Want to see the real numbers first? Our LVP packages are $5.99 and $7.99 per square foot, supplied and installed. See them on the <a href="/#lvp-pricing">homepage</a>.</p>`,
+<p>Want to see the real numbers first? Our LVP packages are $4.99, $5.99 and $7.99 per square foot, supplied and installed. See them on the <a href="/#lvp-pricing">homepage</a>.</p>`,
 });
 
 export default function Page() {

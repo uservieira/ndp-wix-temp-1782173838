@@ -52,9 +52,18 @@ export const SERVICE_AREA = [
 ] as const;
 
 // Owner-locked LVP all-in packages (supplied + installed, per sqft).
-// Every $5.99 / $7.99 claim on the site, in the QuoteForm calculator,
+// Every $4.99 / $5.99 / $7.99 claim on the site, in the QuoteForm calculator,
 // and in Service schema priceSpecification must match this list.
 export const LVP_TIERS = [
+  {
+    key: 'entry',
+    name: 'Entry',
+    price: 4.99,
+    badge: '',
+    wear: '12-mil',
+    build: '4.7mm Panzu LVP',
+    includes: ['12-mil wear layer', '4.7mm Panzu LVP', 'Standard install', 'Quarter round'],
+  },
   {
     key: 'standard',
     name: 'Standard',
@@ -91,7 +100,7 @@ export const BASEBOARD_ADDON = { price: 3.5, unit: 'lf', lfPerSqft: 0.5 } as con
 
 // Tile, labor-only, and stairs are never priced publicly. They are quoted in person.
 export const PRICING = {
-  lvpFrom: 5.99,
+  lvpFrom: 4.99,
   depositPct: 50,
   quoteTurnaround: 'Written quote typically within 24 hours',
   tileQuoted: 'Quoted after a free in-home measure',

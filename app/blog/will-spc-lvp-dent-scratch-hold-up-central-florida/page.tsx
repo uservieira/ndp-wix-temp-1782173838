@@ -69,8 +69,8 @@ const PAGE_HTML = `
 
 <h2>Scratches — the real story</h2>
 <p>The wear layer on SPC LVP is what protects against scratches. It's measured in mils (thousandths of an inch), and it matters more than any other spec in the box.</p>
-<h3>12 mil (what a lot of budget plank uses)</h3>
-<p>Fine for bedrooms, low-traffic areas, older adults, no dogs. Scratches from a heavy chair leg dragged without pads are visible. That's why every package I supply now starts at 20 mil.</p>
+<h3>12 mil (my $4.99 tier)</h3>
+<p>Fine for bedrooms, low-traffic areas, older adults, no dogs. Scratches from a heavy chair leg dragged without pads are visible. This tier is what I put in a guest room or an office where the traffic is one adult and a computer chair with wheels.</p>
 <h3>20 mil (my $5.99 tier)</h3>
 <p>This is the workhorse. It holds up to a medium-sized dog, kids, moving furniture with pads, and normal daily traffic in a family home. This is what I install in 80% of Central Florida houses. Scratches are rare and shallow when they happen.</p>
 <h3>Premium (my $7.99 tier)</h3>
@@ -82,7 +82,7 @@ const PAGE_HTML = `
 <p>Do that and you will not have dent problems. Skip it and you will, no matter how expensive the plank is.</p>
 
 <h2>Dog claws, cat claws, kid toys</h2>
-<p>Big dog claws with a running start? Both of my packages handle this in stride. I have Kissimmee clients with 90-lb dogs and their floors look brand new at year three. What you don't want is a 12-mil plank and a Great Dane; that's asking for trouble in a hallway.</p>
+<p>Big dog claws with a running start? Both my mid and premium tiers handle this in stride. I have Kissimmee clients with 90-lb dogs and their floors look brand new at year three. What you don't want is a 12-mil plank and a Great Dane; that's asking for trouble in a hallway.</p>
 <p>Cats and kids? Non-issue on any tier. I've never seen an LVP fail from a kid toy or a cat.</p>
 
 <h2>Heat, sun, and swelling</h2>
@@ -100,7 +100,7 @@ const PAGE_HTML = `
 
 <h2>How to make it last 20 years, not 5</h2>
 <ol>
-  <li><strong>Get the tier right for your traffic.</strong> Don't put a 12-mil plank in a high-traffic family home to save a little up front. A re-install costs far more.</li>
+  <li><strong>Get the tier right for your traffic.</strong> Don't put 12-mil in a high-traffic family home to save $600. The re-install will cost you $8,000.</li>
   <li><strong>Insist on subfloor prep.</strong> If the estimate doesn't say "level and prep subfloor," get another estimate.</li>
   <li><strong>Pads on everything.</strong> Every leg, every appliance. Non-negotiable.</li>
   <li><strong>Sweep before you mop.</strong> Grit under a mop head is what dulls the wear layer over years. Sweep first, then damp mop.</li>

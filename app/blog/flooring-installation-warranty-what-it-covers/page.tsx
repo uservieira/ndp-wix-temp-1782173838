@@ -44,6 +44,7 @@ const PAGE_HTML = articlePageHtml({
 <table class="trust-table">
 <thead><tr><th>Package</th><th>Workmanship warranty</th></tr></thead>
 <tbody>
+<tr><td><strong>Entry</strong> ($4.99/sq ft)</td><td>1 year</td></tr>
 <tr><td><strong>Standard</strong> ($5.99/sq ft)</td><td>3 years</td></tr>
 <tr><td><strong>Premium</strong> ($7.99/sq ft)</td><td>Lifetime limited, original owner</td></tr>
 <tr><td><strong>Labor-only</strong> (your material)</td><td>1 year on installation labor</td></tr>

@@ -25,6 +25,31 @@ export type DuralastCollection = {
 
 export const DURALAST_COLLECTIONS: DuralastCollection[] = [
   {
+    slug: 'panzu',
+    name: "Panzu",
+    tier: "entry",
+    wear: "12 mil, Quantum X finish",
+    thickness: "4.7 mm overall (3.5 mm rigid core + 1.2 mm attached pad)",
+    plank: "7″ × 48″",
+    blurb: "Value-engineered SPC plank. Stylish yet budget-friendly, made for homes where value is the top priority.",
+    source: 'https://duratousa.com/product/panzu/',
+    specSheet: 'https://duratousa.com/wp-content/uploads/2024/07/FINAL_Panzu_SpecSheet_2026_ENGLISH.pdf',
+    colors: [
+      { name: "Amsterdam", sku: 'PANZU-04', slug: 'amsterdam', chip: '#453425' },
+      { name: "Berlin", sku: 'PANZU-01', slug: 'berlin', chip: '#423b32' },
+      { name: "Cancun", sku: 'PANZU-02', slug: 'cancun', chip: '#9e8969' },
+      { name: "Copa", sku: 'PANZU-03', slug: 'copa', chip: '#706b64' },
+      { name: "Dublin", sku: 'PANZU-06', slug: 'dublin', chip: '#464034' },
+      { name: "Kyoto", sku: 'PANZU-15', slug: 'kyoto', chip: '#b9aa94' },
+      { name: "Madrid", sku: 'PANZU-17', slug: 'madrid', chip: '#ad9f7e' },
+      { name: "Oslo", sku: 'PANZU-16', slug: 'oslo', chip: '#d1c7bd' },
+      { name: "Sicily", sku: 'PANZU-14', slug: 'sicily', chip: '#7a5b3e' },
+      { name: "Sydney", sku: 'PANZU-08', slug: 'sydney', chip: '#605d55' },
+      { name: "Tulum", sku: 'PANZU-07', slug: 'tulum', chip: '#6b614f' },
+      { name: "Venice", sku: 'PANZU-05', slug: 'venice', chip: '#4b4a46' },
+    ],
+  },
+  {
     slug: 'azul-tortuga',
     name: "Azul Tortuga",
     tier: "standard",
