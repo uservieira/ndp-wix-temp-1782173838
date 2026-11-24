@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSource';
 import { sendOwnerAlert } from '@/lib/leadAlert';
 import { leadAutoText } from '@/lib/sms';
-import { saveSmsConsent, honeypot } from '@/lib/hubspot';
+import { saveSmsConsent } from '@/lib/hubspot';
+import { filterReasons, filterLogReady, logFiltered, REASON_LABEL } from '@/lib/leadFilter';
 
 export const runtime = 'nodejs';
 
@@ -57,11 +58,16 @@ export async function POST(req: NextRequest) {
   let b: Body = {};
   try { b = await req.json(); } catch { return NextResponse.json({ ok: false, error: 'invalid_json' }, { status: 400 }); }
   if (!b.name || !b.phone) return b.company_website ? NextResponse.json({ ok: true }) : NextResponse.json({ ok: false, error: 'missing_required_fields' }, { status: 400 });
-  // Hidden anti-bot field. Autofill can fill it for real people, so a filled field no longer drops the lead silently:
-  // a value that just repeats what they typed is treated as a person, anything else is emailed to the owner as filtered.
-  if (honeypot(b.company_website, [b.name, b.phone, b.zip]) === 'filtered') {
-    const alert = await sendOwnerAlert({ kind: 'Filtered form entry (possible bot)', name: b.name, phone: b.phone, details: { Scope: b.scope, 'Sq ft': b.sqft, ZIP: b.zip, Notes: b.notes, Page: b.page, 'Hidden field': b.company_website?.slice(0, 80), Note: 'The spam filter caught this one, so it was not added to HubSpot. If it looks like a real person, call them.' }, idem: `home-filtered-${(b.phone || '').replace(/\D/g, '')}`, emailOnly: true });
-    console.log(JSON.stringify({ event: 'home_lead_filtered', alert }));
+  // Junk filter (lib/leadFilter.ts): hidden anti-bot field filled, ZIP outside Florida, or a sales pitch in the notes.
+  // A caught entry is written to the filtered-entry log and nothing else happens. Until that log is set up,
+  // only the hidden-field check runs and each catch is emailed to the owner, exactly as before.
+  const logReady = filterLogReady();
+  const reasons = filterReasons({ hidden: b.company_website, typed: [b.name, b.phone, b.zip], zip: logReady ? b.zip : undefined, notes: logReady ? b.notes : undefined });
+  if (reasons.length) {
+    const logged = logReady && (await logFiltered('home_form', reasons, { name: b.name, phone: b.phone, scope: b.scope, sqft: b.sqft, zip: b.zip, notes: b.notes, page: b.page, hidden: b.company_website }));
+    // Not logged (log not set up, or the write failed): email it, so nothing disappears without a record.
+    const alert = logged ? null : await sendOwnerAlert({ kind: 'Filtered form entry (possible bot)', name: b.name, phone: b.phone, details: { Scope: b.scope, 'Sq ft': b.sqft, ZIP: b.zip, Notes: b.notes, Page: b.page, 'Hidden field': b.company_website?.slice(0, 80), 'Filter reason': logReady ? reasons.map((r) => REASON_LABEL[r]).join(', ') : undefined, Note: 'The spam filter caught this one, so it was not added to HubSpot. If it looks like a real person, call them.' }, idem: `home-filtered-${(b.phone || '').replace(/\D/g, '')}`, emailOnly: true });
+    console.log(JSON.stringify({ event: 'home_lead_filtered', reasons, logged, alert }));
     return NextResponse.json({ ok: true });
   }
   const source = leadSourceFrom(b.attribution);
