@@ -33,7 +33,19 @@ function featuredJobHtml(c: City): string {
   return `<section class="city-featured-job">
 <h2>A recent ${esc(c.name)} job, before and after</h2>
 ${projectCaseHtml(job, 'h3')}
-<p><a href="/projects">See more real projects</a></p>
+<p><a href="/projects">See more real projects</a> · <a href="/lvp">Compare vinyl plank options</a> · <a href="/warranty">How the warranty works</a></p>
+</section>`;
+}
+
+function cityPhotosHtml(c: City): string {
+  if (!c.photos?.length) return '';
+  const figs = c.photos
+    .map((ph) => `<figure class="ba-fig"><picture><source type="image/webp" srcset="${ph.src}-md.webp 800w, ${ph.src}-lg.webp 1600w" sizes="(min-width: 900px) 40vw, 50vw" /><img src="${ph.src}-md.jpg" alt="${esc(ph.alt)}" loading="lazy" /></picture><figcaption>${esc(ph.caption)}</figcaption></figure>`)
+    .join('');
+  return `<section class="city-photos">
+<h2>Recent vinyl plank flooring work in ${esc(c.name)}</h2>
+<div class="city-photos-grid">${figs}</div>
+<p><a href="/projects">See more real projects</a> · <a href="/lvp">Compare vinyl plank options</a> · <a href="/warranty">How the warranty works</a></p>
 </section>`;
 }
 
@@ -114,6 +126,7 @@ ${cityHeaderHtml()}
     <div class="article-inner">
 ${c.intro.map((p) => `<p>${esc(p)}</p>`).join('\n')}
 ${featuredJobHtml(c)}
+${cityPhotosHtml(c)}
 
 ${c.sections.map(sectionHtml).join('\n\n')}
 

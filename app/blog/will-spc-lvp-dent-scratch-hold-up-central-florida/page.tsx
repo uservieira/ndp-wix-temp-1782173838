@@ -109,6 +109,7 @@ const PAGE_HTML = `
 
 <h2>The bottom line</h2>
 <p>SPC LVP holds up better than any flooring in its price range and often better than options twice as expensive. But it holds up because of three things: the right tier for your home, a real subfloor prep, and pads under your furniture. If any of those three are wrong, no floor on earth will last.</p>
+<p>In Polk County? See how we handle <a href="/lvp-installation-davenport">vinyl plank flooring in Davenport</a> and <a href="/lvp-installation-lakeland">vinyl plank flooring in Lakeland</a>.</p>
 <p>Want a straight recommendation for your traffic, your pets, and your budget? Call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a> or <a href="/#contact">tell me about your space</a>. I'll walk you through which tier makes sense and why, and you'll get a written quote same day.</p>
 
     </div>

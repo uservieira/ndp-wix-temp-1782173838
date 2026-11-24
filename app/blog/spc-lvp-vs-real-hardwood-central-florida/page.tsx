@@ -90,6 +90,7 @@ const PAGE_HTML = `
 
 <h2>The bottom line</h2>
 <p>Real hardwood is a lifestyle choice, not a performance choice. If you want the smell, the sound, the emotion — that's a real thing and I'm not going to talk you out of it. But if you want a floor that looks great, holds up to Central Florida humidity, survives water, installs in three days, and costs a third as much, SPC LVP is not a compromise. It's the smarter floor for this climate.</p>
+<p>Replacing old flooring in an older home? Here is how I approach <a href="/lvp-installation-lakeland">vinyl plank flooring in Lakeland</a>, and closer to home, <a href="/lvp-installation-davenport">vinyl plank flooring in Davenport</a>.</p>
 <p>Want to see samples in your own light? I bring them to your house on the free measure. Call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a> or <a href="/#contact">send me the details of your space</a>.</p>
 
     </div>
