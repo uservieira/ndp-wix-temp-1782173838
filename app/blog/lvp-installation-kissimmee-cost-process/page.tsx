@@ -66,11 +66,12 @@ const PAGE_HTML = `
 
 <div class="pull-price">
   <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Labor-only — you supply the LVP (in-home quote)</span></div>
+  <div class="pp-item"><span class="pp-num">$4.99</span><span class="pp-label">/sqft — 12mil supplied &amp; installed</span></div>
   <div class="pp-item"><span class="pp-num">$5.99</span><span class="pp-label">/sqft — 20mil supplied &amp; installed</span></div>
   <div class="pp-item"><span class="pp-num">$7.99</span><span class="pp-label">/sqft — premium supplied &amp; installed</span></div>
 </div>
 
-<p>So if you found a deal on planks at the store and just want it installed, I'll walk your space and give you a labor-only quote on the spot. Labor covers the underlayment, the baseboards and transitions, subfloor prep, and cleanup. If you'd rather not shop for flooring at all, I'll supply it and install it: <strong>$5.99/sqft</strong> for a tough 20-mil plank, and <strong>$7.99/sqft</strong> for premium: the same 20-mil wear layer on a thicker 6mm core, with a documented install and a lifetime install warranty.</p>
+<p>So if you found a deal on planks at the store and just want it installed, I'll walk your space and give you a labor-only quote on the spot. Labor covers the underlayment, the baseboards and transitions, subfloor prep, and cleanup. If you'd rather not shop for flooring at all, I'll supply it and install it: <strong>$4.99/sqft</strong> for a solid 12-mil plank, <strong>$5.99/sqft</strong> for a tougher 20-mil, and <strong>$7.99/sqft</strong> for premium: the same 20-mil wear layer on a thicker 6mm core, with a documented install and a lifetime install warranty.</p>
 
 <p>A typical Kissimmee living room and hallway runs somewhere around 600 to 900 square feet. At the 20-mil supplied tier, that's roughly $3,600 to $5,400 all in. Stairs, if you've got them, are quoted at the free measure. That's it. No trip charges, no mystery line items on the invoice.</p>
 
@@ -89,7 +90,7 @@ const PAGE_HTML = `
 <p>This is where LVP shines. Most of my Kissimmee jobs go down in two to three days depending on square footage and how many rooms. We click the planks in, cut around the doorways and cabinets, set your baseboards and transitions, and keep the site clean as we go. You can usually walk on it the same day it's finished.</p>
 
 <h2>Why LVP makes sense in Central Florida</h2>
-<p>Our climate is hard on flooring. Humidity, sliding glass doors letting in afternoon storms, kids and dogs tracking in pool water. Luxury vinyl plank is water-resistant, it holds up to spills and humidity better than laminate, and the wear layer resists scratches. If you want to understand why it holds up better than laminate down here, I wrote a whole breakdown on <a href="/blog/lvp-vs-laminate-florida-humidity">LVP vs laminate in Florida humidity</a>.</p>
+<p>Our climate is hard on flooring. Humidity, sliding glass doors letting in afternoon storms, kids and dogs tracking in pool water. Durato rates its SPC core waterproof, so the plank holds up to spills and humidity better than laminate, and the wear layer resists scratches. If you want to understand why it holds up better than laminate down here, I wrote a whole breakdown on <a href="/blog/lvp-vs-laminate-florida-humidity">LVP vs laminate in Florida humidity</a>.</p>
 
 <h2>Getting a real number for your place</h2>
 <p>Every house is a little different, so the honest answer to "what will mine cost" is: let me measure it. It's free, it takes about twenty minutes, and you'll have a written quote in your hand the same day. You can see all my LVP tiers laid out on the <a href="/#lvp-pricing">pricing section of my homepage</a>, or just <a href="/#contact">send me the details of your space</a> and I'll get you a number fast.</p>

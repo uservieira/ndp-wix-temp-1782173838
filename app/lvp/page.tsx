@@ -14,9 +14,9 @@ import { priceText } from '@/lib/pricingHtml';
 import { projectCaseHtml } from '@/lib/projectHtml';
 
 const PATH = '/lvp';
-const TITLE = 'LVP Flooring Installation in Central Florida — From $5.99/sqft';
+const TITLE = 'LVP Flooring Installation in Central Florida — From $4.99/sqft';
 const DESC =
-  'Duralast SPC luxury vinyl plank, supplied and installed from $5.99/sqft plus material tax across Orlando, Kissimmee, Davenport, Clermont and nearby. Free measure, written quote typically within 24 hours.';
+  'Duralast SPC luxury vinyl plank, supplied and installed from $4.99/sqft plus material tax across Orlando, Kissimmee, Davenport, Clermont and nearby. Free measure, written quote typically within 24 hours.';
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -42,7 +42,7 @@ ${cityHeaderHtml()}
     <div class="bh-fade" aria-hidden="true"></div>
     <div class="bh-inner">
       <div class="kicker">Central Florida · Orlando to Lakeland</div>
-      <h1>LVP flooring, supplied and installed from ${priceText('standard')}/sqft</h1>
+      <h1>LVP flooring, supplied and installed from ${priceText('entry')}/sqft</h1>
       <div class="byline">Free in-home measure. Written quote typically within 24 hours. ${esc(CLAIMS.experienceShort)}.</div>
       <div class="lvp-hero-ctas" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;">
         <a class="btn btn-primary" href="/form">Get a free quote ${ARROW}</a>
@@ -53,18 +53,19 @@ ${cityHeaderHtml()}
 
   <div class="article">
     <div class="article-inner">
-<p>New Design Pro installs Duralast (Durato) SPC luxury vinyl plank in homes across Central Florida. That's the only plank we install: a rigid, water-resistant SPC core that holds up to Florida humidity, kids and pets. No laminate, no guesswork about what's going on your floor.</p>
+<p>New Design Pro installs Duralast (Durato) SPC luxury vinyl plank in homes across Central Florida. That's the only plank we install: a rigid, waterproof core (per Durato) that handles Florida humidity, kids and pets. No laminate, no guesswork about what's going on your floor.</p>
 <p>You get one price per square foot that covers the material and the install, a free measure at your home, and a written, itemized quote typically within 24 hours. Here's what that looks like, what it costs, and how a job runs.</p>
 
 ${job ? `<section class="city-featured-job">\n<h2>A recent job, before the furniture went back in</h2>\n${projectCaseHtml(job, 'h3')}\n<p><a href="/projects">See more real projects</a></p>\n</section>` : ''}
 
 <h2>What LVP costs, all in</h2>
 <div class="pull-price">
+  <div class="pp-item"><span class="pp-num">${priceText('entry')}</span><span class="pp-label">/sqft — Entry: 12-mil, 4.7mm Panzu LVP, supplied &amp; installed</span></div>
   <div class="pp-item"><span class="pp-num">${priceText('standard')}</span><span class="pp-label">/sqft — Standard (most popular): 20-mil, 5mm LVP</span></div>
   <div class="pp-item"><span class="pp-num">${priceText('premium')}</span><span class="pp-label">/sqft — Premium: 20-mil, 6mm-core LVP</span></div>
   <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Labor-only — you supply the LVP (in-home quote)</span></div>
 </div>
-<p>Pricing is per square foot, all in, and each tier spells out what's included. Every package includes quarter round, carpet demo and haul-away and minor subfloor prep. Premium adds a documented flatness check, a slab moisture reading, written walkthroughs, and a warranty job file. New baseboards are a flat $${BASEBOARD_ADDON.price.toFixed(2)} per linear foot add-on on any package. No trip charges. No surprise line items. Stairs and labor-only work are quoted at the free in-home measure.</p>
+<p>Pricing is per square foot, all in, and each tier spells out what's included. Every package includes quarter round. Standard adds carpet demo and haul-away and minor subfloor prep. Premium adds a documented flatness check, a slab moisture reading, written walkthroughs, and a warranty job file. New baseboards are a flat $${BASEBOARD_ADDON.price.toFixed(2)} per linear foot add-on on any package. No trip charges. No surprise line items. Stairs and labor-only work are quoted at the free in-home measure.</p>
 <p><a href="/form"><strong>See your number in the quote form</strong></a></p>
 
 <h2>How an install runs, step by step</h2>

@@ -97,7 +97,7 @@ const PAGE_HTML = `
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
         <h3>Honest pricing</h3>
-        <p>Straight numbers, no showroom markup. Supplied &amp; installed LVP packages start at $5.99/sqft. Labor-only jobs quoted in-home. You know the price before we start.</p>
+        <p>Straight numbers, no showroom markup. Supplied &amp; installed LVP tiers start at $4.99/sqft. Labor-only jobs quoted in-home. You know the price before we start.</p>
       </div>
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg></div>

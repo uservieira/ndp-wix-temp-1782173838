@@ -23,7 +23,7 @@ export function businessSchema() {
     logo: `${SITE_URL}/assets/logo-ndp-2026.png`,
     priceRange: '$$',
     description:
-      'Local LVP flooring installer in Davenport, FL. Luxury vinyl plank supplied and installed from $5.99/sq ft with Duralast flooring, plus tile and interior remodeling across Orlando, Kissimmee, Davenport, Lakeland and nearby Central Florida.',
+      'Local LVP flooring installer in Davenport, FL. Luxury vinyl plank supplied and installed from $4.99/sq ft with Duralast flooring, plus tile and interior remodeling across Orlando, Kissimmee, Davenport, Lakeland and nearby Central Florida.',
     slogan: 'Flooring & Remodeling',
     knowsAbout: ['Luxury vinyl plank installation', 'SPC flooring', 'Tile installation', 'Slab leveling', 'Baseboards and transitions', 'Interior remodeling'],
     // Service-area business: locality only, never a street address.

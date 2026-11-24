@@ -30,26 +30,26 @@ export function v6HeroHtml(): string {
   </div>
 </section>
 <div class="v6-facts">
-  <div><strong>${priceText('standard')}</strong>Installed price from, per sq ft</div>
+  <div><strong>${priceText('entry')}</strong>Installed price from, per sq ft</div>
   <div><strong>Davenport</strong>Based in 33837 · LLC since 2024</div>
   <div><strong>Free</strong>In-home measure</div>
   <div><strong>~24 hrs</strong>Typical written quote</div>
 </div>`;
 }
 
-type Row = { label: string; standard: string; premium: string };
+type Row = { label: string; entry: string; standard: string; premium: string };
 const ROWS: Row[] = [
-  { label: 'Plank', standard: 'Azul Tortuga, 5mm', premium: 'V-EVO Max or XL, 6mm core' },
-  { label: 'Wear layer', standard: '20 mil', premium: '20 mil' },
-  { label: 'Quarter round', standard: 'yes', premium: 'yes' },
-  { label: 'Carpet removal and haul-away', standard: 'yes', premium: 'yes' },
-  { label: 'Minor subfloor prep', standard: 'yes', premium: 'yes' },
-  { label: 'Flatness and moisture check, documented', standard: 'no', premium: 'yes' },
-  { label: 'Written walkthroughs and warranty file', standard: 'no', premium: 'yes' },
-  { label: 'Workmanship warranty', standard: '3 years', premium: 'Lifetime limited' },
-  { label: 'Durato Lifetime Limited Residential Warranty on the plank', standard: 'yes', premium: 'yes' },
+  { label: 'Plank', entry: 'Panzu, 4.7mm', standard: 'Azul Tortuga, 5mm', premium: 'V-EVO Max or XL, 6mm core' },
+  { label: 'Wear layer', entry: '12 mil', standard: '20 mil', premium: '20 mil' },
+  { label: 'Quarter round', entry: 'yes', standard: 'yes', premium: 'yes' },
+  { label: 'Carpet removal and haul-away', entry: 'no', standard: 'yes', premium: 'yes' },
+  { label: 'Minor subfloor prep', entry: 'no', standard: 'yes', premium: 'yes' },
+  { label: 'Flatness and moisture check, documented', entry: 'no', standard: 'no', premium: 'yes' },
+  { label: 'Written walkthroughs and warranty file', entry: 'no', standard: 'no', premium: 'yes' },
+  { label: 'Workmanship warranty', entry: '1 year', standard: '3 years', premium: 'Lifetime limited' },
+  { label: 'Durato Lifetime Limited Residential Warranty on the plank', entry: 'yes', standard: 'yes', premium: 'yes' },
 ];
-const KEYS = ['standard', 'premium'] as const;
+const KEYS = ['entry', 'standard', 'premium'] as const;
 const cell = (v: string) => (v === 'yes' ? 'Included' : v === 'no' ? '<span class="v6-no">Not included</span>' : v);
 
 export function v6PackagesHtml(): string {
@@ -72,7 +72,7 @@ export function v6PackagesHtml(): string {
   return `
 <section class="v6-sec" id="lvp-pricing">
   <div class="v6-wrap">
-    <h2>Two packages. <em>Itemized, written quotes.</em></h2>
+    <h2>Three packages. <em>Itemized, written quotes.</em></h2>
     <p class="v6-intro">Every package includes the plank, the install and the cleanup. We confirm your final price at the free measure.</p>
     <div class="v6-sheet"><table><thead><tr><th scope="col" class="v6-rowh">What's included</th>${head}</tr></thead><tbody>${body}<tr class="v6-btnrow"><th></th>${btns}</tr></tbody></table></div>
     <div class="v6-stack">${stack}</div>
@@ -126,7 +126,7 @@ export function v6ColorsHtml(): string {
           <dt>Wear layer</dt><dd id="v6-sp-w">${esc(start.wear)}</dd>
           <dt>Thickness</dt><dd id="v6-sp-t">${esc(start.thickness)}</dd>
           <dt>Plank size</dt><dd id="v6-sp-p">${esc(start.plank)}</dd>
-          <dt>Build</dt><dd>SPC rigid core, water-resistant, click-lock, attached pad</dd>
+          <dt>Build</dt><dd>SPC rigid core, waterproof (per Durato), click-lock, attached pad</dd>
           <dt>SKU</dt><dd id="v6-sp-k">${sc.k}</dd>
         </dl>
         <a class="v6-btn" id="v6-pq" href="${sc.href}">Quote ${esc(sc.n)}</a>

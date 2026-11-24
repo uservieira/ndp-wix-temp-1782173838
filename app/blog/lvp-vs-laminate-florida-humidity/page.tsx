@@ -78,10 +78,11 @@ const PAGE_HTML = `
 
 <div class="pull-price">
   <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Labor-only if you supply the plank (in-home quote)</span></div>
+  <div class="pp-item"><span class="pp-num">$4.99</span><span class="pp-label">/sqft 12mil LVP supplied &amp; installed</span></div>
   <div class="pp-item"><span class="pp-num">$5.99</span><span class="pp-label">/sqft 20mil LVP supplied &amp; installed</span></div>
 </div>
 
-<p>Store laminate might cost a dollar or two less per square foot for the material. But if you have to tear it out and redo the floor in three years, you didn't save anything, you spent the money twice. My supplied LVP starts at $5.99 a square foot, installed, with a 20-mil wear layer, and over the life of the floor the durability makes the decision easy for most people.</p>
+<p>Store laminate might cost a dollar or two less per square foot for the material. But if you have to tear it out and redo the floor in three years, you didn't save anything, you spent the money twice. My entry LVP tier starts at $4.99 a square foot supplied and installed, which is close enough to a laminate job that the durability makes the decision easy for most people.</p>
 
 <h2>When laminate is actually fine</h2>
 <p>I'll be straight with you: laminate isn't garbage. In a dry upstairs bedroom that never sees water and stays climate-controlled, it can last. If your budget is truly tight and the room is low-risk, it's a reasonable choice. I'd just rather you know the tradeoff going in instead of finding out the hard way.</p>

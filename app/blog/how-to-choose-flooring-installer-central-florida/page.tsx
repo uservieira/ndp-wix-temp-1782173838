@@ -54,7 +54,7 @@ const PAGE_HTML = articlePageHtml({
 <li><strong>Written warranty:</strong> 1 year, 3 years or lifetime limited, depending on the package. <a href="/warranty">See the terms.</a></li>
 <li><strong>Real material:</strong> Duralast (Durato) SPC only, named on every quote.</li>
 <li><strong>See it first:</strong> our <a href="/in-home-showroom">In-Home Showroom</a> builds full boxes of up to 3 colors on your current floor.</li>
-<li><strong>Public pricing:</strong> $5.99 and $7.99 per square foot, supplied and installed.</li>
+<li><strong>Public pricing:</strong> $4.99, $5.99 and $7.99 per square foot, supplied and installed.</li>
 </ul>
 <p>Before you sign with anyone, read <a href="/blog/how-to-compare-flooring-quotes-central-florida">the 5 questions to ask every flooring contractor</a>.</p>`,
 });

@@ -49,7 +49,7 @@ export const TILE_FAQS: Faq[] = [
 export const HOME_FAQS: Faq[] = [
   {
     q: 'How much does LVP installation cost in Central Florida?',
-    a: `New Design Pro installs luxury vinyl plank supplied and installed for $5.99 per sq ft (Standard, 20-mil wear layer) or $7.99 per sq ft (Premium, 20-mil with a 6mm core). For example, 1,000 sq ft on the Standard package is about $5,990. New baseboards are $3.50 per linear foot. Tile, stairs and labor-only installs are quoted after a free in-home measure.`,
+    a: `New Design Pro installs luxury vinyl plank supplied and installed for $4.99 per sq ft (Entry, 12-mil wear layer), $5.99 per sq ft (Standard, 20-mil) or $7.99 per sq ft (Premium, 20-mil with a 6mm core). For example, 1,000 sq ft on the Standard package is about $5,990. New baseboards are $3.50 per linear foot. Tile, stairs and labor-only installs are quoted after a free in-home measure.`,
   },
   {
     q: 'What areas does New Design Pro serve?',
@@ -65,11 +65,11 @@ export const HOME_FAQS: Faq[] = [
   },
   {
     q: 'What flooring brand do you install?',
-    a: `We install Duralast (also sold as Durato) SPC vinyl plank: Azul Tortuga on the Standard package and V-EVO Max and V-EVO XL on Premium. You can preview every color on our homepage before you book.`,
+    a: `We install Duralast (also sold as Durato) SPC vinyl plank: the Panzu collection on the Entry package, Azul Tortuga on Standard, and V-EVO Max and V-EVO XL on Premium. You can preview every color on our homepage before you book.`,
   },
   {
     q: 'Is LVP a good choice for Florida homes?',
-    a: `For most Central Florida homes, yes. SPC vinyl plank is water-resistant and holds up to spills and humidity better than laminate, and it installs right over a leveled concrete slab.`,
+    a: `For most Central Florida homes, yes. Durato rates its SPC core waterproof, and SPC vinyl plank handles humidity better than laminate, and it installs right over a leveled concrete slab.`,
   },
   {
     q: 'How do I get a quote?',
