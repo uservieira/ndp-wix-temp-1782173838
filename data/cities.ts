@@ -269,7 +269,7 @@ export const CITIES: City[] = [
     anchor: 'LVP installation in Winter Haven',
     title: 'Vinyl Plank Flooring Winter Haven, FL — LVP Installation',
     description:
-      'Vinyl plank flooring in Winter Haven, FL. Honest prep for older slabs and lake homes, moisture testing, and a written, itemized quote after a free measure.',
+      'Vinyl plank flooring in Winter Haven, FL. Honest prep for older slabs and lake homes, a moisture check at the measure, and a written, itemized quote.',
     kicker: 'Winter Haven, FL · Polk County',
     h1: 'Luxury vinyl plank flooring in Winter Haven',
     byline: 'SPC plank for older homes and lake houses alike. From $4.99/sqft supplied and installed. Written quote in 24 hours.',

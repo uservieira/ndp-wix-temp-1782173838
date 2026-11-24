@@ -62,7 +62,7 @@ const PAGE_HTML = `
 <p>I get asked this constantly, and I understand why. Walk into any big box store and the laminate looks great and the price sticker looks even better. So people call me and ask if they should just do laminate and save some money. In most Central Florida homes, my honest answer is no, and I want to explain why so you can make the call yourself.</p>
 
 <h2>The short version</h2>
-<p>Laminate has a fiberboard core. That core is basically compressed wood. Wood and water do not get along, especially not in Florida. Luxury vinyl plank has a plastic-based core that is genuinely waterproof. In a climate where the air is wet half the year and a spilled cup or a leaky slider is a matter of when, not if, that difference is everything.</p>
+<p>Laminate has a fiberboard core. That core is basically compressed wood. Wood and water do not get along, especially not in Florida. Luxury vinyl plank has a plastic-based core that doesn't swell the way wood fiber does. In a climate where the air is wet half the year and a spilled cup or a leaky slider is a matter of when, not if, that difference is everything.</p>
 
 <blockquote class="note">Laminate can look identical to LVP on day one. The difference shows up in year two, after the first summer of humidity.</blockquote>
 
@@ -88,7 +88,7 @@ const PAGE_HTML = `
 <p>I'll be straight with you: laminate isn't garbage. In a dry upstairs bedroom that never sees water and stays climate-controlled, it can last. If your budget is truly tight and the room is low-risk, it's a reasonable choice. I'd just rather you know the tradeoff going in instead of finding out the hard way.</p>
 
 <h2>My recommendation for most Central Florida homes</h2>
-<p>Go with LVP for anything on the ground floor, anything near a kitchen or bathroom, and anything with kids or pets. It's waterproof, it's tough, and the way I price it, it barely costs more than laminate. If you want a full cost breakdown by square foot for our area, I put the real 2026 numbers in my post on <a href="/blog/vinyl-plank-cost-per-square-foot-central-florida-2026">vinyl plank cost per square foot in Central Florida</a>. Or you can look at all my supplied tiers on the <a href="/#lvp-pricing">homepage pricing section</a> and <a href="/#contact">send me your square footage</a> for a real quote.</p>
+<p>Go with LVP for anything on the ground floor, anything near a kitchen or bathroom, and anything with kids or pets. Some laminates are water-resistant on the surface, but the wood-fiber core can swell if water sits or gets into the seams. LVP is tough, and the way I price it, it barely costs more than laminate. If you want a full cost breakdown by square foot for our area, I put the real 2026 numbers in my post on <a href="/blog/vinyl-plank-cost-per-square-foot-central-florida-2026">vinyl plank cost per square foot in Central Florida</a>. Or you can look at all my supplied tiers on the <a href="/#lvp-pricing">homepage pricing section</a> and <a href="/#contact">send me your square footage</a> for a real quote.</p>
     </div>
   </div>
 
