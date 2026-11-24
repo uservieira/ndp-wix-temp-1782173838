@@ -31,6 +31,8 @@ export type City = {
   blogSlug: string;
   // TODO-DANIEL: add one real job per city (see data/projects.ts) — never invent one.
   featuredJobId: string | null;
+  // Real job photos for this city (src without size suffix). Captions: city only, never names or addresses.
+  photos?: { src: string; alt: string; caption: string }[];
 };
 
 export const CITIES: City[] = [
@@ -41,12 +43,12 @@ export const CITIES: City[] = [
     name: 'Davenport',
     county: 'Polk County',
     kind: 'lvp',
-    anchor: 'LVP installation in Davenport',
-    title: 'LVP Installation in Davenport, FL — From $4.99/sqft',
+    anchor: 'Vinyl plank flooring in Davenport',
+    title: 'Vinyl Plank Flooring Davenport, FL — Local LVP Installer',
     description:
-      'LVP installation in Davenport, FL from a crew based right here: $4.99/sqft supplied and installed, builder-slab leveling, and a written quote in 24 hours.',
+      'Vinyl plank flooring in Davenport, FL from a crew based right here in 33837. Free in-home measure, honest slab prep, and a written, itemized quote.',
     kicker: 'Davenport, FL · Polk County · Our home base',
-    h1: 'LVP flooring in Davenport, from the crew that lives here',
+    h1: 'Vinyl plank flooring in Davenport, FL',
     byline: 'Based in Davenport 33837. Supplied & installed from $4.99/sqft. 50% deposit, written quote in 24 hours.',
     heroImage: '/assets/lvp-livingroom-lg.webp',
     zips: ['33837', '33896', '33897'],
@@ -100,6 +102,14 @@ export const CITIES: City[] = [
         a: `If budget allows, one continuous floor through the living areas, hallways, and bedrooms looks cleaner and avoids extra transitions. If you need to phase it, start with the main living space and keep the leftover boxes so the second phase matches.`,
       },
       {
+        q: 'Do you install vinyl plank flooring on both sides of Davenport?',
+        a: `Yes. Davenport is our home base, so homes along US-27, near I-4 and on both the Polk and Osceola County sides are close by. The measure is free, and we come to you.`,
+      },
+      {
+        q: 'What should I check in a newer Davenport home before vinyl plank goes in?',
+        a: `Mostly the slab. Newer builder slabs often have ridges and dips that show through a floating floor, so I check flatness and moisture at the measure and tell you in writing what prep the floor needs before you decide.`,
+      },
+      {
         q: 'How soon can you start?',
         a: `You get a written quote within 24 hours of the measure. The start date depends on the calendar and material availability, and the quote lists the real date rather than a promise we can't keep.`,
       },
@@ -107,6 +117,10 @@ export const CITIES: City[] = [
     neighbors: ['haines-city', 'kissimmee'],
     blogSlug: 'lvp-installation-timeline-2-bedroom-job',
     featuredJobId: null,
+    photos: [
+      { src: '/assets/projects/davenport-bedroom-lvp/after-bedroom', alt: 'Davenport bedroom with new light oak vinyl plank flooring', caption: 'Light oak vinyl plank in a Davenport bedroom' },
+      { src: '/assets/projects/davenport-bedroom-lvp/after-bedside', alt: 'Light oak vinyl plank running from the bedroom door to the window', caption: 'Davenport, FL: one continuous run from the door to the window' },
+    ],
   },
 
   // ---------------------------------------------------------------- KISSIMMEE
@@ -332,12 +346,12 @@ export const CITIES: City[] = [
     name: 'Lakeland',
     county: 'Polk County',
     kind: 'lvp',
-    anchor: 'LVP installation in Lakeland',
-    title: 'LVP Installation in Lakeland, FL — From $4.99/sqft',
+    anchor: 'Vinyl plank flooring in Lakeland',
+    title: 'Vinyl Plank Flooring Lakeland, FL — Older Homes & New Builds',
     description:
-      'LVP installation in Lakeland, FL from $4.99/sqft supplied and installed. See a real 709 sq ft Lakeland job: dark laminate out, Duralast LVP in, 2 days on site.',
+      'Vinyl plank flooring in Lakeland, FL for older homes and new builds. See a real Lakeland job: dark laminate out, vinyl plank in. Free measure, written quote.',
     kicker: 'Lakeland, FL · Polk County',
-    h1: 'Luxury vinyl plank flooring in Lakeland',
+    h1: 'Vinyl plank flooring in Lakeland, FL',
     byline: 'Older homes, newer builds, slab or raised wood floor. From $4.99/sqft supplied and installed. Written quote in 24 hours.',
     heroImage: '/assets/lvp-livingroom-lg-v18.webp',
     zips: ['33801', '33803', '33805', '33809', '33810', '33811', '33812', '33813', '33815'],
@@ -379,11 +393,15 @@ export const CITIES: City[] = [
       },
       {
         q: 'Should I cover my original hardwood with LVP?',
-        a: `If it's in good shape, get a refinishing quote first. If it's damaged beyond refinishing, or you want a waterproof surface, LVP can float over it once it's flat and secure.`,
+        a: `If it's in good shape, get a refinishing quote first. If it's damaged beyond refinishing, or you want a surface that handles spills better, LVP can float over it once it's flat and secure.`,
       },
       {
         q: 'Do you travel to Lakeland for smaller jobs?',
         a: `Yes. Lakeland is within our service area, and there are no trip charges. Small jobs get the same free measure and written quote within 24 hours as big ones.`,
+      },
+      {
+        q: 'Do you install vinyl plank flooring in South Lakeland and the newer subdivisions too?',
+        a: `Yes. All nine Lakeland ZIP codes are in our service area, from the older homes near downtown and the lakes to newer subdivisions on the south and north sides. Newer homes usually mean builder carpet out and slab leveling; older homes need the prep described above.`,
       },
       {
         q: 'Which plank looks best in an older home?',

@@ -89,6 +89,7 @@ const PAGE_HTML = `
 
 <h2>My recommendation for most Central Florida homes</h2>
 <p>Go with LVP for anything on the ground floor, anything near a kitchen or bathroom, and anything with kids or pets. It's waterproof, it's tough, and the way I price it, it barely costs more than laminate. If you want a full cost breakdown by square foot for our area, I put the real 2026 numbers in my post on <a href="/blog/vinyl-plank-cost-per-square-foot-central-florida-2026">vinyl plank cost per square foot in Central Florida</a>. Or you can look at all my supplied tiers on the <a href="/#lvp-pricing">homepage pricing section</a> and <a href="/#contact">send me your square footage</a> for a real quote.</p>
+<p>In Polk County? See how we handle <a href="/lvp-installation-davenport">vinyl plank flooring in Davenport</a> and <a href="/lvp-installation-lakeland">vinyl plank flooring in Lakeland</a>.</p>
     </div>
   </div>
 
