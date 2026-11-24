@@ -214,7 +214,7 @@ export function duralastSectionHtml(): string {
         <span class="lvp-coll-lockup-brand">${SUPPLIER.name}</span>
       </div>
       <h2 class="section-title" style="margin-left:auto;margin-right:auto;">Pick your color from the <em>${SUPPLIER.name} collections</em>.</h2>
-      <p class="section-lede" style="margin-left:auto;margin-right:auto;">We install ${SUPPLIER.name} (${SUPPLIER.altName}) SPC rigid-core plank: waterproof, click-lock, with an attached pad. Each collection matches one of our all-in price tiers. Tap any color to see it in a room.</p>
+      <p class="section-lede" style="margin-left:auto;margin-right:auto;">We install ${SUPPLIER.name} (${SUPPLIER.altName}) SPC rigid-core plank: water-resistant, click-lock, with an attached pad. Each collection matches one of our all-in price tiers. Tap any color to see it in a room.</p>
     </div>
 
     <div class="lvp-coll-tabs" role="tablist" aria-label="${SUPPLIER.name} collections">
@@ -258,7 +258,7 @@ export function duralastSectionHtml(): string {
           <div><dt>Wear layer</dt><dd id="lvp-coll-detail-wear">${esc(activeColl.wear)}</dd></div>
           <div><dt>Thickness</dt><dd id="lvp-coll-detail-thickness">${esc(activeColl.thickness)}</dd></div>
           <div><dt>Plank size</dt><dd id="lvp-coll-detail-plank">${esc(activeColl.plank)}</dd></div>
-          <div><dt>Core</dt><dd>SPC rigid core, waterproof</dd></div>
+          <div><dt>Core</dt><dd>SPC rigid core, water-resistant</dd></div>
           <div><dt>SKU</dt><dd id="lvp-coll-detail-sku">${activeColor.sku}</dd></div>
         </dl>
         <div class="lvp-coll-detail-cta">

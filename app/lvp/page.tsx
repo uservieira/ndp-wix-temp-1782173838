@@ -53,7 +53,7 @@ ${cityHeaderHtml()}
 
   <div class="article">
     <div class="article-inner">
-<p>New Design Pro installs Duralast (Durato) SPC luxury vinyl plank in homes across Central Florida. That's the only plank we install: a rigid, waterproof core (per Durato) that handles Florida humidity, kids and pets. No laminate, no guesswork about what's going on your floor.</p>
+<p>New Design Pro installs Duralast (Durato) SPC luxury vinyl plank in homes across Central Florida. That's the only plank we install: a rigid, water-resistant SPC core that holds up to Florida humidity, kids and pets. No laminate, no guesswork about what's going on your floor.</p>
 <p>You get one price per square foot that covers the material and the install, a free measure at your home, and a written, itemized quote typically within 24 hours. Here's what that looks like, what it costs, and how a job runs.</p>
 
 ${job ? `<section class="city-featured-job">\n<h2>A recent job, before the furniture went back in</h2>\n${projectCaseHtml(job, 'h3')}\n<p><a href="/projects">See more real projects</a></p>\n</section>` : ''}

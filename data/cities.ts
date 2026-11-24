@@ -156,7 +156,7 @@ export const CITIES: City[] = [
       {
         h2: 'Slab moisture and humidity in Osceola County',
         paras: [
-          `SPC plank itself is waterproof, but what's underneath still matters. Moisture moving up through a slab can get trapped under the floor, and a closed-up house in August can hold enough humidity to swell wood baseboards and door casings. When a slab reads high, I use a moisture-barrier underlayment instead of hoping for the best. If a slab is clearly wet from a plumbing leak or bad drainage outside, I'll tell you to fix that first, because no floor fixes a water problem.`,
+          `SPC plank is water-resistant and holds up to spills and humidity, but what's underneath still matters. Moisture moving up through a slab can get trapped under the floor, and a closed-up house in August can hold enough humidity to swell wood baseboards and door casings. When a slab reads high, I use a moisture-barrier underlayment instead of hoping for the best. If a slab is clearly wet from a plumbing leak or bad drainage outside, I'll tell you to fix that first, because no floor fixes a water problem.`,
           `For rentals and second homes, I also ask how the AC is set when nobody's there. Planks and trim do best when the house stays climate controlled. Shutting the system off for weeks at a time is hard on any floor in this climate.`,
         ],
       },
