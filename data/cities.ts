@@ -133,7 +133,7 @@ export const CITIES: City[] = [
     anchor: 'LVP installation in Kissimmee',
     title: 'LVP Installation in Kissimmee, FL — From $5.99/sqft',
     description:
-      'LVP installed in Kissimmee, FL from $5.99/sqft plus material tax. Moisture-checked slabs, rental-friendly scheduling, written quote typically in 24 hours.',
+      'LVP installed in Kissimmee, FL from $5.99/sqft plus material tax. Slab flatness and moisture-sign checks, rental-friendly scheduling, quote typically in 24 hrs.',
     kicker: 'Kissimmee, FL · Osceola County',
     h1: 'Luxury vinyl plank flooring in Kissimmee, installed right',
     byline: 'A short drive from our Davenport base. Supplied & installed from $5.99/sqft plus material tax. Typically 50% deposit, written quote typically within 24 hours.',
