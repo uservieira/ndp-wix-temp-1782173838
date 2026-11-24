@@ -3476,6 +3476,7 @@ blockquote.note {
 .city-photos { margin: 36px 0; }
 .city-photos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .city-photos-grid .ba-fig { aspect-ratio: 3 / 4; }
+.city-photos-grid .ba-fig figcaption, .city-photos-grid .ba-fig:nth-child(2) figcaption { background: rgba(28,23,17,.75); }
 .city-photos-grid .ba-fig figcaption { top: auto; bottom: 10px; right: 10px; width: fit-content; line-height: 1.3; border-radius: 8px; }
 @media (max-width: 640px) { .city-photos-grid { grid-template-columns: 1fr; } .city-photos-grid .ba-fig { aspect-ratio: 4 / 3; } }
 .city-featured-job .project-case h3 { margin: 0 0 6px; font-family: var(--nf-archivo), sans-serif; font-weight: 800; font-stretch: 75%; font-size: clamp(26px, 3.4vw, 38px); line-height: 1; }
