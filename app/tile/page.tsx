@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/tile' },
   title: 'Tile Installation in Central Florida — Free In-Home Measure',
   description:
-    'Porcelain and ceramic floor tile, showers and backsplashes installed around Orlando, Kissimmee, Davenport and Lakeland. Free in-home measure, written quote in 24 hours.',
+    'Porcelain and ceramic floor tile, showers and backsplashes installed around Orlando, Kissimmee, Davenport and Lakeland. Free in-home measure, written quote typically within 24 hours.',
 };
 
 const tileFaqHtml = () => faqSectionHtml('tile-faq', 'Tile questions', 'Tile installation, <em>answered</em>.', TILE_FAQS);
@@ -146,7 +146,7 @@ const PAGE_HTML = `
   <div class="section-inner">
     <span class="eyebrow">Tile pricing · quoted, never guessed</span>
     <h2 class="section-title">How tile is <em>quoted</em>.</h2>
-    <p class="section-lede">Every tile job is quoted after a free in-home measure. We check the slab, walls and layout, then send a written, itemized quote within 24 hours.</p>
+    <p class="section-lede">Every tile job is quoted after a free in-home measure. We check the slab, walls and layout, then send a written, itemized quote typically within 24 hours.</p>
 
     <div class="tq-grid">
       <div class="tq-card">
@@ -281,7 +281,7 @@ ${tileFaqHtml()}
       <div class="contact-info">
         <span class="eyebrow">Free measure, no hard sell</span>
         <h2 class="section-title">Ready to <em>book a walkthrough?</em></h2>
-        <p class="section-lede">Text is fastest. We'll come by, measure the space, and send a written quote within 24 hours. Free — no obligation.</p>
+        <p class="section-lede">Text is fastest. We'll come by, measure the space, and send a written quote typically within 24 hours. Free — no obligation.</p>
 
         <dl>
           <div>
@@ -334,7 +334,7 @@ ${tileFaqHtml()}
           <select id="scope" name="scope" required>
             <option value="">Choose one…</option>
             <option value="lvp-labor">LVP install — I supply materials (labor-only quote)</option>
-            <option value="lvp-supplied">LVP install — we supply materials ($4.99–$7.99/sqft)</option>
+            <option value="lvp-supplied">LVP install — we supply materials ($5.99–$7.99/sqft plus material tax)</option>
             <option value="tile-hardwood">Tile or hardwood</option>
             <option value="kitchen">Kitchen remodel</option>
             <option value="bathroom">Bathroom remodel</option>

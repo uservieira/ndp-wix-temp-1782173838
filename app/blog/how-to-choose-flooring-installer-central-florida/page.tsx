@@ -48,13 +48,13 @@ const PAGE_HTML = articlePageHtml({
 
 <h2>How New Design Pro answers them</h2>
 <ul>
-<li><strong>Staying power:</strong> A family business since 2015 (LLC since 2024), with experienced installers.</li>
+<li><strong>Staying power:</strong> An LLC since 2024, with experienced installers.</li>
 <li><strong>Locked price:</strong> your price is set at the free in-home measure. <a href="/no-surprise-charges">No surprise charges.</a></li>
 <li><strong>Prep first:</strong> we look at your floor at the measure and put the prep on the quote. Premium adds a documented flatness check, slab moisture reading and written job file.</li>
 <li><strong>Written warranty:</strong> 1 year, 3 years or lifetime limited, depending on the package. <a href="/warranty">See the terms.</a></li>
 <li><strong>Real material:</strong> Duralast (Durato) SPC only, named on every quote.</li>
 <li><strong>See it first:</strong> our <a href="/in-home-showroom">In-Home Showroom</a> builds full boxes of up to 3 colors on your current floor.</li>
-<li><strong>Public pricing:</strong> $4.99, $5.99 and $7.99 per square foot, supplied and installed.</li>
+<li><strong>Public pricing:</strong> $5.99 and $7.99 per square foot, supplied and installed.</li>
 </ul>
 <p>Before you sign with anyone, read <a href="/blog/how-to-compare-flooring-quotes-central-florida">the 5 questions to ask every flooring contractor</a>.</p>`,
 });

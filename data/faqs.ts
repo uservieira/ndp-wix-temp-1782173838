@@ -4,7 +4,7 @@ import type { Faq } from '@/data/cities';
 export const TILE_FAQS: Faq[] = [
   {
     q: 'Why don\'t you list a price per square foot for tile?',
-    a: `Because two tile jobs of the same size can be very different work. The slab condition, tile size, layout pattern, demo and waterproofing all change the labor. We measure in your home for free and send a written quote within 24 hours that lists each part of the job, so you can compare it line by line with any other bid.`,
+    a: `Because two tile jobs of the same size can be very different work. The slab condition, tile size, layout pattern, demo and waterproofing all change the labor. We measure in your home for free and send a written quote typically within 24 hours that lists each part of the job, so you can compare it line by line with any other bid.`,
   },
   {
     q: 'Porcelain or ceramic: which should I choose?',
@@ -49,7 +49,7 @@ export const TILE_FAQS: Faq[] = [
 export const HOME_FAQS: Faq[] = [
   {
     q: 'How much does LVP installation cost in Central Florida?',
-    a: `New Design Pro installs luxury vinyl plank supplied and installed for $4.99 per sq ft (Entry, 12-mil wear layer), $5.99 per sq ft (Standard, 20-mil) or $7.99 per sq ft (Premium, 20-mil with a 6mm core). For example, 1,000 sq ft on the Standard package is about $5,990. New baseboards are $3.50 per linear foot. Tile, stairs and labor-only installs are quoted after a free in-home measure.`,
+    a: `New Design Pro installs luxury vinyl plank supplied and installed for $5.99 per sq ft (Standard, 20-mil wear layer) or $7.99 per sq ft (Premium, 20-mil with a 6mm core). For example, 1,000 sq ft on the Standard package is about $5,990. New baseboards are $3.50 per linear foot. Tile, stairs and labor-only installs are quoted after a free in-home measure.`,
   },
   {
     q: 'What areas does New Design Pro serve?',
@@ -65,7 +65,7 @@ export const HOME_FAQS: Faq[] = [
   },
   {
     q: 'What flooring brand do you install?',
-    a: `We install Duralast (also sold as Durato) SPC vinyl plank: the Panzu collection on the Entry package, Azul Tortuga on Standard, and V-EVO Max and V-EVO XL on Premium. You can preview every color on our homepage before you book.`,
+    a: `We install Duralast (also sold as Durato) SPC vinyl plank: Azul Tortuga on the Standard package and V-EVO Max and V-EVO XL on Premium. You can preview every color on our homepage before you book.`,
   },
   {
     q: 'Is LVP a good choice for Florida homes?',
@@ -73,6 +73,6 @@ export const HOME_FAQS: Faq[] = [
   },
   {
     q: 'How do I get a quote?',
-    a: `Call or text (561) 809-3864, or get a price range online at newdesignpro.com/form. We do a free in-home measure, send a written quote within 24 hours, and a 50% deposit books your install date.`,
+    a: `Call or text (561) 809-3864, or get a price range online at newdesignpro.com/form. We do a free in-home measure, send a written quote typically within 24 hours, and a 50% deposit books your install date.`,
   },
 ];

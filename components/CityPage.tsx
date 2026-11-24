@@ -59,27 +59,26 @@ function pricingHtml(c: City): string {
   if (c.kind === 'remodeling') {
     return `<h2>${esc(c.pricingH2)}</h2>
 <div class="pull-price">
-  <div class="pp-item"><span class="pp-num">${priceText('entry')}</span><span class="pp-label">/sqft — LVP supplied &amp; installed</span></div>
+  <div class="pp-item"><span class="pp-num">${priceText('standard')}</span><span class="pp-label">/sqft — LVP supplied &amp; installed, from</span></div>
   <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Floor &amp; shower tile (free in-home measure)</span></div>
   <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Trim &amp; paint (in-home walkthrough)</span></div>
 </div>
-<p>LVP floors are priced per square foot, supplied and installed. Floor tile, shower walls, trim, and paint depend on the scope, so they're quoted after a free walkthrough. Tile is either yours or sourced for your job. Every quote is written, itemized, and in your inbox within 24 hours. A 50% deposit holds your start date, and the balance is due when the work is done.</p>`;
+<p>LVP floors are priced per square foot, supplied and installed. Floor tile, shower walls, trim, and paint depend on the scope, so they're quoted after a free walkthrough. Tile is either yours or sourced for your job. Every quote is written, itemized, and in your inbox typically within 24 hours. A 50% deposit holds your start date, and the balance is due when the work is done.</p>`;
   }
   return `<h2>${esc(c.pricingH2)}</h2>
 <div class="pull-price">
   <div class="pp-item"><span class="pp-num">Quoted</span><span class="pp-label">Labor-only — you supply the LVP (in-home quote)</span></div>
-  <div class="pp-item"><span class="pp-num">${priceText('entry')}</span><span class="pp-label">/sqft — Entry: 12-mil, 4.7mm Panzu LVP, supplied &amp; installed</span></div>
   <div class="pp-item"><span class="pp-num">${priceText('standard')}</span><span class="pp-label">/sqft — Standard (most popular): 20-mil, 5mm LVP</span></div>
   <div class="pp-item"><span class="pp-num">${priceText('premium')}</span><span class="pp-label">/sqft — Premium: 20-mil, 6mm-core LVP</span></div>
 </div>
-<p>Pricing is per square foot, all in, and each tier spells out what's included. Every package includes quarter round. Standard adds carpet demo and haul-away and minor subfloor prep. Premium adds a documented flatness check, a slab moisture reading, written walkthroughs, and a warranty job file. New baseboards are a flat $${BASEBOARD_ADDON.price.toFixed(2)} per linear foot add-on on any package. No trip charges. No surprise line items. Stairs and labor-only work are quoted at the free in-home measure.</p>`;
+<p>Pricing is per square foot, all in, and each tier spells out what's included. Every package includes quarter round, carpet demo and haul-away and minor subfloor prep. Premium adds a documented flatness check, a slab moisture reading, written walkthroughs, and a warranty job file. New baseboards are a flat $${BASEBOARD_ADDON.price.toFixed(2)} per linear foot add-on on any package. No trip charges. No surprise line items. Stairs and labor-only work are quoted at the free in-home measure.</p>`;
 }
 
 function processHtml(c: City): string {
   if (c.kind === 'remodeling') {
     return `<h2>${esc(c.processH2)}</h2>
 <h3>Free walkthrough</h3>
-<p>We walk the rooms with you, measure, and talk through what you want changed. You get a written quote within 24 hours.</p>
+<p>We walk the rooms with you, measure, and talk through what you want changed. You get a written quote typically within 24 hours.</p>
 <h3>Sequence the work</h3>
 <p>Floors and tile go first, then trim, then paint. If other trades are involved, their work is scheduled before ours so nothing gets torn up twice.</p>
 <h3>Daily cleanup and a final walkthrough</h3>
@@ -87,7 +86,7 @@ function processHtml(c: City): string {
   }
   return `<h2>${esc(c.processH2)}</h2>
 <h3>Free in-home measure</h3>
-<p>I come out to your ${esc(c.name)} home and measure the space. It's free, it takes about twenty minutes, and you get a written quote within 24 hours.</p>
+<p>I come out to your ${esc(c.name)} home and measure the space. It's free, it takes about twenty minutes, and you get a written quote typically within 24 hours.</p>
 <h3>50% deposit holds the calendar</h3>
 <p>Once you say go, a 50% deposit locks your start date. The remaining 50% is due after the job's done and you're happy. I don't ask for the full amount up front.</p>
 <h3>Tear-out and prep</h3>
@@ -155,7 +154,7 @@ ${faqs}
 </ul>
 
 <h2>Get a real number for your ${esc(c.name)} home</h2>
-<p>Every home is a little different, so the honest answer to "what will mine cost" is: let me see it. The measure is free, and you'll have a written quote within 24 hours.</p>
+<p>Every home is a little different, so the honest answer to "what will mine cost" is: let me see it. The measure is free, and you'll have a written quote typically within 24 hours.</p>
 <p><a href="/form"><strong>Send me the details of your space</strong></a> or call <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a> and I'll get you a real number, fast.</p>
 
     </div>

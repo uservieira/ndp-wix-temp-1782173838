@@ -141,13 +141,10 @@ function calculateQuote(data: FormData): {
     if (quality === 'luxury') {
       tierRate = tierRateFor('premium');
       tierName = 'Premium Supplied';
-    } else if (quality === 'premium' || requiresDemo) {
-      // Carpet demo is part of the Standard package. Baseboards are an add-on on every tier.
+    } else {
+      // Standard is the starting package (carpet demo included). Baseboards are an add-on on every tier.
       tierRate = tierRateFor('standard');
       tierName = 'Standard Supplied';
-    } else {
-      tierRate = tierRateFor('entry');
-      tierName = 'Entry Supplied';
     }
     scopeLabel = `LVP install (supplied + installed) — ${tierName}`;
     if (requiresBaseboardReplace) scopeLabel += ` + new baseboards ($${BASEBOARD_ADDON.price.toFixed(2)}/lf)`;
@@ -312,7 +309,7 @@ export default function QuoteForm() {
     const tier = (q.get('tier') || '').toLowerCase();
     const collection = (q.get('collection') || '').slice(0, 60);
     const color = (q.get('color') || '').slice(0, 60);
-    const tierToQuality: Record<string, QualityPref> = { entry: 'standard', standard: 'premium', premium: 'luxury' };
+    const tierToQuality: Record<string, QualityPref> = { entry: 'premium', standard: 'premium', premium: 'luxury' };
     const scopeFromTier: Record<string, Scope> = {
       entry: 'lvp-supplied',
       standard: 'lvp-supplied',
@@ -495,7 +492,7 @@ export default function QuoteForm() {
           <p className="quote-step-sub">Tap one to keep going.</p>
           <div className="qc-list" role="radiogroup" aria-label="Project type">
             {([
-              { v: 'lvp-supplied', icon: 'planks', label: 'LVP flooring, supplied + installed', sub: `${SUPPLIER.name} floors, from $${tierRateFor('entry').toFixed(2)}/sqft`, badge: 'Most popular' },
+              { v: 'lvp-supplied', icon: 'planks', label: 'LVP flooring, supplied + installed', sub: `${SUPPLIER.name} floors, from $${tierRateFor('standard').toFixed(2)}/sqft`, badge: 'Most popular' },
               { v: 'lvp-labor', icon: 'hands', label: 'LVP flooring, labor only', sub: `You supply materials · ${PRICING.laborQuoted}` },
               { v: 'tile-floor', icon: 'tile', label: 'Tile floor', sub: PRICING.tileQuoted },
               { v: 'tile-wall', icon: 'shower', label: 'Tile wall, shower or backsplash', sub: PRICING.tileQuoted },
@@ -564,10 +561,9 @@ export default function QuoteForm() {
       {step === 5 && isFlooringScope && (
         <div className="quote-step" key="s5">
           <h2>Pick your floor package</h2>
-          <p className="quote-step-sub">All 100% waterproof, click-lock and warranty-backed. The difference is thickness and durability.</p>
+          <p className="quote-step-sub">All click-lock and warranty-backed. The difference is thickness and durability.</p>
           <div className="qc-list" role="radiogroup" aria-label="Floor package">
-            <Choice label="Entry" sub="12-mil wear layer, 4.7mm. Budget-friendly" price={`$${tierRateFor('entry').toFixed(2)}`} active={form.quality === 'standard'} onClick={() => pick({ quality: 'standard' })} />
-            <Choice label="Standard" badge="Most popular" sub="20-mil, 5mm. Carpet demo, haul-away and minor prep included" price={`$${tierRateFor('standard').toFixed(2)}`} active={form.quality === 'premium'} onClick={() => pick({ quality: 'premium' })} />
+            <Choice label="Standard" badge="Most popular" sub="20-mil, 5mm. Carpet demo, haul-away and minor prep included" price={`$${tierRateFor('standard').toFixed(2)}`} active={form.quality === 'standard' || form.quality === 'premium'} onClick={() => pick({ quality: 'premium' })} />
             <Choice label="Premium" sub="20-mil, 6mm core. Everything in Standard plus flatness, moisture and warranty file" price={`$${tierRateFor('premium').toFixed(2)}`} active={form.quality === 'luxury'} onClick={() => pick({ quality: 'luxury' })} />
           </div>
           <p className="qc-unit">Per sq ft, supplied + installed</p>
@@ -676,7 +672,7 @@ export default function QuoteForm() {
               <div className="quote-preview-label">Your price:</div>
               <div className="quote-preview-price">{PRICING.formQuotedNote}</div>
               <div className="quote-preview-scope">{quote.scopeLabel}</div>
-              <div className="quote-preview-note">Free, no-obligation measure. Written quote within 24 hours.</div>
+              <div className="quote-preview-note">Free, no-obligation measure. Written quote typically within 24 hours.</div>
             </div>
           )}
 

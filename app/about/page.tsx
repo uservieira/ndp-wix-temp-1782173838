@@ -68,7 +68,7 @@ const PAGE_HTML = `
         <span class="eyebrow">Our story</span>
         <h2 class="section-title" style="margin-bottom:22px;">${CLAIMS.experienceShort}.</h2>
         <p>New Design Pro installs flooring and handles interior finish work for homeowners across Central Florida: ${CLAIMS.experienceText} We're based in Davenport, FL, right in the Disney corridor, and we work throughout Kissimmee, Haines City, Winter Haven, Lakeland, Clermont, ChampionsGate, Celebration, and Poinciana.</p>
-        <p>Our family has been running remodeling work in Central Florida since 2015 under earlier names. In 2024 it became Huios Construction LLC, doing business as New Design Pro.</p>
+        <p>Huios Construction LLC was formed in 2024 and does business as New Design Pro.</p>
         <p>The company is owned and operated by Daniel Vieira. When you call, you're talking to the person who's going to be responsible for your job — not a call center.</p>
         <p>We stay focused on what we're genuinely good at: luxury vinyl plank, tile, hardwood, finish carpentry, painting, and cosmetic bathroom and kitchen refreshes. Plumbing, electrical, or structural work is coordinated with licensed trade partners. Clean, modern spaces, without the showroom markup.</p>
         <div class="areas">
@@ -97,7 +97,7 @@ const PAGE_HTML = `
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
         <h3>Honest pricing</h3>
-        <p>Straight numbers, no showroom markup. Supplied &amp; installed LVP tiers start at $4.99/sqft. Labor-only jobs quoted in-home. You know the price before we start.</p>
+        <p>Straight numbers, no showroom markup. Supplied &amp; installed LVP packages start at $5.99/sqft. Labor-only jobs quoted in-home. You know the price before we start.</p>
       </div>
       <div class="value-card">
         <div class="vicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg></div>
