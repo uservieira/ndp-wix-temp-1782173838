@@ -43,7 +43,7 @@ ${cityHeaderHtml()}
     <span class="eyebrow">Why homeowners choose us</span>
     <h2 class="section-title">Local and <em>upfront</em>.</h2>
     <ul class="reviews-why-list">
-      <li><strong>Local crew.</strong> ${CLAIMS.experienceText}</li>
+      <li><strong>Locally owned.</strong> ${CLAIMS.experienceText}</li>
       <li><strong>Written scope and price up front.</strong> You approve materials, labor, and timeline before anything starts, with a written quote typically within 24 hours.</li>
       <li><strong>Photo record of every job.</strong> Before, during, and after photos are shared so you can see the work.</li>
     </ul>

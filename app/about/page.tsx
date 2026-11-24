@@ -5,9 +5,9 @@ import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/about' },
-  title: 'About Daniel Vieira & the Local Crew',
+  title: 'About Daniel Vieira & New Design Pro',
   description:
-    'Meet Daniel Vieira and the local New Design Pro crew in Davenport, FL. LVP and tile installed with honest pricing.',
+    'Meet Daniel Vieira, owner of New Design Pro, a locally owned flooring company in Davenport, FL.',
 };
 
 const PAGE_HTML = `

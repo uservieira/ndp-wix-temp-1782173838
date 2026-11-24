@@ -20,7 +20,7 @@ export const TILE_FAQS: Faq[] = [
   },
   {
     q: 'How do you waterproof a shower?',
-    a: `Tile and grout are not waterproof on their own. Before any tile goes up, the shower walls, floor and niches get a waterproofing membrane system installed per the manufacturer's instructions, with sealed corners, seams and pipe openings. Your quote names the system we'll use. Plumbing, electrical or structural work is coordinated with licensed trade partners.`,
+    a: `Tile and grout are not waterproof on their own. Before any tile goes up, the shower walls, floor and niches get a waterproofing membrane system installed per the manufacturer's instructions, with sealed corners, seams and pipe openings. Your quote names the system we'll use. The shower pan, drain, valve and any plumbing are done by a licensed plumber, with a permit where required. Electrical or structural work is coordinated with licensed trade partners.`,
   },
   {
     q: 'Which grout should I use, and does it need sealing?',
