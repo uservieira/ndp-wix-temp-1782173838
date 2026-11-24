@@ -261,7 +261,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'What does it cost to replace carpet with LVP in a 3-bedroom home?',
-        a: `It depends on square footage, the tier you pick, and how much leveling the slab needs. At $5.99 per square foot supplied and installed, 1,200 square feet comes to about $7,188 before stairs or extra leveling. You get a written quote typically within 24 hours of the measure.`,
+        a: `It depends on square footage, the tier you pick, and how much leveling the slab needs. At $5.99 per square foot supplied and installed, 1,200 square feet comes to about $7,188 plus material tax, before stairs or extra leveling. You get a written quote typically within 24 hours of the measure.`,
       },
       {
         q: 'Water-resistant vinyl plank vs laminate: what is the difference?',

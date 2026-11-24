@@ -72,7 +72,7 @@ export function v6PackagesHtml(): string {
   return `
 <section class="v6-sec" id="lvp-pricing">
   <div class="v6-wrap">
-    <h2>Two packages. <em>Nothing hidden.</em></h2>
+    <h2>Two packages. <em>Itemized, written quotes.</em></h2>
     <p class="v6-intro">Every package includes the plank, the install and the cleanup. We confirm your final price at the free measure.</p>
     <div class="v6-sheet"><table><thead><tr><th scope="col" class="v6-rowh">What's included</th>${head}</tr></thead><tbody>${body}<tr class="v6-btnrow"><th></th>${btns}</tr></tbody></table></div>
     <div class="v6-stack">${stack}</div>

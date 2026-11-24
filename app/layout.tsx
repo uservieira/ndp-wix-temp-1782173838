@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: '%s | New Design Pro',
   },
   description:
-    'Central Florida luxury vinyl plank flooring. Supplied & installed from $5.99/sqft. Free in-home measure. 50% deposit.',
+    'Central Florida luxury vinyl plank flooring. Supplied & installed from $5.99/sqft plus material tax. Free in-home measure.',
   openGraph: {
     type: 'website',
     locale: 'en_US',
