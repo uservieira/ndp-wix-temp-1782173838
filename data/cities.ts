@@ -46,7 +46,7 @@ export const CITIES: City[] = [
     anchor: 'Vinyl plank flooring in Davenport',
     title: 'Vinyl Plank Flooring Davenport, FL — Local LVP Installer',
     description:
-      'Vinyl plank flooring in Davenport, FL from a crew based right here in 33837. Free in-home measure, honest slab prep, and a written, itemized quote.',
+      'Vinyl plank flooring in Davenport, FL from a local installer based in Davenport (33837). Free in-home measure, honest slab prep, and a written, itemized quote.',
     kicker: 'Davenport, FL · Polk County · Our home base',
     h1: 'Vinyl plank flooring in Davenport, FL',
     byline: 'Based in Davenport 33837. Supplied & installed from $4.99/sqft. 50% deposit, written quote in 24 hours.',
@@ -107,7 +107,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'What should I check in a newer Davenport home before vinyl plank goes in?',
-        a: `Mostly the slab. Newer builder slabs often have ridges and dips that show through a floating floor, so I check flatness and moisture at the measure and tell you in writing what prep the floor needs before you decide.`,
+        a: `Mostly the slab. Newer builder slabs often have ridges and dips that show through a floating floor, so we check flatness and look for signs of moisture at the measure and tell you in writing what prep the floor needs before you decide.`,
       },
       {
         q: 'How soon can you start?',
@@ -119,7 +119,7 @@ export const CITIES: City[] = [
     featuredJobId: null,
     photos: [
       { src: '/assets/projects/davenport-bedroom-lvp/after-bedroom', alt: 'Davenport bedroom with new light oak vinyl plank flooring', caption: 'Light oak vinyl plank in a Davenport bedroom' },
-      { src: '/assets/projects/davenport-bedroom-lvp/after-bedside', alt: 'Light oak vinyl plank running from the bedroom door to the window', caption: 'Davenport, FL: one continuous run from the door to the window' },
+      { src: '/assets/projects/davenport-bedroom-lvp/after-bedside', alt: 'Light oak vinyl plank running from the bedroom door to the window', caption: 'Davenport, FL: door-to-window run' },
     ],
   },
 
