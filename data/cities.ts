@@ -251,7 +251,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'Water-resistant vinyl plank vs laminate: what is the difference?',
-        a: `Laminate has a wood-fiber core under its printed top layer, so water that sits on it or gets into the seams can make it swell. Vinyl plank has a vinyl or stone-plastic core that holds up better to spills and humidity. Neither one fixes a leak or a damp slab, so I check moisture at the measure either way. For ground floors, kitchens and homes with kids or pets, I usually recommend vinyl plank. For a dry, low-traffic room, laminate can be a reasonable choice.`,
+        a: `Laminate has a wood-fiber core under its printed top layer, so water that sits on it or gets into the seams can make it swell. Vinyl plank has a vinyl or stone-plastic core that holds up better to spills and humidity. Neither one fixes a leak or a damp slab, so we look for signs of moisture at the measure either way. For ground floors, kitchens and homes with kids or pets, I usually recommend vinyl plank. For a dry, low-traffic room, laminate can be a reasonable choice.`,
       },
     ],
     neighbors: ['davenport', 'winter-haven'],
@@ -325,7 +325,7 @@ export const CITIES: City[] = [
       },
       {
         q: 'Water-resistant vinyl plank vs laminate: what is the difference?',
-        a: `Laminate has a wood-fiber core under its printed top layer, so water that sits on it or gets into the seams can make it swell. Vinyl plank has a vinyl or stone-plastic core that holds up better to spills and humidity. Neither one fixes a leak or a damp slab, so I check moisture at the measure either way. For ground floors, kitchens and homes with kids or pets, I usually recommend vinyl plank. For a dry, low-traffic room, laminate can be a reasonable choice.`,
+        a: `Laminate has a wood-fiber core under its printed top layer, so water that sits on it or gets into the seams can make it swell. Vinyl plank has a vinyl or stone-plastic core that holds up better to spills and humidity. Neither one fixes a leak or a damp slab, so we look for signs of moisture at the measure either way. For ground floors, kitchens and homes with kids or pets, I usually recommend vinyl plank. For a dry, low-traffic room, laminate can be a reasonable choice.`,
       },
     ],
     neighbors: ['haines-city', 'lakeland'],
