@@ -500,10 +500,10 @@ export const CITIES: City[] = [
     anchor: 'Flooring & interior remodeling in Davenport',
     title: 'Flooring & Interior Remodeling in Davenport, FL',
     description:
-      'Flooring and interior remodeling in Davenport, FL: LVP, tile, trim, and paint finish work from a local crew. Typically 50% deposit, written quote typically within 24 hours.',
+      'Flooring and interior remodeling in Davenport, FL: LVP, tile, trim, and paint finish work from a locally owned company. Typically 50% deposit, written quote typically within 24 hours.',
     kicker: 'Davenport, FL · Polk County · Interior remodeling',
     h1: 'Flooring and interior remodeling in Davenport',
-    byline: 'Floors, tile, trim, and paint, from the crew based in Davenport. LVP from $5.99/sqft plus material tax, tile quoted after a free measure. Written quote typically within 24 hours.',
+    byline: 'Floors, tile, trim, and paint, from a locally owned company in Davenport. LVP from $5.99/sqft plus material tax, tile quoted after a free measure. Written quote typically within 24 hours.',
     heroImage: '/assets/bathroom-new-lg.webp',
     zips: ['33837', '33896', '33897'],
     poBoxZips: ['33836'],
