@@ -11,7 +11,7 @@ import { v6AreasHtml, v6ColorsHtml, v6FaqHtml, v6FinalHtml, v6HeroHtml, v6Packag
 
 export const metadata: Metadata = {
   description:
-    'LVP supplied & installed from $5.99/sqft in Orlando, Kissimmee, Davenport, Lakeland and nearby. Tile quoted after a free measure. Written quote typically within 24 hours.',
+    'LVP supplied & installed from $5.99/sqft plus material tax in Orlando, Kissimmee, Davenport, Lakeland and nearby. Tile quoted after a free measure. Written quote typically within 24 hours.',
   title: { absolute: 'LVP Flooring Installation, Davenport & Kissimmee FL | New Design Pro' },
   alternates: { canonical: '/' },
 };

@@ -16,7 +16,7 @@ import { projectCaseHtml } from '@/lib/projectHtml';
 const PATH = '/lvp';
 const TITLE = 'LVP Flooring Installation in Central Florida — From $5.99/sqft';
 const DESC =
-  'Duralast SPC luxury vinyl plank, supplied and installed from $5.99/sqft across Orlando, Kissimmee, Davenport, Clermont and nearby. Free measure, written quote typically within 24 hours.';
+  'Duralast SPC luxury vinyl plank, supplied and installed from $5.99/sqft plus material tax across Orlando, Kissimmee, Davenport, Clermont and nearby. Free measure, written quote typically within 24 hours.';
 
 export const metadata: Metadata = {
   title: TITLE,
