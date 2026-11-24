@@ -5,9 +5,9 @@ import { siteFooterHtml } from '@/lib/chrome';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/about' },
-  title: 'About Daniel Vieira & the Family-Run Crew',
+  title: 'About Daniel Vieira & the Local Crew',
   description:
-    'Meet Daniel Vieira and the family-run New Design Pro crew in Davenport, FL. LVP and tile installed with honest pricing.',
+    'Meet Daniel Vieira and the local New Design Pro crew in Davenport, FL. LVP and tile installed with honest pricing.',
 };
 
 const PAGE_HTML = `

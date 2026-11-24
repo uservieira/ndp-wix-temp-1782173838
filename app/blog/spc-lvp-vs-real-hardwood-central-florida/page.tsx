@@ -74,8 +74,8 @@ const PAGE_HTML = `
 <p>Then there's water. A sliding door left open during an afternoon storm, a leaky ice maker, a puppy that isn't housebroken yet. Real hardwood absorbs it. Even a fast cleanup can leave a black stain that only sanding will fix, and if the water sat overnight the plank is done — cupped, warped, or crowned. I've pulled up a lot of real hardwood in this state and it's almost always water damage that killed it.</p>
 
 <h2>Where SPC LVP has real advantages</h2>
-<h3>It's actually waterproof</h3>
-<p>Not water-resistant, not "engineered to handle spills." Actually waterproof. You can flood a room and the planks won't swell. Your subfloor still needs to be protected, but the flooring itself will not fail from water.</p>
+<h3>It handles spills and humidity better</h3>
+<p>SPC plank has a stone-plastic core, so spills, wet paws and Florida humidity don't make it swell the way real wood can. It doesn't fix a leak or a damp slab, so I still look for signs of moisture at the measure, and any standing water should be cleaned up quickly.</p>
 <h3>The install is faster and cleaner</h3>
 <p>Real hardwood takes 4 to 6 days for a decent-sized job, plus a week of no walking on it while the finish cures, plus dust and fumes throughout your house. SPC LVP over a properly prepped slab goes down in 2 to 3 days, no fumes, no sanding, you can walk on it the same day.</p>
 <h3>It's a fraction of the cost</h3>
@@ -86,7 +86,7 @@ const PAGE_HTML = `
 <h2>Where real hardwood still wins</h2>
 <p>Two places, honestly.</p>
 <p><strong>Refinishability.</strong> Real hardwood can be sanded and refinished 4 or 5 times over its life. If your kid is going to grow up in the house and drag their bike across the living room for 15 years, hardwood can be brought back to new. SPC can't — a damaged plank has to be replaced.</p>
-<p><strong>Resale in specific markets.</strong> In a historic Winter Park bungalow or a high-end Champions Gate build, buyers expect hardwood. In most of Central Florida — Kissimmee, Davenport, Haines City, Winter Haven, most of Osceola and Polk — buyers care more about "clean, waterproof, modern flooring" than the species. In the STR and vacation-rental market, LVP is actually a selling point because owners know it survives guests.</p>
+<p><strong>Resale in specific markets.</strong> In a historic Winter Park bungalow or a high-end Champions Gate build, buyers expect hardwood. In most of Central Florida — Kissimmee, Davenport, Haines City, Winter Haven, most of Osceola and Polk — buyers care more about clean, modern, easy-care flooring than the species. In the STR and vacation-rental market, LVP is actually a selling point because owners know it survives guests.</p>
 
 <h2>The bottom line</h2>
 <p>Real hardwood is a lifestyle choice, not a performance choice. If you want the smell, the sound, the emotion — that's a real thing and I'm not going to talk you out of it. But if you want a floor that looks great, holds up to Central Florida humidity, survives water, installs in three days, and costs a third as much, SPC LVP is not a compromise. It's the smarter floor for this climate.</p>

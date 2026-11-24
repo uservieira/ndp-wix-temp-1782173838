@@ -89,7 +89,7 @@ const PAGE_HTML = `
 <p>This is where LVP shines. Most of my Kissimmee jobs go down in two to three days depending on square footage and how many rooms. We click the planks in, cut around the doorways and cabinets, set your baseboards and transitions, and keep the site clean as we go. You can usually walk on it the same day it's finished.</p>
 
 <h2>Why LVP makes sense in Central Florida</h2>
-<p>Our climate is hard on flooring. Humidity, sliding glass doors letting in afternoon storms, kids and dogs tracking in pool water. Luxury vinyl plank is fully waterproof, it doesn't swell like laminate, and the wear layer shrugs off scratches. If you want to understand why it holds up better than laminate down here, I wrote a whole breakdown on <a href="/blog/lvp-vs-laminate-florida-humidity">LVP vs laminate in Florida humidity</a>.</p>
+<p>Our climate is hard on flooring. Humidity, sliding glass doors letting in afternoon storms, kids and dogs tracking in pool water. Luxury vinyl plank is water-resistant, it holds up to spills and humidity better than laminate, and the wear layer resists scratches. If you want to understand why it holds up better than laminate down here, I wrote a whole breakdown on <a href="/blog/lvp-vs-laminate-florida-humidity">LVP vs laminate in Florida humidity</a>.</p>
 
 <h2>Getting a real number for your place</h2>
 <p>Every house is a little different, so the honest answer to "what will mine cost" is: let me measure it. It's free, it takes about twenty minutes, and you'll have a written quote in your hand the same day. You can see all my LVP tiers laid out on the <a href="/#lvp-pricing">pricing section of my homepage</a>, or just <a href="/#contact">send me the details of your space</a> and I'll get you a number fast.</p>

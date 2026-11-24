@@ -69,7 +69,7 @@ export const HOME_FAQS: Faq[] = [
   },
   {
     q: 'Is LVP a good choice for Florida homes?',
-    a: `For most Central Florida homes, yes. SPC vinyl plank is waterproof and handles humidity better than laminate, and it installs right over a leveled concrete slab.`,
+    a: `For most Central Florida homes, yes. SPC vinyl plank is water-resistant and holds up to spills and humidity better than laminate, and it installs right over a leveled concrete slab.`,
   },
   {
     q: 'How do I get a quote?',

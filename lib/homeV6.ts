@@ -126,7 +126,7 @@ export function v6ColorsHtml(): string {
           <dt>Wear layer</dt><dd id="v6-sp-w">${esc(start.wear)}</dd>
           <dt>Thickness</dt><dd id="v6-sp-t">${esc(start.thickness)}</dd>
           <dt>Plank size</dt><dd id="v6-sp-p">${esc(start.plank)}</dd>
-          <dt>Build</dt><dd>SPC rigid core, waterproof, click-lock, attached pad</dd>
+          <dt>Build</dt><dd>SPC rigid core, water-resistant, click-lock, attached pad</dd>
           <dt>SKU</dt><dd id="v6-sp-k">${sc.k}</dd>
         </dl>
         <a class="v6-btn" id="v6-pq" href="${sc.href}">Quote ${esc(sc.n)}</a>
