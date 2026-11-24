@@ -133,7 +133,7 @@ export const CITIES: City[] = [
     anchor: 'LVP installation in Kissimmee',
     title: 'LVP Installation in Kissimmee, FL — From $5.99/sqft',
     description:
-      'LVP installation in Kissimmee, FL from $5.99/sqft plus material tax, supplied and installed. Moisture-checked slabs, rental-friendly scheduling, and a written quote typically within 24 hours.',
+      'LVP installed in Kissimmee, FL from $5.99/sqft plus material tax. Moisture-checked slabs, rental-friendly scheduling, written quote typically in 24 hours.',
     kicker: 'Kissimmee, FL · Osceola County',
     h1: 'Luxury vinyl plank flooring in Kissimmee, installed right',
     byline: 'A short drive from our Davenport base. Supplied & installed from $5.99/sqft plus material tax. Typically 50% deposit, written quote typically within 24 hours.',
@@ -431,7 +431,7 @@ export const CITIES: City[] = [
     anchor: 'LVP installation in Clermont',
     title: 'LVP Installation in Clermont, FL — From $5.99/sqft',
     description:
-      'LVP installation in Clermont, FL from $5.99/sqft plus material tax, supplied and installed. Stairs, two-story homes, and open floor plans done right. Written quote typically within 24 hours.',
+      'LVP installed in Clermont, FL from $5.99/sqft plus material tax. Stairs, two-story homes and open floor plans. Written quote typically in 24 hours.',
     kicker: 'Clermont, FL · Lake County',
     h1: 'Luxury vinyl plank flooring in Clermont',
     byline: 'Two-story homes, stairs, and big open rooms. From $5.99/sqft plus material tax, supplied and installed. No trip charges.',
