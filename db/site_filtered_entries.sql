@@ -2,7 +2,7 @@
 -- bookkeeping for the weekly count-only summary. Used by lib/leadFilter.ts on newdesignpro.com.
 --
 -- Applied by hand to the Supabase project that holds the NDP Money data. Additive only: two new
--- tables, one key table and four functions. Nothing that already exists is changed.
+-- tables, one key table and four functions (three for the site, one internal token check). Nothing that already exists is changed.
 --
 -- Access model: the website only holds the project's publishable key, so the tables are closed to
 -- every API role (row level security on, no policies, no grants). The site reaches them through the
@@ -25,6 +25,7 @@ comment on table public.site_filtered_entries is 'Website form entries caught by
 create index site_filtered_entries_created_at_idx on public.site_filtered_entries (created_at);
 alter table public.site_filtered_entries enable row level security;
 revoke all on public.site_filtered_entries from public, anon, authenticated;
+revoke all on sequence public.site_filtered_entries_id_seq from public, anon, authenticated;
 
 create table public.site_filtered_digests (
   week_start date primary key,
