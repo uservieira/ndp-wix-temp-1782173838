@@ -10,7 +10,7 @@ const PATH = '/warranty';
 export const metadata: Metadata = {
   alternates: { canonical: PATH },
   title: 'Written Flooring Warranty: 1 Year to Lifetime Limited',
-  description: 'New Design Pro puts its flooring workmanship warranty in writing: 1 year on Entry, 3 years on Standard, lifetime limited on Premium. What it covers, what it does not, and how to file a claim.',
+  description: 'New Design Pro puts its flooring workmanship warranty in writing: 3 years on Standard, lifetime limited on Premium. What it covers, what it does not, and how to file a claim.',
 };
 
 const body = `
@@ -35,7 +35,7 @@ ${list(WARRANTY_EXCLUDES)}
 ${list(WARRANTY_TERMS)}
 
 <h2>Why we can stand behind it</h2>
-<p>A family business since 2015 (LLC since 2024), with experienced installers. We price every job so the business is still here years from now to answer the phone. A warranty is only worth something if the company is still around to honor it.</p>
+<p>An LLC since 2024, with experienced installers. We price every job so the business is still here years from now to answer the phone. A warranty is only worth something if the company is still around to honor it.</p>
 <p>Want to know what else is in the price? Read our <a href="/no-surprise-charges">no surprise charges promise</a>, or see how we <a href="/blog/flooring-installation-warranty-what-it-covers">compare warranties across the industry</a>.</p>
 `;
 

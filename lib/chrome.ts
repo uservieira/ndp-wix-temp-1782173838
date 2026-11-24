@@ -176,7 +176,7 @@ export function siteFooterHtml(): string {
   ${serviceAreasHtml('footer')}
 
   <div class="footer-legal">
-    © <span id="year">${year}</span> ${BUSINESS.name} · ${BUSINESS.legalName} (LLC since 2024, family business since 2015) · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
+    © <span id="year">${year}</span> ${BUSINESS.name} · ${BUSINESS.legalName} (LLC since 2024) · <a href="tel:${BUSINESS_PHONE.e164}">${BUSINESS_PHONE.display}</a>
     · <a href="/privacy">Privacy</a>
     · <a href="/terms">Terms</a>
   </div>

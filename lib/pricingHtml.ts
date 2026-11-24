@@ -1,6 +1,6 @@
 // Shared HTML-string blocks for pricing and the Duralast collection section.
 // The homepage and /tile render the same tier copy from here so the owner-locked
-// LVP packages ($4.99 / $5.99 / $7.99) can never drift between pages.
+// LVP packages ($5.99 / $7.99) can never drift between pages.
 import { LVP_TIERS, PRICING, SUPPLIER, BASEBOARD_ADDON, type LvpTierKey } from '@/lib/site';
 import {
   DEFAULT_COLLECTION,
@@ -28,27 +28,10 @@ export function lvpTiersHtml(opts: {
   href: (key: LvpTierKey | 'labor') => string;
 }): string {
   const { hidden = false, href } = opts;
-  const entry = tierByKey('entry');
   const standard = tierByKey('standard');
   const premium = tierByKey('premium');
-  return `<!-- LVP tiers (ascending: ${priceText('entry')} → ${priceText('standard')} → ${priceText('premium')} → Labor Only) -->
+  return `<!-- LVP tiers (ascending: ${priceText('standard')} → ${priceText('premium')} → Labor Only) -->
     <div class="price-tiers${hidden ? ' is-hidden' : ''}" id="tiers-lvp" role="tabpanel"${hidden ? ' aria-hidden="true"' : ''}>
-      <div class="tier">
-        <div class="tier-name">${entry.name} Supplied</div>
-        <div class="tier-price"><span class="amount">${priceText('entry')}</span><span class="unit">/sqft</span></div>
-        <p class="tier-desc">Budget-friendly ${entry.wear} LVP, standard install + quarter round. ${joinOr(collectionsFor('entry'))} colors.</p>
-        <ul>
-          <li>12-mil wear layer LVP</li>
-          <li>4.7mm Panzu LVP plank</li>
-          <li>Standard install</li>
-          <li>Quarter round added at wall base</li>
-          <li><a href="/warranty">1-year workmanship warranty</a></li>
-          <li>Durato Lifetime Limited Residential Warranty on the plank</li>
-        </ul>
-        <a class="btn btn-tier" href="${href('entry')}" data-tier="entry">Book entry</a>
-        <p class="tier-note">Final price confirmed after in-home measurement.</p>
-      </div>
-
       <div class="tier featured">
         <div class="tier-badge">${standard.badge}</div>
         <div class="tier-name">${standard.name} Supplied</div>
@@ -130,7 +113,7 @@ export function tileTiersHtml(opts: {
           Your written quote covers the exact scope we measure.
           If the subfloor needs floating (self-leveling), that work is priced based on subfloor condition after inspection.
         </div>
-        <p class="tier-note">Written quote within 24 hours of the measure.</p>
+        <p class="tier-note">Written quote typically within 24 hours of the measure.</p>
       </div>
 
       <div class="tier">
@@ -171,14 +154,13 @@ export function pricingFineHtml(): string {
   return `<div class="pricing-fine">
       <div><strong>New baseboards</strong>$${BASEBOARD_ADDON.price.toFixed(2)}/linear ft add-on, any package</div>
       <div><strong>Stairs</strong>${PRICING.stairsQuoted}</div>
-      <div><strong>Next-day start</strong>Available on most jobs</div>
       <div><strong>Deposit</strong>50% down · balance at completion</div>
-      <div><strong>Free measure</strong>On-site quote within 24 hours in Central FL</div>
+      <div><strong>Free measure</strong>Written quote typically within 24 hours in Central FL</div>
     </div>`;
 }
 
 export const PRICING_LEDE =
-  'LVP is priced per square foot, all in. Tile, stairs, and labor-only are quoted after a free in-home measure. Next-day start available.';
+  'LVP is priced per square foot, all in. Tile, stairs, and labor-only are quoted after a free in-home measure.';
 
 // ---------------------------------------------------------------- Duralast collection section
 export const formHrefFor = (c: DuralastCollection, color: DuralastColor) =>

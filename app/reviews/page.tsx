@@ -44,7 +44,7 @@ ${cityHeaderHtml()}
     <h2 class="section-title">Family-run and <em>upfront</em>.</h2>
     <ul class="reviews-why-list">
       <li><strong>Family-run.</strong> ${CLAIMS.experienceText}</li>
-      <li><strong>Written scope and price up front.</strong> You approve materials, labor, and timeline before anything starts, with a written quote in 24 hours.</li>
+      <li><strong>Written scope and price up front.</strong> You approve materials, labor, and timeline before anything starts, with a written quote typically within 24 hours.</li>
       <li><strong>Photo record of every job.</strong> Before, during, and after photos are shared so you can see the work.</li>
     </ul>
   </div>

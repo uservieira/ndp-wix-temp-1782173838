@@ -30,26 +30,26 @@ export function v6HeroHtml(): string {
   </div>
 </section>
 <div class="v6-facts">
-  <div><strong>${priceText('entry')}</strong>Installed price from, per sq ft</div>
-  <div><strong>Since 2015</strong>Family business · LLC since 2024</div>
+  <div><strong>${priceText('standard')}</strong>Installed price from, per sq ft</div>
+  <div><strong>Davenport</strong>Based in 33837 · LLC since 2024</div>
   <div><strong>Free</strong>In-home measure</div>
-  <div><strong>24 hrs</strong>Written quote</div>
+  <div><strong>~24 hrs</strong>Typical written quote</div>
 </div>`;
 }
 
-type Row = { label: string; entry: string; standard: string; premium: string };
+type Row = { label: string; standard: string; premium: string };
 const ROWS: Row[] = [
-  { label: 'Plank', entry: 'Panzu, 4.7mm', standard: 'Azul Tortuga, 5mm', premium: 'V-EVO Max or XL, 6mm core' },
-  { label: 'Wear layer', entry: '12 mil', standard: '20 mil', premium: '20 mil' },
-  { label: 'Quarter round', entry: 'yes', standard: 'yes', premium: 'yes' },
-  { label: 'Carpet removal and haul-away', entry: 'no', standard: 'yes', premium: 'yes' },
-  { label: 'Minor subfloor prep', entry: 'no', standard: 'yes', premium: 'yes' },
-  { label: 'Flatness and moisture check, documented', entry: 'no', standard: 'no', premium: 'yes' },
-  { label: 'Written walkthroughs and warranty file', entry: 'no', standard: 'no', premium: 'yes' },
-  { label: 'Workmanship warranty', entry: '1 year', standard: '3 years', premium: 'Lifetime limited' },
-  { label: 'Durato Lifetime Limited Residential Warranty on the plank', entry: 'yes', standard: 'yes', premium: 'yes' },
+  { label: 'Plank', standard: 'Azul Tortuga, 5mm', premium: 'V-EVO Max or XL, 6mm core' },
+  { label: 'Wear layer', standard: '20 mil', premium: '20 mil' },
+  { label: 'Quarter round', standard: 'yes', premium: 'yes' },
+  { label: 'Carpet removal and haul-away', standard: 'yes', premium: 'yes' },
+  { label: 'Minor subfloor prep', standard: 'yes', premium: 'yes' },
+  { label: 'Flatness and moisture check, documented', standard: 'no', premium: 'yes' },
+  { label: 'Written walkthroughs and warranty file', standard: 'no', premium: 'yes' },
+  { label: 'Workmanship warranty', standard: '3 years', premium: 'Lifetime limited' },
+  { label: 'Durato Lifetime Limited Residential Warranty on the plank', standard: 'yes', premium: 'yes' },
 ];
-const KEYS = ['entry', 'standard', 'premium'] as const;
+const KEYS = ['standard', 'premium'] as const;
 const cell = (v: string) => (v === 'yes' ? 'Included' : v === 'no' ? '<span class="v6-no">Not included</span>' : v);
 
 export function v6PackagesHtml(): string {
@@ -72,7 +72,7 @@ export function v6PackagesHtml(): string {
   return `
 <section class="v6-sec" id="lvp-pricing">
   <div class="v6-wrap">
-    <h2>Three packages. <em>Nothing hidden.</em></h2>
+    <h2>Two packages. <em>Nothing hidden.</em></h2>
     <p class="v6-intro">Every package includes the plank, the install and the cleanup. We confirm your final price at the free measure.</p>
     <div class="v6-sheet"><table><thead><tr><th scope="col" class="v6-rowh">What's included</th>${head}</tr></thead><tbody>${body}<tr class="v6-btnrow"><th></th>${btns}</tr></tbody></table></div>
     <div class="v6-stack">${stack}</div>
@@ -145,7 +145,7 @@ export function v6StepsHtml(): string {
     <p class="v6-intro">Three steps, start to finish.</p>
     <ol class="v6-steps">
       <li><span class="v6-n">1</span><h3>Free measure</h3><p>We measure every room, check the subfloor and bring real plank samples.</p></li>
-      <li><span class="v6-n">2</span><h3>Written quote in 24 hours</h3><p>One price per square foot, in writing. 50% deposit books your date.</p></li>
+      <li><span class="v6-n">2</span><h3>Written quote, typically in 24 hours</h3><p>One price per square foot, in writing. 50% deposit books your date.</p></li>
       <li><span class="v6-n">3</span><h3>Install and cleanup</h3><p>Most homes take two to three days. We haul the debris and walk the job with you.</p></li>
     </ol>
   </div>
@@ -195,7 +195,7 @@ export function v6FinalHtml(): string {
   return `
 <section class="v6-final">
   <div class="v6-wrap">
-    <div><h2>Ready for floors you'll <em>love?</em></h2><p>Free in-home measure. Written quote in 24 hours.</p></div>
+    <div><h2>Ready for floors you'll <em>love?</em></h2><p>Free in-home measure. Written quote typically within 24 hours.</p></div>
     <div class="v6-ctas"><a class="v6-btn light" href="/form">Get my price</a><a class="v6-btn line light" href="tel:${BUSINESS_PHONE.e164}">Call ${BUSINESS_PHONE.display}</a></div>
   </div>
 </section>`;
