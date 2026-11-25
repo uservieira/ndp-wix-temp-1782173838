@@ -232,6 +232,34 @@
     return false;
   }
 
+  // NDP-JUNK-START
+  // Same rules as zipOutsideFlorida() and looksLikePitch() in lib/leadFilter.ts. Keep the two in step.
+  function ndpJunkEntry(zip, notes) {
+    var d = String(zip || '').replace(/\D/g, '');
+    if ((d.length === 5 || d.length === 9) && !/^3[234]/.test(d)) return true;
+    var n = String(notes || '').trim();
+    if (!n) return false;
+    var pitch = [
+      /backing of contractors/i,
+      /\bfunding\b/i,
+      /\b(?:working capital|capital funding|merchant capital)\b/i,
+      /\bseo\b/i,
+      /\brank(?:ing)? your (?:web)?site\b/i,
+      /\bsynergy\b/i,
+      /\b(?:business|merchant|contractor|sba|equipment) loans?\b/i,
+      /\bline of credit\b/i,
+      /\bcash advance\b/i,
+      /\b(?:digital|online|internet) marketing\b/i,
+      /\bmarketing (?:agency|services?|company|campaigns?)\b/i,
+      /\blead generation\b/i,
+      /\bbacklinks?\b/i,
+      /\b(?:first page|top) of google\b/i
+    ];
+    for (var i = 0; i < pitch.length; i++) if (pitch[i].test(n)) return true;
+    return false;
+  }
+  // NDP-JUNK-END
+
   function validateLead(fields) {
     var errors = [];
     var name = (fields.name || '').trim();
@@ -326,6 +354,30 @@
         errBox.innerHTML = errors.map(function(er){ return '• ' + er.replace(/</g,'&lt;'); }).join('<br>');
         errBox.style.display = 'block';
       }
+      return;
+    }
+
+    // Junk entries (ZIP outside Florida, or a sales pitch in the notes) go to the site only, where they are
+    // logged and nothing else: no backup copy, no ad-pixel "Lead" event. The visitor sees the normal thank-you.
+    if (ndpJunkEntry(validationFields.zip, validationFields.notes)) {
+      fetch('/api/home-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        keepalive: true,
+        body: JSON.stringify({
+          name: validationFields.name,
+          phone: validationFields.phone,
+          scope: validationFields.scope,
+          sqft: validationFields.sqft,
+          zip: validationFields.zip,
+          notes: validationFields.notes,
+          smsConsent: !!((document.getElementById('sms_consent') || {}).checked),
+          page: window.location.pathname,
+          company_website: ''
+        })
+      }).catch(function() {});
+      form.classList.add('state-success');
+      form.reset();
       return;
     }
 

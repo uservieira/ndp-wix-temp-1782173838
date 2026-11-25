@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sendOwnerAlert } from '@/lib/leadAlert';
 import { emailSignature, textSignature } from '@/lib/emailSignature';
 import { leadSourceFrom, googleClickProps, type Attribution } from '@/lib/leadSource';
-import { contactByEmail, honeypot } from '@/lib/hubspot';
+import { contactByEmail } from '@/lib/hubspot';
+import { filterReasons, filterLogReady, logFiltered } from '@/lib/leadFilter';
 
 export const runtime = 'nodejs';
 
@@ -68,10 +69,13 @@ export async function POST(req: NextRequest) {
   const first = rawName.trim().split(/\s+/)[0].replace(/[^\p{L}'\-]/gu, '').slice(0, 40);
   const firstCap = first ? first[0].toUpperCase() + first.slice(1) : '';
   if (!isEmail(email)) return body.company_website ? NextResponse.json({ ok: true, code: PROMO_CODE }) : NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 400 });
-  // Hidden anti-bot field. Autofill can fill it for real people (a Nov 7 lead was dropped this way), so:
-  // a value that just repeats what they typed is treated as a person; anything else is emailed to the owner as filtered.
-  if (honeypot(body.company_website, [body.name, email]) === 'filtered') {
-    await sendOwnerAlert({ kind: 'Filtered pop-up entry (possible bot)', name: email, email, details: { 'Name box': (body.name || '').slice(0, 80), 'Hidden field': body.company_website?.slice(0, 80), Note: 'The spam filter caught this one, so no code email was sent and it was not added to HubSpot. If it looks like a real person, email them the LVP10 code.' }, idem: `promo-filtered-${email}`, emailOnly: true });
+  // Hidden anti-bot field. Autofill can fill it for real people (a Nov 7 lead was dropped this way), so a value
+  // that just repeats what they typed is treated as a person. Anything else goes to the filtered-entry log only
+  // (lib/leadFilter.ts). If that log is not set up or the write fails, it is emailed to the owner as before.
+  const reasons = filterReasons({ hidden: body.company_website, typed: [body.name, email] });
+  if (reasons.length) {
+    const logged = filterLogReady() && (await logFiltered('promo_popup', reasons, { email, name: body.name, hidden: body.company_website, page: body.source }));
+    if (!logged) await sendOwnerAlert({ kind: 'Filtered pop-up entry (possible bot)', name: email, email, details: { 'Name box': (body.name || '').slice(0, 80), 'Hidden field': body.company_website?.slice(0, 80), Note: 'The spam filter caught this one, so no code email was sent and it was not added to HubSpot. If it looks like a real person, email them the LVP10 code.' }, idem: `promo-filtered-${email}`, emailOnly: true });
     return NextResponse.json({ ok: true, code: PROMO_CODE });
   }
   const source = (body.source || '/').slice(0, 200);

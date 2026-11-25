@@ -1,0 +1,40 @@
+name: Filtered form entries digest
+
+# Once a week the site emails the office inbox a count of the junk form entries it filtered
+# (bots, out-of-area, sales pitches). Count only, no entry details, and no email when the count is 0.
+# Tuesday is a retry: the site allows one summary per week, so it does nothing if Monday's went out.
+
+on:
+  schedule:
+    - cron: '10 14 * * 1'
+    - cron: '10 14 * * 2'
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: 'Only show the counts; do not send or use up this week'
+        type: boolean
+        default: true
+
+permissions: {}
+
+concurrency:
+  group: filtered-digest
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Run
+        env:
+          POLL_SECRET: ${{ secrets.FB_POLL_SECRET }}
+          DRY: ${{ inputs.dry }}
+        run: |
+          url="https://www.newdesignpro.com/api/leads/filter-digest"
+          if [ "$DRY" = "true" ]; then url="$url?dry=1"; fi
+          code=$(curl -s -o /tmp/r.json -w '%{http_code}' --max-time 60 -H "x-poll-secret: $POLL_SECRET" "$url" || echo 000)
+          echo "http=$code"
+          cat /tmp/r.json 2>/dev/null || true
+          echo
+          [ "$code" = "200" ]
